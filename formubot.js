@@ -1,39 +1,35 @@
 /*Variable area*/
+var config = require("./config.json");
 var Discordbot = require('discord.io');
 var bot = new Discordbot({
-    token: "MTcwOTM0Njk0NTgwMzIyMzA1.CfP61w.8SY9VwuffbasLqsO0iJ26nbudgM",
+    token: config.token,
     autorun: true
 });
 var Twitter = require("twitter");
-var twit = require("./twitter.json");
 var darth = new Twitter({
-    consumer_key: twit.twitter.owner.ck,
-    consumer_secret: twit.twitter.owner.cs,
-    access_token_key: twit.twitter.owner.tk,
-    access_token_secret: twit.twitter.owner.ts,
+    consumer_key: config.twitter.owner.ck,
+    consumer_secret: config.twitter.owner.cs,
+    access_token_key: config.twitter.owner.tk,
+    access_token_secret: config.twitter.owner.ts,
 });
 var server = new Twitter({
-  consumer_key: twit.twitter.server.ck,
-  consumer_secret: twit.twitter.server.cs,
-  access_token_key: twit.twitter.server.tk,
-  access_token_secret: twit.twitter.server.ts,
+  consumer_key: config.twitter.server.ck,
+  consumer_secret: config.twitter.server.cs,
+  access_token_key: config.twitter.server.tk,
+  access_token_secret: config.twitter.server.ts,
 });
-
 process.DiscordBot = bot;
 const fs = require('fs');
 const request = require('request');
 var colors = require('colors/safe');
-const MAX_INTEGER = 2147483647;
-const MIN_INTEGER = -2147483648;
 var admin = require("./admin.js");
 var calc = require("./calc.js");
 var info = require("./info.js");
 var help = require("./help.js");
 var color = require("./color.js");
+//Bot properties declared
 bot.darth = darth;
 bot.server = server;
-var mIndex = 0;
-var cIndex = 2;
 bot.inStandby = false;
 bot.sendMessages = sendMessages;
 bot.reload = reload;
@@ -52,11 +48,17 @@ if(day < 10) {
 }
 var logFileName = ( "logs/" + year + "-" + month + "-" + day + ".txt");
 var logText = "";
-const trigger = ">>>";
-const triggerLength = 3;
+
 bot.trigger = trigger;
 bot.request = request;
 bot.fs = fs;
+//Other vars
+var mIndex = 0;
+var cIndex = 2;
+const trigger = ">>>";
+const triggerLength = 3;
+const MAX_INTEGER = 2147483647;
+const MIN_INTEGER = -2147483648;
 /*Event area*/
 
 bot.on("ready", function(rawEvent) {
