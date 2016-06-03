@@ -1,6 +1,5 @@
 /*Variable area*/
 var config = require("./config.json");
-bot.config = config;
 var Discordbot = require('discord.io');
 var bot = new Discordbot({
     token: config.token,
@@ -29,6 +28,7 @@ var info = require("./info.js");
 var help = require("./help.js");
 var color = require("./color.js");
 //Bot properties declared
+bot.config = config;
 bot.darth = darth;
 bot.server = server;
 bot.inStandby = false;
