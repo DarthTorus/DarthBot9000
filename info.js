@@ -12,7 +12,7 @@ function infoCheck(m, uI, cI) {
 			bot.sendMessages(cI, ["IP: *167.114.65.207:25778 (Will change)*"]);
 			break;
 		case "link":
-			bot.sendMessages(uI, ["Join the server: https://discord.gg/0xnx0v1geqT11A29"]);
+			bot.sendMessages(uI, ["Join the server: " + bot.config.invite]);
 			break;
 		case "uptime":
 			calcUptime(cI);
@@ -21,7 +21,7 @@ function infoCheck(m, uI, cI) {
 			bot.sendMessages(cI, ["Server Logo: @GarretRR\nBot Logo: @Adryd"]);
 			break;
 		case "qrcode":
-			bot.sendMessages(cI, ["http://bit.ly/202ycbp"]);
+			bot.sendMessages(cI, [bot.config.qrcode]);
 			break;
 		case "bot":
 			sendBotInfo(cI);
@@ -32,10 +32,10 @@ function infoCheck(m, uI, cI) {
 function twitter(t, cI) {
 	switch (t) {
 		case "owner":
-			bot.sendMessages(cI, ["Owner: http://twitter.com/Darth_Torus"]);
+			bot.sendMessages(cI, ["Owner: " + bot.config.twitter.l.o]);
 			break;
 		case "server":
-			bot.sendMessages(cI, ["Server: http://twitter.com/DunegwainMC"]);
+			bot.sendMessages(cI, ["Server: "+ bot.config.twitter.l.s]);
 			break;
 		default:
 			 break;

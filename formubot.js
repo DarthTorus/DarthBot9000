@@ -1,5 +1,6 @@
 /*Variable area*/
 var config = require("./config.json");
+bot.config = config;
 var Discordbot = require('discord.io');
 var bot = new Discordbot({
     token: config.token,
@@ -7,16 +8,16 @@ var bot = new Discordbot({
 });
 var Twitter = require("twitter");
 var darth = new Twitter({
-    consumer_key: config.twitter.owner.ck,
-    consumer_secret: config.twitter.owner.cs,
-    access_token_key: config.twitter.owner.tk,
-    access_token_secret: config.twitter.owner.ts,
+    consumer_key: config.twitter.o.ck,
+    consumer_secret: config.twitter.o.cs,
+    access_token_key: config.twitter.o.tk,
+    access_token_secret: config.twitter.o.ts,
 });
 var server = new Twitter({
-  consumer_key: config.twitter.server.ck,
-  consumer_secret: config.twitter.server.cs,
-  access_token_key: config.twitter.server.tk,
-  access_token_secret: config.twitter.server.ts,
+  consumer_key: config.twitter.s.ck,
+  consumer_secret: config.twitter.s.cs,
+  access_token_key: config.twitter.s.tk,
+  access_token_secret: config.twitter.s.ts,
 });
 process.DiscordBot = bot;
 const fs = require('fs');
