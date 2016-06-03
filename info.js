@@ -86,7 +86,7 @@ function sendBotInfo(cI) {
 	bot.sendMessages(cI, ["```xl\n" + m + "```"])
 }
 function invite(uI) {
-	bot.sendMessages(uI, ["Invite link: https://goo.gl/pS2W98"]);
+	bot.sendMessages(uI, ["Invite link: https://goo.gl/oiKr68"]);
 }
 
 var infoFunctions = {
