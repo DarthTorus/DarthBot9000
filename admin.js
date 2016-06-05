@@ -1,5 +1,4 @@
 var bot = process.DiscordBot;
-var color1 = require("./color.js");
 function adminCheck(m, cI) {
     console.log(m[0]);
     switch(m[0]) {

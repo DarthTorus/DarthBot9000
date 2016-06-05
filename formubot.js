@@ -35,7 +35,7 @@ bot.inStandby = false;
 bot.sendMessages = sendMessages;
 bot.reload = reload;
 bot.startDate = new Date();
-bot.colorJS = colorJS;
+bot.color = color;
 var year = bot.startDate.getFullYear();
 console.log(year);
 var month = bot.startDate.getMonth()+1;
