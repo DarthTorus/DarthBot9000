@@ -26,7 +26,7 @@ var admin = require("./admin.js");
 var calc = require("./calc.js");
 var info = require("./info.js");
 var help = require("./help.js");
-var color = require("./color.js");
+var colorJS = require("./color.js");
 //Bot properties declared
 bot.config = config;
 bot.darth = darth;
@@ -35,6 +35,7 @@ bot.inStandby = false;
 bot.sendMessages = sendMessages;
 bot.reload = reload;
 bot.startDate = new Date();
+bot.colorJS = colorJS;
 var year = bot.startDate.getFullYear();
 console.log(year);
 var month = bot.startDate.getMonth()+1;
