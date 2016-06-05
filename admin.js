@@ -148,10 +148,18 @@ function sendServerTweet(m, cI) {
 function addRole(msg, cID) {
   var roleName = msg[0];
   if(msg[1] != undefined && (checkHex(msg[1]) || checkINT(msg[1]))) {
-    color = msg[1];
+    roleColor = msg[1];
+    console.log(roleColor);
+
+    if(roleColor.length == 4) {
+      var r = roleColor[1] + roleColor[1];
+      var g = roleColor[2] + roleColor[2];
+      var b = roleColor[3] + roleColor[3];
+      roleColor = ("#" + r + g + b);
+    }
   }
   else {
-    color = "DEFAULT";
+    roleColor = "DEFAULT";
   }
   var serverID = bot.serverFromChannel(cID);
   bot.createRole(serverID, function(err, res) {
@@ -159,10 +167,11 @@ function addRole(msg, cID) {
     bot.editRole({
       server: serverID,
       role: roleID,
-      name: roleName
+      name: roleName,
+      color: roleColor
     });
-    bot.sendMessages(cID, ["Role " + roleName + "created successfully."]);
-});
+    bot.sendMessages(cID, ["Role " + roleName + " created successfully."]);
+  });
 }
 function changeRole(msg, cID) {}
 function addUserToRole(msg, cID) {}
