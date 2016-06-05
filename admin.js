@@ -1,45 +1,56 @@
 var bot = process.DiscordBot;
-
+var color1 = require("./color.js");
 function adminCheck(m, cI) {
     console.log(m[0]);
     switch(m[0]) {
         case '-w':
-            wake(cI);
-            break;
+          wake(cI);
+          break;
         case '-s':
-            sleep(cI);
-            console.log("received sleep");
-            break;
+          sleep(cI);
+          console.log("received sleep");
+          break;
         case '-q':
-            quit(cI);
-            break;
+          quit(cI);
+          break;
         case '-t':
-            tweetCheck(m, cI);
-            break;
+          tweetCheck(m, cI);
+          break;
         case '-r':
-            bot.reload(cI);
-            break;    
+          bot.reload(cI);
+          break;
+        case '-ar':
+          m.shift();
+          addRole(m, cI);
+          break;
+        case '-er':
+          m.shift();
+          changeRole(m, cI);
+          break;
+        case '-au':
+          m.shift();
+          addUserToRole(m, cI);
+          break;
+        case '-ru':
+          m.shift();
+          removeUserFromRole(m, cI);
         default:
-            break;
+          break;
     }
 }
-
 function sleep(cID) {
     bot.inStandby = true;
     //console.log("Bot sleeping (first check) = " + bot.inStandby);
     randomStatus("in dreams");
 }
-
 function wake(cID){
     bot.inStandby = false;
     console.log("Bot sleeping =" + bot.inStandby);
     randomStatus();
 }
-
 function quit(cID){
     setTimeout(function() {bot.disconnect();}, 1000);
 }
-
 function randomStatus(msg) {
     var gameString = msg || "0";
     var randStat = [
@@ -85,7 +96,6 @@ function randomStatus(msg) {
         bot.setPresence({game: gameString});
     }
 }
-
 function tweetCheck(msg, cID) {
     msg.shift();
     switch(msg[0]) {
@@ -104,7 +114,7 @@ function sendOwnerTweet(m, cI) {
     if(m.length > 140) {
         bot.sendMessages(cID, ["Tweet is too long! Length = " + m.length]);
     }
-    else {        
+    else {
         bot.darth.post('statuses/update', {status: m},  function(error, tweet, response){
             if(error) {
                 bot.sendMessages(cI, ["Tweet couldn't send!"]);
@@ -123,7 +133,7 @@ function sendServerTweet(m, cI) {
     if(m.length > 140) {
         bot.sendMessages(cID, ["Tweet is too long! Length = " + m.length]);
     }
-    else {        
+    else {
         bot.server.post('statuses/update', {status: m},  function(error, tweet, response){
             if(error) {
                 bot.sendMessages(cI, ["Tweet couldn't send!"]);
@@ -135,10 +145,48 @@ function sendServerTweet(m, cI) {
         });
     }
 }
-
+function addRole(msg, cID) {
+  var roleName = msg[0];
+  if(msg[1] != undefined && (checkHex(msg[1]) || checkINT(msg[1]))) {
+    color = msg[1];
+  }
+  else {
+    color = "DEFAULT";
+  }
+  var serverID = bot.serverFromChannel(cID);
+  bot.createRole(serverID, function(err, res) {
+    var roleID = res.id;
+    bot.editRole({
+      server: serverID,
+      role: roleID,
+      name: roleName
+    });
+    bot.sendMessages(cID, ["Role " + roleName + "created successfully."]);
+});
+}
+function changeRole(msg, cID) {}
+function addUserToRole(msg, cID) {}
+function removeUserFromRole(msg, cID) {}
 var adminFunctions = {
     adminCheck: adminCheck,
     randomStatus: randomStatus
 };
-
+function checkHex(col) {
+  var regExp = /^#([0-9A-F]{3}|[0-9A-F]{6})/i;
+  console.log("In regex: " + regExp.test(col));
+  if(regExp.test(col)){
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+function checkINT(col) {
+  if(col >= 0 && col <= 16777215 ) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 module.exports = adminFunctions;

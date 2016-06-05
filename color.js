@@ -421,7 +421,14 @@ function checkHSV(col){
     return true;
   }
 }
-function checkINT(col){}
+function checkINT(col){
+  if(col >= 0 && col <= 16777215 ) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 function toHex(val) {
   var hex = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
   var quot = Math.floor(val / 16);
