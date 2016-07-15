@@ -233,7 +233,7 @@ function changeRole(msg, cID) {
     roleColor = "DEFAULT";
   }
   console.log("[DEBUG] roleColor = " + roleColor);
-  var roleID = getRoleFromName(roleName, cID);
+  var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
   //console.log(roleID);
   var serverID = bot.serverFromChannel(cID);
@@ -252,7 +252,7 @@ function removeRole(msg, cID) {
   var roleName = msg[0];
   var serverID = bot.serverFromChannel(cID);
   roleName = roleName.replace(/_/g, " ");
-  var roleID = getRoleFromName(roleName, cID);
+  var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
   console.log("[DEBUG] roleName = \"" + roleName + "\"");
   if(roleID != "0") {
@@ -273,7 +273,7 @@ function addUserToRole(msg, cID) {
   console.log(uID);
   var serverID = bot.serverFromChannel(cID);
   roleName = roleName.replace(/_/g, " ");
-  var roleID = getRoleFromName(roleName, cID);
+  var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
   console.log("[DEBUG] roleName = \"" + roleName + "\"");
   if(roleID != "0") {
@@ -294,7 +294,7 @@ function removeUserFromRole(msg, cID) {
   uID = userID.replace(/\D/g,"");
   var serverID = bot.serverFromChannel(cID);
   roleName = roleName.replace(/_/g, " ");
-  var roleID = getRoleFromName(roleName, cID);
+  var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
   console.log("[DEBUG] roleName = \"" + roleName + "\"");
   if(roleID != "0") {
@@ -308,7 +308,7 @@ function removeUserFromRole(msg, cID) {
     });
   }
 }
-function getRoleFromName(rName, cID) {
+function getRoleIDFromRoleName(rName, cID) {
   var serverID = bot.serverFromChannel(cID); //Get server ID
   var server = bot.servers[serverID]; //Set server as current server using the ID
   for(var role in server.roles) {
@@ -394,7 +394,7 @@ function silenceUser(msg, cID) {
   var serverID = bot.serverFromChannel(cID);
   var userID = msg[0];
   var uID = resolveID(userID);
-  var roleID = getRoleFromName("MUTED", cID);
+  var roleID = getRoleIDFromRoleName("MUTED", cID);
   bot.addToRole({
     server: serverID,
     user: uID,
@@ -405,7 +405,7 @@ function unsilenceUser(msg, cID) {
   var serverID = bot.serverFromChannel(cID);
   var userID = msg[0];
   var uID = resolveID(userID);
-  var roleID = getRoleFromName("MUTED", cID);
+  var roleID = getRoleIDFromRoleName("MUTED", cID);
   bot.removeFromRole({
     server: serverID,
     user: uID,
