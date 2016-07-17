@@ -145,6 +145,9 @@ function tweetCheck(msg, cID) {
         case '-o':
             sendOwnerTweet(msg, cID);
             break;
+        // case '-b':
+        //     sendBotTweet(msg, cID);
+        //     break;
     }
 }
 function sendOwnerTweet(m, cI) {
