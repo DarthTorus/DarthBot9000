@@ -49,15 +49,15 @@ if(day < 10) {
 }
 var logFileName = ( "logs/" + year + "-" + month + "-" + day + ".txt");
 var logText = "";
-
+const trigger = ">>>";
+const triggerLength = 3;
 bot.trigger = trigger;
 bot.request = request;
 bot.fs = fs;
 //Other vars
 var mIndex = 0;
 var cIndex = 2;
-const trigger = ">>>";
-const triggerLength = 3;
+
 const MAX_INTEGER = 2147483647;
 const MIN_INTEGER = -2147483648;
 /*Event area*/
@@ -122,7 +122,6 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
         });
     }
     message = command.join(" ");
-   //set all text to lowercase. Makes checking easier
     if(triggerCheck == trigger){
         fs.appendFile(logFileName, logText, (err) => { //Log command sent along with user and server
           if (err) throw err;
@@ -136,7 +135,7 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 
         }
         else if(bot.inStandby) { //Bot in standby, didn't receive wake command from me
-            return
+            return;
         }
         else { //Bot is not in sleep mode. Anyone can send commands
             console.log(colors.cyan("Checking Commands"));
@@ -235,7 +234,7 @@ function checkCommands(c, message, uID, chID) {
         break;
       case 'admin':
         var serverID = bot.serverFromChannel(chID);
-        if(uID ==  "133370041142870016" && serverID == "172689601935179776" ) {
+        if(uID ==  "133370041142870016" || serverID == "172689601935179776" || (chID in bot.directMessages)) {
           admin.adminCheck(msg, chID);
         }
         else {
