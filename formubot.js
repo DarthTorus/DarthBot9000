@@ -36,11 +36,8 @@ bot.sendMessages = sendMessages;
 bot.reload = reload;
 bot.startDate = new Date();
 var year = bot.startDate.getFullYear();
-console.log(year);
 var month = bot.startDate.getMonth()+1;
-console.log(month);
 var day = bot.startDate.getDate();
-console.log(day);
 if(month < 10) {
     month = "0"+ month;
 }
@@ -71,7 +68,7 @@ bot.on("ready", function(rawEvent) {
     logText += "Connected!\r\n";
     console.log(colors.cyan("Logged in as: " + bot.username + " - (" + bot.id + ")"));
     logText += "Logged in as: " + bot.username + " - (" + bot.id + ")" + "\r\n";
-    admin.randomStatus(0);
+    admin.randomStatus("0");
     fs.appendFile(logFileName, logText, (err) => {
       if (err) throw err;
       console.log(colors.gray("Data added."));

@@ -9,7 +9,7 @@ function infoCheck(m, uI, cI) {
 			invite(uI);
 			break;
 		case "ip":
-			bot.sendMessages(cI, ["IP: *167.114.65.207:25778 (Will change)*"]);
+			bot.sendMessages(cI, ["IP: `dunegwain.mc-server.net`"]);
 			break;
 		case "link":
 			bot.sendMessages(uI, ["Join the server: " + bot.config.invite]);

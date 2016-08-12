@@ -127,7 +127,6 @@ function randomStatus(msg) {
         "w/ nuclear fallout",
         "with Deathnotes"
         ];
-    console.log(gameString);
     if(gameString === "0") {
         var status = Math.floor(Math.random() * randStat.length);
         bot.setPresence({game: randStat[status]});
