@@ -46,6 +46,22 @@ function adminCheck(m, cI) {
           m.shift();
           banUser(m, cI);
           break;
+        case '-pue':
+          m.shift();
+          prohibitUserExecution(m, cI);
+          break;
+        case '-pse':
+          m.shift();
+          prohibitServerExecution(m, cI);
+          break;
+        case '-eue':
+          m.shift();
+          enableUserExecution(m, cI);
+          break;
+        case '-ese':
+          m.shift();
+          enableServerExecution(m, cI);
+          break;
         case '-ubu':
           m.shift();
           unbanUser(m, cI);
@@ -344,6 +360,36 @@ function banUser(msg, cID) {
     channel: serverID,
     target: uID
   });
+}
+function prohibitUserExecution(msg, cID) {
+  var userID = msg[0];
+  var uID = userID.toString();
+  uID = userID.replace(/\D/g,"");
+  bot.banned.users.push(uID);
+  bot.fs.writeFileSync('./banned.json', JSON.stringify( bot.banned, null, ' '));
+}
+function prohibitServerExecution(msg, cID) {
+  var sID = bot.serverFromChannel(cID).toString();
+  bot.banned.servers.push(sID);
+  bot.fs.writeFileSync('./banned.json', JSON.stringify( bot.banned, null, ' '));
+}
+function enableUserExecution(msg, cID) {
+  var userID = msg[0];
+  var uID = userID.toString();
+  uID = userID.replace(/\D/g,"");
+  if(bot.banned.users.indexOf(uID) > -1) {
+    var index = bot.banned.users.indexOf(uID);
+  }
+  bot.banned.users.splice(index, 1);
+  bot.fs.writeFileSync('./banned.json', JSON.stringify( bot.banned, null, ' '));
+}
+function enableServerExecution(msg, cID) {
+  var sID = bot.serverFromChannel(cID).toString();
+  if(bot.banned.servers.indexOf(sID) > -1) {
+    var index = bot.banned.servers.indexOf(sID);
+  }
+  bot.banned.servers.splice(index, 1);
+  bot.fs.writeFileSync('./banned.json', JSON.stringify( bot.banned, null, ' '));
 }
 function unbanUser(msg, cID) {
   var userID = msg[0];
