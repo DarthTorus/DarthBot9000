@@ -1,8 +1,7 @@
 /*Variable area*/
-var config = require("./config.json");
-var banned = require("./banned.json");
+var config = require("./config.json"); // Must be first because it is the settings for most of below
 var Discordbot = require('discord.io');
-var bot = new Discordbot({
+var bot = new Discordbot.Client({
   token: config.token,
   autorun: true
 });
@@ -20,6 +19,8 @@ var server = new Twitter({
   access_token_secret: config.twitter.s.ts,
 });
 process.DiscordBot = bot;
+
+var banned = require("./banned.json");
 const fs = require('fs');
 const request = require('request');
 var colors = require('colors/safe');
@@ -78,8 +79,12 @@ bot.on("ready", function(rawEvent) {
 });
 
 bot.on("message", function(user, userID, channelID, message, rawEvent) {
-  var serverID = bot.serverFromChannel(channelID);
   var serverName = "";
+  var serverID = 0;
+  if(!(channelID in bot.directMessages)){
+    serverID = bot.channels[channelID].guild_id;
+  }
+
   var channelName = "";
   var logDate = new Date();
   var logHour = logDate.getHours();
@@ -102,17 +107,25 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
   command.shift();
 
   var msgID = rawEvent.d.id; //For future reference?
-  for (var i in bot.servers) {
-    if (i = bot.serverFromChannel(channelID)) {
-      var serverName = bot.servers[i].name;
-      var channelName = bot.servers[i].channels[channelID].name
+  var serverName, channelName;
+  if(!(channelID in bot.directMessages)){
+    for (var i in bot.servers) {
+      if (i == bot.channels[channelID].guild_id) {
+        serverName = bot.servers[i].name;
+        channelName = bot.servers[i].channels[channelID].name
+      }
     }
+  } else {
+    serverName = "Direct Message";
+    channelName = user;
   }
+  logText = logTime + user + "(" + userID + ") in server \'" + serverName + "\' in channel \'" + channelName +"\':\r\n---" + message +"\r\n";
+  logText += "============================================================================\r\n";
   if(triggerCheck == trigger || userID === bot.id) {
-    if (banned.servers.indexOf(serverID) > -1) {
+    if (banned.servers.indexOf(serverID) != -1) {
       console.log(colors.magenta("[WARNING] Server: " + serverName + " - " + serverID + " is banned"));
       return;
-    } else if (banned.users.indexOf(userID) > -1) {
+    } else if (banned.users.indexOf(userID) != -1) {
       console.log(colors.magenta("[WARNING] User: " + user + " - @" + userID + " is banned"));
       return;
     } else {
@@ -125,18 +138,10 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
       //console.log(message);
       console.log(colors.white(bot.fixMessage(message)));
       console.log("----------");
-      logText = (logTime + user + ": " + userID + " in " + serverName + " - " + channelName + ": " + message + "\r\n================\r\n");
-      fs.appendFile(logFileName, logText, (err) => { //Log command sent along with user and server
-        if (err) throw err;
-        console.log(colors.gray("Data added."));
-      });
+
     }
     message = command.join(" ");
     if(triggerCheck == trigger) {
-      fs.appendFile(logFileName, logText, (err) => { //Log command sent along with user and server
-        if (err) throw err;
-        console.log(colors.gray("Data added."));
-      });
       if(bot.inStandby && mainCmnd === "admin" && userID == "133370041142870016") {
         console.log("ADMIN CHECK"); //I sent a wake command while bot is sleeping
         console.log(message);
@@ -154,6 +159,11 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
         checkCommands(mainCmnd, message, userID, channelID);
       }
     }
+
+    fs.appendFile(logFileName, logText, (err) => { //Log command sent along with user and server
+      if (err) throw err;
+      console.log(colors.gray("Data added."));
+    });
   }
   //console.log("Bot sleeping (last check) = " + bot.inStandby);
 });
@@ -166,16 +176,18 @@ bot.on("debug", function(rawEvent) {
   /*console.log(rawEvent)*/ //Logs every event
 });
 
-bot.on("disconnected", function() {
+bot.on("disconnected", function(errMsg, code) {
   console.log(colors.yellow("Bot disconnected"));
   var dateEnded = new Date();
-  var endText = "Disconnected on: " + dateEnded + "\r\n";
+  var endText = "Disconnected on: " + dateEnded + " because of: " + errMsg + "with code " + code + "\r\n";
   endText += ("Uptime: " + Math.floor((dateEnded - bot.startDate) * 1000) + "s");
   fs.appendFile(logFileName, endText +"\r\n", (err) => {
     if (err) throw err;
     console.log(colors.gray("Data added."));
   });
-  /*bot.connect()*/ //Auto reconnect
+  if(code) {
+    bot.connect() //Auto reconnect
+  }
 });
 
 /*Function declaration area*/
@@ -239,72 +251,72 @@ function checkCommands(c, message, uID, chID) {
   console.log(colors.cyan("msg[2]= " + msg[2]));
   switch(c) { //Command switcher
     case 'ping':
-    sendMessages(chID, ["Pong"]);
-    break;
+      sendMessages(chID, ["Pong"]);
+      break;
     case 'calc':
-    calc.calcCheck(msg, chID);
-    break;
+      calc.calcCheck(msg, chID);
+      break;
     case 'admin':
-    var serverID = bot.serverFromChannel(chID);
-    if(uID ==  "133370041142870016" || serverID == "172689601935179776" || (chID in bot.directMessages)) {
-      admin.adminCheck(msg, chID);
-    }
-    else {
-      sendMessages(chID, [ "<@" + uID + "> *: You lack permission*"])
-    }
-    break;
+      var serverID = bot.channels[chID].guild_id;
+      if(uID ==  "133370041142870016" || serverID == "172689601935179776" || (chID in bot.directMessages)) {
+        admin.adminCheck(msg, chID);
+      }
+      else {
+        sendMessages(chID, [ "<@" + uID + "> *: You lack permission*"])
+      }
+      break;
     case 'help':
-    help.checkHelp(msg, uID);
-    break;
+      help.checkHelp(msg, uID);
+      break;
     case 'info':
-    info.infoCheck(msg, uID, chID);
-    break;
+      info.infoCheck(msg, uID, chID);
+      break;
     case 'butts':
-    sendMessages(chID, [ "<@" + uID + "> *: You must like big butts then. Don't lie!*"]);
-    break;
+      sendMessages(chID, [ "<@" + uID + "> *: You must like big butts then. Don't lie!*"]);
+      break;
     case 'roll':
-    rollDice(msg, chID);
-    break;
+      rollDice(msg, chID);
+      break;
     case 'coin':
-    coinFlip(msg, chID);
-    break;
+      coinFlip(msg, chID);
+      break;
     case 'integer':
-    randInteger(msg, chID);
-    break;
+      randInteger(msg, chID);
+      break;
     case 'seq':
-    //coinFlip(msg, chID);
-    break;
+      //coinFlip(msg, chID);
+      break;
     case 'game':
-    msg = msg.join(" ");
-    admin.randomStatus(msg);
-    break;
+      msg = msg.join(" ");
+      admin.randomStatus(msg);
+      break;
     case 'cards':
-    drawCards(msg, chID);
-    break;
+      drawCards(msg, chID);
+      break;
     case 'cipher':
-    //admin.randomStatus();
-    break;
+      //admin.randomStatus();
+      break;
     case 'adryd':
-    doAdryd(chID);
-    break;
+      doAdryd(chID);
+      break;
     case 'hugs':
-    sendHug(msg, chID, uID);
-    break;
+      sendHug(msg, chID, uID);
+      break;
     case 'say':
-    msg = msg.join(" "); //Join with a space
-    repeatMessage(msg, chID, uID);
-    break;
+      msg = msg.join(" "); //Join with a space
+      repeatMessage(msg, chID, uID);
+      break;
     case 'reverse':
-    checkReverse(msg, chID);
-    break;
+      checkReverse(msg, chID);
+      break;
     case 'insult':
-    insult(uID, chID);
-    break;
+      insult(uID, chID);
+      break;
     case 'color':
-    color.colorCheck(msg, chID);
-    break;
+      color.colorCheck(msg, chID);
+      break;
     default:
-    break;
+      break;
   }
 }
 // Flips a coin
@@ -511,7 +523,7 @@ function reload(cI) {
     help = require("./help.js");
     color = require("./color.js");
     config = require("./config.json");
-    banned = require("./config.json");
+    banned = require("./banned.json");
     commands = Object.assign({}, admin, help, info, calc, color, config, banned);
     sendMessages(cI, ["\u200B\u180ESuccessfully reloaded"]);
   }

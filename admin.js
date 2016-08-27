@@ -90,6 +90,10 @@ function adminCheck(m, cI) {
           m.shift();
           unsilenceUser(m, cI);
           break;
+        case '-eun':
+          m.shift();
+          editUserNick(m, cI);
+          break;
         default:
           break;
     }
@@ -221,7 +225,7 @@ function addRole(msg, cID) {
     roleColor = "DEFAULT";
   }
   console.log("[DEBUG] roleColor = " + roleColor);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.createRole(serverID, function(err, res) {
     var roleID = res.id;
     bot.editRole({
@@ -254,7 +258,7 @@ function changeRole(msg, cID) {
   var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
   //console.log(roleID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   if(roleID != "0") {
     bot.editRole({
         server: serverID,
@@ -268,7 +272,7 @@ function changeRole(msg, cID) {
 }
 function removeRole(msg, cID) {
   var roleName = msg[0];
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   roleName = roleName.replace(/_/g, " ");
   var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
@@ -289,7 +293,7 @@ function addUserToRole(msg, cID) {
   var uID = userID.toString();
   uID = userID.replace(/\D/g,"");
   console.log(uID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   roleName = roleName.replace(/_/g, " ");
   var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
@@ -310,7 +314,7 @@ function removeUserFromRole(msg, cID) {
   var userID = msg[1];
   var uID = userID.toString();
   uID = userID.replace(/\D/g,"");
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   roleName = roleName.replace(/_/g, " ");
   var roleID = getRoleIDFromRoleName(roleName, cID);
   console.log("[DEBUG] roleID = " + roleID);
@@ -327,7 +331,7 @@ function removeUserFromRole(msg, cID) {
   }
 }
 function getRoleIDFromRoleName(rName, cID) {
-  var serverID = bot.serverFromChannel(cID); //Get server ID
+  var serverID = bot.channels[cID].guild_id; //Get server ID
   var server = bot.servers[serverID]; //Set server as current server using the ID
   for(var role in server.roles) {
     //console.log("[DEBUG] server.roles[role].name = " + JSON.stringify(server.roles[role].name));
@@ -343,7 +347,7 @@ function kickUser(msg, cID) {
   var userID = msg[0];
   var uID = resolveID(userID);
   console.log("[DEBUG] uID: " + uID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.kick({
     channel: serverID,
     target: uID
@@ -355,7 +359,7 @@ function banUser(msg, cID) {
   var userID = msg[0];
   var uID = userID.toString();
   uID = userID.replace(/\D/g,"");
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.ban({
     channel: serverID,
     target: uID
@@ -369,7 +373,7 @@ function prohibitUserExecution(msg, cID) {
   bot.fs.writeFileSync('./banned.json', JSON.stringify( bot.banned, null, ' '));
 }
 function prohibitServerExecution(msg, cID) {
-  var sID = bot.serverFromChannel(cID).toString();
+  var sID = bot.channels[cID].guild_id.toString();
   bot.banned.servers.push(sID);
   bot.fs.writeFileSync('./banned.json', JSON.stringify( bot.banned, null, ' '));
 }
@@ -384,7 +388,7 @@ function enableUserExecution(msg, cID) {
   bot.fs.writeFileSync('./banned.json', JSON.stringify( bot.banned, null, ' '));
 }
 function enableServerExecution(msg, cID) {
-  var sID = bot.serverFromChannel(cID).toString();
+  var sID = bot.channels[cID].guild_id.toString();
   if(bot.banned.servers.indexOf(sID) > -1) {
     var index = bot.banned.servers.indexOf(sID);
   }
@@ -394,7 +398,7 @@ function enableServerExecution(msg, cID) {
 function unbanUser(msg, cID) {
   var userID = msg[0];
   var uID = resolveID(userID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.unban({
     channel: serverID,
     target: uID
@@ -403,7 +407,7 @@ function unbanUser(msg, cID) {
 function muteUser(msg, cID) {
   var userID = msg[0];
   var uID = resolveID(userID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.mute({
     channel: serverID,
     target: uID
@@ -414,7 +418,7 @@ function muteUser(msg, cID) {
 function unmuteUser(msg, cID) {
   var userID = msg[0];
   var uID = resolveID(userID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.unmute({
     channel: serverID,
     target: uID
@@ -423,7 +427,7 @@ function unmuteUser(msg, cID) {
 function deafenUser(msg, cID) {
   var userID = msg[0];
   var uID = resolveID(userID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.deafen({
     channel: serverID,
     target: uID
@@ -432,14 +436,14 @@ function deafenUser(msg, cID) {
 function undeafenUser(msg, cID) {
   var userID = msg[0];
   var uID = resolveID(userID);
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   bot.undeafen({
     channel: serverID,
     target: uID
   });
 }
 function silenceUser(msg, cID) {
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   var userID = msg[0];
   var uID = resolveID(userID);
   var roleID = getRoleIDFromRoleName("MUTED", cID);
@@ -450,7 +454,7 @@ function silenceUser(msg, cID) {
   });
 }
 function unsilenceUser(msg, cID) {
-  var serverID = bot.serverFromChannel(cID);
+  var serverID = bot.channels[cID].guild_id;
   var userID = msg[0];
   var uID = resolveID(userID);
   var roleID = getRoleIDFromRoleName("MUTED", cID);
@@ -460,6 +464,17 @@ function unsilenceUser(msg, cID) {
     role: roleID
   });
 }
+function editUserNick(msg, cID) {
+  var sID = bot.channels[cID].guild_id;
+  var userID = msg[0];
+  var nickname = msg[1];
+  var uID = resolveID(userID);
+  bot.editNickname({
+    serverID: sID,
+    userID: uID, 
+    nick: nickname});
+}
+
 function createTextChannel() {}
 function createVoiceChannel() {}
 function deleteTextChannel() {}
