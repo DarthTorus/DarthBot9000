@@ -15,6 +15,15 @@ function adminCheck(m, cI) {
         case '-t':
           tweetCheck(m, cI);
           break;
+        case '-ct':
+          checkNumTweets(cI);
+          break;
+        case '-sdm':
+          sendDM(m, cI);
+          break;
+        case '-cdm':
+          checkDMS(m, cI);
+          break;
         case '-r':
           bot.reload(cI);
           break;
@@ -168,6 +177,68 @@ function tweetCheck(msg, cID) {
         //     sendBotTweet(msg, cID);
         //     break;
     }
+}
+function checkNumTweets(cID){
+  var tweetCount;
+  bot.darth.get('users/show', {screen_name: "Darth_Torus"},
+  function(err, user, response) {
+    tweetCount = user.statuses_count;
+    console.log(tweetCount);
+    bot.sendMessages("133370041142870016", ["You have " + tweetCount +" tweets!"]);
+    if(tweetCount == 9999) {
+      bot.darth.post('statuses/update', {status: "10,000th tweet! Here it is folks: http://pastebin.com/ppeEvCpu"},  function(error, tweet, response){
+          if(error) {
+              console.log("Tweet couldn't send!");
+          }
+          else {
+              console.log("10K tweet sent!")
+          }
+          console.log(tweet.text);  // Tweet body.
+      });
+    }
+  });
+
+
+}
+function sendDM(m, cID) {
+  m.shift();
+  recipient = m[0];
+  m.shift(); // remove the recipient
+  msg = m.join(' ');
+  if(cID in bot.directMessages) {
+      bot.darth.post('direct_messages/new', {screen_name: recipient, text: msg}, function(err, data, response) {
+        if(err) {
+          console.log("screen_name: " + recipient);
+          console.log("text: " + msg);
+          console.log(err.code);
+          bot.sendMessages(cID, ["Message couldn't be sent!"]);
+        }
+        else {
+          bot.sendMessages(cID, ["Message sent!"]);
+        }
+
+      });
+  }
+}
+function checkDMS(m, cID) {
+  m.shift();
+  if(cID in bot.directMessages) {
+    bot.darth.get("direct_messages", {count: m[0]}, function(err, messages, response){
+      if(err) {
+        console.log(err);
+        bot.sendMessages(cID, ["Couldn't retrieve messages!"]);
+      }
+      else {
+        for(m in messages) {
+            var msgText ="```";
+            msgText += ("From: " + messages[m].sender_screen_name + "\n");
+            msgText += ("Msg: " + messages[m].text + "\n```");
+            bot.sendMessages(cID, [msgText]);
+        }
+      }
+
+    });
+  }
 }
 function sendOwnerTweet(m, cI) {
     m.shift();
@@ -350,7 +421,7 @@ function kickUser(msg, cID) {
   var serverID = bot.channels[cID].guild_id;
   bot.kick({
     channel: serverID,
-    target: uID
+    userID: uID
   }, function(err) {
     console.log(err);
   });
@@ -362,7 +433,7 @@ function banUser(msg, cID) {
   var serverID = bot.channels[cID].guild_id;
   bot.ban({
     channel: serverID,
-    target: uID
+    userID: uID
   });
 }
 function prohibitUserExecution(msg, cID) {
@@ -401,7 +472,7 @@ function unbanUser(msg, cID) {
   var serverID = bot.channels[cID].guild_id;
   bot.unban({
     channel: serverID,
-    target: uID
+    userID: uID
   });
 }
 function muteUser(msg, cID) {
@@ -410,7 +481,7 @@ function muteUser(msg, cID) {
   var serverID = bot.channels[cID].guild_id;
   bot.mute({
     channel: serverID,
-    target: uID
+    userID: uID
   }, function() {
     bot.sendMessages(cID, ["User " + userID + " has been muted."]);
   });
@@ -421,7 +492,7 @@ function unmuteUser(msg, cID) {
   var serverID = bot.channels[cID].guild_id;
   bot.unmute({
     channel: serverID,
-    target: uID
+    userID: uID
   });
 }
 function deafenUser(msg, cID) {
@@ -430,7 +501,7 @@ function deafenUser(msg, cID) {
   var serverID = bot.channels[cID].guild_id;
   bot.deafen({
     channel: serverID,
-    target: uID
+    userID: uID
   });
 }
 function undeafenUser(msg, cID) {
@@ -439,7 +510,7 @@ function undeafenUser(msg, cID) {
   var serverID = bot.channels[cID].guild_id;
   bot.undeafen({
     channel: serverID,
-    target: uID
+    userID: uID
   });
 }
 function silenceUser(msg, cID) {
@@ -471,7 +542,7 @@ function editUserNick(msg, cID) {
   var uID = resolveID(userID);
   bot.editNickname({
     serverID: sID,
-    userID: uID, 
+    userID: uID,
     nick: nickname});
 }
 

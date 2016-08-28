@@ -257,7 +257,9 @@ function checkCommands(c, message, uID, chID) {
       calc.calcCheck(msg, chID);
       break;
     case 'admin':
-      var serverID = bot.channels[chID].guild_id;
+      if(!(chID in bot.directMessages)) {
+        var serverID = bot.channels[chID].guild_id;
+      }
       if(uID ==  "133370041142870016" || serverID == "172689601935179776" || (chID in bot.directMessages)) {
         admin.adminCheck(msg, chID);
       }
