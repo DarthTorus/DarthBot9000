@@ -158,10 +158,14 @@ function randomStatus(msg) {
         ];
     if(gameString === "0") {
         var status = Math.floor(Math.random() * randStat.length);
-        bot.setPresence({game: randStat[status]});
+        bot.setPresence({game: {
+          name: randStat[status]}
+        });
     }
     else {
-        bot.setPresence({game: gameString});
+        bot.setPresence({game: {
+          name: gameString}
+        });
     }
 }
 function tweetCheck(msg, cID) {
