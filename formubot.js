@@ -54,6 +54,8 @@ const triggerLength = 3;
 bot.trigger = trigger;
 bot.request = request;
 bot.fs = fs;
+var quitStatus;
+bot.quitStatus = quitStatus;
 //Other vars
 var mIndex = 0;
 var cIndex = 2;
@@ -63,6 +65,7 @@ const MIN_INTEGER = -2147483648;
 /*Event area*/
 
 bot.on("ready", function(rawEvent) {
+  quitStatus = false;
   console.log(colors.cyan("File Name: " + logFileName));
   logText += "File Name: " + logFileName +"\r\n";
   console.log(colors.cyan("Started: " + bot.startDate));
@@ -176,7 +179,7 @@ bot.on("debug", function(rawEvent) {
   /*console.log(rawEvent)*/ //Logs every event
 });
 
-bot.on("disconnected", function(errMsg, code) {
+bot.on("disconnect", function(errMsg, code) {
   console.log(colors.yellow("Bot disconnected"));
   var dateEnded = new Date();
   var endText = "Disconnected on: " + dateEnded + " because of: " + errMsg + "with code " + code + "\r\n";
@@ -185,7 +188,7 @@ bot.on("disconnected", function(errMsg, code) {
     if (err) throw err;
     console.log(colors.gray("Data added."));
   });
-  if(code) {
+  if(!quitStatus) {
     bot.connect() //Auto reconnect
   }
 });
@@ -578,5 +581,4 @@ function insult(uI, cI) {
     insultString = insultString.toLowerCase();
     sendMessages(uI, ["Thou " + insultString + "."]);
   }
-
 }

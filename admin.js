@@ -118,7 +118,8 @@ function wake(cID){
     randomStatus();
 }
 function quit(cID){
-    setTimeout(function() {bot.disconnect();}, 1000);
+    setTimeout(function() {bot.quitStatus = true;
+      bot.disconnect();}, 1000);
 }
 function randomStatus(msg) {
     var gameString = msg || "0";
@@ -189,17 +190,6 @@ function checkNumTweets(cID){
     tweetCount = user.statuses_count;
     console.log(tweetCount);
     bot.sendMessages("133370041142870016", ["You have " + tweetCount +" tweets!"]);
-    if(tweetCount == 9999) {
-      bot.darth.post('statuses/update', {status: "10,000th tweet! Here it is folks: http://pastebin.com/ppeEvCpu"},  function(error, tweet, response){
-          if(error) {
-              console.log("Tweet couldn't send!");
-          }
-          else {
-              console.log("10K tweet sent!")
-          }
-          console.log(tweet.text);  // Tweet body.
-      });
-    }
   });
 
 
