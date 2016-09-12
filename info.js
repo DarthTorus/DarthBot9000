@@ -1,6 +1,7 @@
 var bot = process.DiscordBot;
+
 function infoCheck(m, uI, cI) {
-	switch(m[0]) {
+	switch (m[0]) {
 		case "twitter":
 			m.shift();
 			twitter(m, cI);
@@ -29,18 +30,20 @@ function infoCheck(m, uI, cI) {
 		default:
 	}
 }
+
 function twitter(t, cI) {
 	switch (t) {
 		case "owner":
 			bot.sendMessages(cI, ["Owner: " + bot.config.twitter.l.o]);
 			break;
 		case "server":
-			bot.sendMessages(cI, ["Server: "+ bot.config.twitter.l.s]);
+			bot.sendMessages(cI, ["Server: " + bot.config.twitter.l.s]);
 			break;
 		default:
-			 break;
+			break;
 	}
 }
+
 function calcUptime(cI) {
 	var time = 0;
 	var days = 0;
@@ -57,40 +60,43 @@ function calcUptime(cI) {
 	temp = Math.floor(temp / 24);
 	days = temp;
 	var dayText = " days, ";
-    var hrText = " hours, ";
-    var minText = " minutes, ";
-    var secText = " seconds.";
-    if(days == 1) {
-    	dayText = " day, ";
-    }
-    if(hrs == 1) {
-    	hrText = " hour, ";
-    }
-    if(min == 1) {
-    	minText = " minute, ";
-    }
-    if(sec == 1) {
-    	secText = " second.";
-    }
+	var hrText = " hours, ";
+	var minText = " minutes, ";
+	var secText = " seconds.";
+	if (days == 1) {
+		dayText = " day, ";
+	}
+	if (hrs == 1) {
+		hrText = " hour, ";
+	}
+	if (min == 1) {
+		minText = " minute, ";
+	}
+	if (sec == 1) {
+		secText = " second.";
+	}
 
-    bot.sendMessages(cI, ["I have been running for: ```xl\n" + days + dayText
-        + hrs + hrText + min + minText + sec + secText +"```"]);
+	bot.sendMessages(cI, ["I have been running for: ```xl\n" + days + dayText +
+		hrs + hrText + min + minText + sec + secText + "```"
+	]);
 }
+
 function sendBotInfo(cI) {
 	calcUptime(cI);
 	var numServers = Object.keys(bot.servers).length;
 	var m = "Owner: Darth Torus\n";
 	m += "Library: Discord.io\n";
 	m += "Language: NodeJS/Javascript\n";
-	m += "Servers: "+ numServers;
+	m += "Servers: " + numServers;
 	bot.sendMessages(cI, ["```xl\n" + m + "```"])
 }
+
 function invite(uI) {
 	bot.sendMessages(uI, ["Invite link: https://goo.gl/oiKr68"]);
 }
 
 var infoFunctions = {
-	infoCheck : infoCheck
+	infoCheck: infoCheck
 };
 
 module.exports = infoFunctions;
