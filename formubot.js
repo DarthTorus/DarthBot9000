@@ -37,17 +37,7 @@ bot.server = server;
 bot.inStandby = false;
 bot.sendMessages = sendMessages;
 bot.reload = reload;
-bot.startDate = new Date();
-var year = bot.startDate.getFullYear();
-var month = bot.startDate.getMonth() + 1;
-var day = bot.startDate.getDate();
-if (month < 10) {
-	month = "0" + month;
-}
-if (day < 10) {
-	day = "0" + day;
-}
-var logFileName = ("logs/" + year + "-" + month + "-" + day + ".txt");
+
 var logText = "";
 const trigger = ">>>";
 const triggerLength = 3;
@@ -59,12 +49,24 @@ bot.quitStatus = quitStatus;
 //Other vars
 var mIndex = 0;
 var cIndex = 2;
-
+var logFileName = "";
 const MAX_INTEGER = 2147483647;
 const MIN_INTEGER = -2147483648;
 /*Event area*/
 
 bot.on("ready", function(rawEvent) {
+	bot.startDate = new Date();
+	var year = bot.startDate.getFullYear();
+	var month = bot.startDate.getMonth() + 1;
+	var day = bot.startDate.getDate();
+	if (month < 10) {
+		month = "0" + month;
+	}
+	if (day < 10) {
+		day = "0" + day;
+	}
+	logFileName = ("logs/" + year + "-" + month + "-" + day + ".txt");
+
 	quitStatus = false;
 	console.log(colors.cyan("File Name: " + logFileName));
 	logText += "File Name: " + logFileName + "\r\n";

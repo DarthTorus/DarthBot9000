@@ -75,7 +75,7 @@ function getHelpText() {
 	hText += "```" + formatCode + bot.trigger + "\n├─ping\n";
 	hText += "├─info\n│ ├─uptime\n│ ├─ip\n│ ├─invite\n│ ├─link\n│ ├─qrcode\n";
 	hText += "│ └─twitter\n│   ├─owner\n│   └─server\n";
-	hText += "├─color\n│ ├─convert\n│ ├─add#Not implemented\n│ ├─subtract#Not implemented\n";
+	hText += "├─color\n│ ├─convert\n│ ├─add\n│ ├─subtract\n";
 	hText += "│ ├─multiply #Not implemented\n│ └─divide #Not implemented\n";
 	hText += "├─calc\n│ ├─fact\n│ ├─grav #Not implemented\n│ ├─quad\n";
 	hText += "│ ├─tri #Not implemented\n│ └─portal \n│   ├─end\n│   └─nether\n";
@@ -351,9 +351,27 @@ function sendRGBConvHelp(u) {
 	});
 }
 
-function sendColorAddHelp(u) {}
+function sendColorAddHelp(u) {
+	var m = "```" + formatCode + bot.trigger + "color add <color 1 in RGB> <color 2 in RGB>\n";
+	m += "Takes 6 arguments\n";
+	m += "First 3: RGB values (0-255) of first color separated by spaces.\n";
+	m += "Last 3: RGB values (0-255) of second color separated by spaces.\n```";
+	bot.sendMessage({
+		to: u,
+		message: m
+	});
+}
 
-function sendColorSubHelp(u) {}
+function sendColorSubHelp(u) {
+	var m = "```" + formatCode + bot.trigger + "color sub <intial color in RGB> <color to subtract in RGB>\n";
+	m += "Takes 6 arguments\n";
+	m += "First 3: RGB values (0-255) of starting color separated by spaces.\n";
+	m += "Last 3: RGB values (0-255) of color to subtract separated by spaces.\n```";
+	bot.sendMessage({
+		to: u,
+		message: m
+	});
+}
 
 function sendColorMultHelp(u) {}
 
@@ -474,6 +492,7 @@ function checkTriHelp(m, uID) {
 	}
 	switch (msg) {
 		case 'ssa':
+			sendSSAHelp(uID);
 			break;
 		case 'aas':
 			break;
@@ -502,8 +521,18 @@ function sendTriHelp(uI) {
 		to: uI,
 		message: m
 	});
+}
 
-
+function sendSSAHelp(uI) {
+	var m = "```" + formatCode + bot.trigger + "calc tri ssa <side A> <side B> <angle A>\n";
+	m += "Takes 3 arguments: \n";
+	m += "Side A: length of side A\n";
+	m += "Side B: length of side B\n";
+	m += "Angle A: angle A in degrees.```";
+	bot.sendMessage({
+		to: uI,
+		message: m
+	});
 }
 var helpFuncions = {
 	checkHelp: checkHelp

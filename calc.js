@@ -237,8 +237,9 @@ function calcQuadratic(m, cID) {
 function triCheck(msg, chID) {
 	switch (msg[0]) {
 		case 'ssa':
-      msg.shift();
-      calcSSA(msg, chID);
+			msg.shift();
+			console.log(msg);
+			calcSSA(msg, chID);
 			break;
 		case 'aas':
 			break;
@@ -253,7 +254,82 @@ function triCheck(msg, chID) {
 }
 
 function calcSSA(m, cID) {
-  
+	var a = Number(m[0]);
+	var b = Number(m[1]);
+	var d = degToRad(Number(m[2]));
+	var z = Math.pow(b, 2) - Math.pow(a, 2);
+	var y = -2 * b * Math.cos(d);
+	var x = 1;
+	var w = (Math.pow(y, 2) - (4 * x * z));
+	var c, e, f, g, h, i, q, r, s, t, v, u = 0;
+	var msgText = "";
+	if (w <= 0) {
+		bot.sendMessages(cID, ["NO real solutions exist for this triangle."]);
+	} else {
+		v = ((-1 * y) + Math.sqrt(w)) / (2 * x);
+		u = ((-1 * y) - Math.sqrt(w)) / (2 * x);
+		if (v <= 0 && u <= 0) {
+			bot.sendMessages(cID, ["No possible triangles."]);
+		} else if (v > 0 && u > 0) {
+			c = v;
+			g = u;
+
+			e = radToDeg(Math.asin((b * Math.sin(d)) / a));
+			d = radToDeg(d);
+			h = 180 - e;
+			f = 180 - (d + e);
+			i = 180 - (d + h);
+
+			s = (a + b + c) / 2;
+			t = (a + b + g) / 2;
+
+			u = s * (s - a) * (s - b) * (s - c);
+			v = s * (s - a) * (s - b) * (s - g);
+
+			r = Math.sqrt(u);
+			q = Math.sqrt(v);
+
+			c = Math.floor(c * 1000) / 1000;
+			g = Math.floor(g * 1000) / 1000;
+			r = Math.floor(r * 1000) / 1000;
+			q = Math.floor(q * 1000) / 1000;
+
+
+			msgText = "`c1, c2: " + c + ", " + g + "`\n";
+			msgText += "`B1, B2: " + toDMS(e) + ", " + toDMS(h) + "`\n";
+			msgText += "`C1, C2: " + toDMS(f) + ", " + toDMS(i) + "`\n";
+			msgText += "`Area 1, Area 2: " + r + " units², " + q + " units²`\n";
+			bot.sendMessages(cID, [msgText]);
+		} else if (v > 0 && u <= 0) {
+			c = v;
+			e = radToDeg(Math.asin((b * Math.sin(d)) / a));
+			d = radToDeg(d);
+			f = 180 - (d + e);
+			r = 0.5 * b * c * Math.sin(degToRad(d));
+
+			c = Math.floor(c * 1000) / 1000;
+			r = Math.floor(r * 1000) / 1000;
+
+			msgText = "`c: " + c + "`\n";
+			msgText += "`B: " + toDMS(e) + "`\n";
+			msgText += "`C: " + toDMS(f) + "`\n";
+			msgText += "`Area: " + r + " units²`\n";
+			bot.sendMessages(cID, [msgText]);
+		}
+	}
+}
+
+function toDMS(angle) {
+	angle %= 360;
+	if (angle >= 0 || angle < 360) {
+		var deg = Math.floor(angle);
+		var min = (angle - deg) * 60;
+		var sec = (min - Math.floor(min)) * 60;
+		sec = Math.floor(sec * 1000) / 1000;
+		min = Math.floor(min);
+		console.log(deg + "°" + min + "'" + sec + "\"");
+		return (deg + "°" + min + "'" + sec + "\"");
+	}
 }
 
 var calcFunctions = {
