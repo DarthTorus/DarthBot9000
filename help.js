@@ -495,6 +495,7 @@ function checkTriHelp(m, uID) {
 			sendSSAHelp(uID);
 			break;
 		case 'aas':
+			sendAASHelp(uID);
 			break;
 		case 'asa':
 			break;
@@ -534,6 +535,55 @@ function sendSSAHelp(uI) {
 		message: m
 	});
 }
+
+function sendAASHelp(uI) {
+	var m = "```" + formatCode + bot.trigger + "calc tri aas <angle A> <angle B> <side A>\n";
+	m += "Takes 3 arguments: \n";
+	m += "Angle A: angle A in degrees\n";
+	m += "Angle B: angle B in degrees\n";
+	m += "Side A: length of side A.```";
+	bot.sendMessage({
+		to: uI,
+		message: m
+	});
+}
+
+function sendASAHelp(uI) {
+	var m = "```" + formatCode + bot.trigger + "calc tri asa <angle A> <side C> <angle B>\n";
+	m += "Takes 3 arguments: \n";
+	m += "Angle A: angle A in degrees\n";
+	m += "Side C: length of side C\n";
+	m += "Angle B: angle B in degrees.```";
+	bot.sendMessage({
+		to: uI,
+		message: m
+	});
+}
+
+function sendSSSHelp(uI) {
+	var m = "```" + formatCode + bot.trigger + "calc tri sss <side A> <side B> <side C>\n";
+	m += "Takes 3 arguments: \n";
+	m += "Side A: length of side A\n";
+	m += "Side B: length of side B\n";
+	m += "Side C: length of side C.```";
+	bot.sendMessage({
+		to: uI,
+		message: m
+	});
+}
+
+function sendSASHelp(uI) {
+	var m = "```" + formatCode + bot.trigger + "calc tri sas <side A> <angle C> <side B>\n";
+	m += "Takes 3 arguments: \n";
+	m += "Side A: length of side A\n";
+	m += "Angle C: angle C in degrees\n";
+	m += "Side B: length of side B.```";
+	bot.sendMessage({
+		to: uI,
+		message: m
+	});
+}
+
 var helpFuncions = {
 	checkHelp: checkHelp
 }

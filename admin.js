@@ -16,6 +16,9 @@ function adminCheck(m, cI) {
 		case '-t':
 			tweetCheck(m, cI);
 			break;
+		case '-skt':
+			sendKayTweets(cI);
+			break;
 		case '-ct':
 			checkNumTweets(cI);
 			break;
@@ -162,7 +165,11 @@ function randomStatus(msg) {
 		"in LA-LA land",
 		"with nuclear materials",
 		"w/ nuclear fallout",
-		"with Deathnotes"
+		"with Deathnotes",
+		"with integrals",
+		"with derivatives",
+		"with infinite series",
+		"musical scales"
 	];
 	if (gameString === "0") {
 		var status = Math.floor(Math.random() * randStat.length);
@@ -255,6 +262,63 @@ function checkDMS(m, cID) {
 	}
 }
 
+// function sendKayTweets(cID) {
+// 	var kayArr = [
+// 		"Hi",
+// 		"Are you doing well?",
+// 		"I hope you are.",
+// 		"After this you may not be.",
+// 		"The goal is to spam your Twitter. However, it's every 3 minutes",
+// 		"I am sorry for this.",
+// 		"Please don't hate me",
+// 		"I really do love you. Remember, it's every 3 minutes.",
+// 		"Every three minutes IF the program runs correctly.",
+// 		"I'm just being an uber troll.",
+// 		"If you do hate me, you can block me for 3 days.",
+// 		"I hope you take this as a bit of fun.",
+// 		"I don't really know how many tweets there'll be.",
+// 		"They will all be short",
+// 		"I hope school was good.",
+// 		"I also hope you're feeling good.",
+// 		"God loves you.",
+// 		"Got any math homework I can do?",
+// 		"We're almost done.",
+// 		"Just a few more.",
+// 		"Well... maybe more.",
+// 		"Sorry ♥",
+// 		"So... I'm running out of things to say.",
+// 		"Say hi to Geo for me.",
+// 		"And Aurora.",
+// 		"Oh and sorry about this",
+// 		"Almost done, for reals.",
+// 		"Three more after this.",
+// 		"My evilness has reached an all time high.",
+// 		"You are done after this next tweet.",
+// 		"Good night."
+// 	]
+//
+// 	for (var i = 0; i < kayArr.length; i++) {
+// 		m = "@KayAnnSheridan " + kayArr[i];
+// 		var timeInt = 60000 * (1 + i);
+// 		console.log(m + ": " + timeInt);
+//
+// 		setInterval(function()
+// 		{
+// 			bot.darth.post('statuses/update', {
+// 				status: m
+// 			}, function(error, tweet, response) {
+// 				if (error) {
+// 					bot.sendMessages(cID, ["Tweet couldn't send!"]);
+// 					console.log(error + " " + i + "; " + tweet);
+// 				} else {
+// 					bot.sendMessages(cID, ["Tweet" + (i + 1) + "/" + kayArr.length + " sent!"]);
+// 				}
+// 				console.log(tweet.text); // Tweet body.
+// 			})
+// 		}, timeInt);
+// 	}
+// }
+
 function sendOwnerTweet(m, cI) {
 	m.shift();
 	m = m.join(" ");
@@ -312,12 +376,12 @@ function addRole(msg, cID) {
 		roleColor = "DEFAULT";
 	}
 	console.log("[DEBUG] roleColor = " + roleColor);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.createRole(serverID, function(err, res) {
-		var roleID = res.id;
+		var rID = res.id;
 		bot.editRole({
-			server: serverID,
-			role: roleID,
+			serverID: sID,
+			roleID: rID,
 			name: roleName,
 			color: roleColor
 		});
@@ -342,14 +406,14 @@ function changeRole(msg, cID) {
 		roleColor = "DEFAULT";
 	}
 	console.log("[DEBUG] roleColor = " + roleColor);
-	var roleID = getRoleIDFromRoleName(roleName, cID);
-	console.log("[DEBUG] roleID = " + roleID);
-	//console.log(roleID);
-	var serverID = bot.channels[cID].guild_id;
-	if (roleID != "0") {
+	var rID = getRoleIDFromRoleName(roleName, cID);
+	console.log("[DEBUG] rID = " + rID);
+	//console.log(rID);
+	var sID = bot.channels[cID].guild_id;
+	if (rID != "0") {
 		bot.editRole({
-			server: serverID,
-			role: roleID,
+			serverID: sID,
+			roleID: rID,
 			name: roleName,
 			color: roleColor
 		}, function() {
@@ -360,15 +424,15 @@ function changeRole(msg, cID) {
 
 function removeRole(msg, cID) {
 	var roleName = msg[0];
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	roleName = roleName.replace(/_/g, " ");
-	var roleID = getRoleIDFromRoleName(roleName, cID);
-	console.log("[DEBUG] roleID = " + roleID);
+	var rID = getRoleIDFromRoleName(roleName, cID);
+	console.log("[DEBUG] rID = " + rID);
 	console.log("[DEBUG] roleName = \"" + roleName + "\"");
-	if (roleID != "0") {
+	if (rID != "0") {
 		bot.deleteRole({
-				server: serverID,
-				role: roleID
+				serverID: sID,
+				roleID: rID
 			},
 			function() {
 				bot.sendMessages(cID, ["Deleted `" + roleName + "`."]);
@@ -382,16 +446,16 @@ function addUserToRole(msg, cID) {
 	var uID = userID.toString();
 	uID = userID.replace(/\D/g, "");
 	console.log(uID);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	roleName = roleName.replace(/_/g, " ");
-	var roleID = getRoleIDFromRoleName(roleName, cID);
-	console.log("[DEBUG] roleID = " + roleID);
+	var rID = getRoleIDFromRoleName(roleName, cID);
+	console.log("[DEBUG] rID = " + rID);
 	console.log("[DEBUG] roleName = \"" + roleName + "\"");
-	if (roleID != "0") {
+	if (rID != "0") {
 		bot.addToRole({
-				server: serverID,
-				user: uID,
-				role: roleID
+				serverID: sID,
+				userID: uID,
+				roleID: rID
 			},
 			function() {
 				bot.sendMessages(cID, ["Added " + userID + " to `" + roleName + "`."]);
@@ -404,16 +468,16 @@ function removeUserFromRole(msg, cID) {
 	var userID = msg[1];
 	var uID = userID.toString();
 	uID = userID.replace(/\D/g, "");
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	roleName = roleName.replace(/_/g, " ");
-	var roleID = getRoleIDFromRoleName(roleName, cID);
-	console.log("[DEBUG] roleID = " + roleID);
+	var rID = getRoleIDFromRoleName(roleName, cID);
+	console.log("[DEBUG] rID = " + rID);
 	console.log("[DEBUG] roleName = \"" + roleName + "\"");
-	if (roleID != "0") {
+	if (rID != "0") {
 		bot.removeFromRole({
-				server: serverID,
-				user: uID,
-				role: roleID
+				serverID: sID,
+				userID: uID,
+				roleID: rID
 			},
 			function() {
 				bot.sendMessages(cID, ["Removed " + userID + " from `" + roleName + "`."]);
@@ -422,15 +486,15 @@ function removeUserFromRole(msg, cID) {
 }
 
 function getRoleIDFromRoleName(rName, cID) {
-	var serverID = bot.channels[cID].guild_id; //Get server ID
-	var server = bot.servers[serverID]; //Set server as current server using the ID
+	var sID = bot.channels[cID].guild_id; //Get server ID
+	var server = bot.servers[sID]; //Set server as current server using the ID
 	for (var role in server.roles) {
 		//console.log("[DEBUG] server.roles[role].name = " + JSON.stringify(server.roles[role].name));
 		if (server.roles[role].name == rName) {
 			console.log("[DEBUG] server.roles[role].name = " + server.roles[role].name);
-			var roleID = server.roles[role].id;
-			console.log("[DEBUG] roleID = " + roleID);
-			return roleID;
+			var rID = server.roles[role].id;
+			console.log("[DEBUG] rID = " + rID);
+			return rID;
 		}
 	}
 }
@@ -439,9 +503,9 @@ function kickUser(msg, cID) {
 	var userID = msg[0];
 	var uID = resolveID(userID);
 	console.log("[DEBUG] uID: " + uID);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.kick({
-		channel: serverID,
+		channel: sID,
 		userID: uID
 	}, function(err) {
 		console.log(err);
@@ -452,9 +516,9 @@ function banUser(msg, cID) {
 	var userID = msg[0];
 	var uID = userID.toString();
 	uID = userID.replace(/\D/g, "");
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.ban({
-		channel: serverID,
+		channel: sID,
 		userID: uID
 	});
 }
@@ -496,9 +560,9 @@ function enableServerExecution(msg, cID) {
 function unbanUser(msg, cID) {
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.unban({
-		channel: serverID,
+		channel: sID,
 		userID: uID
 	});
 }
@@ -506,9 +570,9 @@ function unbanUser(msg, cID) {
 function muteUser(msg, cID) {
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.mute({
-		channel: serverID,
+		channel: sID,
 		userID: uID
 	}, function() {
 		bot.sendMessages(cID, ["User " + userID + " has been muted."]);
@@ -518,9 +582,9 @@ function muteUser(msg, cID) {
 function unmuteUser(msg, cID) {
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.unmute({
-		channel: serverID,
+		channel: sID,
 		userID: uID
 	});
 }
@@ -528,9 +592,9 @@ function unmuteUser(msg, cID) {
 function deafenUser(msg, cID) {
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.deafen({
-		channel: serverID,
+		channel: sID,
 		userID: uID
 	});
 }
@@ -538,34 +602,34 @@ function deafenUser(msg, cID) {
 function undeafenUser(msg, cID) {
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	bot.undeafen({
-		channel: serverID,
+		channel: sID,
 		userID: uID
 	});
 }
 
 function silenceUser(msg, cID) {
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var roleID = getRoleIDFromRoleName("MUTED", cID);
+	var rID = getRoleIDFromRoleName("MUTED", cID);
 	bot.addToRole({
-		server: serverID,
-		user: uID,
-		role: roleID
+		serverID: sID,
+		userID: uID,
+		roleID: rID
 	});
 }
 
 function unsilenceUser(msg, cID) {
-	var serverID = bot.channels[cID].guild_id;
+	var sID = bot.channels[cID].guild_id;
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var roleID = getRoleIDFromRoleName("MUTED", cID);
+	var rID = getRoleIDFromRoleName("MUTED", cID);
 	bot.removeFromRole({
-		server: serverID,
-		user: uID,
-		role: roleID
+		serverID: sID,
+		userID: uID,
+		roleID: rID
 	});
 }
 

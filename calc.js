@@ -7,6 +7,9 @@ function calcCheck(m, cI) {
 		case 'fact':
 			factorialCheck(m[1], cI);
 			break;
+		case 'primefact':
+			primeFactorials(m[1], cI);
+			break;
 		case 'grav':
 			break;
 		case 'portal':
@@ -29,15 +32,105 @@ function calcCheck(m, cI) {
 }
 //Default calc
 function calcEquation(msg, cID) {
-	try {
-		if (isNaN(eval(msg))) {
-			bot.sendMessages(cID, ["Couldn't evaluate the expression"]);
+	var initEq = msg //split the expression on parentheses
+	var levelI = 0;
+	var elementI = 0;
+	var eqArr = new Array(7)
+	for (var x = 0; x < 25; x++) {
+		eqArr[x] = new Array(initEq.length);
+		eqArr[x].fill(' ');
+	}
+
+	for (var i = 0; i < initEq.length; i++) {
+		if (initEq[i] == '(') {
+			levelI += 1;
+			elementI+=1;
+		} else if (initEq[i] == ')') {
+			levelI-=1;
+			elementI+=1;
 		} else {
-			var result = eval(msg);
-			bot.sendMessages(cID, ["Answer is: `" + result + "`"]);
+			eqArr[levelI][elementI] += initEq[i];
 		}
-	} catch (e) {
-		//Just don't do anything. Fail silently.
+
+		console.log("levelI: " + levelI);
+		console.log("elementI: " + elementI);
+	}
+	for (var j = 0; j < eqArr.length; j++) {
+		console.log("eqArr[" +j+"]: " + eqArr[j]+"\n");
+	}
+// (\d*\.?\d+)\s?([\+\*\/\-\%\^])\s?(\d*\.?\d+)
+}
+
+function calculate(op1, operator, op2) {
+
+	var f = {
+		add: '+',
+		sub: '-',
+		div: '/',
+		mlt: '*',
+		mod: '%',
+		exp: '^'
+	};
+
+	// Create array for Order of Operation and precedence
+	f.ooo = [
+		[
+			[f.mlt],
+			[f.div],
+			[f.mod],
+			[f.exp]
+		],
+		[
+			[f.add],
+			[f.sub]
+		]
+	];
+
+	input = input.replace(/[^0-9%^*\/()\-+.]/g, ''); // clean up unnecessary characters
+
+	var output;
+	for (var i = 0, n = f.ooo.length; i < n; i++) {
+
+		// Regular Expression to look for operators between floating numbers or integers
+		var re = new RegExp('(\\d+\\.?\\d*)([\\' + f.ooo[i].join('\\') + '])(\\d+\\.?\\d*)');
+		re.lastIndex = 0; // be cautious and reset re start pos
+
+		// Loop while there is still calculation for level of precedence
+		while (re.test(input)) {
+			//document.write('<div>' + input + '</div>');
+			output = calc_internal(RegExp.$1, RegExp.$2, RegExp.$3);
+			if (isNaN(output) || !isFinite(output)) return output; // exit early if not a number
+			input = input.replace(re, output);
+		}
+	}
+
+	return output;
+
+	function calc_internal(a, op, b) {
+		a = a * 1;
+		b = b * 1;
+		switch (op) {
+			case f.add:
+				return a + b;
+				break;
+			case f.sub:
+				return a - b;
+				break;
+			case f.div:
+				return a / b;
+				break;
+			case f.mlt:
+				return a * b;
+				break;
+			case f.mod:
+				return a % b;
+				break;
+			case f.exp:
+				return Math.pow(a, b);
+				break;
+			default:
+				null;
+		}
 	}
 }
 // Checks inputs for factorial
@@ -242,12 +335,24 @@ function triCheck(msg, chID) {
 			calcSSA(msg, chID);
 			break;
 		case 'aas':
+			msg.shift();
+			console.log(msg);
+			calcAAS(msg, chID);
 			break;
 		case 'asa':
+			msg.shift();
+			console.log(msg);
+			calcASA(msg, chID);
 			break;
 		case 'sss':
+			msg.shift();
+			console.log(msg);
+			calcSSS(msg, chID);
 			break;
 		case 'sas':
+			msg.shift();
+			console.log(msg);
+			calcSAS(msg, chID);
 			break;
 	}
 
@@ -295,9 +400,9 @@ function calcSSA(m, cID) {
 			q = Math.floor(q * 1000) / 1000;
 
 
-			msgText = "`c1, c2: " + c + ", " + g + "`\n";
-			msgText += "`B1, B2: " + toDMS(e) + ", " + toDMS(h) + "`\n";
-			msgText += "`C1, C2: " + toDMS(f) + ", " + toDMS(i) + "`\n";
+			msgText = "`Side C1, Side C2: " + c + "units, " + g + " units`\n";
+			msgText += "`Angle 1, Angle B2: " + toDMS(e) + ", " + toDMS(h) + "`\n";
+			msgText += "`Angle C1, Angle C2: " + toDMS(f) + ", " + toDMS(i) + "`\n";
 			msgText += "`Area 1, Area 2: " + r + " units², " + q + " units²`\n";
 			bot.sendMessages(cID, [msgText]);
 		} else if (v > 0 && u <= 0) {
@@ -310,13 +415,90 @@ function calcSSA(m, cID) {
 			c = Math.floor(c * 1000) / 1000;
 			r = Math.floor(r * 1000) / 1000;
 
-			msgText = "`c: " + c + "`\n";
-			msgText += "`B: " + toDMS(e) + "`\n";
-			msgText += "`C: " + toDMS(f) + "`\n";
+			msgText = "`Side C: " + c + " units`\n";
+			msgText += "`Angle B: " + toDMS(e) + "`\n";
+			msgText += "`Angle C: " + toDMS(f) + "`\n";
 			msgText += "`Area: " + r + " units²`\n";
 			bot.sendMessages(cID, [msgText]);
 		}
 	}
+}
+
+function calcAAS(m, cID) {
+	var a = Number(m[0]);
+	var b = Number(m[1]);
+	var d = degToRad(Number(m[2]));
+	var z = Math.pow(b, 2) - Math.pow(a, 2);
+	var y = -2 * b * Math.cos(d);
+	var x = 1;
+	var w = (Math.pow(y, 2) - (4 * x * z));
+	var c, e, f, g, h, i, q, r, s, t, v, u = 0;
+
+}
+
+function calcASA(m, cID) {}
+
+function calcSSS(m, cID) {
+	var a = Number(m[0]);
+	var b = Number(m[1]);
+	var c = Number(m[2]);
+	var sumAB = a + b;
+	var sumBC = b + c;
+	var sumAC = a + c;
+	var d, e, f, g, h, r, s, w, x, y = 0;
+	var msgText = "";
+
+	if (sumAB <= c || sumAC <= b || sumBC <= a) {
+		bot.sendMessages(cID, ["Cannot make a triangle."]);
+	} else {
+		g = ((b * b + c * c) - (a * a));
+		h = 2 * b * c;
+		x = g / h;
+		d = Math.acos(x);
+		y = (b * Math.sin(d) / a);
+		d = radToDeg(d);
+		e = radToDeg(Math.asin(y));
+		f = 180 - (d + e);
+		s = (a + b + c) / 2;
+		w = s * (s - a) * (s - b) * (s - c);
+		r = Math.sqrt(w);
+
+		msgText = "`Angle A: " + toDMS(d) + "`\n";
+		msgText += "`Angle B: " + toDMS(e) + "`\n";
+		msgText += "`Angle C: " + toDMS(f) + "`\n";
+		msgText += "`Area: " + r + " units²`\n";
+		bot.sendMessages(cID, [msgText]);
+	}
+
+}
+
+function calcSAS(m, cID) {
+	var a = Number(m[0]);
+	var f = degToRad(m[1]);
+	var b = Number(m[2]);
+
+	var c, d, e, m, n, r, v, x, y, z = 0;
+	var msgText = "";
+
+	x = a * a + b * b;
+	y = 2 * a * b * Math.cos(f);
+	v = x - y;
+
+	c = Math.sqrt(v);
+	z = (b * Math.sin(f)) / c;
+	e = Math.asin(z);
+	d = 180 - radToDeg(e + f);
+	e = radToDeg(e);
+	m = a * Math.sin(f);
+	n = b / 2;
+	r = m * n;
+
+	msgText = "`Angle A: " + toDMS(d) + "`\n";
+	msgText += "`Angle B: " + toDMS(e) + "`\n";
+	msgText += "`Side C: " + c + " units`\n";
+	msgText += "`Area: " + r + " units²`\n";
+
+	bot.sendMessages(cID, [msgText]);
 }
 
 function toDMS(angle) {
