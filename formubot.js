@@ -19,7 +19,7 @@ var server = new Twitter({
 	access_token_secret: config.twitter.s.ts,
 });
 process.DiscordBot = bot;
-
+// Required files and modules
 var banned = require("./banned.json");
 const fs = require('fs');
 const request = require('request');
@@ -29,9 +29,11 @@ var calc = require("./calc.js");
 var info = require("./info.js");
 var help = require("./help.js");
 var color = require("./color.js");
+var insults = require("./insult.json");
 //Bot properties declared
 bot.config = config;
 bot.banned = banned;
+bot.insult = insults;
 bot.darth = darth;
 bot.server = server;
 bot.inStandby = false;
@@ -44,7 +46,7 @@ const triggerLength = 3;
 bot.trigger = trigger;
 bot.request = request;
 bot.fs = fs;
-var quitStatus;
+var quitStatus = false;
 bot.quitStatus = quitStatus;
 //Other vars
 var mIndex = 0;
@@ -184,11 +186,12 @@ bot.on("disconnect", function(errMsg, code) {
 	var dateEnded = new Date();
 	var endText = "Disconnected on: " + dateEnded + " because of: " + errMsg + "with code " + code + "\r\n";
 	endText += ("Uptime: " + Math.floor((dateEnded - bot.startDate) * 1000) + "s");
+	console.log(colors.red(endText));
 	fs.appendFile(logFileName, endText + "\r\n", (err) => {
 		if (err) throw err;
 		console.log(colors.gray("Data added."));
 	});
-	if (!quitStatus) {
+	if (!bot.quitStatus) {
 		bot.connect() //Auto reconnect
 	}
 });
@@ -524,6 +527,7 @@ function reload(cI) {
 		delete require.cache[require.resolve("./color.js")];
 		delete require.cache[require.resolve("./config.json")];
 		delete require.cache[require.resolve("./banned.json")];
+		delete require.cache[require.resolve("./insult.json")];
 		admin = require("./admin.js");
 		calc = require("./calc.js");
 		info = require("./info.js");
@@ -531,7 +535,9 @@ function reload(cI) {
 		color = require("./color.js");
 		config = require("./config.json");
 		banned = require("./banned.json");
-		commands = Object.assign({}, admin, help, info, calc, color, config, banned);
+		insult = require("./insult.json");
+		commands = Object.assign({}, admin, help, info, calc,
+			color, config, banned, insult);
 		sendMessages(cI, ["\u200B\u180ESuccessfully reloaded"]);
 	} catch (e) {
 		sendMessages(cI, ["\u200B\u180ECouldn't reload for some reason."]);
@@ -542,43 +548,13 @@ function reload(cI) {
 function insult(uI, cI) {
 	var i1, i2, i3;
 	var insultString = "";
-	var insult1 = "Currish Barbarous Fen-sucked Loutish Beastly Goatish Knavish \
-  Beggarly Milk-livered Bootless Cankered Frothy Ribaudred Unmuzzled Weedy \
-  Crooked-pated Abortive Dankish Dog-hearted Dissembling Traitorous Foul-reeking \
-  Hedge-born Churlish Gleeking Beef-witted Craven Haggard Bat-fowling \
-  Incestuous Spleeny Loathed Bawdy Mangled Beslubbering Monstrous Reeky \
-  Pernicious Odious Perfidious Sheep-biting Unmannerly Plume-plucked Wayward \
-  Three-suited Rank-scented Saucy Ruttish Vain Pestilent Spongy Mouldy Surly \
-  Tardy-gaited Fawning Withered Unctuous Pinch-spotted Clouted Shard-borne \
-  Puking Gor-bellied Unbookish";
-	var insult2 = "Bacon-fed Frosty-spirited Onion-eyed Flap-eared Deformed \
-  Clay-brained Prattling Soused Logger-headed Folly-fallen Foolhardy \
-  Dull-eyed Earth-vexing Ill-faced Shrill-gorged Harpy Brassy Flap-mouthed \
-  Murderous Burly-boned Fool-born Dizzy-eyed Bate-breeding Fusty Muddy-mettled \
-  Swaggering Worse-bodied Half-faced Feeble Glass-gazing Ill-breeding Envious \
-  Roguish Knotty-pated Lily-livered Deboshed Lumpish Mammering Sodden-witted \
-  Hell-hated Beetle-headed Fly-bitten Pigeon-livered Cockered Puppy-headed \
-  Impudent Rump-fed Salt-butter Wry-necked Shag-haired Fat-kidneyed Mewling \
-  Cullionly Tedious Swag-bellied Grim-looked Toad-spotted Buck-washing \
-  Tottering Unwashed White-livered Guts-griping Scurvy";
-	var insult3 = "Scut Codpiece Blood-sucker Hedgepig Bung Pignut Cutpurse \
-  Giglot Canker-blossom Popinjay Hill-of-flesh Mumble-news Ban-dog Coxcomb \
-  Fustilarian Bum-baily Rogue Horn-beast Elf-skin Rudesby Flirtgill Cullion \
-  Varlet Gudgeon Hag Measle Boor Clod Drudge Hugger-mugger Jackanapes Runagate \
-  Caitiff Lewdster Maggot Pumpion Harlot Miscreant Swain Nut-hook Bugbear Pizzle \
-  Wagtail Clack-dish Prig Malt-horse Puttock Whore-son Ratsbane Clotpoll Enchantress \
-  Ruffian Jolthead Scullion Apple-john Bed-swerver Strumpet Knave Dotard Vassal \
-  Polecat Want-wit Rampallian";
-	insult1 = insult1.split(" ");
-	insult2 = insult2.split(" ");
-	insult3 = insult3.split(" ");
+	var insult1 = insults.first;
+	var insult2 = insults.second;
+	var insult3 = insults.third;
 	if (cI in bot.directMessages) {
 		i1 = Math.floor(Math.random() * insult1.length);
 		i2 = Math.floor(Math.random() * insult2.length);
 		i3 = Math.floor(Math.random() * insult3.length);
-		console.log(insult1[i1]);
-		console.log(insult2[i2]);
-		console.log(insult3[i3]);
 		insultString = insult1[i1] + " " + insult2[i2] + " " + insult3[i3];
 		insultString = insultString.toLowerCase();
 		sendMessages(uI, ["Thou " + insultString + "."]);
