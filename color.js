@@ -114,7 +114,7 @@ function subColor(msg, cID) {
 		subCol[2] = Number(msg[5]);
 
 		for (i = 0; i <= 2; i++) {
-			resultColor[i] = Math.round(startCol[i] - subCol[i]);
+			resultColor[i] = Math.round(startCol[i] * 2 - subCol[i]);
 			if(resultColor[i] < 0) {
 				resultColor[i] = 0;
 			} else if(resultColor[i] > 255) {
