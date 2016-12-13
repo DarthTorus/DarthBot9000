@@ -313,6 +313,7 @@ function checkCommands(c, message, uID, chID) {
 			doAdryd(chID);
 			break;
 		case 'hugs':
+		case 'hug' :
 			sendHug(msg, chID, uID);
 			break;
 		case 'say':
@@ -463,17 +464,18 @@ function doAdryd(cI) {
 }
 // Hugs function
 function sendHug(m, cI, uI) {
+	console.log("Got to hug function");
 	var channelIDs = ["172693016782438400", "172693057001488384"];
 	var person = m[0] || uI;
-	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)"];
+	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)","(\\^u^(\\"];
 	for (var i = 0; i <= channelIDs.length; ++i) {
 		if (channelIDs[i] == cI) {
 			var int = Math.floor(Math.random() * hugs.length);
 			if (person == uI) {
 				sendMessages(cI, ["Sending <@" + uI + "> this hug: " + hugs[int]]);
 			} else {
-				sendMessages(cI, ["Sending " + person + " this hug: " + hugs[int]]);
-			}
+        sendMessages(cI, ["Sending " + person + " this hug: " + hugs[int]]);
+      }
 		}
 	}
 }

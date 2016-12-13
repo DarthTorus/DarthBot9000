@@ -14,6 +14,10 @@ function colorCheck(m, cI) {
 			m.shift();
 			subColor(m, cI);
 			break;
+		case 'gradient':
+			m.shift();
+			gradientColors(m, cI);
+			break;
 		default:
 			//do nothing
 	}
@@ -103,7 +107,7 @@ function addColor(msg, cID) {
 
 function subColor(msg, cID) {
 	var startCol = [0, 0, 0];
-	var subCol = [0, 0, 0];
+	var subCol = a[0, 0, 0];
 	var resultColor = [0, 0, 0];
 	if (msg.length == 6 && checkRGB(startCol) && checkRGB(subCol)) {
 		startCol[0] = Number(msg[0]);
@@ -115,9 +119,9 @@ function subColor(msg, cID) {
 
 		for (i = 0; i <= 2; i++) {
 			resultColor[i] = Math.round(startCol[i] * 2 - subCol[i]);
-			if(resultColor[i] < 0) {
+			if (resultColor[i] < 0) {
 				resultColor[i] = 0;
-			} else if(resultColor[i] > 255) {
+			} else if (resultColor[i] > 255) {
 				resultColor[i] = 255;
 			}
 		}
@@ -130,6 +134,182 @@ function subColor(msg, cID) {
 		RGBtoHSL(resultColor, cID);
 		RGBtoHSV(resultColor, cID);
 		RGBtoINT(resultColor, cID);
+	}
+}
+
+function gradientColors(msg, cID) {
+	console.log(msg);
+	var startCol = [0, 0, 0];
+	var endCol = [0, 0, 0];
+	var maxMid = 14;
+	var minMid = 1;
+	var midpts = Number(msg[msg.length - 1]);
+	if(midpts >maxMid) {
+		midpts = maxMid;
+	} else if (midpts < minMid) {
+		midpts = minMid;
+	}
+	var resultText = "";
+	var rInterval, gInterval, bInterval = 0;
+
+	// If in RGB mode, length will be 7, else HEX mode will be 3
+	if (msg.length == 7 && checkRGB(startCol) && checkRGB(endCol)) {
+		startCol[0] = Number(msg[0]);
+		startCol[1] = Number(msg[1]);
+		startCol[2] = Number(msg[2]);
+		endCol[0] = Number(msg[3]);
+		endCol[1] = Number(msg[4]);
+		endCol[2] = Number(msg[5]);
+
+		rInterval = (endCol[0] - startCol[0])/(midpts + 1);
+		gInterval = (endCol[1] - startCol[1])/(midpts + 1);
+		bInterval = (endCol[2] - startCol[2])/(midpts + 1);
+
+		// Add start color to resultText
+		resultText += ("```1) " + startCol[0] +" " + startCol[1] + " " + startCol[2] +"\n");
+		// Add each interval to resultText
+		for(var i = 1; i <= midpts; i++) {
+			var tempR = Math.round(i * rInterval) + startCol[0];
+			var tempG = Math.round(i * gInterval) + startCol[1];
+			var tempB = Math.round(i * bInterval) + startCol[2];
+
+			resultText += ((i+1) + ") " + tempR + " " + tempG + " " + tempB+"\n");
+		}
+		// Add ending color to resultText
+		resultText += ((midpts+2) + ") " + endCol[0] + " " + endCol[1] + " " + endCol[2] +"```");
+
+		// Send all of resultText to the user
+		bot.sendMessages(cID, [resultText]);
+	}
+	else if(msg.length == 3) {
+		tstartCol = msg[0];
+		tendCol = msg[1];
+		//Correct hex value for start color
+		if(tstartCol.length == 3) {
+			console.log("tstartcol 3");
+			startCol[0] = tstartCol.substr(0,1).toUpperCase();
+			startCol[1] = tstartCol.substr(1,1).toUpperCase();
+			startCol[2] = tstartCol.substr(2,1).toUpperCase();
+
+			// startCol[0] += startCol[0];
+			// startCol[1] += startCol[1];
+			// startCol[2] += startCol[2];
+			console.log(startCol[0]);
+			console.log(startCol[1]);
+			console.log(startCol[2]);
+		}
+		else if(tstartCol.length == 6) {
+			console.log("tstartcol 6");
+			//012345
+			startCol[0] = tstartCol.substr(0,2).toUpperCase();
+			startCol[1] = tstartCol.substr(2,2).toUpperCase();
+			startCol[2] = tstartCol.substr(4,2).toUpperCase();
+			console.log(startCol[0]);
+			console.log(startCol[1]);
+			console.log(startCol[2]);
+		}
+		// Correct hex value for end color
+		if(tendCol.length == 3) {
+			console.log("tendcol 3");
+				endCol[0] = tendCol.substr(0,1).toUpperCase();
+				endCol[1] = tendCol.substr(1,1).toUpperCase();
+				endCol[2] = tendCol.substr(2,1).toUpperCase();
+
+				endCol[0] += endCol[0];
+				endCol[1] += endCol[1];
+				endCol[2] += endCol[2];
+				console.log(endCol[0]);
+				console.log(endCol[1]);
+				console.log(endCol[2]);
+		}
+		else if(tendCol.length == 6) {
+			console.log("tendcol 3");
+			endCol[0] = tendCol.substr(0,2).toUpperCase();
+			endCol[1] = tendCol.substr(2,2).toUpperCase();
+			endCol[2] = tendCol.substr(4,2).toUpperCase();
+			console.log(endCol[0]);
+			console.log(endCol[1]);
+			console.log(endCol[2]);
+		}
+		//parse values
+		startCol[0] = parseInt(startCol[0], 16);
+		startCol[1] = parseInt(startCol[1], 16);
+		startCol[2] = parseInt(startCol[2], 16);
+		endCol[0] = parseInt(endCol[0], 16);
+		endCol[1] = parseInt(endCol[1], 16);
+		endCol[2] = parseInt(endCol[2], 16);
+		console.log("===========");
+		console.log(startCol[0]);
+		console.log(startCol[1]);
+		console.log(startCol[2]);
+		console.log(endCol[0]);
+		console.log(endCol[1]);
+		console.log(endCol[2]);
+		// Calculate intervals between values
+		rInterval = (endCol[0] - startCol[0])/(midpts + 1);
+		console.log("rInterval: " + rInterval);
+		gInterval = (endCol[1] - startCol[1])/(midpts + 1);
+		console.log("gInterval: " + gInterval);
+		bInterval = (endCol[2] - startCol[2])/(midpts + 1);
+		console.log("bInterval: " + bInterval);
+
+		// Add start color to resultText after a check
+		var startR = startCol[0].toString(16);
+		var startG = startCol[1].toString(16);
+		var startB = startCol[2].toString(16);
+		if(startR.length ==1) {
+			startR += startR;
+		}
+		if(startG.length ==1) {
+			startG += startG;
+		}
+		if(startB.length ==1) {
+			startB += startB;
+		}
+		resultText += ("```1) #" + startR + startG + startB +"\n");
+		// Add each interval to resultText
+		for(var i = 1; i <= midpts; i++) {
+			var tempR = Math.round(i * rInterval) + startCol[0];
+			var tempG = Math.round(i * gInterval) + startCol[1];
+			var tempB = Math.round(i * bInterval) + startCol[2];
+
+			if(tempR.toString(16).length == 1) {
+				tempR = tempR.toString(16) + tempR.toString(16);
+			} else {
+				tempR= tempR.toString(16);
+			}
+			if(tempG.toString(16).length == 1) {
+				tempG = tempG.toString(16) + tempG.toString(16);
+			} else {
+				tempG = tempG.toString(16);
+			}
+			if(tempB.toString(16).length == 1) {
+				tempB = tempB.toString(16) + tempB.toString(16);
+			} else {
+				tempB = tempB.toString(16);
+			}
+
+			resultText += ((i+1) + ") #" + tempR + tempG + tempB+"\n");
+		}
+		// Add ending color to resultText after some checks
+		var endR = endCol[0].toString(16);
+		var endG = endCol[1].toString(16);
+		var endB = endCol[2].toString(16);
+		if(endR.length ==1) {
+			endR += endR;
+		}
+		if(endG.length ==1) {
+			endG += endG;
+		}
+		if(endB.length ==1) {
+			endB += endB;
+		}
+
+		resultText += ((midpts+2) + ") #" + endR + endG + endB +"```");
+
+		// Send all of resultText to the user
+		bot.sendMessages(cID, [resultText.toUpperCase()]);
+
 	}
 }
 
@@ -484,7 +664,7 @@ function checkINT(col) {
 }
 
 function toHex(val) {
-	var hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+	var hex = "0123456789ABCDEF";
 	var quot = Math.floor(val / 16);
 	var rem = val % 16;
 	var result = hex[quot] + hex[rem];
