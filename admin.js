@@ -107,6 +107,10 @@ function adminCheck(m, cI) {
 			m.shift();
 			editUserNick(m, cI);
 			break;
+		case 'ping':
+			m.shift();
+			pingServer(m, cI);
+			break;
 		default:
 			break;
 	}
@@ -676,6 +680,28 @@ function resolveID(mention) {
 	uID = mention.replace(/\D/g, "");
 	return uID;
 }
+
+function pingServer(m, cID) {
+	var ip = m[0].toString();
+	var port = Number(m[1]) || 25565;
+	var results;
+	bot.utils.ping(ip, port, function(err, res) {
+		if (err) {
+			console.log(err);
+		} else {
+			var desc = res.description.text;
+			desc = desc.replace(/(\§[0-9a-fA-Fk-oK-ORr])+/g,"");
+				results = "**IP:** `" + ip + "`\n";
+				results += "**Port:** `" + port + "`\n";
+				results += "**Players:** `" + res.players.online + "/" + res.players.max + "`\n";
+				results += "**Description:** `" + desc + "`\n";
+				bot.sendMessages(cID, [results]);
+			//console.log(res);
+		}
+	}, 3000);
+
+}
+
 var adminFunctions = {
 	adminCheck: adminCheck,
 	randomStatus: randomStatus

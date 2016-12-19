@@ -1,5 +1,6 @@
 /*Variable area*/
 var config = require("./config.json"); // Must be first because it is the settings for most of below
+var utils = require("mc-utils");
 var Discordbot = require('discord.io');
 var bot = new Discordbot.Client({
 	token: config.token,
@@ -45,6 +46,7 @@ const trigger = ">>>";
 const triggerLength = 3;
 bot.trigger = trigger;
 bot.request = request;
+bot.utils = utils;
 bot.fs = fs;
 var quitStatus = false;
 bot.quitStatus = quitStatus;
