@@ -27,6 +27,7 @@ const request = require('request');
 var colors = require('colors/safe');
 var admin = require("./admin.js");
 var calc = require("./calc.js");
+var mc = require("./minecraft.js");
 var info = require("./info.js");
 var help = require("./help.js");
 var color = require("./color.js");
@@ -285,6 +286,10 @@ function checkCommands(c, message, uID, chID) {
 			break;
 		case 'info':
 			info.infoCheck(msg, uID, chID);
+			break;
+		case 'mc':
+		case 'minecraft':
+			mc.minecraftCheck(msg, chID);
 			break;
 		case 'butts':
 			sendMessages(chID, ["<@" + uID + "> *: You must like big butts then. Don't lie!*"]);
