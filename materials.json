@@ -1,0 +1,98 @@
+{
+  "air" : {
+    "id" : 0,
+    "meta":0,
+    "recipe" : ["N"]
+  },
+  "stone" : {
+    "id" : 1,
+    "meta": 0,
+    "recipe" : ["S", "cobblestone"]
+  },
+  "granite" : {
+    "id" : 1,
+    "meta": 1,
+    "recipe" : ["N"]
+  },
+  "polished_granite" : {
+    "id" : 1,
+    "meta": 2,
+    "recipe" : [
+      [
+        ["granite", 1],
+        ["granite", 1]
+      ],
+      [
+        ["granite", 1],
+        ["granite", 1]
+      ]
+    ]
+  },
+  "diorite" : {
+    "id" : 1,
+    "meta": 3,
+    "recipe" : ["N"]
+  },
+  "polished_diorite" : {
+    "id" : 1,
+    "meta": 4,
+    "recipe" : [
+      [
+        ["diorite", 1],
+        ["diorite", 1]
+      ],
+      [
+        ["diorite", 1],
+        ["diorite", 1]        
+      ]
+    ]
+  },
+  "andesite" : {
+    "id" : 1,
+    "meta": 5,
+    "recipe" : ["N"]
+  },
+  "polished_andesite" : {
+    "id" : 1,
+    "meta": 6,
+    "recipe" : [
+      [
+        ["andesite", 1],
+        ["andesite", 1]
+      ],
+      [
+        ["andesite", 1],
+        ["andesite", 1]
+      ]
+    ]
+  },
+  "grass": {
+    "id": 2,
+    "meta" : 0,
+    "recipe" : ["N"]
+  },
+  "dirt" : {
+    "id" : 3,
+    "meta" : 0,
+    "recipe" : ["F", "dirt", 1]
+  },
+  "coarse_dirt" : {
+    "id": 3,
+    "meta": 1,
+    "recipe": [
+      [
+        ["dirt", 1],
+        ["gravel", 1]
+      ],
+      [
+        ["gravel",1],
+        ["dirt",1]
+      ]
+    ]
+  },
+  "podzol" : {
+    "id" : 3,
+    "meta" : 2,
+    "recipe" : ["N"]
+  }
+}
