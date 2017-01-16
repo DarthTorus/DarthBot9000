@@ -258,9 +258,14 @@ function HEXtoINT(color) {
 
 function checkHEXLength(hVal) {
 	if(hVal.toString(16).length == 1) {
-		hVal = hVal.toString(16);
-		hVal += hVal
-		;
+		if(hVal > 15) {
+			hVal = hVal.toString(16);
+			hVal += hVal;
+		}
+		else if(hVal <= 15) {
+			hVal = hVal.toString(16);
+			hVal = "0" + hVal;
+		}
 	} else {
 		hVal = hVal.toString(16);
 	}
