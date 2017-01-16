@@ -553,7 +553,7 @@ function enableUserExecution(msg, cID) {
 }
 
 function enableServerExecution(msg, cID) {
-	var sID = bot.channels[cID].guild_id.toString();
+	var sID = msg[0];
 	if (bot.banned.servers.indexOf(sID) > -1) {
 		var index = bot.banned.servers.indexOf(sID);
 	}
