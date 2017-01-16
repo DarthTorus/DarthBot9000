@@ -1,11 +1,28 @@
 /*Variable area*/
-var config = require("./config.json"); // Must be first because it is the settings for most of below
 var utils = require("mc-utils");
 var Discordbot = require('discord.io');
+var colors = require('colors/safe');
+const reqFiles = ["admin.js", "banned.json", "calc.js",
+	"color.js", "help.js", "info.js", "insult.json", "materials.json", "minecraft.js"
+];
+const names = ["admin", "banned", "calc", "color",
+"help", "info", "insult", "mat", "mc"]; // Names of variables
+
+function requireFiles() {
+	for (var name of names) {
+		var fileIndex = names.indexOf(name);
+		global[name] = require("./" + reqFiles[fileIndex]);
+		console.log(colors.yellow(reqFiles[fileIndex]) + colors.cyan(" loaded successfully"));
+	}
+}
+
+var config = require("./config.json"); // Must be first because it is the settings for most of below
+
 var bot = new Discordbot.Client({
 	token: config.token,
 	autorun: true
 });
+
 var Twitter = require("twitter");
 var darth = new Twitter({
 	consumer_key: config.twitter.o.ck,
@@ -21,21 +38,17 @@ var server = new Twitter({
 });
 process.DiscordBot = bot;
 // Required files and modules
-var banned = require("./banned.json");
+// var banned = require("./banned.json");
 const fs = require('fs');
 const request = require('request');
-var colors = require('colors/safe');
-var admin = require("./admin.js");
-var calc = require("./calc.js");
-var mc = require("./minecraft.js");
-var info = require("./info.js");
-var help = require("./help.js");
-var color = require("./color.js");
-var insults = require("./insult.json");
+
 //Bot properties declared
+requireFiles();
+bot.admin = admin;
 bot.config = config;
 bot.banned = banned;
-bot.insult = insults;
+bot.insult = insult;
+bot.mat = mat;
 bot.darth = darth;
 bot.server = server;
 bot.inStandby = false;
@@ -320,7 +333,7 @@ function checkCommands(c, message, uID, chID) {
 			doAdryd(chID);
 			break;
 		case 'hugs':
-		case 'hug' :
+		case 'hug':
 			sendHug(msg, chID, uID);
 			break;
 		case 'say':
@@ -474,15 +487,15 @@ function sendHug(m, cI, uI) {
 	console.log("Got to hug function");
 	var channelIDs = ["172693016782438400", "172693057001488384"];
 	var person = m[0] || uI;
-	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)","(\\^u^(\\"];
+	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\^u^(\\"];
 	for (var i = 0; i <= channelIDs.length; ++i) {
 		if (channelIDs[i] == cI) {
 			var int = Math.floor(Math.random() * hugs.length);
 			if (person == uI) {
 				sendMessages(cI, ["Sending <@" + uI + "> this hug: " + hugs[int]]);
 			} else {
-        sendMessages(cI, ["Sending " + person + " this hug: " + hugs[int]]);
-      }
+				sendMessages(cI, ["Sending " + person + " this hug: " + hugs[int]]);
+			}
 		}
 	}
 }
@@ -529,24 +542,13 @@ function reverseText(msg, chI, joinChar) {
 function reload(cI) {
 	commands = {};
 	try {
-		delete require.cache[require.resolve("./admin.js")];
-		delete require.cache[require.resolve("./calc.js")];
-		delete require.cache[require.resolve("./help.js")];
-		delete require.cache[require.resolve("./info.js")];
-		delete require.cache[require.resolve("./color.js")];
-		delete require.cache[require.resolve("./config.json")];
-		delete require.cache[require.resolve("./banned.json")];
-		delete require.cache[require.resolve("./insult.json")];
-		admin = require("./admin.js");
-		calc = require("./calc.js");
-		info = require("./info.js");
-		help = require("./help.js");
-		color = require("./color.js");
-		config = require("./config.json");
-		banned = require("./banned.json");
-		insult = require("./insult.json");
+		for (var file of reqFiles) {
+			delete require.cache[require.resolve("./" + file)];
+
+		}
+		requireFiles();
 		commands = Object.assign({}, admin, help, info, calc,
-			color, config, banned, insult);
+			color, config, banned, insult, mat, mc);
 		sendMessages(cI, ["\u200B\u180ESuccessfully reloaded"]);
 	} catch (e) {
 		sendMessages(cI, ["\u200B\u180ECouldn't reload for some reason."]);
@@ -557,9 +559,9 @@ function reload(cI) {
 function insult(uI, cI) {
 	var i1, i2, i3;
 	var insultString = "";
-	var insult1 = insults.first;
-	var insult2 = insults.second;
-	var insult3 = insults.third;
+	var insult1 = insult.first;
+	var insult2 = insult.second;
+	var insult3 = insult.third;
 	if (cI in bot.directMessages) {
 		i1 = Math.floor(Math.random() * insult1.length);
 		i2 = Math.floor(Math.random() * insult2.length);
