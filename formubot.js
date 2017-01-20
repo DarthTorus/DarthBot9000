@@ -369,8 +369,10 @@ function coinFlip(m, cI) {
 	}
 	var flipText = "";
 	var randInt = 0;
+	var date = new Date(Date.now());
+	var seed = date.getTime();
 	for (var i = 1; i <= flips; ++i) {
-		randInt = Math.random() * 2;
+		randInt = Math.random(seed) * 2;
 		if (randInt <= 1) {
 			flipText += "H ";
 			headCount += 1;

@@ -255,9 +255,24 @@ function checkDMS(m, cID) {
 				bot.sendMessages(cID, ["Couldn't retrieve messages!"]);
 			} else {
 				for (m in messages) {
+				//	console.log(messages[m]);
 					var msgText = "```";
 					msgText += ("From: " + messages[m].sender_screen_name + "\n");
-					msgText += ("Msg: " + messages[m].text + "\n```");
+					msgText += ("Msg: " + messages[m].text + "\n");
+					var dateStamp = messages[m].created_at.split(/\s/g);
+					console.log(dateStamp);
+					var year = dateStamp.pop();
+					//console.log(year);
+					dateStamp.splice(3,0,year);
+					//console.log(dateStamp);
+					dateStamp = dateStamp.join(" ");
+					//console.log(dateStamp);
+					var date = new Date(dateStamp);
+					//console.log(date);
+
+					msgText += ("Date: " + (date.getMonth() + 1)+"/"+ date.getDate()+ "/" + date.getFullYear() +"\n");
+					msgText += ("Time: " + date.getHours(-5)+":"+date.getMinutes());
+					msgText += (":"+date.getSeconds()+"\n```");
 					bot.sendMessages(cID, [msgText]);
 				}
 			}
