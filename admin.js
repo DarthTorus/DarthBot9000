@@ -248,7 +248,7 @@ function checkDMS(m, cID) {
 	m.shift();
 	if (cID in bot.directMessages) {
 		bot.darth.get("direct_messages", {
-			count: m[0]
+			count: m[0] || 10
 		}, function(err, messages, response) {
 			if (err) {
 				console.log(err);

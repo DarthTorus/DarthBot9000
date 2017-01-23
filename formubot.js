@@ -200,15 +200,15 @@ bot.on("debug", function(rawEvent) {
 bot.on("disconnect", function(errMsg, code) {
 	console.log(colors.yellow("Bot disconnected"));
 	var dateEnded = new Date();
-	var endText = "Disconnected on: " + dateEnded + " because of: " + errMsg + "with code " + code + "\r\n";
-	endText += ("Uptime: " + Math.floor((dateEnded - bot.startDate) * 1000) + "s");
+	var endText = "Disconnected on: " + dateEnded + " because of: " + errMsg + " with code " + code + "\r\n";
+	endText += ("Uptime: " + Math.floor((dateEnded - bot.startDate) * 1000) + " s");
 	console.log(colors.red(endText));
 	fs.appendFile(logFileName, endText + "\r\n", (err) => {
 		if (err) throw err;
 		console.log(colors.gray("Data added."));
 	});
 	if (!bot.quitStatus) {
-		bot.connect() //Auto reconnect
+		setTimeout(function(){bot.connect()},30000); //Auto reconnect
 	}
 });
 
@@ -369,7 +369,7 @@ function coinFlip(m, cI) {
 	}
 	var flipText = "";
 	var randInt = 0;
-	var date = new Date(Date.now());
+	var date = Date.now();
 	var seed = date.getTime();
 	for (var i = 1; i <= flips; ++i) {
 		randInt = Math.random(seed) * 2;
