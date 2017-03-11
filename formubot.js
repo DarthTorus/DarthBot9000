@@ -1,12 +1,15 @@
 /*Variable area*/
 var utils = require("mc-utils");
+//var concat = require("concat-stream");
 var Discordbot = require('discord.io');
 var colors = require('colors/safe');
+//var straw = require('strawpoll');
 const reqFiles = ["admin.js", "banned.json", "calc.js",
 	"color.js", "help.js", "info.js", "insult.json", "materials.json", "minecraft.js"
 ];
 const names = ["admin", "banned", "calc", "color",
-"help", "info", "insult", "mat", "mc"]; // Names of variables
+	"help", "info", "insult", "mat", "mc"
+]; // Names of variables
 
 function requireFiles() {
 	for (var name of names) {
@@ -49,12 +52,13 @@ bot.config = config;
 bot.banned = banned;
 bot.insult = insult;
 bot.mat = mat;
+//bot.straw = straw;
 bot.darth = darth;
 bot.server = server;
 bot.inStandby = false;
 bot.sendMessages = sendMessages;
 bot.reload = reload;
-
+bot.colors = colors
 var logText = "";
 const trigger = ">>>";
 const triggerLength = 3;
@@ -208,7 +212,9 @@ bot.on("disconnect", function(errMsg, code) {
 		console.log(colors.gray("Data added."));
 	});
 	if (!bot.quitStatus) {
-		setTimeout(function(){bot.connect()},30000); //Auto reconnect
+		setTimeout(function() {
+			bot.connect()
+		}, 60000); //Auto reconnect
 	}
 });
 
@@ -224,7 +230,7 @@ function sendMessages(ID, messageArr, interval) {
 			if (messageArr[0]) {
 				bot.sendMessage({
 					to: ID,
-					typing: true,
+					typing: false,
 					message: messageArr.shift()
 				}, function(err, res) {
 					if (err) {
@@ -253,7 +259,7 @@ function sendFiles(ID, fileArr, interval) {
 			if (fileArr[0]) {
 				bot.uploadFile({
 					to: ID,
-					typing: true,
+					typing: false,
 					file: fileArr.shift()
 				}, function(err, res) {
 					if (err) {
@@ -299,6 +305,9 @@ function checkCommands(c, message, uID, chID) {
 			break;
 		case 'info':
 			info.infoCheck(msg, uID, chID);
+			break;
+		case 'polls':
+			polls.pollCheck(msg, uID, chID);
 			break;
 		case 'mc':
 		case 'minecraft':
@@ -360,20 +369,20 @@ function coinFlip(m, cI) {
 	var tailCount = 0;
 	var headPercent = 0;
 	var tailPercent = 0;
-	if (flips > 250) {
+	if (flips > 750) {
 		sendMessages(cI, ["Coin flips set to 250."]);
-		flips = 250;
+		flips = 750;
 	} else if (flips <= 0) {
 		sendMessages(cI, ["Coin flips set to one."]);
 		flips = 1;
 	}
 	var flipText = "";
 	var randInt = 0;
-	var date = Date.now();
-	var seed = date.getTime();
+	var ifHeads;
 	for (var i = 1; i <= flips; ++i) {
-		randInt = Math.random(seed) * 2;
-		if (randInt <= 1) {
+		ifHeads = random(2) == 1;
+		//randInt = Math.random() * 2;
+		if (ifHeads) {
 			flipText += "H ";
 			headCount += 1;
 		} else {
@@ -388,9 +397,9 @@ function coinFlip(m, cI) {
 // Rolls dice
 function rollDice(m, cI) {
 	var rolls = m[0] || 1;
-	if (rolls > 250) {
-		sendMessages(cI, ["Rolls set to 250."]);
-		rolls = 250;
+	if (rolls > 750) {
+		sendMessages(cI, ["Rolls set to 750."]);
+		rolls = 750;
 	} else if (rolls <= 0) {
 		sendMessages(cI, ["Rolls set to one."]);
 		rolls = 1;
@@ -399,26 +408,53 @@ function rollDice(m, cI) {
 	var randInt = 0;
 	var rollText = "";
 	for (var r = 1; r <= rolls; ++r) {
-		randInt = Math.floor(Math.random() * sides) + 1;
+		randInt = random(sides) + 1;
 		rollText += (randInt + " ");
 	}
-	sendMessages(cI, ["`" + rollText + "`\n"]);
+	sendMessages(cI, ["```" + rollText + "```\n"]);
 }
 // Gives a random Integer
 function randInteger(m, cI) {
+	var rand = random(1, 75);
+	var int = "";
+	console.log(rand);
+	for (var i = 0; i < rand; i++) {
+		int += random(10).toString();
+	}
 	if (m[0] === "neg") {
-		var randInt = 0;
-		randInt = Math.floor(Math.random() * MIN_INTEGER);
-		sendMessages(cI, ["Your integer is: `" + randInt + "   `."]);
+		int = "-" + int;
+		if(int[1] === "0") {
+			int = int.splice(1,1);
+		}
 	} else if (m[0] === "pos") {
-		var randInt = 0;
-		randInt = Math.floor(Math.random() * MAX_INTEGER);
-		sendMessages(cI, ["Your integer is: `" + randInt + "   `."]);
+		if(int[0] === "0") {
+			int = int.splice(0,1);
+		}
 	} else {
 		var randInt = 0;
-		randInt = Math.floor(Math.random() * (MAX_INTEGER * 2)) - MAX_INTEGER;
-		sendMessages(cI, ["Your integer is: `" + randInt + "`."]);
+		randInt = random() < 0.5;
+		if (randInt) {
+			int = "-" + int;
+		}
 	}
+
+	bot.sendMessages(cI, ["Your integer is: `" + int + "`"]);
+}
+
+function random() {
+	var min, max, num = 0;
+	if (arguments.length == 1) {
+		max = arguments[0];
+		min = 0;
+	} else if (arguments.length == 2) {
+		min = arguments[0];
+		max = arguments[1];
+	} else {
+		return Math.random();
+	}
+
+	num = Math.floor(Math.random() * (max - min)) + min;
+	return num;
 }
 // Draws cards
 function drawCards(m, cI) {
@@ -487,9 +523,9 @@ function doAdryd(cI) {
 // Hugs function
 function sendHug(m, cI, uI) {
 	console.log("Got to hug function");
-	var channelIDs = ["172693016782438400", "172693057001488384"];
+	var channelIDs = ["172693016782438400", "172693057001488384", "141301356005687296"];
 	var person = m[0] || uI;
-	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\^u^(\\"];
+	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\\\^u^(\\"];
 	for (var i = 0; i <= channelIDs.length; ++i) {
 		if (channelIDs[i] == cI) {
 			var int = Math.floor(Math.random() * hugs.length);
@@ -561,6 +597,7 @@ function reload(cI) {
 function insult(uI, cI) {
 	var i1, i2, i3;
 	var insultString = "";
+	console.log(insult);
 	var insult1 = insult.first;
 	var insult2 = insult.second;
 	var insult3 = insult.third;
