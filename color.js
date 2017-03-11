@@ -144,7 +144,7 @@ function gradientColors(msg, cID) {
 	var maxMid = 14;
 	var minMid = 1;
 	var midpts = Number(msg[msg.length - 1]);
-	if(midpts >maxMid) {
+	if(midpts > maxMid) {
 		midpts = maxMid;
 	} else if (midpts < minMid) {
 		midpts = minMid;

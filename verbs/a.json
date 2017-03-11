@@ -1,0 +1,27 @@
+{
+  "verbs" : [{
+    "abatir" : {
+      "id" : "1",
+      "gerundio" : "abatiendo",
+      "part.pas." : "abatido",
+      "definition" : "to knock down, to overthrow, to throw down",
+      "conjugations" : {
+        "presente de indicativo" : ["abato","abates","abate","abatimos","abatís","abaten"],
+        "imperfecto de indicativo" : ["abatía","abatías","abatía","abatíamos","abatíais","abatían"],
+        "pretérito" : ["abatí","abatiste","abatió","abatimos","abatisteis","abatieron"],
+        "futuro" : ["abatiré","abtirás","abatirá","abitiremos","abatiréis","abatirán"],
+        "potencial simple" : [],
+        "presente de subjuntivo" : [],
+        "imperfecto de subjuntivo" : [],
+        "perfecto de indicativo" : [],
+        "pluscamperfecto de indicativo" : [],
+        "pretérito anterior" : [],
+        "futuro perfecto" : [],
+        "potencial compuesto" : [],
+        "perfecto de subjuntivo" : [],
+        "pluscamperfecto de subjuntivo" : [],
+        "imperativo" : ["-","abate; no abatas","abata","abatamos","abatid; no abatáis","abatan"]
+      }
+    }
+  }]
+}

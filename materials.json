@@ -1,98 +1,128 @@
 {
-  "air" : {
-    "id" : 0,
-    "meta":0,
-    "recipe" : ["N"]
-  },
-  "stone" : {
-    "id" : 1,
-    "meta": 0,
-    "recipe" : ["S", "cobblestone"]
-  },
-  "granite" : {
-    "id" : 1,
-    "meta": 1,
-    "recipe" : ["N"]
-  },
-  "polished_granite" : {
-    "id" : 1,
-    "meta": 2,
-    "recipe" : [
-      [
-        ["granite", 1],
-        ["granite", 1]
-      ],
-      [
-        ["granite", 1],
-        ["granite", 1]
-      ]
-    ]
-  },
-  "diorite" : {
-    "id" : 1,
-    "meta": 3,
-    "recipe" : ["N"]
-  },
-  "polished_diorite" : {
-    "id" : 1,
-    "meta": 4,
-    "recipe" : [
-      [
-        ["diorite", 1],
-        ["diorite", 1]
-      ],
-      [
-        ["diorite", 1],
-        ["diorite", 1]        
-      ]
-    ]
-  },
-  "andesite" : {
-    "id" : 1,
-    "meta": 5,
-    "recipe" : ["N"]
-  },
-  "polished_andesite" : {
-    "id" : 1,
-    "meta": 6,
-    "recipe" : [
-      [
-        ["andesite", 1],
-        ["andesite", 1]
-      ],
-      [
-        ["andesite", 1],
-        ["andesite", 1]
-      ]
-    ]
-  },
-  "grass": {
-    "id": 2,
-    "meta" : 0,
-    "recipe" : ["N"]
-  },
-  "dirt" : {
-    "id" : 3,
-    "meta" : 0,
-    "recipe" : ["F", "dirt", 1]
-  },
-  "coarse_dirt" : {
-    "id": 3,
-    "meta": 1,
-    "recipe": [
-      [
-        ["dirt", 1],
-        ["gravel", 1]
-      ],
-      [
-        ["gravel",1],
-        ["dirt",1]
-      ]
-    ]
-  },
-  "podzol" : {
-    "id" : 3,
-    "meta" : 2,
-    "recipe" : ["N"]
-  }
+    "air": {
+        "id": 0,
+        "meta": 0,
+        "recipe": [{
+            "type": "N"
+        }]
+    },
+    "stone": {
+        "id": 1,
+        "meta": 0,
+        "recipe": [{
+            "type": "S",
+            "item": "cobblestone"
+        }, {
+            "type": "MS",
+            "item": "stone"
+        }]
+    },
+    "granite": {
+        "id": 1,
+        "meta": 1,
+        "recipe": [{
+            "type": "M",
+            "item": "granite"
+        }]
+    },
+    "polished_granite": {
+        "id": 1,
+        "meta": 2,
+        "recipe": [{
+            "type": "C",
+            "table": [
+                [ "granite", "granite"],
+                [ "granite", "granite"]
+            ]
+        }]
+    },
+    "diorite": {
+        "id": 1,
+        "meta": 3,
+        "recipe": [{
+            "type": "M",
+            "item": "diorite"
+        }]
+    },
+    "polished_diorite": {
+        "id": 1,
+        "meta": 4,
+        "recipe": [{
+            "type": "C",
+            "table": [
+                [ "diorite", "diorite"],
+                [ "diorite", "diorite"]
+            ]
+        }]
+    },
+    "andesite": {
+        "id": 1,
+        "meta": 5,
+        "recipe": [{
+            "type": "M",
+            "item": "andesite"
+        }]
+    },
+    "polished_andesite": {
+        "id": 1,
+        "meta": 6,
+        "recipe": [{
+            "type": "C",
+            "table": [
+                [ "andesite", "andesite"],
+                [ "andesite", "andesite"]
+            ]
+        }]
+    },
+    "grass": {
+        "id": 2,
+        "meta": 0,
+        "recipe": [{
+            "type": "MS",
+            "item": "grass"
+        }]
+    },
+    "dirt": {
+        "id": 3,
+        "meta": 0,
+        "recipe": [{
+            "type": "F",
+            "item": "coarse_dirt"
+        }, {
+            "type": "M",
+            "item": "dirt"
+        }]
+    },
+    "coarse_dirt": {
+        "id": 3,
+        "meta": 1,
+        "recipe": [
+          {
+            "type" : "M",
+            "item" : "coarse_dirt"
+          },
+          {
+            "type": "C",
+            "table": [
+                ["dirt", "gravel"],
+                ["gravel", "dirt"]
+            ]
+        }]
+    },
+    "podzol": {
+        "id": 3,
+        "meta": 2,
+        "recipe": [{
+            "type": "MS",
+            "item": "podzol"
+        }]
+    },
+    "cobblestone" : {
+      "id": 4,
+      "meta" : 0,
+      "recipe" : [{
+          "type" : "M",
+          "item": "stone"
+        }]
+    }
 }
