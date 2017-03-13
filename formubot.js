@@ -405,11 +405,29 @@ function rollDice(m, cI) {
 		rolls = 1;
 	}
 	var sides = m[1] || 6;
+	if(sides > 50) {
+		sides = 50 // force the sides to be 100
+		console.log("sides: " + sides);
+	}
 	var randInt = 0;
 	var rollText = "";
+	var rollArr = [];
 	for (var r = 1; r <= rolls; ++r) {
 		randInt = random(sides) + 1;
+		if(rollArr.hasOwnProperty(randInt.toString())) {
+			rollArr[randInt]++;
+		} else {
+			rollArr[randInt] = 1;
+		}
 		rollText += (randInt + " ");
+	}
+	rollText += "\n\n";
+	for (var r = 1; r <= sides; ++r) {
+		if(rollArr[r] == null) {
+			rollText += (r + ") 0 - 0%\n");
+		} else {
+			rollText += (r + ") " + rollArr[r] + " - " +(Math.round(rollArr[r]/rolls*10000)/100)+ "%\n");
+		}
 	}
 	sendMessages(cI, ["```" + rollText + "```\n"]);
 }
@@ -421,15 +439,17 @@ function randInteger(m, cI) {
 	for (var i = 0; i < rand; i++) {
 		int += random(10).toString();
 	}
+	if(int[0] === "0" && rand >= 2) {
+		console.log(int[0]);
+		int = int.split('');
+		int.shift();
+		int = int.join("");
+	}
 	if (m[0] === "neg") {
 		int = "-" + int;
-		if(int[1] === "0") {
-			int = int.splice(1,1);
-		}
+
 	} else if (m[0] === "pos") {
-		if(int[0] === "0") {
-			int = int.splice(0,1);
-		}
+		//do nothing
 	} else {
 		var randInt = 0;
 		randInt = random() < 0.5;
