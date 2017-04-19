@@ -1,4 +1,6 @@
 var bot = process.DiscordBot;
+var imgPath = "./colorSquare.png";
+//var imgWidth, imgHeight = 400;
 
 function colorCheck(m, cI) {
 	switch (m[0]) {
@@ -23,6 +25,91 @@ function colorCheck(m, cI) {
 	}
 }
 
+function drawSolidImage(imgColor, cI) {
+	var size = 70
+	var img = bot.PNGImage.createImage(size, size);
+	var r = Number(imgColor[0]);
+	var g = Number(imgColor[1]);
+	var b = Number(imgColor[2]);
+	var color = {
+		red: r,
+		green: g,
+		blue: b,
+		alpha: 255
+	};
+	console.log(color);
+	console.log("cI: " + cI);
+	img.fillRect(0, 0, size, size, color);
+	img.writeImage(imgPath, function(err) {
+		if (err) {
+			throw err;
+		}
+		console.log('Written to the file');
+		console.log(imgPath);
+		bot.uploadFile({
+			to: cI,
+			file: imgPath
+		}, function(error) {
+			if (error) {
+				console.log(error);
+			}
+		});
+	});
+}
+
+function drawAddedImage(color1, color2, result, cI) {
+	var size = 150;
+	var r1 = Number(color1[0]);
+	var g1 = Number(color1[1]);
+	var b1 = Number(color1[2]);
+	var r2 = Number(color2[0]);
+	var g2 = Number(color2[1]);
+	var b2 = Number(color2[2]);
+	var resR = Number(result[0]);
+	var resG = Number(result[1]);
+	var resB = Number(result[2]);
+	var col1 = {
+		red: r1,
+		green: g1,
+		blue: b1,
+		alpha: 255
+	};
+	var col2 = {
+		red: r2,
+		green: g2,
+		blue: b2,
+		alpha: 255
+	};
+	var res = {
+		red: resR,
+		green: resG,
+		blue: resB,
+		alpha: 255
+	};
+	var img = bot.PNGImage.createImage(size, size);
+
+	img.fillRect(0, 0, 125, 125, col1);
+	img.fillRect(25, 25, 125, 125, col2);
+	img.fillRect(25, 25, 100, 100, res);
+	img.writeImage(imgPath, function(err) {
+		if (err) {
+			throw err;
+		}
+		console.log('Written to the file');
+		console.log(imgPath);
+		bot.uploadFile({
+			to: cI,
+			file: imgPath
+		}, function(error) {
+			if (error) {
+				console.log(error);
+			}
+		});
+	});
+}
+
+function drawSubImage(color) {}
+
 function convertColor(msg, cID) {
 	var convF = msg[0].toUpperCase();
 	var rgb;
@@ -34,6 +121,7 @@ function convertColor(msg, cID) {
 			RGBtoHSL(rgb, cID);
 			RGBtoHSV(rgb, cID);
 			RGBtoINT(rgb, cID);
+			drawSolidImage(rgb, cID);
 			break;
 		case 'HEX':
 			msg.shift();
@@ -42,6 +130,7 @@ function convertColor(msg, cID) {
 			RGBtoHSL(rgb, cID);
 			RGBtoHSV(rgb, cID);
 			RGBtoINT(rgb, cID);
+			drawSolidImage(rgb, cID);
 			break;
 		case 'HSL':
 			msg.shift();
@@ -50,6 +139,7 @@ function convertColor(msg, cID) {
 			RGBtoHEX(rgb, cID);
 			RGBtoHSV(rgb, cID);
 			RGBtoINT(rgb, cID);
+			drawSolidImage(rgb, cID);
 			break;
 		case 'HSV':
 			msg.shift();
@@ -58,6 +148,7 @@ function convertColor(msg, cID) {
 			RGBtoHEX(rgb, cID);
 			RGBtoHSL(rgb, cID);
 			RGBtoINT(rgb, cID);
+			drawSolidImage(rgb, cID);
 			break;
 		case 'INT':
 			msg.shift();
@@ -66,6 +157,7 @@ function convertColor(msg, cID) {
 			RGBtoHEX(rgb, cID);
 			RGBtoHSL(rgb, cID);
 			RGBtoHSV(rgb, cID);
+			drawSolidImage(rgb, cID);
 			break;
 		case 'RGB':
 			msg.shift();
@@ -74,8 +166,10 @@ function convertColor(msg, cID) {
 			RGBtoHSL(msg, cID);
 			RGBtoHSV(msg, cID);
 			RGBtoINT(msg, cID);
+			drawSolidImage(msg, cID);
 			break;
 	}
+
 }
 
 function addColor(msg, cID) {
@@ -91,7 +185,7 @@ function addColor(msg, cID) {
 		color2[2] = Number(msg[5]);
 
 		for (i = 0; i <= 2; i++) {
-			resultColor[i] = Math.round((color1[i] + color2[i]) / 2);
+			resultColor[i] = Math.min(color1[i] + color2[i], 255);
 		}
 		console.log(color1);
 		console.log(color2);
@@ -102,12 +196,13 @@ function addColor(msg, cID) {
 		RGBtoHSL(resultColor, cID);
 		RGBtoHSV(resultColor, cID);
 		RGBtoINT(resultColor, cID);
+		drawAddedImage(color1, color2, resultColor, cID);
 	}
 }
 
 function subColor(msg, cID) {
 	var startCol = [0, 0, 0];
-	var subCol = a[0, 0, 0];
+	var subCol = [0, 0, 0];
 	var resultColor = [0, 0, 0];
 	if (msg.length == 6 && checkRGB(startCol) && checkRGB(subCol)) {
 		startCol[0] = Number(msg[0]);
@@ -141,19 +236,24 @@ function gradientColors(msg, cID) {
 	console.log(msg);
 	var startCol = [0, 0, 0];
 	var endCol = [0, 0, 0];
-	var maxMid = 14;
+	var maxMid = 62;
 	var minMid = 1;
 	var midpts = Number(msg[msg.length - 1]);
-	if(midpts > maxMid) {
+	if (midpts > maxMid) {
 		midpts = maxMid;
 	} else if (midpts < minMid) {
 		midpts = minMid;
 	}
 	var resultText = "";
 	var rInterval, gInterval, bInterval = 0;
-
+	// Store image vars here
+	var size = 256;
+	var barWidth = size / (midpts + 2);
+	console.log("barWidth: " + barWidth + "px");
+	var path = "./gradientSquare.png";
 	// If in RGB mode, length will be 7, else HEX mode will be 3
 	if (msg.length == 7 && checkRGB(startCol) && checkRGB(endCol)) {
+		var barColor;
 		startCol[0] = Number(msg[0]);
 		startCol[1] = Number(msg[1]);
 		startCol[2] = Number(msg[2]);
@@ -161,27 +261,67 @@ function gradientColors(msg, cID) {
 		endCol[1] = Number(msg[4]);
 		endCol[2] = Number(msg[5]);
 
-		rInterval = (endCol[0] - startCol[0])/(midpts + 1);
-		gInterval = (endCol[1] - startCol[1])/(midpts + 1);
-		bInterval = (endCol[2] - startCol[2])/(midpts + 1);
+		rInterval = (endCol[0] - startCol[0]) / (midpts + 1);
+		gInterval = (endCol[1] - startCol[1]) / (midpts + 1);
+		bInterval = (endCol[2] - startCol[2]) / (midpts + 1);
 
+		// Start creating image here
+		var img = bot.PNGImage.createImage(size, size);
+		barColor = {
+			red: startCol[0],
+			green: startCol[1],
+			blue: startCol[2],
+			alpha: 255
+		};
+		img.fillRect(0, 0, barWidth, size, barColor);
 		// Add start color to resultText
-		resultText += ("```1) " + startCol[0] +" " + startCol[1] + " " + startCol[2] +"\n");
+		//resultText += ("```1) " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n");
+
 		// Add each interval to resultText
-		for(var i = 1; i <= midpts; i++) {
+		for (var i = 1; i <= midpts; i++) {
 			var tempR = Math.round(i * rInterval) + startCol[0];
 			var tempG = Math.round(i * gInterval) + startCol[1];
 			var tempB = Math.round(i * bInterval) + startCol[2];
-
-			resultText += ((i+1) + ") " + tempR + " " + tempG + " " + tempB+"\n");
+			barColor = {
+				red: tempR,
+				green: tempG,
+				blue: tempB,
+				alpha: 255
+			};
+			console.log(barColor);
+			//resultText += ((i + 1) + ") " + tempR + " " + tempG + " " + tempB + "\n");
+			var x = barWidth * i;
+			console.log(x);
+			img.fillRect(x, 0, barWidth, size, barColor);
 		}
 		// Add ending color to resultText
-		resultText += ((midpts+2) + ") " + endCol[0] + " " + endCol[1] + " " + endCol[2] +"```");
-
+		//resultText += ((midpts + 2) + ") " + endCol[0] + " " + endCol[1] + " " + endCol[2] + "```");
+		barColor = {
+			red: endCol[0],
+			green: endCol[1],
+			blue: endCol[2],
+			alpha: 255
+		};
+		console.log((midpts + 1) * barWidth);
+		img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
 		// Send all of resultText to the user
-		bot.sendMessages(cID, [resultText]);
-	}
-	else if(msg.length == 3) {
+		//bot.sendMessages(cID, [resultText]);
+		img.writeImage(path, function(err) {
+			if (err) {
+				throw err;
+			}
+			console.log('Written to the file');
+			console.log(path);
+			bot.uploadFile({
+				to: cID,
+				file: path
+			}, function(error) {
+				if (error) {
+					console.log(error);
+				}
+			});
+		});
+	} else if (msg.length == 3) {
 		startCol = HEXtoINT(msg[0]);
 		endCol = HEXtoINT(msg[1]);
 		midpts = Number(msg[2]);
@@ -193,11 +333,11 @@ function gradientColors(msg, cID) {
 		console.log(endCol[1]);
 		console.log(endCol[2]);
 		// Calculate intervals between values
-		rInterval = (endCol[0] - startCol[0])/(midpts + 1);
+		rInterval = (endCol[0] - startCol[0]) / (midpts + 1);
 		console.log("rInterval: " + rInterval);
-		gInterval = (endCol[1] - startCol[1])/(midpts + 1);
+		gInterval = (endCol[1] - startCol[1]) / (midpts + 1);
 		console.log("gInterval: " + gInterval);
-		bInterval = (endCol[2] - startCol[2])/(midpts + 1);
+		bInterval = (endCol[2] - startCol[2]) / (midpts + 1);
 		console.log("bInterval: " + bInterval);
 
 		// Add start color to resultText after a check
@@ -205,9 +345,9 @@ function gradientColors(msg, cID) {
 		var startG = checkHEXLength(startCol[1]);
 		var startB = checkHEXLength(startCol[2]);
 
-		resultText += ("```1) #" + startR + startG + startB +"\n");
+		resultText += ("```1) #" + startR + startG + startB + "\n");
 		// Add each interval to resultText
-		for(var i = 1; i <= midpts; i++) {
+		for (var i = 1; i <= midpts; i++) {
 			var tempR = Math.round(i * rInterval) + startCol[0];
 			var tempG = Math.round(i * gInterval) + startCol[1];
 			var tempB = Math.round(i * bInterval) + startCol[2];
@@ -216,14 +356,14 @@ function gradientColors(msg, cID) {
 			tempG = checkHEXLength(tempG);
 			tempB = checkHEXLength(tempB);
 
-			resultText += ((i+1) + ") #" + tempR + tempG + tempB+"\n");
+			resultText += ((i + 1) + ") #" + tempR + tempG + tempB + "\n");
 		}
 		// Add ending color to resultText after some checks
 		var endR = checkHEXLength(endCol[0]);
 		var endG = checkHEXLength(endCol[1]);
 		var endB = checkHEXLength(endCol[2]);
 
-		resultText += ((midpts+2) + ") #" + endR + endG + endB +"```");
+		resultText += ((midpts + 2) + ") #" + endR + endG + endB + "```");
 
 		// Send all of resultText to the user
 		bot.sendMessages(cID, [resultText.toUpperCase()]);
@@ -231,38 +371,36 @@ function gradientColors(msg, cID) {
 }
 
 function HEXtoINT(color) {
-	var result = [0,0,0];
-	if(color.length == 3) {
-		result[0] = color.substr(0,1).toUpperCase();
-		result[1] = color.substr(1,1).toUpperCase();
-		result[2] = color.substr(2,1).toUpperCase();
+	var result = [0, 0, 0];
+	if (color.length == 3) {
+		result[0] = color.substr(0, 1).toUpperCase();
+		result[1] = color.substr(1, 1).toUpperCase();
+		result[2] = color.substr(2, 1).toUpperCase();
 
 		result[0] += result[0];
 		result[1] += result[1];
 		result[2] += result[2];
 
-		result[0] = parseInt(result[0],16);
-		result[1] = parseInt(result[1],16);
-		result[2] = parseInt(result[2],16);
+		result[0] = parseInt(result[0], 16);
+		result[1] = parseInt(result[1], 16);
+		result[2] = parseInt(result[2], 16);
 		console.log(result[0]);
 		console.log(result[1]);
 		console.log(result[2]);
-	}
-	else if(color.length == 6) {
-		result[0] = parseInt(color.substr(0,2).toUpperCase(),16);
-		result[1] = parseInt(color.substr(2,2).toUpperCase(),16);
-		result[2] = parseInt(color.substr(4,2).toUpperCase(),16);
+	} else if (color.length == 6) {
+		result[0] = parseInt(color.substr(0, 2).toUpperCase(), 16);
+		result[1] = parseInt(color.substr(2, 2).toUpperCase(), 16);
+		result[2] = parseInt(color.substr(4, 2).toUpperCase(), 16);
 	}
 	return result;
 }
 
 function checkHEXLength(hVal) {
-	if(hVal.toString(16).length == 1) {
-		if(hVal > 15) {
+	if (hVal.toString(16).length == 1) {
+		if (hVal > 15) {
 			hVal = hVal.toString(16);
 			hVal += hVal;
-		}
-		else if(hVal <= 15) {
+		} else if (hVal <= 15) {
 			hVal = hVal.toString(16);
 			hVal = "0" + hVal;
 		}
