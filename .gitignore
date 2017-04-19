@@ -3,3 +3,5 @@ config.json
 package.json
 banned.json
 logs/
+colorSquare.png
+gradientSquare.png
