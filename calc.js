@@ -1,6 +1,6 @@
 var bot = process.DiscordBot;
-const radConst = Math.PI / 180;
-const degConst = 180 / Math.PI
+const radConst = bot.TAU/360;
+const degConst = 360/bot.TAU
 	// Function selector if "calc" command is present
 function calcCheck(m, cI) {
 	switch (m[0]) {
