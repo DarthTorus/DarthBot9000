@@ -3,6 +3,7 @@ var utils = require("mc-utils");
 //var concat = require("concat-stream");
 var Discordbot = require('discord.io');
 var colors = require('colors/safe');
+var PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
 const reqFiles = ["admin.js", "banned.json", "calc.js",
 	"color.js", "help.js", "info.js", "insult.json", "materials.json", "minecraft.js"
@@ -27,12 +28,12 @@ var bot = new Discordbot.Client({
 });
 
 var Twitter = require("twitter");
-var darth = new Twitter({
-	consumer_key: config.twitter.o.ck,
-	consumer_secret: config.twitter.o.cs,
-	access_token_key: config.twitter.o.tk,
-	access_token_secret: config.twitter.o.ts,
-});
+// var darth = new Twitter({
+// 	consumer_key: config.twitter.o.ck,
+// 	consumer_secret: config.twitter.o.cs,
+// 	access_token_key: config.twitter.o.tk,
+// 	access_token_secret: config.twitter.o.ts,
+// });
 var server = new Twitter({
 	consumer_key: config.twitter.s.ck,
 	consumer_secret: config.twitter.s.cs,
@@ -53,12 +54,13 @@ bot.banned = banned;
 bot.insult = insult;
 bot.mat = mat;
 //bot.straw = straw;
-bot.darth = darth;
+//bot.darth = darth;
 bot.server = server;
 bot.inStandby = false;
 bot.sendMessages = sendMessages;
 bot.reload = reload;
-bot.colors = colors
+bot.colors = colors;
+bot.PNGImage = PNGImage;
 var logText = "";
 const trigger = ">>>";
 const triggerLength = 3;
@@ -74,6 +76,10 @@ var cIndex = 2;
 var logFileName = "";
 const MAX_INTEGER = 2147483647;
 const MIN_INTEGER = -2147483648;
+const TAU = 2*Math.PI;
+const PI = Math.PI;
+bot.TAU = TAU;
+bot.PI = PI;
 /*Event area*/
 
 bot.on("ready", function(rawEvent) {
@@ -98,7 +104,12 @@ bot.on("ready", function(rawEvent) {
 	logText += "Connected!\r\n";
 	console.log(colors.cyan("Logged in as: " + bot.username + " - (" + bot.id + ")"));
 	logText += "Logged in as: " + bot.username + " - (" + bot.id + ")" + "\r\n";
-	admin.randomStatus("0");
+	if(bot.inStandby) {
+		admin.randomStatus("in dreams.");
+	}
+	else {
+		admin.randomStatus("0");
+	}
 	fs.appendFile(logFileName, logText, (err) => {
 		if (err) throw err;
 		console.log(colors.gray("Data added."));
@@ -213,7 +224,7 @@ bot.on("disconnect", function(errMsg, code) {
 	});
 	if (!bot.quitStatus) {
 		setTimeout(function() {
-			bot.connect()
+			bot.connect();
 		}, 60000); //Auto reconnect
 	}
 });
@@ -339,6 +350,7 @@ function checkCommands(c, message, uID, chID) {
 			//admin.randomStatus();
 			break;
 		case 'adryd':
+		case 'triangle':
 			doAdryd(chID);
 			break;
 		case 'hugs':
@@ -503,15 +515,15 @@ function drawCards(m, cI) {
 	}
 	if (duplicates == "yes") {
 		for (var i = 1; i <= draws; ++i) {
-			var s = Math.floor(Math.random() * 4);
-			var c = Math.floor(Math.random() * 13);
+			var s = random(4);
+			var c = random(13);
 			cardText += (card[c] + suit[s] + " ");
 		}
 	} else {
 		var i = 0;
 		while (i < draws) {
-			var s = Math.floor(Math.random() * 4);
-			var c = Math.floor(Math.random() * 13);
+			var s = random(4);
+			var c = random(13);
 			if (cardSelected[s, c] != 1) {
 				cardText += (card[c] + suit[s] + " ");
 				cardSelected[s, c] = 1;
@@ -543,11 +555,9 @@ function doAdryd(cI) {
 // Hugs function
 function sendHug(m, cI, uI) {
 	console.log("Got to hug function");
-	var channelIDs = ["172693016782438400", "172693057001488384", "141301356005687296"];
 	var person = m[0] || uI;
 	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\\\^u^(\\"];
-	for (var i = 0; i <= channelIDs.length; ++i) {
-		if (channelIDs[i] == cI) {
+
 			var int = Math.floor(Math.random() * hugs.length);
 			if (person == uI) {
 				sendMessages(cI, ["Sending <@" + uI + "> this hug: " + hugs[int]]);
@@ -555,8 +565,6 @@ function sendHug(m, cI, uI) {
 				sendMessages(cI, ["Sending " + person + " this hug: " + hugs[int]]);
 			}
 		}
-	}
-}
 
 function repeatMessage(m, cI, uI) {
 	var msg = m || -1;
