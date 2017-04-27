@@ -236,34 +236,65 @@ function gradientColors(msg, cID) {
 	console.log(msg);
 	var startCol = [0, 0, 0];
 	var endCol = [0, 0, 0];
-	var maxMid = 62;
-	var minMid = 1;
-	var midpts = Number(msg[msg.length - 1]);
-	if (midpts > maxMid) {
-		midpts = maxMid;
-	} else if (midpts < minMid) {
-		midpts = minMid;
-	}
-	var resultText = "";
-	var rInterval, gInterval, bInterval = 0;
-	// Store image vars here
-	var size = 256;
-	var barWidth = size / (midpts + 2);
-	console.log("barWidth: " + barWidth + "px");
+	var maxMid = 254;
+	var minMid = 14;
+	var mesg = new Array(6);
 	var path = "./gradientSquare.png";
-	// If in RGB mode, length will be 7, else HEX mode will be 3
-	if (msg.length == 7 && checkRGB(startCol) && checkRGB(endCol)) {
-		var barColor;
+	if (msg[0] == "random") {
+
+		for(var i = 0; i <6;i++) {
+			mesg[i] = Math.floor(Math.random()*256);
+		}
+		if(msg[1] != undefined) {
+
+			mesg[6] = msg[1];
+			if(mesg[6] > maxMid) {
+				mesg[6] = maxMid;
+			}
+			else if(mesg[6] < minMid) {
+				mesg[6] = minMid;
+			}
+		} else {
+			mesg[6] = Math.floor(Math.random()*maxMid- minMid) + minMid;
+		}
+		
+		gradientColors(mesg, cID);
+	} else {
 		startCol[0] = Number(msg[0]);
 		startCol[1] = Number(msg[1]);
 		startCol[2] = Number(msg[2]);
 		endCol[0] = Number(msg[3]);
 		endCol[1] = Number(msg[4]);
 		endCol[2] = Number(msg[5]);
+		var midpts = Number(msg[msg.length - 1]);
+		if (midpts > maxMid) {
+			midpts = maxMid;
+		}
+		else if (midpts < minMid) {
+			midpts = minMid;
+		}
+		var resultText = "";
+		var rInterval, gInterval, bInterval = 0;
+		// Store image vars here
+		var size = 256;
+		var barWidth = size / (midpts + 2);
+		console.log("barWidth: " + barWidth + "px");
 
 		rInterval = (endCol[0] - startCol[0]) / (midpts + 1);
 		gInterval = (endCol[1] - startCol[1]) / (midpts + 1);
 		bInterval = (endCol[2] - startCol[2]) / (midpts + 1);
+
+		// If in RGB mode, length will be 7, else HEX mode will be 3
+		var msgText = "```Start color: " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n";
+		msgText += "End color: " + endCol[0] + " " + endCol[1] + " " + endCol[2] + "\n";
+		msgText += "RGB interval: " + rInterval + " " + gInterval + " " + bInterval + "\n";
+		msgText += "Midpoints: " + midpts +"```";
+
+		bot.sendMessages(cID, [msgText]);
+
+	}
+	if (msg.length == 7 && checkRGB(startCol) && checkRGB(endCol)) {
+		var barColor;
 
 		// Start creating image here
 		var img = bot.PNGImage.createImage(size, size);
@@ -276,7 +307,7 @@ function gradientColors(msg, cID) {
 		img.fillRect(0, 0, barWidth, size, barColor);
 		// Add start color to resultText
 		//resultText += ("```1) " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n");
-
+		
 		// Add each interval to resultText
 		for (var i = 1; i <= midpts; i++) {
 			var tempR = Math.round(i * rInterval) + startCol[0];
@@ -288,10 +319,10 @@ function gradientColors(msg, cID) {
 				blue: tempB,
 				alpha: 255
 			};
-			console.log(barColor);
+			//console.log(barColor);
 			//resultText += ((i + 1) + ") " + tempR + " " + tempG + " " + tempB + "\n");
 			var x = barWidth * i;
-			console.log(x);
+			//console.log(x);
 			img.fillRect(x, 0, barWidth, size, barColor);
 		}
 		// Add ending color to resultText
@@ -302,7 +333,7 @@ function gradientColors(msg, cID) {
 			blue: endCol[2],
 			alpha: 255
 		};
-		console.log((midpts + 1) * barWidth);
+		//console.log((midpts + 1) * barWidth);
 		img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
 		// Send all of resultText to the user
 		//bot.sendMessages(cID, [resultText]);
@@ -645,7 +676,7 @@ function INTtoRGB(color, chID) {
 		return rgb;
 	}
 }
-// Testing values to make sure they fit withing the color mode
+// Testing values to make sure they fit within the color mode
 function checkRGB(col) {
 	var errorVal = 0;
 	if (!isNaN(col[0]) && !isNaN(col[1]) && !isNaN(col[2])) {
