@@ -28,12 +28,12 @@ var bot = new Discordbot.Client({
 });
 
 var Twitter = require("twitter");
-// var darth = new Twitter({
-// 	consumer_key: config.twitter.o.ck,
-// 	consumer_secret: config.twitter.o.cs,
-// 	access_token_key: config.twitter.o.tk,
-// 	access_token_secret: config.twitter.o.ts,
-// });
+var darth = new Twitter({
+	consumer_key: config.twitter.o.ck,
+	consumer_secret: config.twitter.o.cs,
+	access_token_key: config.twitter.o.tk,
+	access_token_secret: config.twitter.o.ts,
+});
 var server = new Twitter({
 	consumer_key: config.twitter.s.ck,
 	consumer_secret: config.twitter.s.cs,
@@ -54,7 +54,7 @@ bot.banned = banned;
 bot.insult = insult;
 bot.mat = mat;
 //bot.straw = straw;
-//bot.darth = darth;
+bot.darth = darth;
 bot.server = server;
 bot.inStandby = false;
 bot.sendMessages = sendMessages;
@@ -504,7 +504,7 @@ function drawCards(m, cI) {
 	var cardText = "";
 	if (duplicates == "yes" && draws > 20) {
 		sendMessages(cI, ["Number of draws set to 20"]);
-		draws = 10;
+		draws = 20;
 	} else if (duplicates == "no" && draws > 10) {
 		sendMessages(cI, ["Number of draws set to 10"]);
 		draws = 10;
