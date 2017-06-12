@@ -6,10 +6,10 @@ var colors = require('colors/safe');
 var PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
 const reqFiles = ["admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insult.json", "materials.json", "minecraft.js"
+	"color.js", "help.js", "info.js", "insult.json", "materials.json", "minecraft.js","series.js"
 ];
 const names = ["admin", "banned", "calc", "color",
-	"help", "info", "insult", "mat", "mc"
+	"help", "info", "insult", "mat", "mc","series"
 ]; // Names of variables
 
 function requireFiles() {
@@ -334,6 +334,9 @@ function checkCommands(c, message, uID, chID) {
 		case 'mc':
 		case 'minecraft':
 			mc.minecraftCheck(msg, chID);
+			break;
+		case 'series':
+			series.seriesCheck(msg,chID);
 			break;
 		case 'butts':
 			sendMessages(chID, ["<@" + uID + "> *: You must like big butts then. Don't lie!*"]);
