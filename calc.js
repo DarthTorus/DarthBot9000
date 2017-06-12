@@ -7,10 +7,33 @@ function calcCheck(m, cI) {
 		case 'fact':
 			factorialCheck(m[1], cI);
 			break;
-		case 'primefact':
+		case 'primefact': //TODO
 			primeFactorials(m[1], cI);
 			break;
-		case 'grav':
+		case 'grav': //TODO
+			break;
+		case 'toPolar':
+			m.shift()
+			toPolar(m,cI);
+			break;
+		case 'toCartesian2D':
+		case 'toCart2D':
+			m.shift()
+			toCartesian2D(m,cI);
+			break;
+		case 'toCartesian3D':
+		case 'toCart3D':
+			m.shift();
+			toCartesian3D(m,cI);
+			break;
+		case 'toSphere':
+			m.shift();
+			toSphere(m,cI);
+			break;
+		case 'toCyl':
+		case 'toCylinder':
+			m.shift();
+			toCylinder(m, cI);
 			break;
 		case 'portal':
 			m.shift();
@@ -30,6 +53,176 @@ function calcCheck(m, cI) {
 			break;
 	}
 }
+
+function toCartesian3D(msg,cID) {
+	if(msg[0] == 'sph') {
+		var rho = msg[1];
+		var theta = msg[2];
+		var phi = msg[3];
+		var x, y, z, radius = 0;
+		var msgText = "";
+		var radius = rho*Math.sin(degToRad(phi));
+
+		x = radius * Math.cos(degToRad(theta));
+		y = radius * Math.sin(degToRad(theta));
+		z = rho * Math.cos(degToRad(phi));
+
+		msgText = "`Radius: " + rho + "`\n" ;
+		msgText += "`Theta: " + theta + "°`\n";
+		msgText += "`Phi: " + phi + "°`\n";
+		msgText += "\n`X: " + x + "`\n";
+		msgText += "`Y: " + y + "`\n";
+		msgText += "`Z: " + z + "`\n";
+	}
+	else if(msg[0] == 'cyl') {
+		var r = msg[1];
+		var x,y = 0;
+		var theta = msg[2];
+		var z = msg[3];
+		if(theta >= 360) {
+			theta = 360;
+		} else if(theta <= 0) {
+			theta = 0;
+		}
+		theta = degToRad(theta);
+
+		var msgText = "";
+		x = r * Math.cos(theta);
+		y = r * Math.sin(theta);
+		msgText = "`Radius: " + r + "`\n" ;
+		msgText += "`Angle: " + radToDeg(theta) + "°`\n";
+		msgText += "`Z: " + z + "`\n";
+		msgText += "\n`X: " + x + "`\n";
+		msgText += "`Y: " + y + "`\n";
+		msgText += "`Z: " + z + "`\n";
+
+
+	}
+	bot.sendMessages(cID, [msgText]);
+}
+
+function toSphere(msg,cID) {
+	if(msg[0] == 'cart'){
+		var x = msg[1];
+		var y  = msg[2];
+		var z = msg[3];
+
+		var rho, theta, phi = 0;
+		var msgText = "";
+
+		rho = Math.sqrt(x*x+y*y+z*z);
+		phi = Math.acos(z/rho);
+		theta = rho*Math.sin(phi);
+
+		msgText = "`X: " + x + "`\n" ;
+		msgText += "`Y: " + y + "`\n";
+		msgText += "`Z: " + z + "`\n";
+		msgText += "\n`Rho: " + rho + "`\n";
+		msgText += "`Theta: " + radToDeg(theta) + "°`\n";
+		msgText += "`Phi: " + radToDeg(phi) + "°`";
+	}
+	else if(msg[0] == 'cyl'){
+		var r = msg[1];
+		var theta = msg[2];
+		var z = msg[3];
+
+		var rho, phi = 0;
+		var msgText = "";
+
+		rho = Math.sqrt(r*r+z*z);
+		phi = radToDeg(Math.acos(z/rho));
+
+		msgText = "`Radius: " + r + "`\n" ;
+		msgText += "`Theta: " + theta + "°`\n";
+		msgText += "`Z: " + z + "`\n";
+		msgText += "\n`Rho: " + rho + "`\n";
+		msgText += "`Theta: " + theta + "°`\n";
+		msgText += "`Phi: " + phi + "°`";
+
+	}
+	bot.sendMessages(cID, [msgText]);
+}
+
+function toCylinder(msg,cID) {
+	if(msg[0] == 'cart') {
+		var x = msg[1];
+		var y = msg[2];
+		var z = msg[3];
+		var r, theta = 0;
+
+		var msgText = "";
+
+		r = Math.sqrt(x*x+y*y);
+		theta = radToDeg(Math.atan2(y,x));
+
+
+		msgText = "`X: " + x  + "`\n" ;
+		msgText += "`Y: " + y + "`\n";
+		msgText += "`Z: " + z + "`\n";
+		msgText += "\n`Radius: " + r + "`\n";
+		msgText += "`Theta: " + theta + "°`\n";
+		msgText += "`Z: " + z + "`";
+	}
+	else if(msg[0] == 'sph') {
+		var rho = msg[1];
+		var theta = msg[2];
+		var phi = msg[3];
+
+		var r,z = 0;
+		var msgText = "";
+
+		var r = rho * Math.sin(degToRad(phi));
+		var z = rho * Math.cos(degToRad(phi));
+
+		msgText = "`Rho: " + rho + "`\n" ;
+		msgText += "`Theta: " + theta + "°`\n";
+		msgText += "`Phi: " + phi + "°`\n";
+		msgText += "\n`Radius: " + r + "`\n";
+		msgText += "`Theta: " + theta + "°`\n";
+		msgText += "`Z: " + z + "`";
+	}
+	bot.sendMessages(cID, [msgText]);
+}
+
+function toCartesian2D(msg,cID) {
+	var r = msg[0];
+	var x,y = 0;
+	var theta = msg[1];
+	if(theta >= 360) {
+		theta = 360;
+	} else if(theta <= 0) {
+		theta = 0;
+	}
+	theta = degToRad(theta);
+
+	var msgText = "";
+	x = r * Math.cos(theta);
+	y = r * Math.sin(theta);
+	msgText = "`Radius: " + r + "`\n" ;
+	msgText += "`Angle: " + radToDeg(theta) + "°`\n";
+	msgText += "\n`X: " + x + "`\n";
+	msgText += "`Y: " + y + "`";
+
+	bot.sendMessages(cID, [msgText]);
+}
+
+function toPolar(msg, cID) {
+	var x = msg[0];
+	var y = msg[1];
+	var r, theta = 0;
+	var msgText = "";
+
+	r = Math.sqrt(x*x+y*y);
+	theta = radToDeg(Math.atan2(y,x));
+
+	msgText = "`X: " + x + "`\n";
+	msgText += "`Y: " + y + "`\n";
+	msgText += "\n`Radius: " + r + "`\n" ;
+	msgText += "`Angle: " + toDMS(theta) + "`";
+
+	bot.sendMessages(cID, [msgText]);
+}
+
 //Default calc
 function calcEquation(msg, cID) {
 	var initEq = msg //split the expression on parentheses
@@ -509,8 +702,8 @@ function toDMS(angle) {
 		var sec = (min - Math.floor(min)) * 60;
 		sec = Math.floor(sec * 1000) / 1000;
 		min = Math.floor(min);
-		console.log(deg + "°" + min + "'" + sec + "\"");
-		return (deg + "°" + min + "'" + sec + "\"");
+		console.log(deg + "°" + min + "\'" + sec + "\"");
+		return (deg + "°" + min + "\'" + sec + "\"");
 	}
 }
 
