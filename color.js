@@ -8,6 +8,9 @@ function colorCheck(m, cI) {
 			m.shift();
 			convertColor(m, cI);
 			break;
+		case 'random':
+			randomColor(cI);
+			break;
 		case 'add':
 			m.shift();
 			addColor(m, cI);
@@ -110,6 +113,17 @@ function drawAddedImage(color1, color2, result, cI) {
 
 function drawSubImage(color) {}
 
+function randomColor(chID) {
+	// First set conversion type and initalize the rgb values
+	var msg = ["RGB",0,0,0];
+	// get random rgb values
+	for(var i = 1; i < 4; i++) {
+		msg[i] = bot.random(256);
+	}
+	bot.sendMessages(chID, ["`RGB: " + msg[1] + " " + msg[2] + " " + msg[3] + "`"]);
+	convertColor(msg, chID)
+}
+
 function convertColor(msg, cID) {
 	var convF = msg[0].toUpperCase();
 	var rgb;
@@ -173,30 +187,46 @@ function convertColor(msg, cID) {
 }
 
 function addColor(msg, cID) {
-	var color1 = [0, 0, 0];
-	var color2 = [0, 0, 0];
-	var resultColor = [0, 0, 0];
-	if (msg.length == 6 && checkRGB(color1) && checkRGB(color2)) {
-		color1[0] = Number(msg[0]);
-		color1[1] = Number(msg[1]);
-		color1[2] = Number(msg[2]);
-		color2[0] = Number(msg[3]);
-		color2[1] = Number(msg[4]);
-		color2[2] = Number(msg[5]);
-
-		for (i = 0; i <= 2; i++) {
-			resultColor[i] = Math.min(color1[i] + color2[i], 255);
+	if(msg == 'random') {
+		var m = [0,0,0,0,0,0];
+		for (i = 0; i < m.length; i++) {
+			m[i] = bot.random(256);
 		}
-		console.log(color1);
-		console.log(color2);
-		console.log(resultColor);
-		bot.sendMessages(cID, ["`RGB: " + resultColor[0] + " " + resultColor[1] + " " + resultColor[2] + "`"]);
-		RGBtoCMYK(resultColor, cID);
-		RGBtoHEX(resultColor, cID);
-		RGBtoHSL(resultColor, cID);
-		RGBtoHSV(resultColor, cID);
-		RGBtoINT(resultColor, cID);
-		drawAddedImage(color1, color2, resultColor, cID);
+		addColor(m, cID);
+	}
+	else{
+		var color1 = [0, 0, 0];
+		var color2 = [0, 0, 0];
+		var resultColor = [0, 0, 0];
+		if (msg.length == 6 && checkRGB(color1) && checkRGB(color2)) {
+			color1[0] = Number(msg[0]);
+			color1[1] = Number(msg[1]);
+			color1[2] = Number(msg[2]);
+			color2[0] = Number(msg[3]);
+			color2[1] = Number(msg[4]);
+			color2[2] = Number(msg[5]);
+			var messageString = "`Color 1: " + color1[0] + " " + color1[1] + " " +color1[2] + "`\n";
+			messageString += "`Color 2: " + color2[0] + " " + color2[1] + " " +color2[2] + "`\n";
+			
+			for (i = 0; i <= 2; i++) {
+				var temp = Math.pow(color1[i],2)+Math.pow(color2[i],2);
+				temp *= .5;
+				temp = Math.floor(Math.sqrt(temp));
+				resultColor[i] = Math.min(temp, 255);
+			}
+			messageString += "`Result: " + resultColor[0] + " " + resultColor[1] + " " + resultColor[2] + "`";
+			bot.sendMessages(cID,[messageString]);
+			console.log(color1);
+			console.log(color2);
+			console.log(resultColor);
+
+			RGBtoCMYK(resultColor, cID);
+			RGBtoHEX(resultColor, cID);
+			RGBtoHSL(resultColor, cID);
+			RGBtoHSV(resultColor, cID);
+			RGBtoINT(resultColor, cID);
+			drawAddedImage(color1, color2, resultColor, cID);
+		}
 	}
 }
 
@@ -257,7 +287,7 @@ function gradientColors(msg, cID) {
 		} else {
 			mesg[6] = Math.floor(Math.random()*maxMid- minMid) + minMid;
 		}
-		
+
 		gradientColors(mesg, cID);
 	} else {
 		startCol[0] = Number(msg[0]);
@@ -307,7 +337,7 @@ function gradientColors(msg, cID) {
 		img.fillRect(0, 0, barWidth, size, barColor);
 		// Add start color to resultText
 		//resultText += ("```1) " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n");
-		
+
 		// Add each interval to resultText
 		for (var i = 1; i <= midpts; i++) {
 			var tempR = Math.round(i * rInterval) + startCol[0];
