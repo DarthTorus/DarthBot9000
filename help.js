@@ -87,10 +87,10 @@ function getHelpText() {
 }
 
 function sendRollHelp(uI) {
-	var m = "```" + formatCode + bot.trigger + "roll [# of rolls] [# of sides]\n";
+	var m = "```" + formatCode + bot.trigger + "roll [# of sides] [# of rolls]\n";
 	m += "Takes 0, 1, or 2 arguments\n";
 	m += "O: defaults to 1 roll of a 6-sided die.\n";
-	m += "1: defaults to n rolls of a 6-sided die\n";
+	m += "1: defaults to 1 roll of an X-sided die\n";
 	m += "2: N rolls of an X-sided die```";
 	bot.sendMessage({
 		to: uI,
