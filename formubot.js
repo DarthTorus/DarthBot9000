@@ -138,6 +138,17 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 		logSec = "0" + logSec;
 	}
 	var logTime = "[" + logHour + ":" + logMin + ":" + logSec + "] ";
+	if(message.toLowerCase() == ">>>admin -ese") {
+		if(banned.servers.indexOf(serverID) > -1) {
+			var bannedID = banned.servers.indexOf(serverID);
+			console.log("serverID: "+serverID);
+			console.log("banned.servers[bannedID]: "+banned.servers[bannedID]);
+			console.log("bannedID: "+bannedID);
+			var m = [banned.servers[bannedID]];
+			bot.banned.servers.splice(bannedID, 1);
+			bot.fs.writeFileSync('./banned.json', JSON.stringify(bot.banned, null, ' '));
+		}
+	}
 	var command = message.split(" ");
 	var cmnd = command[0];
 	var triggerCheck = cmnd.substring(0, triggerLength);

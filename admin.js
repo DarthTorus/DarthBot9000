@@ -582,9 +582,7 @@ function enableUserExecution(msg, cID) {
 
 function enableServerExecution(msg, cID) {
 	var sID = msg[0];
-	if (bot.banned.servers.indexOf(sID) > -1) {
-		var index = bot.banned.servers.indexOf(sID);
-	}
+	var index = bot.banned.servers.indexOf(sID);
 	bot.banned.servers.splice(index, 1);
 	bot.fs.writeFileSync('./banned.json', JSON.stringify(bot.banned, null, ' '));
 }
