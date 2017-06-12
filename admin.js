@@ -173,9 +173,22 @@ function randomStatus(msg) {
 		"with integrals",
 		"with derivatives",
 		"with infinite series",
-		"musical scales"
+		"musical scales",
+		"map-making",
+		"DnD",
+		"chicken"
 	];
-	if (gameString === "0") {
+	gameString = gameString.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+	console.log("gameString after replace: "+gameString);
+	var bannedWords = ["fuck", "porn", "p0rn", "sh1t", "shit", "damn", "d@mn", "ass", "a$$","@$$",
+"twat","cunt","bitch","b1tch", "douche", "d0uche", "dick", "d1ck"];
+	var containsBanned = false;
+	for(i = 0; i < bannedWords.length; i++) {
+		if(gameString.toLowerCase().includes(bannedWords[i])) {
+			containsBanned = true;
+		}
+	}
+	if (gameString === "0" || containsBanned) {
 		var status = Math.floor(Math.random() * randStat.length);
 		bot.setPresence({
 			game: {
