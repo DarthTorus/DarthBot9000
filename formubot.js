@@ -408,7 +408,7 @@ function coinFlip(m, cI) {
 }
 // Rolls dice
 function rollDice(m, cI) {
-	var rolls = m[0] || 1;
+	var rolls = m[1] || 1;
 	if (rolls > 750) {
 		sendMessages(cI, ["Rolls set to 750."]);
 		rolls = 750;
@@ -416,7 +416,7 @@ function rollDice(m, cI) {
 		sendMessages(cI, ["Rolls set to one."]);
 		rolls = 1;
 	}
-	var sides = m[1] || 6;
+	var sides = m[0] || 6;
 	if(sides > 50) {
 		sides = 50 // force the sides to be 100
 		console.log("sides: " + sides);
@@ -434,11 +434,13 @@ function rollDice(m, cI) {
 		rollText += (randInt + " ");
 	}
 	rollText += "\n\n";
-	for (var r = 1; r <= sides; ++r) {
-		if(rollArr[r] == null) {
-			rollText += (r + ") 0 - 0%\n");
-		} else {
-			rollText += (r + ") " + rollArr[r] + " - " +(Math.round(rollArr[r]/rolls*10000)/100)+ "%\n");
+	if(sides <= 10 && rolls >=5) {
+		for (var r = 1; r <= sides; ++r) {
+			if(rollArr[r] == null) {
+				rollText += (r + ") 0 - 0%\n");
+			} else {
+				rollText += (r + ") " + rollArr[r] + " - " +(Math.round(rollArr[r]/rolls*10000)/100)+ "%\n");
+			}
 		}
 	}
 	sendMessages(cI, ["```" + rollText + "```\n"]);
@@ -473,7 +475,7 @@ function randInteger(m, cI) {
 	bot.sendMessages(cI, ["Your integer is: `" + int + "`"]);
 }
 
-function random() {
+bot.random = function() {
 	var min, max, num = 0;
 	if (arguments.length == 1) {
 		max = arguments[0];
