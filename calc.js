@@ -64,8 +64,11 @@ function toCartesian3D(msg,cID) {
 		var radius = rho*Math.sin(degToRad(phi));
 
 		x = radius * Math.cos(degToRad(theta));
+		console.log("x:" + x);
 		y = radius * Math.sin(degToRad(theta));
+		console.log("y:" + y);
 		z = rho * Math.cos(degToRad(phi));
+		console.log("z:" + z);
 
 		msgText = "`Radius: " + rho + "`\n" ;
 		msgText += "`Theta: " + theta + "°`\n";
@@ -111,8 +114,11 @@ function toSphere(msg,cID) {
 		var msgText = "";
 
 		rho = Math.sqrt(x*x+y*y+z*z);
+		console.log("rho: " + rho);
 		phi = Math.acos(z/rho);
-		theta = rho*Math.sin(phi);
+		console.log("phi: " + phi);
+		theta = Math.asin(y/(rho*Math.sin(phi)));
+		console.log("theta: " + theta);
 
 		msgText = "`X: " + x + "`\n" ;
 		msgText += "`Y: " + y + "`\n";
@@ -130,7 +136,9 @@ function toSphere(msg,cID) {
 		var msgText = "";
 
 		rho = Math.sqrt(r*r+z*z);
+		console.log("rho: " + rho);
 		phi = radToDeg(Math.acos(z/rho));
+		console.log("phi: " + phi);
 
 		msgText = "`Radius: " + r + "`\n" ;
 		msgText += "`Theta: " + theta + "°`\n";
@@ -153,7 +161,9 @@ function toCylinder(msg,cID) {
 		var msgText = "";
 
 		r = Math.sqrt(x*x+y*y);
+		console.log("r: " + r);
 		theta = radToDeg(Math.atan2(y,x));
+		console.log("theta: " + theta);
 
 
 		msgText = "`X: " + x  + "`\n" ;
@@ -172,7 +182,9 @@ function toCylinder(msg,cID) {
 		var msgText = "";
 
 		var r = rho * Math.sin(degToRad(phi));
+		console.log("r: " + r);
 		var z = rho * Math.cos(degToRad(phi));
+		console.log("z: " + z);
 
 		msgText = "`Rho: " + rho + "`\n" ;
 		msgText += "`Theta: " + theta + "°`\n";
