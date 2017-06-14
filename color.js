@@ -468,68 +468,82 @@ function gradientColors(msg, cID) {
 
 function getColorPalettes(msg, cID) {
 	console.log("msg: " + msg);
-	switch(msg[0].toLowerCase()) {
-		case 'square':
-			msg.shift();
-			getSqTetra(msg, cID);
-			break;
-		case 'rectangle':
-		case 'rect':
-			msg.shift();
-			getRectTetra(msg, cID);
-			break;
-		case 'triadic':
-			msg.shift();
-			getTriadic(msg,cID);
-			break;
-		case 'analog':
-		case 'analogous':
-			msg.shift();
-			getAnalogous(msg, cID);
-			break;
-		case 'tone':
-			msg.shift();
-			getTones(msg, cID);
-			break;
-		case 'tint':
-			msg.shift();
-			getTints(msg, cID);
-			break;
-		case 'shade':
-			msg.shift();
-			getShades(msg, cID);
-			break;
-		case 'split':
-			msg.shift();
-			getSplitComp(msg, cID);
-			break;
-		case 'complementary':
-		case 'comp':
-			msg.shift();
-			getComplementary(msg, cID);
-			break;
-		case 'random':
-			msg.shift();
-			pickRandomPallete(msg, cID);
-			break;
-		default:
-			//Do nothing
+	if(msg[0] != null) {
+		switch(msg[0].toLowerCase()) {
+			case 'square':
+				msg.shift();
+				getSqTetra(msg, cID);
+				break;
+			case 'rectangle':
+			case 'rect':
+				msg.shift();
+				getRectTetra(msg, cID);
+				break;
+			case 'triad':
+			case 'triadic':
+				msg.shift();
+				getTriadic(msg,cID);
+				break;
+			case 'analog':
+			case 'analogous':
+				msg.shift();
+				getAnalogous(msg, cID);
+				break;
+			case 'tone':
+				msg.shift();
+				getTones(msg, cID);
+				break;
+			case 'tint':
+				msg.shift();
+				getTints(msg, cID);
+				break;
+			case 'shade':
+				msg.shift();
+				getShades(msg, cID);
+				break;
+			case 'split':
+				msg.shift();
+				getSplitComp(msg, cID);
+				break;
+			case 'complementary':
+			case 'comp':
+				msg.shift();
+				getComplementary(msg, cID);
+				break;
+			case 'random':
+				msg.shift();
+				pickRandomPallete(msg, cID);
+				break;
+			default:
+				//Do nothing
+		}
 	}
 }
 
 function pickRandomPallete(m, cI) {
+	console.log("m.length: " + m.length);
+	if(m.length == 1) {
 		if(m[0] == 'random') {
 			m.push(bot.random(256));
 			m.push(bot.random(256));
 			m.push(bot.random(256));
 			m.shift();
+			console.log("m: " + m);
+			pickRandomPallete(m, cI);
 		}
+	}
+	else if(m.length == 3 && !isNaN(m[0]) && !isNaN(m[1]) && !isNaN(m[2])) {
 		var paletteList = ["square","rect","triadic","split","tone",
 			"shade","tint","comp","analog","triadic"];
 		var randI = bot.random(paletteList.length);
 		m.unshift(paletteList[randI]);
-		console.log("m: "+m);
+		console.log("m: "+ m);
 		getColorPalettes(m, cI);
+	}
+	else if(m[0] == undefined) {
+		m = ["random","random"];
+		pickRandomPallete(m, cI);
+	}
 }
 
 function toHSV(color) {
