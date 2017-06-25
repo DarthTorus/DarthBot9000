@@ -213,9 +213,11 @@ function tweetCheck(msg, cID) {
 		case '-o':
 			sendOwnerTweet(msg, cID);
 			break;
-			// case '-b':
-			//     sendBotTweet(msg, cID);
-			//     break;
+		case '-b':
+	    sendBotTweet(msg, cID);
+	    break;
+		default:
+			// nothing
 	}
 }
 
@@ -294,62 +296,6 @@ function checkDMS(m, cID) {
 	}
 }
 
-// function sendKayTweets(cID) {
-// 	var kayArr = [
-// 		"Hi",
-// 		"Are you doing well?",
-// 		"I hope you are.",
-// 		"After this you may not be.",
-// 		"The goal is to spam your Twitter. However, it's every 3 minutes",
-// 		"I am sorry for this.",
-// 		"Please don't hate me",
-// 		"I really do love you. Remember, it's every 3 minutes.",
-// 		"Every three minutes IF the program runs correctly.",
-// 		"I'm just being an uber troll.",
-// 		"If you do hate me, you can block me for 3 days.",
-// 		"I hope you take this as a bit of fun.",
-// 		"I don't really know how many tweets there'll be.",
-// 		"They will all be short",
-// 		"I hope school was good.",
-// 		"I also hope you're feeling good.",
-// 		"God loves you.",
-// 		"Got any math homework I can do?",
-// 		"We're almost done.",
-// 		"Just a few more.",
-// 		"Well... maybe more.",
-// 		"Sorry ♥",
-// 		"So... I'm running out of things to say.",
-// 		"Say hi to Geo for me.",
-// 		"And Aurora.",
-// 		"Oh and sorry about this",
-// 		"Almost done, for reals.",
-// 		"Three more after this.",
-// 		"My evilness has reached an all time high.",
-// 		"You are done after this next tweet.",
-// 		"Good night."
-// 	]
-//
-// 	for (var i = 0; i < kayArr.length; i++) {
-// 		m = "@KayAnnSheridan " + kayArr[i];
-// 		var timeInt = 60000 * (1 + i);
-// 		console.log(m + ": " + timeInt);
-//
-// 		setInterval(function()
-// 		{
-// 			bot.darth.post('statuses/update', {
-// 				status: m
-// 			}, function(error, tweet, response) {
-// 				if (error) {
-// 					bot.sendMessages(cID, ["Tweet couldn't send!"]);
-// 					console.log(error + " " + i + "; " + tweet);
-// 				} else {
-// 					bot.sendMessages(cID, ["Tweet" + (i + 1) + "/" + kayArr.length + " sent!"]);
-// 				}
-// 				console.log(tweet.text); // Tweet body.
-// 			})
-// 		}, timeInt);
-// 	}
-// }
 
 function sendOwnerTweet(m, cI) {
 	m.shift();
@@ -389,6 +335,66 @@ function sendServerTweet(m, cI) {
 			console.log(tweet.text); // Tweet body.
 		});
 	}
+}
+function sendBotTweet(m, cI) {
+	m.shift();
+	m = m.join(" ");
+	console.log("Tweet length = " + m.length);
+	if (m.length > 140) {
+		bot.sendMessages(cID, ["Tweet is too long! Length = " + m.length]);
+	} else {
+		bot.formu.post('statuses/update', {
+			status: m
+		}, function(error, tweet, response) {
+			if (error) {
+				bot.sendMessages(cI, ["Tweet couldn't send!"]);
+			} else {
+				bot.sendMessages(cI, ["Tweet sent to Formu_bot account sucessfully!"]);
+			}
+			console.log(tweet.text); // Tweet body.
+		});
+	}
+}
+
+function tweetBotMedia(path, msg, cI) {
+	var fileLoc = "C:/Users/Vitaly Van Deusen/Desktop/Git/Formu-bot/";
+	var imgPath = path.substring(2,path.length);
+
+	imgPath = fileLoc + imgPath;
+	console.log(bot.colors.cyan("path: "+path));
+	// Load your image
+var data = bot.fs.readFile(path);
+console.log(bot.colors.red(data));
+// Make post request on media endpoint. Pass file data as media parameter
+bot.formu.post('media/upload',
+	{
+		media: data
+	}, function(err, media, resp) {
+
+  if (!err) {
+    // If successful, a media object will be returned.
+    console.log(bot.colors.magenta(media));
+		// Lets tweet it
+
+    bot.formu.post('statuses/update', {
+      status: msg,
+      media_ids: media.media_id_string // Pass the media id string
+    }, function(error, tweet, response) {
+			if (error) {
+				bot.sendMessages(cI, ["Media couldn't send!"]);
+			} else {
+				bot.sendMessages(cI, ["Media sent to Formu_bot account sucessfully!"]);
+			}
+			console.log(tweet.text); // Tweet body.
+		});
+
+  }
+	else {
+		console.log(bot.colors.red(media));
+		console.log(bot.colors.red(err));
+		console.log(bot.colors.red(resp));
+	}
+	});
 }
 
 function addRole(msg, cID) {
@@ -707,29 +713,30 @@ function resolveID(mention) {
 	return uID;
 }
 
-function pingServer(m, cID) {
-	var ip = m[0].toString();
-	var port = Number(m[1]) || 25565;
-	var results;
-	bot.utils.ping(ip, port, function(err, res) {
-		if (err) {
-			console.log(err);
-		} else {
-			var desc = res.description.text;
-			desc = desc.replace(/(\§[0-9a-fA-Fk-oK-ORr])+/g,"");
-				results = "**IP:** `" + ip + "`\n";
-				results += "**Port:** `" + port + "`\n";
-				results += "**Players:** `" + res.players.online + "/" + res.players.max + "`\n";
-				results += "**Description:** `" + desc + "`\n";
-				bot.sendMessages(cID, [results]);
-			//console.log(res);
-		}
-	}, 3000);
-
-}
+// function pingServer(m, cID) {
+// 	var ip = m[0].toString();
+// 	var port = Number(m[1]) || 25565;
+// 	var results;
+// 	bot.utils.ping(ip, port, function(err, res) {
+// 		if (err) {
+// 			console.log(err);
+// 		} else {
+// 			var desc = res.description.text;
+// 			desc = desc.replace(/(\§[0-9a-fA-Fk-oK-ORr])+/g,"");
+// 				results = "**IP:** `" + ip + "`\n";
+// 				results += "**Port:** `" + port + "`\n";
+// 				results += "**Players:** `" + res.players.online + "/" + res.players.max + "`\n";
+// 				results += "**Description:** `" + desc + "`\n";
+// 				bot.sendMessages(cID, [results]);
+// 			//console.log(res);
+// 		}
+// 	}, 3000);
+//
+// }
 
 var adminFunctions = {
 	adminCheck: adminCheck,
-	randomStatus: randomStatus
+	randomStatus: randomStatus,
+	tweetBotMedia: tweetBotMedia
 };
 module.exports = adminFunctions;
