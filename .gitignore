@@ -1,13 +1,5 @@
 help.txt
-config.json
-package.json
-banned.json
+*.json
 logs/
-colorSquare.png
-gradientSquare.png
-analogColor.png
-comp.png
-rectTetradic.png
-splitComp.png
-squareTetradic.png
-triadicColor.png
+*.jpg
+*.png

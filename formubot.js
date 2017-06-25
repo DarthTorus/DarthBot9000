@@ -6,10 +6,11 @@ var colors = require('colors/safe');
 var PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
 const reqFiles = ["admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insult.json", "materials.json", "minecraft.js","series.js"
+	"color.js", "help.js", "info.js", "insult.json", "materials.json",
+	"minecraft.js","series.js", "poll.js"
 ];
 const names = ["admin", "banned", "calc", "color",
-	"help", "info", "insult", "mat", "mc","series"
+	"help", "info", "insult", "mat", "mc","series","polls"
 ]; // Names of variables
 
 function requireFiles() {
@@ -40,10 +41,17 @@ var server = new Twitter({
 	access_token_key: config.twitter.s.tk,
 	access_token_secret: config.twitter.s.ts,
 });
+var formu = new Twitter({
+	consumer_key: config.twitter.b.ck,
+	consumer_secret: config.twitter.b.cs,
+	access_token_key: config.twitter.b.tk,
+	access_token_secret: config.twitter.b.ts,
+});
 process.DiscordBot = bot;
 // Required files and modules
 // var banned = require("./banned.json");
 const fs = require('fs');
+const url = require('url');
 const request = require('request');
 
 //Bot properties declared
@@ -53,9 +61,11 @@ bot.config = config;
 bot.banned = banned;
 bot.insult = insult;
 bot.mat = mat;
+bot.polls = polls;
 //bot.straw = straw;
 bot.darth = darth;
 bot.server = server;
+bot.formu = formu;
 bot.inStandby = false;
 bot.sendMessages = sendMessages;
 bot.reload = reload;
@@ -68,6 +78,7 @@ bot.trigger = trigger;
 bot.request = request;
 bot.utils = utils;
 bot.fs = fs;
+bot.url = url;
 var quitStatus = false;
 bot.quitStatus = quitStatus;
 //Other vars
@@ -328,6 +339,7 @@ function checkCommands(c, message, uID, chID) {
 		case 'info':
 			info.infoCheck(msg, uID, chID);
 			break;
+		case 'poll':
 		case 'polls':
 			polls.pollCheck(msg, uID, chID);
 			break;
@@ -361,7 +373,6 @@ function checkCommands(c, message, uID, chID) {
 			drawCards(msg, chID);
 			break;
 		case 'cipher':
-			//admin.randomStatus();
 			break;
 		case 'adryd':
 		case 'triangle':
@@ -383,6 +394,10 @@ function checkCommands(c, message, uID, chID) {
 			break;
 		case 'color':
 			color.colorCheck(msg, chID);
+			break;
+		case 'latex':
+		case 'tex':
+			calc.getLaTeX(msg, chID);
 			break;
 		default:
 			break;
@@ -406,7 +421,7 @@ function coinFlip(m, cI) {
 	var randInt = 0;
 	var ifHeads;
 	for (var i = 1; i <= flips; ++i) {
-		ifHeads = random(2) == 1;
+		ifHeads = bot.random(2) == 1;
 		//randInt = Math.random() * 2;
 		if (ifHeads) {
 			flipText += "H ";
@@ -439,7 +454,7 @@ function rollDice(m, cI) {
 	var rollText = "";
 	var rollArr = [];
 	for (var r = 1; r <= rolls; ++r) {
-		randInt = random(sides) + 1;
+		randInt = bot.random(sides) + 1;
 		if(rollArr.hasOwnProperty(randInt.toString())) {
 			rollArr[randInt]++;
 		} else {
@@ -461,11 +476,11 @@ function rollDice(m, cI) {
 }
 // Gives a random Integer
 function randInteger(m, cI) {
-	var rand = random(1, 75);
+	var rand = bot.random(1, 75);
 	var int = "";
 	console.log(rand);
 	for (var i = 0; i < rand; i++) {
-		int += random(10).toString();
+		int += bot.random(10).toString();
 	}
 	if(int[0] === "0" && rand >= 2) {
 		console.log(int[0]);
@@ -480,7 +495,7 @@ function randInteger(m, cI) {
 		//do nothing
 	} else {
 		var randInt = 0;
-		randInt = random() < 0.5;
+		randInt = bot.random() < 0.5;
 		if (randInt) {
 			int = "-" + int;
 		}
@@ -531,15 +546,15 @@ function drawCards(m, cI) {
 	}
 	if (duplicates == "yes") {
 		for (var i = 1; i <= draws; ++i) {
-			var s = random(4);
-			var c = random(13);
+			var s = bot.random(4);
+			var c = bot.random(13);
 			cardText += (card[c] + suit[s] + " ");
 		}
 	} else {
 		var i = 0;
 		while (i < draws) {
-			var s = random(4);
-			var c = random(13);
+			var s = bot.random(4);
+			var c = bot.random(13);
 			if (cardSelected[s, c] != 1) {
 				cardText += (card[c] + suit[s] + " ");
 				cardSelected[s, c] = 1;
@@ -574,7 +589,7 @@ function sendHug(m, cI, uI) {
 	var person = m[0] || uI;
 	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\\\^u^(\\"];
 
-			var int = Math.floor(Math.random() * hugs.length);
+			var int = bot.random(hugs.length);
 			if (person == uI) {
 				sendMessages(cI, ["Sending <@" + uI + "> this hug: " + hugs[int]]);
 			} else {

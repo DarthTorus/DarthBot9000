@@ -1,5 +1,4 @@
 var bot = process.DiscordBot;
-var imgPath = "./colorSquare.png";
 //var imgWidth, imgHeight = 400;
 
 function colorCheck(m, cI) {
@@ -34,6 +33,7 @@ function colorCheck(m, cI) {
 
 function drawSolidImage(imgColor, cI) {
 	var size = 70;
+	var imgPath = "./colorSquare.jpg";
 	var img = bot.PNGImage.createImage(size, size);
 	var r = Number(imgColor[0]);
 	var g = Number(imgColor[1]);
@@ -273,7 +273,7 @@ function gradientColors(msg, cID) {
 	var maxMid = 254;
 	var minMid = 6;
 	var mesg = new Array(6);
-	var path = "./gradientSquare.png";
+	var imgPath = "./gradientSquare.jpg";
 	if (msg[0] == "random") {
 
 		for(var i = 0; i <6;i++) {
@@ -402,15 +402,15 @@ function gradientColors(msg, cID) {
 		img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
 		// Send all of resultText to the user
 		//bot.sendMessages(cID, [resultText]);
-		img.writeImage(path, function(err) {
+		img.writeImage(imgPath, function(err) {
 			if (err) {
 				throw err;
 			}
 			console.log('Written to the file');
-			console.log(path);
+			console.log(imgPath);
 			bot.uploadFile({
 				to: cID,
-				file: path
+				file: imgPath
 			}, function(error) {
 				if (error) {
 					console.log(error);
@@ -628,7 +628,7 @@ function getTriadic(msg, cID) {
 	console.log("color3: "+ color3);
 	// draw image
 	var size = 256;
-	var imgPath = "./triadicColor.png";
+	var imgPath = "./triadicColor.jpg";
 	var imgColor1 = {
 		red: color1[0],
 		green: color1[1],
@@ -668,10 +668,11 @@ function getTriadic(msg, cID) {
 			}
 		});
 	});
-	msgText += ("Color 1: " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
-	msgText += ("Color 2: " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
-	msgText += ("Color 3: " + color3[0] + " " + color3[1] + " " + color3[2] + "```\n");
+	msgText += ("1: " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
+	msgText += ("2: " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
+	msgText += ("3: " + color3[0] + " " + color3[1] + " " + color3[2] + "```\n");
 	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 function getAnalogous(msg, cID) {
@@ -725,15 +726,15 @@ function getAnalogous(msg, cID) {
 	color4 = toRGB(hsvCol4);
 	color5 = toRGB(hsvCol5);
 
-	msgText += ("Color 1: " + color3[0] + " " + color3[1] + " " + color3[2] + "\n");
-	msgText += ("Color 2: " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
-	msgText += ("Color 3: " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
-	msgText += ("Color 4: " + color4[0] + " " + color4[1] + " " + color4[2] + "\n");
-	msgText += ("Color 5: " + color5[0] + " " + color5[1] + " " + color5[2] + "\n```");
+	msgText += ("1: " + color3[0] + " " + color3[1] + " " + color3[2] + "\n");
+	msgText += ("2: " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
+	msgText += ("3: " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
+	msgText += ("4: " + color4[0] + " " + color4[1] + " " + color4[2] + "\n");
+	msgText += ("5: " + color5[0] + " " + color5[1] + " " + color5[2] + "\n```");
 
 	// draw image
 	var size = 250;
-	var imgPath = "./analogColor.png";
+	var imgPath = "./analogColor.jpg";
 	var imgColor1 = {
 		red: color1[0],
 		green: color1[1],
@@ -787,6 +788,7 @@ function getAnalogous(msg, cID) {
 		});
 	});
 	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 function getSqTetra(msg, cID) {
@@ -831,14 +833,14 @@ function getSqTetra(msg, cID) {
 	color3 = toRGB(hsvCol3);
 	color4 = toRGB(hsvCol4);
 
-	msgText += ("Color 1 (top left): " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
-	msgText += ("Color 2 (top right): " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
-	msgText += ("Color 3 (bottom left): " + color3[0] + " " + color3[1] + " " + color3[2] + "\n");
-	msgText += ("Color 4 (bottom right): " + color4[0] + " " + color4[1] + " " + color4[2] + "\n```");
+	msgText += ("1 (top left): " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
+	msgText += ("2 (top right): " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
+	msgText += ("3 (bottom left): " + color3[0] + " " + color3[1] + " " + color3[2] + "\n");
+	msgText += ("4 (bottom right): " + color4[0] + " " + color4[1] + " " + color4[2] + "\n```");
 
 	// draw image
 	var size = 250;
-	var imgPath = "./squareTetradic.png";
+	var imgPath = "./squareTetradic.jpg";
 	var imgColor1 = {
 		red: color1[0],
 		green: color1[1],
@@ -885,6 +887,7 @@ function getSqTetra(msg, cID) {
 		});
 	});
 	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 function getRectTetra(msg, cID) {
@@ -930,14 +933,14 @@ function getRectTetra(msg, cID) {
 	color3 = toRGB(hsvCol3);
 	color4 = toRGB(hsvCol4);
 
-	msgText += ("Color 1 (top left): " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
-	msgText += ("Color 2 (top right): " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
-	msgText += ("Color 3 (bottom left): " + color3[0] + " " + color3[1] + " " + color3[2] + "\n");
-	msgText += ("Color 4 (bottom right): " + color4[0] + " " + color4[1] + " " + color4[2] + "\n```");
+	msgText += ("1 (top left): " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
+	msgText += ("2 (top right): " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
+	msgText += ("3 (bottom left): " + color3[0] + " " + color3[1] + " " + color3[2] + "\n");
+	msgText += ("4 (bottom right): " + color4[0] + " " + color4[1] + " " + color4[2] + "\n```");
 
 	// draw image
 	var size = 250;
-	var imgPath = "./rectTetradic.png";
+	var imgPath = "./rectTetradic.jpg";
 	var imgColor1 = {
 		red: color1[0],
 		green: color1[1],
@@ -984,12 +987,90 @@ function getRectTetra(msg, cID) {
 		});
 	});
 	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 // this is a gradient ending at white. use 6 midpoints
 function getTints(msg, cID) {
-	var mesg = [msg[0],msg[1],msg[2],255,255,255];
-	gradientColors(mesg,cID);
+	var imgPath = "./tintGradient.jpg";
+	var midpts = 6;
+	var startCol = [0,0,0];
+	var endCol = [0,0,0];
+	startCol[0] = Number(msg[0]);
+	startCol[1] = Number(msg[1]);
+	startCol[2] = Number(msg[2]);
+	endCol[0] = 255
+	endCol[1] = 255
+	endCol[2] = 255
+	var size = 256;
+	var barWidth = size / (midpts + 2);
+
+	rInterval = (endCol[0] - startCol[0]) / (midpts + 1);
+	gInterval = (endCol[1] - startCol[1]) / (midpts + 1);
+	bInterval = (endCol[2] - startCol[2]) / (midpts + 1);
+
+	// If in RGB mode, length will be 7, else HEX mode will be 3
+	var msgText = "```Start: " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n";
+	msgText += "End: " + endCol[0] + " " + endCol[1] + " " + endCol[2] + "\n";
+	msgText += "Interval: " + rInterval + " " + gInterval + " " + bInterval + "\n";
+	msgText += "Midpoints: " + midpts +"```";
+
+	var barColor;
+
+	// Start creating image here
+	var img = bot.PNGImage.createImage(size, size);
+	barColor = {
+		red: startCol[0],
+		green: startCol[1],
+		blue: startCol[2],
+		alpha: 255
+	};
+	img.fillRect(0, 0, barWidth, size, barColor);
+	// Add start color to resultText
+	//resultText += ("```1) " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n");
+
+	// Add each interval to resultText
+	for (var i = 1; i <= midpts; i++) {
+		var tempR = Math.round(i * rInterval) + startCol[0];
+		var tempG = Math.round(i * gInterval) + startCol[1];
+		var tempB = Math.round(i * bInterval) + startCol[2];
+		barColor = {
+			red: tempR,
+			green: tempG,
+			blue: tempB,
+			alpha: 255
+		};
+		var x = barWidth * i;
+
+		img.fillRect(x, 0, barWidth, size, barColor);
+	}
+	barColor = {
+		red: endCol[0],
+		green: endCol[1],
+		blue: endCol[2],
+		alpha: 255
+	};
+	//console.log((midpts + 1) * barWidth);
+	img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
+	// Send all of resultText to the user
+	//bot.sendMessages(cID, [resultText]);
+	img.writeImage(imgPath, function(err) {
+		if (err) {
+			throw err;
+		}
+		console.log('Written to the file');
+		console.log(imgPath);
+		bot.uploadFile({
+			to: cID,
+			file: imgPath
+		}, function(error) {
+			if (error) {
+				console.log(error);
+			}
+		});
+	});
+	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath, msgText, cID);
 }
 
 // this is a gradient ending at gray. use 6 midpoints and maybe pick the percentage of gray?
@@ -1006,14 +1087,168 @@ function getTones(msg, cID) {
 	 percent = 0.5;
  }
  var color = 255*percent;
- var mesg = [msg[0],msg[1],msg[2],color,color,color];
- gradientColors(mesg,cID);
+ var imgPath = "./toneGradient.jpg";
+ var midpts = 6;
+ var startCol = [0,0,0];
+ var endCol = [0,0,0];
+ startCol[0] = Number(msg[0]);
+ startCol[1] = Number(msg[1]);
+ startCol[2] = Number(msg[2]);
+ endCol[0] = color;
+ endCol[1] = color;
+ endCol[2] = color;
+ var size = 256;
+ var barWidth = size / (midpts + 2);
+
+ rInterval = (endCol[0] - startCol[0]) / (midpts + 1);
+ gInterval = (endCol[1] - startCol[1]) / (midpts + 1);
+ bInterval = (endCol[2] - startCol[2]) / (midpts + 1);
+
+ // If in RGB mode, length will be 7, else HEX mode will be 3
+ var msgText = "```Start: " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n";
+ msgText += "End: " + endCol[0] + " " + endCol[1] + " " + endCol[2] + "\n";
+ msgText += "Interval: " + rInterval + " " + gInterval + " " + bInterval + "\n";
+ msgText += "Midpoints: " + midpts +"```";
+
+ var barColor;
+
+ // Start creating image here
+ var img = bot.PNGImage.createImage(size, size);
+ barColor = {
+ 	red: startCol[0],
+ 	green: startCol[1],
+ 	blue: startCol[2],
+ 	alpha: 255
+ };
+ img.fillRect(0, 0, barWidth, size, barColor);
+ // Add start color to resultText
+ //resultText += ("```1) " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n");
+
+ // Add each interval to resultText
+ for (var i = 1; i <= midpts; i++) {
+ 	var tempR = Math.round(i * rInterval) + startCol[0];
+ 	var tempG = Math.round(i * gInterval) + startCol[1];
+ 	var tempB = Math.round(i * bInterval) + startCol[2];
+ 	barColor = {
+ 		red: tempR,
+ 		green: tempG,
+ 		blue: tempB,
+ 		alpha: 255
+ 	};
+ 	var x = barWidth * i;
+
+ 	img.fillRect(x, 0, barWidth, size, barColor);
+ }
+ barColor = {
+ 	red: endCol[0],
+ 	green: endCol[1],
+ 	blue: endCol[2],
+ 	alpha: 255
+ };
+ //console.log((midpts + 1) * barWidth);
+ img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
+ // Send all of resultText to the user
+ //bot.sendMessages(cID, [resultText]);
+ img.writeImage(imgPath, function(err) {
+ 	if (err) {
+ 		throw err;
+ 	}
+ 	console.log('Written to the file');
+ 	console.log(imgPath);
+ 	bot.uploadFile({
+ 		to: cID,
+ 		file: imgPath
+ 	}, function(error) {
+ 		if (error) {
+ 			console.log(error);
+ 		}
+ 	});
+ });
+	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 // this is a gradient ending at black. use 6 midpoints
 function getShades(msg, cID) {
-	var mesg = [msg[0],msg[1],msg[2],0,0,0];
-	gradientColors(mesg,cID);
+	var imgPath = "./shadeGradient.jpg";
+  var midpts = 6;
+  var startCol = [0,0,0];
+  var endCol = [0,0,0];
+  startCol[0] = Number(msg[0]);
+  startCol[1] = Number(msg[1]);
+  startCol[2] = Number(msg[2]);
+  endCol[0] = 0;
+  endCol[1] = 0;
+  endCol[2] = 0;
+  var size = 256;
+  var barWidth = size / (midpts + 2);
+
+  rInterval = (endCol[0] - startCol[0]) / (midpts + 1);
+  gInterval = (endCol[1] - startCol[1]) / (midpts + 1);
+  bInterval = (endCol[2] - startCol[2]) / (midpts + 1);
+
+  // If in RGB mode, length will be 7, else HEX mode will be 3
+  var msgText = "```Start: " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n";
+  msgText += "End: " + endCol[0] + " " + endCol[1] + " " + endCol[2] + "\n";
+  msgText += "Interval: " + rInterval + " " + gInterval + " " + bInterval + "\n";
+  msgText += "Midpoints: " + midpts +"```";
+
+  var barColor;
+
+  // Start creating image here
+  var img = bot.PNGImage.createImage(size, size);
+  barColor = {
+  	red: startCol[0],
+  	green: startCol[1],
+  	blue: startCol[2],
+  	alpha: 255
+  };
+  img.fillRect(0, 0, barWidth, size, barColor);
+  // Add start color to resultText
+  //resultText += ("```1) " + startCol[0] + " " + startCol[1] + " " + startCol[2] + "\n");
+
+  // Add each interval to resultText
+  for (var i = 1; i <= midpts; i++) {
+  	var tempR = Math.round(i * rInterval) + startCol[0];
+  	var tempG = Math.round(i * gInterval) + startCol[1];
+  	var tempB = Math.round(i * bInterval) + startCol[2];
+  	barColor = {
+  		red: tempR,
+  		green: tempG,
+  		blue: tempB,
+  		alpha: 255
+  	};
+  	var x = barWidth * i;
+
+  	img.fillRect(x, 0, barWidth, size, barColor);
+  }
+  barColor = {
+  	red: endCol[0],
+  	green: endCol[1],
+  	blue: endCol[2],
+  	alpha: 255
+  };
+  //console.log((midpts + 1) * barWidth);
+  img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
+  // Send all of resultText to the user
+  //bot.sendMessages(cID, [resultText]);
+  img.writeImage(imgPath, function(err) {
+  	if (err) {
+  		throw err;
+  	}
+  	console.log('Written to the file');
+  	console.log(imgPath);
+  	bot.uploadFile({
+  		to: cID,
+  		file: imgPath
+  	}, function(error) {
+  		if (error) {
+  			console.log(error);
+  		}
+  	});
+  });
+	bot.sendMessages(cID, [msgText]);
+  bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 function getSplitComp(msg, cID) {
@@ -1055,7 +1290,7 @@ function getSplitComp(msg, cID) {
 
 	// draw image
 	var size = 240;
-	var imgPath = "./splitComp.png";
+	var imgPath = "./splitComp.jpg";
 	var imgColor1 = {
 		red: color1[0],
 		green: color1[1],
@@ -1095,6 +1330,7 @@ function getSplitComp(msg, cID) {
 		});
 	});
 	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 // This is easy as each value should total 255. So subtract from 255.
@@ -1126,7 +1362,7 @@ function getComplementary(msg, cID) {
 
 	// draw image
 	var size = 256;
-	var imgPath = "./comp.png";
+	var imgPath = "./comp.jpg";
 	var imgColor1 = {
 		red: color1[0],
 		green: color1[1],
@@ -1159,6 +1395,7 @@ function getComplementary(msg, cID) {
 		});
 	});
 	bot.sendMessages(cID, [msgText]);
+	bot.admin.tweetBotMedia(imgPath,msgText,cID);
 }
 
 
