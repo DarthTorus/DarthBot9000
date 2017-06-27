@@ -1,6 +1,7 @@
 var bot = process.DiscordBot;
 var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijlmnopqrstuvwxyz0123456789-_";
 var p = require("./polls.json");
+var currentID = "";
 function pollCheck(m, uID, cID) {
 	console.log(m[0]);
 	switch (m[0]) {
@@ -36,7 +37,7 @@ function generateID() {
 function createPoll(msg, uI, cI) {
   mesg = msg.join(" ");
   var pID = generateID();
-
+  currentID = pID;
   console.log(bot.colors.cyan("pID: " + pID));
   var msgText = "";
   var arr = mesg.split(" | ");
@@ -70,7 +71,14 @@ function createPoll(msg, uI, cI) {
 function voteOnPoll(msg, uI, cI) {
   console.log(p);
   // 0) Get associated variables needed
-  var pID = msg[0];
+  var mesg = msg.join(' ');
+  var msg = mesg.split(' | ');
+  var pID = "";
+  if(msg.length > 1) {
+    pID = msg[0];
+  } else {
+    pID = currentID;
+  }
   console.log("pID: " + pID);
   msg.shift();
   var opt = msg.join(' ');
@@ -84,19 +92,22 @@ function voteOnPoll(msg, uI, cI) {
     var pol = p.polls[pID];
     console.log(bot.colors.yellow("Poll:"));
     console.log(pol);
-  }
-  // Check if user voted in the poll already
-  if(pol.voted.indexOf(user) != -1) {
-    bot.sendMessages(cI, ["<@"+uI + "> You have already voted!"]);
-  } else {
-    if(pol.options.indexOf(opt) != -1) {
-      pol.voted.push(user);
-      var countID = pol.options.indexOf(opt);
-      pol.counts[countID] += 1;
-      bot.sendMessages(cI, ["<@"+ user +"> has voted for: " + opt]);
+
+    // Check if user voted in the poll already
+    if(pol.voted.indexOf(user) != -1) {
+      bot.sendMessages(cI, ["<@"+uI + "> You have already voted!"]);
     } else {
-      bot.sendMessages(cI, ["That is not an option sadly"]);
+      if(pol.options.indexOf(opt) != -1) {
+        pol.voted.push(user);
+        var countID = pol.options.indexOf(opt);
+        pol.counts[countID] += 1;
+        bot.sendMessages(cI, ["<@"+ user +"> has voted for: " + opt]);
+      } else {
+        bot.sendMessages(cI, ["That is not an option sadly"]);
+      }
     }
+  } else {
+    bot.sendMessages(cI, ["That ID doesn't exist yet."]);
   }
   // Get index of option selected to add to the respective count index
   bot.fs.writeFileSync('./polls.json', JSON.stringify(p, null, ' '));
@@ -104,9 +115,15 @@ function voteOnPoll(msg, uI, cI) {
 
 function viewPoll(msg, cI) {
   console.log(p);
+  var pID = "";
   // 0) Get associated variables needed
-  var pID = msg[0];
-
+  if(msg.length == 0) {
+    pID = currentID;
+  }
+   else {
+     pID = msg[0];
+     currentID = pID;
+   }
   // 1) get the poll id and object associated
   if(p.polls.hasOwnProperty(pID)) {
     // set set current poll using the pID
