@@ -6,11 +6,11 @@ var colors = require('colors/safe');
 var PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
 const reqFiles = ["admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insult.json", "materials.json",
+	"color.js", "help.js", "info.js", "insults.json", "materials.json",
 	"minecraft.js","series.js", "poll.js"
 ];
 const names = ["admin", "banned", "calc", "color",
-	"help", "info", "insult", "mat", "mc","series","polls"
+	"help", "info", "insults", "mat", "mc","series","polls"
 ]; // Names of variables
 
 function requireFiles() {
@@ -59,7 +59,7 @@ requireFiles();
 bot.admin = admin;
 bot.config = config;
 bot.banned = banned;
-bot.insult = insult;
+bot.insults = insults;
 bot.mat = mat;
 bot.polls = polls;
 //bot.straw = straw;
@@ -390,7 +390,7 @@ function checkCommands(c, message, uID, chID) {
 			checkReverse(msg, chID);
 			break;
 		case 'insult':
-			insult(uID, chID);
+			getInsult(uID, chID);
 			break;
 		case 'color':
 			color.colorCheck(msg, chID);
@@ -507,12 +507,15 @@ function randInteger(m, cI) {
 bot.random = function() {
 	var min, max, num = 0;
 	if (arguments.length == 1) {
+		// Between 0 and max
 		max = arguments[0];
 		min = 0;
 	} else if (arguments.length == 2) {
+		// between min and max
 		min = arguments[0];
 		max = arguments[1];
 	} else {
+		// a decimal between 0 and 1 by default
 		return Math.random();
 	}
 
@@ -645,7 +648,7 @@ function reload(cI) {
 		}
 		requireFiles();
 		commands = Object.assign({}, admin, help, info, calc,
-			color, config, banned, insult, mat, mc);
+			color, config, banned, insults, mat, mc, series);
 		sendMessages(cI, ["\u200B\u180ESuccessfully reloaded"]);
 	} catch (e) {
 		sendMessages(cI, ["\u200B\u180ECouldn't reload for some reason."]);
@@ -653,17 +656,16 @@ function reload(cI) {
 	admin.randomStatus();
 }
 
-function insult(uI, cI) {
+function getInsult(uI, cI) {
 	var i1, i2, i3;
 	var insultString = "";
-	console.log(insult);
-	var insult1 = insult.first;
-	var insult2 = insult.second;
-	var insult3 = insult.third;
+	var insult1 = insults.first;
+	var insult2 = insults.second;
+	var insult3 = insults.third;
 	if (cI in bot.directMessages) {
-		i1 = Math.floor(Math.random() * insult1.length);
-		i2 = Math.floor(Math.random() * insult2.length);
-		i3 = Math.floor(Math.random() * insult3.length);
+		i1 = bot.random(insult1.length);
+		i2 = bot.random(insult2.length);
+		i3 = bot.random(insult3.length);
 		insultString = insult1[i1] + " " + insult2[i2] + " " + insult3[i3];
 		insultString = insultString.toLowerCase();
 		sendMessages(uI, ["Thou " + insultString + "."]);
