@@ -1,6 +1,29 @@
 var bot = process.DiscordBot;
 const radConst = bot.TAU/360;
 const degConst = 360/bot.TAU
+
+var latexArr = [
+	{char : '\\%', code : "%25"},
+	{char : ' ', code : "%20"},
+	{char : '\\+', code : "%2B"},
+	{char : '\\[', code : "%5B"},
+	{char : '\\\\', code : "%5C"},
+	{char : '\\]', code : "%5D"},
+	{char : '\\^', code : "%5E"},
+	{char : '\\{', code : "%7B"},
+	{char : '\\}', code : "%7D"},
+	{char : '\\=', code : "%3D"},
+	{char : '\\*', code : "%2A"},
+	{char : '\\<', code : "%3C"},
+	{char : '\\>', code : "%3E"},
+	{char : '\\&', code : "%26"},
+	{char : '\\|', code : "%7C"},
+	{char : '\\#', code : "%23"},
+	{char : '\\$', code : "%24"},
+	{char : '\\@', code : "%40"},
+	{char : '\\/', code : "%2F"}
+];
+
 	// Function selector if "calc" command is present
 function calcCheck(m, cI) {
 	switch (m[0]) {
@@ -444,35 +467,35 @@ function radToDeg(rads) {
 }
 
 function calcQuadratic(m, cID) {
-	var resultString = "http://chart.apis.google.com/chart?cht=tx&chl=x%20%3D%20";
-	var resultHeight = "&chf=bg%2Cs%2C36393E&chco=ffffff&chs=60";
+	var resultString = "http://chart.apis.google.com/chart?cht=tx&chl=x= ";
+	var resultHeight = "&chf=bg,s,36393E&chco=ffffff&chs=60";
 
 	var a = m[0] || 1;
 	var b = m[1] || 0;
 	var c = m[2] || 0;
 	var initialEq = "http://chart.apis.google.com/chart?cht=tx&chl=";
 	if (a == 1) {
-		initialEq += "x%5E%7B2%7D";
+		initialEq += "x^{2}";
 	} else if (a == -1) {
-		initialEq += "-x%5E%7B2%7D";
+		initialEq += "-x^{2}";
 	} else {
-		initialEq += (a + "x%5E%7B2%7D");
+		initialEq += (a + "x^{2}");
 	}
 	if (b == 1) {
-		initialEq += ("%2Bx");
+		initialEq += ("+x");
 	} else if (b > 1) {
-		initialEq += ("%2B" + b + "x")
+		initialEq += ("+" + b + "x")
 	} else if (b == -1) {
 		initialEq += ("-x");
 	} else if (b < -1) {
 		initialEq += (b + "x");
 	}
 	if (c > 0) {
-		initialEq += ("%2B" + c);
+		initialEq += ("+" + c);
 	} else if (c < 0) {
 		initialEq += c;
 	}
-	initialEq += "%20%3D%200&chf=bg%2Cs%2C36393E&chco=ffffff&chs=30";
+	initialEq += " = 0&chf=bg,s,36393E&chco=ffffff&chs=30";
 	bot.request(initialEq, {
 		encoding: null
 	}, function(err, res, body) {
@@ -494,23 +517,23 @@ function calcQuadratic(m, cID) {
 		sol2 = ((b * -1) - Math.sqrt(deter)) / (2 * a);
 		console.log(sol1 + ", " + sol2);
 		if (Math.abs(sol1) == Math.abs(sol2)) {
-			resultString += "%5Cpm%20";
+			resultString += "\\pm ";
 			resultString += Math.abs(sol1);
 			resultString += resultHeight;
 		} else {
 			if (Math.sqrt(deter) % 1 == 0) {
-				resultString += (sol1 + "%20%20or%20" + sol2);
+				resultString += (sol1 + "  or " + sol2);
 				resultString += resultHeight;
 			} else {
 				b *= -1;
-				resultString += "%5Cfrac%7B" + b + "%5Cpm%5Csqrt%7B" + deter + "%7D%7D%7B" + 2 * a + "%7D";
+				resultString += "\\frac{" + b + "\\pm\\sqrt{" + deter + "}}{" + 2 * a + "}";
 				resultString += resultHeight;
 			}
 		}
 	} else {
 		deter = Math.abs(deter);
 		b *= -1;
-		resultString += "%5Cfrac%7B" + b + "%5Cpm%20i%5Csqrt%7B" + deter + "%7D%7D%7B" + 2 * a + "%7D";
+		resultString += "\\frac{" + b + "\\pm i\\sqrt{" + deter + "}}{" + 2 * a + "}";
 		resultString += resultHeight;
 	}
 
@@ -525,13 +548,29 @@ function calcQuadratic(m, cID) {
 		});
 	});
 }
-/*
-%2B = +
-%5C = \
-%5E = ^
-%7B = {
-%7D = }
-*/
+//
+
+
+
+function getLaTeX(msg, chID) {
+	var search = "http://chart.apis.google.com/chart";
+
+	msg = msg.join('%20');
+	console.log(bot.colors.cyan(msg));
+	msg = msg.replace(/\+/g, "%2B");
+	search += "?cht=tx&chl=";
+	search += msg;
+	search += "&chf=bg,s,36393E&chco=FFFFFF&chs=60";
+	console.log(bot.colors.magenta(search));
+	bot.request(search, {encoding: null}, function(err, res, body){
+		bot.uploadFile({
+			to: chID,
+			file: body,
+			filename: "texEq.png"
+		});
+	});
+}
+
 function triCheck(msg, chID) {
 	switch (msg[0]) {
 		case 'ssa':
@@ -720,6 +759,7 @@ function toDMS(angle) {
 }
 
 var calcFunctions = {
-	calcCheck: calcCheck
+	calcCheck: calcCheck,
+	getLaTeX: getLaTeX
 };
 module.exports = calcFunctions;
