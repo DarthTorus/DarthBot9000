@@ -66,6 +66,7 @@ function drawSolidImage(imgColor, cI) {
 
 function drawAddedImage(color1, color2, result, cI) {
 	var size = 150;
+	var imgPath = "./addedSquare.jpg";
 	var r1 = Number(color1[0]);
 	var g1 = Number(color1[1]);
 	var b1 = Number(color1[2]);
