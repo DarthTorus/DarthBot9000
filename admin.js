@@ -178,27 +178,27 @@ function randomStatus(msg) {
 		"DnD",
 		"chicken"
 	];
-	gameString = gameString.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-	console.log("gameString after replace: "+gameString);
 	var bannedWords = ["fuck", "porn", "p0rn", "sh1t", "shit", "damn", "d@mn", "ass", "a$$","@$$",
-"twat","cunt","bitch","b1tch", "douche", "d0uche", "dick", "d1ck"];
+		"twat","cunt","bitch","b1tch", "douche", "d0uche", "dick", "d1ck"];
 	var containsBanned = false;
 	for(i = 0; i < bannedWords.length; i++) {
 		if(gameString.toLowerCase().includes(bannedWords[i])) {
 			containsBanned = true;
 		}
 	}
-	if (gameString === "0" || containsBanned) {
-		var status = Math.floor(Math.random() * randStat.length);
+	if (gameString == "0" || containsBanned) {
+		var status = bot.random(randStat.length);
 		bot.setPresence({
 			game: {
-				name: randStat[status]
+				name: randStat[status],
+				type: 1
 			}
 		});
 	} else {
 		bot.setPresence({
 			game: {
-				name: gameString
+				name: gameString.toString(),
+				type: 1
 			}
 		});
 	}
@@ -296,7 +296,6 @@ function checkDMS(m, cID) {
 	}
 }
 
-
 function sendOwnerTweet(m, cI) {
 	m.shift();
 	m = m.join(" ");
@@ -336,6 +335,7 @@ function sendServerTweet(m, cI) {
 		});
 	}
 }
+
 function sendBotTweet(m, cI) {
 	m.shift();
 	m = m.join(" ");
@@ -363,37 +363,37 @@ function tweetBotMedia(path, msg, cI) {
 	imgPath = fileLoc + imgPath;
 	console.log(bot.colors.cyan("path: "+path));
 	// Load your image
-var data = bot.fs.readFile(path);
-console.log(bot.colors.red(data));
-// Make post request on media endpoint. Pass file data as media parameter
-bot.formu.post('media/upload',
-	{
-		media: data
-	}, function(err, media, resp) {
+	var data = bot.fs.readFile(path);
+	console.log(bot.colors.red(data));
+	// Make post request on media endpoint. Pass file data as media parameter
+	bot.formu.post('media/upload',
+		{
+			media: data
+		}, function(err, media, resp) {
 
-  if (!err) {
-    // If successful, a media object will be returned.
-    console.log(bot.colors.magenta(media));
-		// Lets tweet it
+	  if (!err) {
+	    // If successful, a media object will be returned.
+	    console.log(bot.colors.magenta(media));
+			// Lets tweet it
 
-    bot.formu.post('statuses/update', {
-      status: msg,
-      media_ids: media.media_id_string // Pass the media id string
-    }, function(error, tweet, response) {
-			if (error) {
-				bot.sendMessages(cI, ["Media couldn't send!"]);
-			} else {
-				bot.sendMessages(cI, ["Media sent to Formu_bot account sucessfully!"]);
-			}
-			console.log(tweet.text); // Tweet body.
-		});
+	    bot.formu.post('statuses/update', {
+	      status: msg,
+	      media_ids: media.media_id_string // Pass the media id string
+	    }, function(error, tweet, response) {
+				if (error) {
+					bot.sendMessages(cI, ["Media couldn't send!"]);
+				} else {
+					bot.sendMessages(cI, ["Media sent to Formu_bot account sucessfully!"]);
+				}
+				console.log(tweet.text); // Tweet body.
+			});
 
-  }
-	else {
-		console.log(bot.colors.red(media));
-		console.log(bot.colors.red(err));
-		console.log(bot.colors.red(resp));
-	}
+	  }
+		else {
+			console.log(bot.colors.red(media));
+			console.log(bot.colors.red(err));
+			console.log(bot.colors.red(resp));
+		}
 	});
 }
 
@@ -415,7 +415,7 @@ function addRole(msg, cID) {
 	}
 	console.log("[DEBUG] roleColor = " + roleColor);
 	var sID = bot.channels[cID].guild_id;
-	bot.createRole(serverID, function(err, res) {
+	bot.createRole(sID, function(err, res) {
 		var rID = res.id;
 		bot.editRole({
 			serverID: sID,
@@ -649,7 +649,7 @@ function silenceUser(msg, cID) {
 	var sID = bot.channels[cID].guild_id;
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var rID = getRoleIDFromRoleName("MUTED", cID);
+	var rID = getRoleIDFromRoleName("SILENCED", cID);
 	bot.addToRole({
 		serverID: sID,
 		userID: uID,
@@ -661,7 +661,7 @@ function unsilenceUser(msg, cID) {
 	var sID = bot.channels[cID].guild_id;
 	var userID = msg[0];
 	var uID = resolveID(userID);
-	var rID = getRoleIDFromRoleName("MUTED", cID);
+	var rID = getRoleIDFromRoleName("SILENCE", cID);
 	bot.removeFromRole({
 		serverID: sID,
 		userID: uID,
