@@ -28,6 +28,7 @@ var latexArr = [
 function calcCheck(m, cI) {
 	switch (m[0]) {
 		case 'fact':
+		case 'factorial':
 			factorialCheck(m[1], cI);
 			break;
 		case 'primefact': //TODO
@@ -260,107 +261,227 @@ function toPolar(msg, cID) {
 
 //Default calc
 function calcEquation(msg, cID) {
-	var initEq = msg //split the expression on parentheses
-	var levelI = 0;
-	var elementI = 0;
-	var eqArr = new Array(7)
-	for (var x = 0; x < 25; x++) {
-		eqArr[x] = new Array(initEq.length);
-		eqArr[x].fill(' ');
-	}
+	var initEq = msg.toString();
+	var tempEq = initEq;
+	tempEq = replaceSpecialSymbols(tempEq);
+	tempEq = expandOperations(tempEq);
+	var eqArr = tempEq.split(' ');
+	eqArr = removeNullsAndCommas(eqArr);
+	eqArr = resolveNegation(eqArr);
+	var rpnStack = getRPNStack(eqArr);
+	var result = runRPNStack(rpnStack);
 
-	for (var i = 0; i < initEq.length; i++) {
-		if (initEq[i] == '(') {
-			levelI += 1;
-			elementI+=1;
-		} else if (initEq[i] == ')') {
-			levelI-=1;
-			elementI+=1;
+	bot.sendMessages(cID,["Answer is `"+result+"`"]);
+}
+
+function resolveNegation(array) {
+	var newArr = [];
+	var next;
+	var current;
+	var prev;
+	var last;
+	while(array.length >0) {
+		last = newArr.length -1;
+		current = array[0];
+		next = array[1];
+		if(current == "-" && !isNaN(next) && isNaN(newArr[last])) {
+			array.shift();
+			newArr.push(-1*array.shift());
 		} else {
-			eqArr[levelI][elementI] += initEq[i];
+			newArr.push(array.shift());
 		}
+	}
 
-		console.log("levelI: " + levelI);
-		console.log("elementI: " + elementI);
-	}
-	for (var j = 0; j < eqArr.length; j++) {
-		console.log("eqArr[" +j+"]: " + eqArr[j]+"\n");
-	}
-// (\d*\.?\d+)\s?([\+\*\/\-\%\^])\s?(\d*\.?\d+)
+	console.log("Negated array: " + newArr);
+	return newArr;
 }
 
-function calculate(op1, operator, op2) {
-
-	var f = {
-		add: '+',
-		sub: '-',
-		div: '/',
-		mlt: '*',
-		mod: '%',
-		exp: '^'
-	};
-
-	// Create array for Order of Operation and precedence
-	f.ooo = [
-		[
-			[f.mlt],
-			[f.div],
-			[f.mod],
-			[f.exp]
-		],
-		[
-			[f.add],
-			[f.sub]
-		]
-	];
-
-	input = input.replace(/[^0-9%^*\/()\-+.]/g, ''); // clean up unnecessary characters
-
-	var output;
-	for (var i = 0, n = f.ooo.length; i < n; i++) {
-
-		// Regular Expression to look for operators between floating numbers or integers
-		var re = new RegExp('(\\d+\\.?\\d*)([\\' + f.ooo[i].join('\\') + '])(\\d+\\.?\\d*)');
-		re.lastIndex = 0; // be cautious and reset re start pos
-
-		// Loop while there is still calculation for level of precedence
-		while (re.test(input)) {
-			//document.write('<div>' + input + '</div>');
-			output = calc_internal(RegExp.$1, RegExp.$2, RegExp.$3);
-			if (isNaN(output) || !isFinite(output)) return output; // exit early if not a number
-			input = input.replace(re, output);
+function removeNullsAndCommas(array) {
+	var newArray = [];
+	for(var i = 0; i < array.length; i++) {
+		if(array[i] != '' && array[i] != ',') {
+			newArray.push(array[i]);
 		}
 	}
-
-	return output;
-
-	function calc_internal(a, op, b) {
-		a = a * 1;
-		b = b * 1;
-		switch (op) {
-			case f.add:
-				return a + b;
-				break;
-			case f.sub:
-				return a - b;
-				break;
-			case f.div:
-				return a / b;
-				break;
-			case f.mlt:
-				return a * b;
-				break;
-			case f.mod:
-				return a % b;
-				break;
-			case f.exp:
-				return Math.pow(a, b);
-				break;
-			default:
-				null;
-		}
-	}
+	return newArray;
 }
+
+function expandOperations(eqArray) {
+	var operatorArr = ["^","sqrt","sin","cos","tan","asin","acos",
+		"atan","log","ln","*","/","+","-","abs","floor","round","ceil",
+		"min","max","(",")","[","]","{","}",","];
+	for(var o = 0; o < operatorArr.length; o++) {
+		var repString = " " + operatorArr[o] + " ";
+		var op = "\\"+operatorArr[o];
+		var reg = new RegExp(op,"g");
+		eqArray = eqArray.replace(reg,repString);
+	}
+	return eqArray;
+}
+
+function replaceSpecialSymbols(eqArray) {
+	var specialVarSymbol = ["pi","e","Phi","phi","tau","\\\π","\\\τ","\\\Φ",
+		"\\\φ","\\\[","\\\]","\\\{","\\\}","\\\×","\\\÷","\\\−","\\\,"];
+	var specialVarValue = [bot.PI, Math.E, bot.POS_PHI, bot.REC_POS_PHI,
+		2*Math.PI, bot.PI, 2*Math.PI, bot.POS_PHI, bot.REC_POS_PHI,
+		"(",")","(",")","*","/","-",") ("];
+	for(var s = 0; s < specialVarSymbol.length; s++) {
+		var v = specialVarSymbol[s];
+		var reg = new RegExp(v,"g");
+		eqArray = eqArray.replace(reg, specialVarValue[s]);
+	}
+	return eqArray;
+}
+
+function getRPNStack(array) {
+	var operatorArr = {"sin":4,"cos":4,"tan":4,"asin":4,"acos":4,
+		"atan":4,"log":4,"ln":4,"abs":4,"floor":4,"round":4,"ceil":4,
+		"min":4,"max":4,"sqrt":4,"^":3,"*":2,"/":2,"+":1,"-":1};
+	//var rightAssoc = ["^"];
+	var leftAssoc = ["sin","cos","tan","asin","acos",
+			"atan","log","ln","abs","floor","round","ceil",
+			"min","max","sqrt","*","/","+","-"]
+	var operatorStack = [];
+	var outputQueue = [];
+
+	var index = 0;
+
+	while(index != array.length) {
+		if(!isNaN(array[index])) {
+			outputQueue.push(array[index]);
+		}
+		else if(operatorArr.hasOwnProperty(array[index])) {
+			var tempOp = array[index];
+			while (operatorArr[operatorStack[0]] >= operatorArr[tempOp]) {
+				outputQueue.push(operatorStack.shift());
+			}
+			operatorStack.unshift(array[index]);
+		}
+		else if(array[index] == "(") {
+			operatorStack.unshift(array[index]);
+		}
+		else if(array[index] == ")") {
+			while(operatorStack[0] != "(") {
+				outputQueue.push(operatorStack.shift());
+			}
+			operatorStack.shift();
+		}
+		index += 1;
+
+	}
+	while(operatorStack.length > 0) {
+		outputQueue.push(operatorStack.shift());
+	}
+	return outputQueue;
+}
+
+function runRPNStack(rpn) {
+	var s = [];
+	for(var i in rpn) {
+		var t = rpn[i], n=+t;
+		if(n==t) {
+			s.push(n);
+		} else {
+			var op1 = 0, op2 = 0;
+			switch (t) {
+				case "sin":
+					op1 = s.pop();
+					s.push(Math.sin(op1));
+					break;
+				case "cos":
+					op1 = s.pop();
+					s.push(Math.cos(op1));
+					break;
+				case "tan":
+					op1 = s.pop();
+					s.push(Math.tan(op1));
+					break;
+				case "asin":
+					op1 = s.pop();
+					s.push(Math.asin(op1));
+					break;
+				case "acos":
+					op1 = s.pop();
+					s.push(Math.acos(op1));
+					break;
+				case "atan":
+					op1 = s.pop();
+					s.push(Math.atan(op1));
+					break;
+				case "log":
+					op1 = s.pop();
+					s.push(Math.log(op1)/Math.log(10));
+					break;
+				case "ln":
+					op1 = s.pop();
+					s.push(Math.log(op1));
+					break;
+				case "abs":
+					op1 = s.pop();
+					s.push(Math.abs(op1));
+					break;
+				case "floor":
+					op1 = s.pop();
+					s.push(Math.floor(op1));
+					break;
+				case "round":
+					op1 = s.pop();
+					s.push(Math.round(op1));
+					break;
+				case "ceil":
+					op1 = s.pop();
+					s.push(Math.ceil(op1));
+					break;
+				case "min":
+					op2 = s.pop();
+					op1 = s.pop();
+					s.push(Math.min(op2, op1));
+					break;
+				case "max":
+					op2 = s.pop();
+					op1 = s.pop();
+					s.push(Math.max(op2, op1));
+					break;
+				case "sqrt":
+					op1 = s.pop();
+					s.push(Math.sqrt(op1));
+					break;
+				case "^":
+					op2 = s.pop();
+					op1 = s.pop();
+					s.push(Math.pow(op1,op2));
+					break;
+				case "*":
+					op2 = s.pop();
+					op1 = s.pop();
+					s.push(op1*op2);
+					break;
+				case "/":
+					op2 = s.pop();
+					op1 = s.pop();
+					if(op2 == 0) {
+						s.push(Infinity);
+					} else {
+						s.push(op1/op2);
+					}
+					break;
+				case "+":
+					op2 = s.pop();
+					op1 = s.pop();
+					s.push(op1+op2);
+					break;
+				case "-":
+					op2 = s.pop();
+					op1 = s.pop();
+					s.push(op1-op2);
+					break;
+				default: //do nothing
+			}
+		}
+	}
+	return s;
+}
+
 // Checks inputs for factorial
 function factorialCheck(input, cI) {
 	const MAX_INPUT = 100;
@@ -482,16 +603,16 @@ function calcQuadratic(m, cID) {
 		initialEq += (a + "x^{2}");
 	}
 	if (b == 1) {
-		initialEq += ("+x");
+		initialEq += ("%2Bx");
 	} else if (b > 1) {
-		initialEq += ("+" + b + "x")
+		initialEq += ("%2B" + b + "x")
 	} else if (b == -1) {
 		initialEq += ("-x");
 	} else if (b < -1) {
 		initialEq += (b + "x");
 	}
 	if (c > 0) {
-		initialEq += ("+" + c);
+		initialEq += ("%2B" + c);
 	} else if (c < 0) {
 		initialEq += c;
 	}
@@ -558,6 +679,7 @@ function getLaTeX(msg, chID) {
 	msg = msg.join('%20');
 	console.log(bot.colors.cyan(msg));
 	msg = msg.replace(/\+/g, "%2B");
+	msg = msg.replace(/\&/g, "%26");
 	search += "?cht=tx&chl=";
 	search += msg;
 	search += "&chf=bg,s,36393E&chco=FFFFFF&chs=60";
