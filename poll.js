@@ -73,9 +73,11 @@ function voteOnPoll(msg, uI, cI) {
   // 0) Get associated variables needed
   var mesg = msg.join(' ');
   var msg = mesg.split(' | ');
+	console.log(msg);
   var pID = "";
   if(msg.length > 1) {
     pID = msg[0];
+		currentID = pID;
   } else {
     pID = currentID;
   }
