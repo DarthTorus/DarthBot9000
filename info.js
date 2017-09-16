@@ -1,19 +1,19 @@
 var bot = process.DiscordBot;
-
+var config = require("./config.json");
 function infoCheck(m, uI, cI) {
 	switch (m[0]) {
 		case "twitter":
 			m.shift();
 			twitter(m, cI);
 			break;
-		case "invite":
-			invite(uI);
+		case "add":
+			addBotToServer(uI);
 			break;
 		case "ip":
-			bot.sendMessages(cI, ["IP: `" + bot.config.ip + "`"]);
+			bot.sendMessages(cI, ["IP: `" + config.ip + "`"]);
 			break;
 		case "link":
-			bot.sendMessages(uI, ["Join the server: " + bot.config.invite]);
+			bot.sendMessages(uI, ["Join the server: " + config.invite]);
 			break;
 		case "uptime":
 			calcUptime(cI);
@@ -22,7 +22,7 @@ function infoCheck(m, uI, cI) {
 			bot.sendMessages(cI, ["Server Logo: @GarretRR\nBot Logo: @Adryd"]);
 			break;
 		case "qrcode":
-			bot.sendMessages(cI, [bot.config.qrcode]);
+			bot.sendMessages(cI, [config.qrcode]);
 			break;
 		case "bot":
 			sendBotInfo(cI);
@@ -34,10 +34,10 @@ function infoCheck(m, uI, cI) {
 function twitter(t, cI) {
 	switch (t) {
 		case "owner":
-			bot.sendMessages(cI, ["Owner: " + bot.config.twitter.l.o]);
+			bot.sendMessages(cI, ["Owner: " + config.twitter.l.o]);
 			break;
 		case "server":
-			bot.sendMessages(cI, ["Server: " + bot.config.twitter.l.s]);
+			bot.sendMessages(cI, ["Server: " + config.twitter.l.s]);
 			break;
 		default:
 			break;
@@ -91,7 +91,7 @@ function sendBotInfo(cI) {
 	bot.sendMessages(cI, ["```xl\n" + m + "```"])
 }
 
-function invite(uI) {
+function addBotToServer(uI) {
 	bot.sendMessages(uI, ["Invite link: https://goo.gl/oiKr68"]);
 }
 
