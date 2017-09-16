@@ -5,13 +5,8 @@ var Discordbot = require('discord.io');
 var colors = require('colors/safe');
 var PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
-const reqFiles = ["admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insults.json", "materials.json",
-	"minecraft.js","series.js", "poll.js"
-];
-const names = ["admin", "banned", "calc", "color",
-	"help", "info", "insults", "mat", "mc","series","polls"
-]; // Names of variables
+const reqFiles = ["commands.js"];
+const names = ["commands"]; // Names of variables
 
 function requireFiles() {
 	for (var name of names) {
@@ -27,48 +22,15 @@ var bot = new Discordbot.Client({
 	token: config.token,
 	autorun: true
 });
-
-var Twitter = require("twitter");
-var darth = new Twitter({
-	consumer_key: config.twitter.o.ck,
-	consumer_secret: config.twitter.o.cs,
-	access_token_key: config.twitter.o.tk,
-	access_token_secret: config.twitter.o.ts,
-});
-var server = new Twitter({
-	consumer_key: config.twitter.s.ck,
-	consumer_secret: config.twitter.s.cs,
-	access_token_key: config.twitter.s.tk,
-	access_token_secret: config.twitter.s.ts,
-});
-var formu = new Twitter({
-	consumer_key: config.twitter.b.ck,
-	consumer_secret: config.twitter.b.cs,
-	access_token_key: config.twitter.b.tk,
-	access_token_secret: config.twitter.b.ts,
-});
 process.DiscordBot = bot;
 // Required files and modules
-// var banned = require("./banned.json");
+var banned = require("./banned.json");
 const fs = require('fs');
 const url = require('url');
 const request = require('request');
-
 //Bot properties declared
 requireFiles();
-bot.admin = admin;
-bot.config = config;
-bot.banned = banned;
-bot.insults = insults;
-bot.mat = mat;
-bot.polls = polls;
-//bot.straw = straw;
-bot.darth = darth;
-bot.server = server;
-bot.formu = formu;
-bot.inStandby = false;
 bot.sendMessages = sendMessages;
-bot.reload = reload;
 bot.colors = colors;
 bot.PNGImage = PNGImage;
 var logText = "";
@@ -80,7 +42,9 @@ bot.utils = utils;
 bot.fs = fs;
 bot.url = url;
 var quitStatus = false;
+bot.inStandby = false;
 bot.quitStatus = quitStatus;
+
 //Other vars
 var mIndex = 0;
 var cIndex = 2;
@@ -89,8 +53,16 @@ const MAX_INTEGER = 2147483647;
 const MIN_INTEGER = -2147483648;
 const TAU = 2*Math.PI;
 const PI = Math.PI;
+const POS_PHI = (1+Math.sqrt(5.0))/2;
+const NEG_PHI = (1-Math.sqrt(5.0))/2;
+const REC_POS_PHI = POS_PHI - 1;
+const REC_NEG_PHI = NEG_PHI - 1;
 bot.TAU = TAU;
 bot.PI = PI;
+bot.POS_PHI = POS_PHI;
+bot.NEG_PHI = NEG_PHI;
+bot.REC_POS_PHI = REC_POS_PHI;
+bot.REC_NEG_PHI = REC_NEG_PHI;
 /*Event area*/
 
 bot.on("ready", function(rawEvent) {
@@ -214,7 +186,7 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 			} else { //Bot is not in sleep mode. Anyone can send commands
 				console.log(colors.cyan("Checking Commands"));
 				console.log(colors.white(message));
-				checkCommands(mainCmnd, message, userID, channelID);
+				commands.checkCommands(mainCmnd, message, userID, channelID);
 			}
 		}
 
@@ -310,364 +282,19 @@ function sendFiles(ID, fileArr, interval) {
 	_sendFiles();
 }
 
-function checkCommands(c, message, uID, chID) {
-	var msg = message.split(' '); //Split the string on spaces
-	//Log the string array as a check
-	console.log(colors.cyan("msg[0]= " + msg[0]));
-	console.log(colors.cyan("msg[1]= " + msg[1]));
-	console.log(colors.cyan("msg[2]= " + msg[2]));
-	switch (c) { //Command switcher
-		case 'ping':
-			sendMessages(chID, ["Pong"]);
-			break;
-		case 'calc':
-			calc.calcCheck(msg, chID);
-			break;
-		case 'admin':
-			if (!(chID in bot.directMessages)) {
-				var serverID = bot.channels[chID].guild_id;
-			}
-			if (uID == "133370041142870016" || serverID == "172689601935179776" || (chID in bot.directMessages)) {
-				admin.adminCheck(msg, chID);
-			} else {
-				sendMessages(chID, ["<@" + uID + "> *: You lack permission*"])
-			}
-			break;
-		case 'help':
-			help.checkHelp(msg, uID);
-			break;
-		case 'info':
-			info.infoCheck(msg, uID, chID);
-			break;
-		case 'poll':
-		case 'polls':
-			polls.pollCheck(msg, uID, chID);
-			break;
-		case 'mc':
-		case 'minecraft':
-			mc.minecraftCheck(msg, chID);
-			break;
-		case 'series':
-			series.seriesCheck(msg,chID);
-			break;
-		case 'butts':
-			sendMessages(chID, ["<@" + uID + "> *: You must like big butts then. Don't lie!*"]);
-			break;
-		case 'roll':
-			rollDice(msg, chID);
-			break;
-		case 'coin':
-			coinFlip(msg, chID);
-			break;
-		case 'integer':
-			randInteger(msg, chID);
-			break;
-		case 'seq':
-			//coinFlip(msg, chID);
-			break;
-		case 'game':
-			msg = msg.join(" ");
-			admin.randomStatus(msg);
-			break;
-		case 'cards':
-			drawCards(msg, chID);
-			break;
-		case 'cipher':
-			break;
-		case 'adryd':
-		case 'triangle':
-			doAdryd(chID);
-			break;
-		case 'hugs':
-		case 'hug':
-			sendHug(msg, chID, uID);
-			break;
-		case 'say':
-			msg = msg.join(" "); //Join with a space
-			repeatMessage(msg, chID, uID);
-			break;
-		case 'reverse':
-			checkReverse(msg, chID);
-			break;
-		case 'insult':
-			getInsult(uID, chID);
-			break;
-		case 'color':
-			color.colorCheck(msg, chID);
-			break;
-		case 'latex':
-		case 'tex':
-			calc.getLaTeX(msg, chID);
-			break;
-		default:
-			break;
-	}
-}
-// Flips a coin
-function coinFlip(m, cI) {
-	var flips = m[0] || 1;
-	var headCount = 0;
-	var tailCount = 0;
-	var headPercent = 0;
-	var tailPercent = 0;
-	if (flips > 750) {
-		sendMessages(cI, ["Coin flips set to 250."]);
-		flips = 750;
-	} else if (flips <= 0) {
-		sendMessages(cI, ["Coin flips set to one."]);
-		flips = 1;
-	}
-	var flipText = "";
-	var randInt = 0;
-	var ifHeads;
-	for (var i = 1; i <= flips; ++i) {
-		ifHeads = bot.random(2) == 1;
-		//randInt = Math.random() * 2;
-		if (ifHeads) {
-			flipText += "H ";
-			headCount += 1;
-		} else {
-			flipText += "T ";
-			tailCount += 1;
-		}
-	}
-	headPercent = Math.round(headCount / flips * 100000) / 1000;
-	tailPercent = Math.round(tailCount / flips * 100000) / 1000;
-	sendMessages(cI, ["```" + flipText + "\n\nHeads: " + headCount + " - " + headPercent + "%\nTails: " + tailCount + " - " + tailPercent + "%```\n"]);
-}
-// Rolls dice
-function rollDice(m, cI) {
-	var rolls = m[1] || 1;
-	if (rolls > 750) {
-		sendMessages(cI, ["Rolls set to 750."]);
-		rolls = 750;
-	} else if (rolls <= 0) {
-		sendMessages(cI, ["Rolls set to one."]);
-		rolls = 1;
-	}
-	var sides = m[0] || 6;
-	if(sides > 50) {
-		sides = 50 // force the sides to be 100
-		console.log("sides: " + sides);
-	}
-	var randInt = 0;
-	var rollText = "";
-	var rollArr = [];
-	for (var r = 1; r <= rolls; ++r) {
-		randInt = bot.random(sides) + 1;
-		if(rollArr.hasOwnProperty(randInt.toString())) {
-			rollArr[randInt]++;
-		} else {
-			rollArr[randInt] = 1;
-		}
-		rollText += (randInt + " ");
-	}
-	rollText += "\n\n";
-	if(sides <= 10 && rolls >=5) {
-		for (var r = 1; r <= sides; ++r) {
-			if(rollArr[r] == null) {
-				rollText += (r + ") 0 - 0%\n");
-			} else {
-				rollText += (r + ") " + rollArr[r] + " - " +(Math.round(rollArr[r]/rolls*10000)/100)+ "%\n");
-			}
-		}
-	}
-	sendMessages(cI, ["```" + rollText + "```\n"]);
-}
-// Gives a random Integer
-function randInteger(m, cI) {
-	var rand = bot.random(1, 75);
-	var int = "";
-	console.log(rand);
-	for (var i = 0; i < rand; i++) {
-		int += bot.random(10).toString();
-	}
-	if(int[0] === "0" && rand >= 2) {
-		console.log(int[0]);
-		int = int.split('');
-		int.shift();
-		int = int.join("");
-	}
-	if (m[0] === "neg") {
-		int = "-" + int;
-
-	} else if (m[0] === "pos") {
-		//do nothing
-	} else {
-		var randInt = 0;
-		randInt = bot.random() < 0.5;
-		if (randInt) {
-			int = "-" + int;
-		}
-	}
-
-	bot.sendMessages(cI, ["Your integer is: `" + int + "`"]);
-}
-
-bot.random = function() {
-	var min, max, num = 0;
-	if (arguments.length == 1) {
-		// Between 0 and max
-		max = arguments[0];
-		min = 0;
-	} else if (arguments.length == 2) {
-		// between min and max
-		min = arguments[0];
-		max = arguments[1];
-	} else {
-		// a decimal between 0 and 1 by default
-		return Math.random();
-	}
-
-	num = Math.floor(Math.random() * (max - min)) + min;
-	return num;
-}
-// Draws cards
-function drawCards(m, cI) {
-	var draws = m[0] || 1;
-	var duplicates = m[1] || "yes";
-	var card = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-	var suit = ["♠", "♥", "♣", "♦"];
-	var cardSelected = [
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	];
-
-	var cardText = "";
-	if (duplicates == "yes" && draws > 20) {
-		sendMessages(cI, ["Number of draws set to 20"]);
-		draws = 20;
-	} else if (duplicates == "no" && draws > 10) {
-		sendMessages(cI, ["Number of draws set to 10"]);
-		draws = 10;
-	}
-	if (draws <= 0) {
-		sendMessages(cI, ["Number of draws set to 1"]);
-		draws = 1;
-	}
-	if (duplicates == "yes") {
-		for (var i = 1; i <= draws; ++i) {
-			var s = bot.random(4);
-			var c = bot.random(13);
-			cardText += (card[c] + suit[s] + " ");
-		}
-	} else {
-		var i = 0;
-		while (i < draws) {
-			var s = bot.random(4);
-			var c = bot.random(13);
-			if (cardSelected[s, c] != 1) {
-				cardText += (card[c] + suit[s] + " ");
-				cardSelected[s, c] = 1;
-				i += 1;
-			}
-		}
-	}
-	sendMessages(cI, ["Your cards are: " + cardText + "."]);
-}
-// ASCII impossible triangle
-function doAdryd(cI) {
-	var txt = "";
-	txt += "            __\n";
-	txt += "           /\\ \\\n";
-	txt += "          /  \\ \\\n";
-	txt += "         / /\\ \\ \\\n";
-	txt += "        / / /\\ \\ \\\n";
-	txt += "       / / /  \\ \\ \\\n";
-	txt += "      / / /    \\ \\ \\\n";
-	txt += "     / / /      \\ \\ \\\n";
-	txt += "    / / /        \\ \\ \\\n";
-	txt += "   / / /          \\ \\ \\\n";
-	txt += "  / / /            \\ \\ \\\n";
-	txt += " / / /______________\\_\\ \\\n";
-	txt += "/ / /____________________\\\n";
-	txt += "\\/_______________________/\n";
-	sendMessages(cI, ["```\n" + txt + "```"]);
-}
-// Hugs function
-function sendHug(m, cI, uI) {
-	console.log("Got to hug function");
-	var person = m[0] || uI;
-	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\\\^u^(\\"];
-
-			var int = bot.random(hugs.length);
-			if (person == uI) {
-				sendMessages(cI, ["Sending <@" + uI + "> this hug: " + hugs[int]]);
-			} else {
-				sendMessages(cI, ["Sending " + person + " this hug: " + hugs[int]]);
-			}
-		}
-
-function repeatMessage(m, cI, uI) {
-	var msg = m || -1;
-	if (uI != "205766554644643840") {
-		if (msg == -1) {
-			sendMessages(cI, ["\u200B\u180EI have nothing to say to you."]);
-		} else {
-			sendMessages(cI, ["\u200B\u180E" + msg]);
-		}
-	}
-}
-
-function checkReverse(m, cI) {
-	var trig = m[0];
-	switch (trig) {
-		case '-a':
-			m.shift();
-			m = m.join(" ");
-			m.split("");
-			reverseText(m, cI, "");
-			break;
-		case '-w':
-			m.shift();
-			reverseText(m, cI, " ");
-			break;
-		default:
-			sendMessages(cI, ["You forgot to put how you want the reverse text to be done."]);
-	}
-}
-
-function reverseText(msg, chI, joinChar) {
-	var reverseString = new Array();
-	for (i = 0; i < msg.length; ++i) {
-		var c = msg.length - i;
-		reverseString[c] = msg[i];
-	}
-	reverseString = reverseString.join(joinChar);
-	sendMessages(chI, ["\u200B\u180E" + reverseString])
-}
-
-function reload(cI) {
-	commands = {};
+bot.reload = function(cI) {
+	array = {};
 	try {
 		for (var file of reqFiles) {
 			delete require.cache[require.resolve("./" + file)];
 
 		}
 		requireFiles();
-		commands = Object.assign({}, admin, help, info, calc,
-			color, config, banned, insults, mat, mc, series);
-		sendMessages(cI, ["\u200B\u180ESuccessfully reloaded"]);
+		array = Object.assign({}, commands);
+		bot.sendMessages(cI, ["\u200B\u180ESuccessfully reloaded"]);
+		admin.randomStatus("0");
 	} catch (e) {
-		sendMessages(cI, ["\u200B\u180ECouldn't reload for some reason."]);
-	}
-	admin.randomStatus();
-}
-
-function getInsult(uI, cI) {
-	var i1, i2, i3;
-	var insultString = "";
-	var insult1 = insults.first;
-	var insult2 = insults.second;
-	var insult3 = insults.third;
-	if (cI in bot.directMessages) {
-		i1 = bot.random(insult1.length);
-		i2 = bot.random(insult2.length);
-		i3 = bot.random(insult3.length);
-		insultString = insult1[i1] + " " + insult2[i2] + " " + insult3[i3];
-		insultString = insultString.toLowerCase();
-		sendMessages(uI, ["Thou " + insultString + "."]);
+		bot.sendMessages(cI, ["\u200B\u180ECouldn't reload for some reason."]);
+		admin.randomStatus("a broken record");
 	}
 }
