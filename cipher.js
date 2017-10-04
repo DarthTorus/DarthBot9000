@@ -13,36 +13,39 @@ var mat = [[":","9","k","+","i","c","F","n","u"]
 	   ["t","g","v","4","p","\\","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
-function doThing(msg, uID)
+function doThing(msg, cID, uID)
 {
   //checking to see if it's encrypt or decrypt
   if(msg.length == 0)
   {
     //return message about not putting anything after the thing
+		bot.sendMessages(cID, ["If you don't know how to use it, try the help command."]);
   }
   else if(msg.length == 1)
   {
     //check to se if they typed in encrypt or decrypt and then give appropriate sacastic remark about how there is nothing to encrypt/decrypt.
+		bot.sendMessages(cID, ["Don't waste my time."]);
   }
   else
   {
     msg[0] = msg[0].toLowerCase(); //makes the encrypt or decrypt check lowercase.
-    if(msg[0].equals("encrypt"))//If encrypting
-    {
-      msg.shift();
-      msg.join("~");//turn spaces into ~ (Trust me, this makes this so much easier and better)
-      encrypt(msg, uID);
-    }
-    else if(msg[0].equals("decrypt"))//If decrypting
-    {
-      msg.shift();
-      msg.join(" ");//I mean, all spaces should be ~ at this poiint, so...
-      encrypt(msg, uID);
-    }
-    else
-    {
-      //sarcastic error message for not typing in correct syntax.
-    }
+		switch(msg[0])
+		{
+			case "encrypt": //If encrypting
+				msg.shift();
+     	 	msg.join("~");//turn spaces into ~ (Trust me, this makes this so much easier and better)
+      	encrypt(msg, uID);
+				break;
+			case "decrypt": //If decrypting
+				msg.shift();
+      	msg.join(" ");//I mean, all spaces should be ~ at this poiint, so...
+      	encrypt(msg, uID);
+				break;
+			default: 
+				//sarcastic error message for not typing in correct syntax.
+				bot.sendMessages(cID, ["So you you want me to `encrypt` or `decrypt` that?"]);
+				break;
+		}
   }
 }
 
@@ -70,6 +73,10 @@ function encrypt(ip, uI)
     }
   }
   //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
+	bot.sendMessage({
+		to: uI,
+		message: opopie
+	});
 }
 
 function decrypt(ip, uI)
@@ -125,6 +132,10 @@ function decrypt(ip, uI)
   if(deCheck)
   {
     //ENTER CODE TO MAKE IT SLIDE INTO THOSE DECRYPTED DMs
+		bot.sendMessage({
+			to: uI,
+			message: opopie
+		});
   }
 }
 //Thing that makes things work
