@@ -17,4 +17,5 @@ var <var> = {
 	<check function name>: <check function name>
   [, <any other functions to export>:  <any other functions to export>]
 }
-module.exports = <var>;```
+module.exports = <var>;
+```
