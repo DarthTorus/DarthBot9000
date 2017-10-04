@@ -44,3 +44,8 @@ function decrypt()
 {
   //Will do thing here
 }
+//Thing that makes things work
+var cipher = {
+	doThing: doThing
+}
+module.exports = cipher;
