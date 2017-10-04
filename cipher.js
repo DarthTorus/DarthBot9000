@@ -11,7 +11,6 @@ var mat = [[":","9","k","+","i","c","F","n","u"]
 	   ["(",".","#","|","N","E","q","^","7"]
 	   ["P","d","S","V","3","b","H","T","L"]
 	   ["t","g","v","4","p","\\","Y","x","="]];
-}
 //TODO: Enter msg.length <= 1 error messages.
 
 function doThing(msg, uID)
