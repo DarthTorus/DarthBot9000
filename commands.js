@@ -112,7 +112,7 @@ function checkCommands(c, message, uID, chID) {
 			drawCards(msg, chID);
 			break;
 		case 'cipher':
-			cipher.doThing(msg, uID);
+			cipher.doThing(msg, chID, uID);
 			break;
 		case 'adryd':
 		case 'triangle':
