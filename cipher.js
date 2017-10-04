@@ -29,13 +29,13 @@ function doThing(msg, uID)
     msg[0] = msg[0].toLowerCase(); //makes the encrypt or decrypt check lowercase.
     if(msg[0].equals("encrypt"))
     {
-      msg.split();
+      msg.shift();
       msg.join(" ");
       encrypt(msg, uID);
     }
     else if(msg[0].equals("decrypt"))
     {
-      msg.split();
+      msg.shift();
       msg.join(" ");
       encrypt(msg, uID);
     }
@@ -46,9 +46,16 @@ function doThing(msg, uID)
   }
 }
 
-function encrypt()
+function encrypt(ip, uI)
 {
-  //Will do thing here
+  var opopie = "";
+  for(i = 0; i < ip.length; i = i + 1)
+  {
+    for(x = 0; x < 9; x = x + 1)
+    {
+    
+    }
+  }
 }
 
 function decrypt()
