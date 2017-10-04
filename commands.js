@@ -7,7 +7,7 @@ var PNGImage = require('pngjs-image');
 
 const reqFiles = ["config.json","admin.js", "banned.json", "calc.js",
 	"color.js", "help.js", "info.js", "insults.json", "materials.json",
-	"minecraft.js","series.js", "poll.js","rpg.json","cipher.json"];
+	"minecraft.js","series.js", "poll.js","rpg.json","cipher.js"];
 const names = ["config","admin", "banned", "calc", "color",
 	"help", "info", "insults", "mat", "mc","series","polls","rpg","cipher"]; // Names of variables
 
