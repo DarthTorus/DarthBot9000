@@ -5,17 +5,17 @@ var currentID = "";
 function pollCheck(m, uID, cID) {
 	console.log(m[0]);
 	switch (m[0]) {
-    case 'create':
+    case 'create': //create command for polls
     case 'make':
       m.shift();
       createPoll(m, uID, cID);
       break;
     case 'v':
-    case 'vote':
+    case 'vote': //vote command for polls
       m.shift();
       voteOnPoll(m, uID, cID);
       break;
-    case 'view':
+    case 'view': //view command for polls
       m.shift();
       viewPoll(m, cID);
       break;
@@ -24,24 +24,24 @@ function pollCheck(m, uID, cID) {
       break;
   }
 }
-function generateID() {
 
+function generateID() { //Generates poll ID
    var idText = "";
-   for(i = 0; i < 5; i++) {
+   for(i = 0; i < 5; i++) { //takes 5 random characters from the string b64
      var j = bot.random(b64.length);
      idText += b64[j];
    }
   return idText;
 }
 
-function createPoll(msg, uI, cI) {
+function createPoll(msg, uI, cI) { //Creates a poll
   mesg = msg.join(" ");
-  var pID = generateID();
+  var pID = generateID(); //Generates poll ID
   currentID = pID;
   console.log(bot.colors.cyan("pID: " + pID));
   var msgText = "";
-  var arr = mesg.split(" | ");
-  var qstn = arr[0];
+  var arr = mesg.split(" | "); //seperates string 'msg' into array 'arr' (first value of arr will be set to question ('qstn'), other values will be vote options
+  var qstn = arr[0]; 
   console.log
   arr.shift();
   var opts = arr;
@@ -49,7 +49,7 @@ function createPoll(msg, uI, cI) {
   console.log(p.polls[pID]);
 
   var tCount = new Array(opts.length);
-  for(var i = 0; i < tCount.length; i++) {
+  for(var i = 0; i < tCount.length; i++) { 
     tCount[i] = 0;
   }
   p.polls[pID] = {
