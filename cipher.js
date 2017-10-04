@@ -8,9 +8,9 @@ var mat = [[":","9","k","+","i","c","F","n","u"]
 	   ["[","/","-",",","6","@","R","M","Q"]
 	   ["W","e","h","&","f","o","A","5","w"]
 	   [">","?",";","<","O","!","1","0","a"]
-	   ["(",".","#","|","N","E","q","^","7"]
+	   ["(",".","#","~","N","E","q","^","7"]
 	   ["P","d","S","V","3","b","H","T","L"]
-	   ["t","g","v","4","p","\\","Y","x","="]];
+	   ["t","g","v","4","p","\\","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
 function doThing(msg, uID)
@@ -30,7 +30,7 @@ function doThing(msg, uID)
     if(msg[0].equals("encrypt"))
     {
       msg.shift();
-      msg.join(" ");
+      msg.join("~");
       encrypt(msg, uID);
     }
     else if(msg[0].equals("decrypt"))
@@ -53,9 +53,23 @@ function encrypt(ip, uI)
   {
     for(x = 0; x < 9; x = x + 1)
     {
-    
+      for(y = 0; y < 10; y = y + 1)
+      {
+        if(ip.substring(i,i+1).equals(mat[x][y]))
+        {
+          opopie = opopie + mat[Math.floor(Math.random()*9)][y] + mat[x][Math.floor(Math.random(10))];
+        }
+      }
     }
   }
+  for(j = 0; j < opopie.length; j = j + 1)
+  {
+    if(opopie.substring(j,j+1).equals("~"))
+    {
+      opopie = opopie.substring(0,j) + "\\" + opopie.substring(j,opopie.length); 
+    }
+  }
+  //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
 }
 
 function decrypt()
