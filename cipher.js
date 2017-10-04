@@ -27,16 +27,16 @@ function doThing(msg, uID)
   else
   {
     msg[0] = msg[0].toLowerCase(); //makes the encrypt or decrypt check lowercase.
-    if(msg[0].equals("encrypt"))
+    if(msg[0].equals("encrypt"))//If encrypting
     {
       msg.shift();
-      msg.join("~");
+      msg.join("~");//turn spaces into ~ (Trust me, this makes this so much easier and better)
       encrypt(msg, uID);
     }
-    else if(msg[0].equals("decrypt"))
+    else if(msg[0].equals("decrypt"))//If decrypting
     {
       msg.shift();
-      msg.join(" ");
+      msg.join(" ");//I mean, all spaces should be ~ at this poiint, so...
       encrypt(msg, uID);
     }
     else
@@ -48,16 +48,16 @@ function doThing(msg, uID)
 
 function encrypt(ip, uI)
 {
-  var opopie = "";
+  var opopie = "";//OutPutOutPIE
   for(i = 0; i < ip.length; i = i + 1)
   {
     for(x = 0; x < 9; x = x + 1)
     {
       for(y = 0; y < 10; y = y + 1)
       {
-        if(ip.substring(i,i+1).equals(mat[x][y]))
+        if(ip.substring(i,i+1).equals(mat[y][x]))
         {
-          opopie = opopie + mat[Math.floor(Math.random()*9)][y] + mat[x][Math.floor(Math.random(10))];
+          opopie = opopie + mat[Math.floor(Math.random(10))][x] + mat[y][Math.floor(Math.random()*9)];//Does encrypt
         }
       }
     }
@@ -66,15 +66,66 @@ function encrypt(ip, uI)
   {
     if(opopie.substring(j,j+1).equals("~"))
     {
-      opopie = opopie.substring(0,j) + "\\" + opopie.substring(j,opopie.length); 
+      opopie = opopie.substring(0,j) + "\\" + opopie.substring(j,opopie.length);//Does anti-crossout measures
     }
   }
   //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
 }
 
-function decrypt()
+function decrypt(ip, uI)
 {
-  //Will do thing here
+  var opopie = ""; //OutPutOutPIE
+  var deCheck = true; //a varible to mark if the decryption worked... set default to true
+  if(ip.length%2==1)
+  {
+    //Error, the input isn't done right. (The encrypted message isn't correctly encrypted)
+    deCheck = false;
+  }
+  else //Hey, look, the inputed encrypted message might actually be an encrypted message.
+  {
+    var tempString = "";
+    for(i = 0; i < ip.length; i = i + 2)//boops up two
+    {
+      var derpCheckAlpha = false;
+      var derpCheckBeta = false;
+      var boopy = 0;
+      var boopx = 0;
+      for(x = 0; x < 9; x = x + 1)
+      {
+        for(y = 0; y < 10; y = y + 1)
+        {
+          if(mat[y][x].equals(ip.substring(i,i+1)))
+          {
+            boopy = y;
+            derpCheckAlpha = true;
+          }
+        }
+      }
+      for(x = 0; x < 9; x = x + 1)
+      {
+        for(y = 0; y < 10; y = y + 1)
+        {
+          if(mat[y][x].equals(ip.substring(i+1,i+2)))
+          {
+            boopx = x;
+            derpCheckBeta = true;
+          }
+        }
+      }
+      if(derpCheckAlpha && derpCheckBeta)
+      {
+        opopie = opopie + mat[boopy][boopx];
+      }
+      else
+      {
+        deCheck = false;
+      }
+    }
+  }
+  if(deCheck)
+  {
+    //ENTER CODE TO MAKE IT SLIDE INTO THOSE DECRYPTED DMs
+  }
 }
 //Thing that makes things work
 var cipher = {
