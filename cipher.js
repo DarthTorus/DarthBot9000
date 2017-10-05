@@ -8,12 +8,13 @@ var mat = [
 	   ["I","m","B","G","8","{","&","j","y"],
 	   ["C","X","}",")","Z","s","l","$","J"],
 	   ["r","z","\"","D","U","]","2","%","K"],
-	   ["[","/","-",",","6","@","R","M","Q"],
-	   ["W","e","h","&","f","o","A","5","w"],
+	   ["[","*","-",",","6","@","R","M","Q"],
+	   ["W","e","h","|","f","o","A","5","w"],
 	   [">","?",";","<","O","!","1","0","a"],
 	   ["(",".","#","~","N","E","q","^","7"],
 	   ["P","d","S","V","3","b","H","T","L"],
-	   ["t","g","v","4","p","\\","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
+	   ["t","g","v","4","p","_","Y","x","="]];
+		 //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
 function cipherCheck(m, cI, uI) {
@@ -39,19 +40,22 @@ function cipherCheck(m, cI, uI) {
 function encrypt(ip, uI) {
 	console.log(bot.colors.cyan("ip: "+ip));
   var opopie = "";//OutPutOutPIE
-  for(i = 0; i < ip.length; i++)   {
+  for(i = 0; i < ip.length; i++) {
     for(x = 0; x < 9; x++) {
       for(y = 0; y < 10; y++) {
         if(ip[i] == mat[y][x]) {
-          opopie += (mat[bot.random(11)][x] + mat[y][bot.random(10)]);//Does encrypt
+          opopie += (mat[bot.random(10)][x] + mat[y][bot.random(9)]);//Does encrypt
         }
       }
     }
   }
 	console.log(bot.colors.yellow(opopie));
-  for(j = 0; j < opopie.length; j = j + 1) {
-  	var temp = "\~";
-    opopie = opopie.replace(/\~/g,temp);//Does anti-crossout measures
+	var temp = ["\~","\_","\*","\`"];
+	var chars = ["~","_","\\\*","`"];
+  for(j = 0; j < temp.length; j++) {
+		var c = chars[j];
+  	var reg = new RegExp(c,"g");
+    opopie = opopie.replace(reg,temp[j]);//Does anti-crossout measures
 
   }
 	console.log(bot.colors.yellow(opopie));
@@ -62,10 +66,11 @@ function encrypt(ip, uI) {
 function decrypt(ip, uI) {
   var opopie = ""; //OutPutOutPIE
   var deCheck = true; //a varible to mark if the decryption worked... set default to true
-  if(ip.length%2==1)
-  {
+	console.log("ip.length: "+ip.length);
+  if(ip.length % 2 == 1) {
     //Error, the input isn't done right. (The encrypted message isn't correctly encrypted)
     deCheck = false;
+		console.log(deCheck);
   }
   else //Hey, look, the inputed encrypted message might actually be an encrypted message.
   {
@@ -97,11 +102,12 @@ function decrypt(ip, uI) {
       }
       else {
         deCheck = false;
+				console.log(deCheck);
       }
     }
   }
   if(deCheck) {
-		opopie = opopie.replace("~"," ");
+		opopie = opopie.replace(/~/g," ");
     //ENTER CODE TO MAKE IT SLIDE INTO THOSE DECRYPTED DMs
 		bot.sendMessages(uI, [opopie]);
   }
