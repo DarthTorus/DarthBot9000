@@ -60,7 +60,7 @@ function encrypt(ip, uI) {
   }
 	console.log(bot.colors.yellow(opopie));
   //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
-	bot.sendMessages(uI, [opopie]);
+	bot.sendMessages(uI, ["```"+opopie+"```"]);
 }
 
 function decrypt(ip, uI) {
@@ -109,7 +109,7 @@ function decrypt(ip, uI) {
   if(deCheck) {
 		opopie = opopie.replace(/~/g," ");
     //ENTER CODE TO MAKE IT SLIDE INTO THOSE DECRYPTED DMs
-		bot.sendMessages(uI, [opopie]);
+		bot.sendMessages(uI, ["```"+opopie+"```"]);
   }
 }
 //Thing that makes things work
