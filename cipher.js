@@ -1,7 +1,10 @@
-//Hello me, let's try not to derp this file creation up this time, k?
-//ipie4fun's biggest controbution so far (10/4/17)
+//Author: iPie4Fun
+//Edits: Darth_Torus
+"Ce-fsh~N+{Q!CzzWZsX<"
+"w h o   c a r e s ?"
 var bot = process.DiscordBot; //makes bot things work
-var mat = [[":","9","k","+","i","c","F","n","u"],
+var mat = [
+		 [":","9","k","+","i","c","F","n","u"],
 	   ["I","m","B","G","8","{","&","j","y"],
 	   ["C","X","}",")","Z","s","l","$","J"],
 	   ["r","z","\"","D","U","]","2","%","K"],
@@ -13,74 +16,50 @@ var mat = [[":","9","k","+","i","c","F","n","u"],
 	   ["t","g","v","4","p","\\","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
-function doThing(msg, cID, uID)
-{
-  //checking to see if it's encrypt or decrypt
-  if(msg.length == 0)
-  {
-    //return message about not putting anything after the thing
-		bot.sendMessages(cID, ["If you don't know how to use it, try the help command."]);
-  }
-  else if(msg.length == 1)
-  {
-    //check to se if they typed in encrypt or decrypt and then give appropriate sacastic remark about how there is nothing to encrypt/decrypt.
-		bot.sendMessages(cID, ["Don't waste my time."]);
-  }
-  else
-  {
-    msg[0] = msg[0].toLowerCase(); //makes the encrypt or decrypt check lowercase.
-		switch(msg[0])
-		{
-			case "encrypt": //If encrypting
-				msg.shift();
-     	 	msg.join("~");//turn spaces into ~ (Trust me, this makes this so much easier and better)
-      	encrypt(msg, uID);
-				break;
-			case "decrypt": //If decrypting
-				msg.shift();
-      	msg.join(" ");//I mean, all spaces should be ~ at this poiint, so...
-      	encrypt(msg, uID);
-				break;
-			default: 
-				//sarcastic error message for not typing in correct syntax.
-				bot.sendMessages(cID, ["So you you want me to `encrypt` or `decrypt` that?"]);
-				break;
-		}
-  }
+function cipherCheck(m, cI, uI) {
+	m[0] = m[0].toLowerCase();
+	console.log(m);
+  switch(m[0]) {
+		case "encrypt": //If encrypting
+			m.shift();
+   	 	m = m.join("~");//turn spaces into ~ (Trust me, this makes this so much easier and better)
+    	encrypt(m, uI);
+			break;
+		case "decrypt": //If decrypting
+			m.shift();
+    	m = m.join("");//I mean, all spaces should be ~ at this poiint, so...
+    	decrypt(m, uI);
+			break;
+		default:
+			//sarcastic error message for not typing in correct syntax.
+			bot.sendMessages(cI, ["So you you want me to `encrypt` or `decrypt` that?"]);
+	}
 }
 
-function encrypt(ip, uI)
-{
+function encrypt(ip, uI) {
+	console.log(bot.colors.cyan("ip: "+ip));
   var opopie = "";//OutPutOutPIE
-  for(i = 0; i < ip.length; i = i + 1)
-  {
-    for(x = 0; x < 9; x = x + 1)
-    {
-      for(y = 0; y < 10; y = y + 1)
-      {
-        if(ip.substring(i,i+1).equals(mat[y][x]))
-        {
-          opopie = opopie + mat[Math.floor(Math.random(10))][x] + mat[y][Math.floor(Math.random()*9)];//Does encrypt
+  for(i = 0; i < ip.length; i++)   {
+    for(x = 0; x < 9; x++) {
+      for(y = 0; y < 10; y++) {
+        if(ip[i] == mat[y][x]) {
+          opopie += (mat[bot.random(11)][x] + mat[y][bot.random(10)]);//Does encrypt
         }
       }
     }
   }
-  for(j = 0; j < opopie.length; j = j + 1)
-  {
-    if(opopie.substring(j,j+1).equals("~"))
-    {
-      opopie = opopie.substring(0,j) + "\\" + opopie.substring(j,opopie.length);//Does anti-crossout measures
-    }
+	console.log(bot.colors.yellow(opopie));
+  for(j = 0; j < opopie.length; j = j + 1) {
+  	var temp = "\~";
+    opopie = opopie.replace(/\~/g,temp);//Does anti-crossout measures
+
   }
+	console.log(bot.colors.yellow(opopie));
   //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
-	bot.sendMessage({
-		to: uI,
-		message: opopie
-	});
+	bot.sendMessages(uI, [opopie]);
 }
 
-function decrypt(ip, uI)
-{
+function decrypt(ip, uI) {
   var opopie = ""; //OutPutOutPIE
   var deCheck = true; //a varible to mark if the decryption worked... set default to true
   if(ip.length%2==1)
@@ -91,55 +70,44 @@ function decrypt(ip, uI)
   else //Hey, look, the inputed encrypted message might actually be an encrypted message.
   {
     var tempString = "";
-    for(i = 0; i < ip.length; i = i + 2)//boops up two
+    for(i = 0; i < ip.length; i+= 2)//boops up two
     {
       var derpCheckAlpha = false;
       var derpCheckBeta = false;
       var boopy = 0;
       var boopx = 0;
-      for(x = 0; x < 9; x = x + 1)
-      {
-        for(y = 0; y < 10; y = y + 1)
-        {
-          if(mat[y][x].equals(ip.substring(i,i+1)))
-          {
-            boopy = y;
+      for(x = 0; x < 9; x++) {
+        for(y = 0; y < 10; y++) {
+          if(mat[y][x] == ip.substring(i,i+1)) {
+            boopx = x;
             derpCheckAlpha = true;
           }
         }
       }
-      for(x = 0; x < 9; x = x + 1)
-      {
-        for(y = 0; y < 10; y = y + 1)
-        {
-          if(mat[y][x].equals(ip.substring(i+1,i+2)))
-          {
-            boopx = x;
+      for(x = 0; x < 9; x++) {
+        for(y = 0; y < 10; y++) {
+          if(mat[y][x] == ip.substring(i+1,i+2)){
+            boopy = y;
             derpCheckBeta = true;
           }
         }
       }
-      if(derpCheckAlpha && derpCheckBeta)
-      {
-        opopie = opopie + mat[boopy][boopx];
+      if(derpCheckAlpha && derpCheckBeta) {
+        opopie += mat[boopy][boopx];
       }
-      else
-      {
+      else {
         deCheck = false;
       }
     }
   }
-  if(deCheck)
-  {
+  if(deCheck) {
+		opopie = opopie.replace("~"," ");
     //ENTER CODE TO MAKE IT SLIDE INTO THOSE DECRYPTED DMs
-		bot.sendMessage({
-			to: uI,
-			message: opopie
-		});
+		bot.sendMessages(uI, [opopie]);
   }
 }
 //Thing that makes things work
 var cipher = {
-	doThing: doThing
+	cipherCheck: cipherCheck
 }
 module.exports = cipher;
