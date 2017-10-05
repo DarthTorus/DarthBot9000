@@ -152,6 +152,10 @@ function checkCommands(c, message, uID, chID) {
 		case "rpg":
 			getRpgItem(chID);
 			break;
+		case "10print":
+		case "10-print":
+			do10Print(msg, chID);
+			break;
 		default:
 			break;
 	}
@@ -159,6 +163,38 @@ function checkCommands(c, message, uID, chID) {
 
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1);
+}
+
+function do10Print(m, cI) {
+	var defW = 40;
+	var defH = 30;
+	var width = Number(m[0]) || defW;
+	var height = Number(m[1] || defH)
+	if(width > defW) {
+		width = defW;
+	}
+	if(height > defH) {
+		height = defH;
+	}
+	var result = "```";
+	var rand = 0;
+	for(var r = 1; r <= height; r++) {
+		for(var c = 1; c <= width; c++) {
+			rand = bot.random(2);
+			if(rand == 1) {
+				result += "\\";
+			}
+			else {
+				result += "/";
+			}
+			if(c == width) {
+				result += "\n";
+			}
+		}
+	}
+	result += "```";
+	console.log(bot.colors.magenta(result));
+	bot.sendMessages(cI, [result]);
 }
 
 // Outputs a random RPG item with random stats
