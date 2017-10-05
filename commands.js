@@ -7,9 +7,9 @@ var PNGImage = require('pngjs-image');
 
 const reqFiles = ["config.json","admin.js", "banned.json", "calc.js",
 	"color.js", "help.js", "info.js", "insults.json", "materials.json",
-	"minecraft.js","series.js", "poll.js","rpg.json"];
+	"minecraft.js","series.js", "poll.js","rpg.json","cipher.js"];
 const names = ["config","admin", "banned", "calc", "color",
-	"help", "info", "insults", "mat", "mc","series","polls","rpg"]; // Names of variables
+	"help", "info", "insults", "mat", "mc","series","polls","rpg","cipher"]; // Names of variables
 
 
 function requireFiles() {
@@ -112,6 +112,7 @@ function checkCommands(c, message, uID, chID) {
 			drawCards(msg, chID);
 			break;
 		case 'cipher':
+			cipher.doThing(msg, chID, uID);
 			break;
 		case 'adryd':
 		case 'triangle':
@@ -220,7 +221,8 @@ function get8Ball(mesg, cI) {
 	var noQuestion = ["Did you have a question?", "I'm not psychic", "I can't read minds!",
 		"Ask me *something*!", "Need something?","You really should ask me something.",
 		"This silence is awkward to me","Help, I'm scared of mind reading!",
-		"Uhh... Forget the question?","I may have forgotten the question"];
+		"Uhh... Forget the question?","I may have forgotten the question",
+		"Don't be a pie; ask something."];
 
 	var response = "";
 	var msg = "";

@@ -47,6 +47,10 @@ function checkHelp(m, u) {
 			m.shift();
 			checkColorHelp(m, u);
 			break;
+		case "cipher":
+			m.shift();
+			checkCipherHelp(m, u);
+			break;
 		default:
 			sendHelp(u);
 	}
@@ -80,7 +84,7 @@ function getHelpText() {
 	hText += "├─calc\n│ ├─fact\n│ ├─grav #Not implemented\n│ ├─quad\n";
 	hText += "│ ├─tri #Not implemented\n│ └─portal \n│   ├─end\n│   └─nether\n";
 	hText += "├─coin\n├─roll\n├─game\n├─hugs\n├─say\n├─reverse\n├─list #Not implemented\n";
-	hText += "├─cards\n├─integer\n├─seq #Not implemented\n├─cipher #Not implemented\n└─help```\n";
+	hText += "├─cards\n├─integer\n├─seq #Not implemented\n├─cipher #Not fully implemented\n└─help```\n";
 	hText += "type `" + bot.trigger + "help <command> [subcommands]` to learn more about that command.";
 
 	return hText;
@@ -581,6 +585,13 @@ function sendSASHelp(uI) {
 	bot.sendMessage({
 		to: uI,
 		message: m
+	});
+}
+
+function checkCipherHelp(msg, uID) {
+	bot.sendMessage({
+		to: uI,
+		message: "Sorry, still waiting on Darth to do this part since ipie was too lazy."
 	});
 }
 
