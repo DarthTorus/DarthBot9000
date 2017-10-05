@@ -275,20 +275,21 @@ function calcEquation(msg, cID) {
 }
 
 function resolveNegation(array) {
-	var newArr = [];
-	var next;
-	var current;
-	var prev;
-	var last;
-	while(array.length >0) {
-		last = newArr.length -1;
-		current = array[0];
-		next = array[1];
+	var newArr = []; // New array variable for storing the fixed array
+	var next; // The next token to look at.
+	var current; // The current token we're looking at
+	var last; // The last token we looked at
+	while(array.length > 0) { // We will walk through this array front to back, removing elements from the front
+		last = newArr.length -1; // Get the last token we pushed onto newArr
+		current = array[0]; // Set current to first element of the array
+		next = array[1]; // Set next to be after current as we need a lookahead
 		if(current == "-" && !isNaN(next) && isNaN(newArr[last])) {
-			array.shift();
-			newArr.push(-1*array.shift());
+			// If current token is a negative, and the next is a number and the last
+			// token we pushed onto newArr is an operator
+			array.shift(); // removes the negative from the front of the array
+			newArr.push(-1*array.shift()); // Multiplies the number following old negative by -1 to truly negate
 		} else {
-			newArr.push(array.shift());
+			newArr.push(array.shift()); // Pushes any operators and positives to newArr
 		}
 	}
 

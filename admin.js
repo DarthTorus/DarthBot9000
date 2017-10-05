@@ -1,6 +1,6 @@
 var bot = process.DiscordBot;
 
-function adminCheck(m, cI) {
+function adminCheck(m, cI) { // Subcommmand check for main admin command
 	console.log(m[0]);
 	switch (m[0]) {
 		case '-w':
@@ -14,11 +14,11 @@ function adminCheck(m, cI) {
 			quit(cI);
 			break;
 		case '-t':
-			tweetCheck(m, cI);
+			tweetCheck(m, cI); // This has parameters, so it must go to a check function of its onw
 			break;
-		case '-skt':
-			sendKayTweets(cI);
-			break;
+		// case '-skt':
+		// 	sendKayTweets(cI);
+		// 	break;
 		case '-ct':
 			checkNumTweets(cI);
 			break;
