@@ -4,7 +4,7 @@
 "w h o   c a r e s ?"
 var bot = process.DiscordBot; //makes bot things work
 var mat = [
-		 [":","9","k","+","i","c","F","n","u"],
+	   [":","9","k","+","i","c","F","n","u"],
 	   ["I","m","B","G","8","{","&","j","y"],
 	   ["C","X","}",")","Z","s","l","$","J"],
 	   ["r","z","\"","D","U","]","2","%","K"],
@@ -13,7 +13,7 @@ var mat = [
 	   [">","?",";","<","O","!","1","0","a"],
 	   ["(",".","#","~","N","E","q","^","7"],
 	   ["P","d","S","V","3","b","H","T","L"],
-	   ["t","g","v","4","p","\\","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
+	   ["t","g","v","4","p","\\\\","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
 function cipherCheck(m, cI, uI) {
