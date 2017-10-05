@@ -4,8 +4,8 @@
 "w h o   c a r e s ?"
 var bot = process.DiscordBot; //makes bot things work
 var mat = [
-		 [":","9","k","+","i","c","F","n","u"],
-	   ["I","m","B","G","8","{","&","j","y"],
+	   [":","9","k","+","i","c","F","n","u"],
+	   ["I","m","B","G","8","{","*","j","y"],
 	   ["C","X","}",")","Z","s","l","$","J"],
 	   ["r","z","\"","D","U","]","2","%","K"],
 	   ["[","/","-",",","6","@","R","M","Q"],
@@ -13,7 +13,7 @@ var mat = [
 	   [">","?",";","<","O","!","1","0","a"],
 	   ["(",".","#","~","N","E","q","^","7"],
 	   ["P","d","S","V","3","b","H","T","L"],
-	   ["t","g","v","4","p","\\","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
+	   ["t","g","v","4","p","_","Y","x","="]]; //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
 function cipherCheck(m, cI, uI) {
@@ -49,11 +49,9 @@ function encrypt(ip, uI) {
     }
   }
 	console.log(bot.colors.yellow(opopie));
-  for(j = 0; j < opopie.length; j = j + 1) {
-  	var temp = "\~";
     opopie = opopie.replace(/\~/g,temp);//Does anti-crossout measures
-
-  }
+    opopie = opopie.replace(/\*/g,temp);//Does *boop* measures
+    opopie = opopie.replace(/\_/g,temp);//Does underline measures
 	console.log(bot.colors.yellow(opopie));
   //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
 	bot.sendMessages(uI, [opopie]);
