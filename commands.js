@@ -7,9 +7,9 @@ var PNGImage = require('pngjs-image');
 
 const reqFiles = ["config.json","admin.js", "banned.json", "calc.js",
 	"color.js", "help.js", "info.js", "insults.json", "materials.json",
-	"minecraft.js","series.js", "poll.js","rpg.json","cipher.js"];
+	"minecraft.js","series.js", "poll.js","rpg.json","cipher.js","github.js"];
 const names = ["config","admin", "banned", "calc", "color",
-	"help", "info", "insults", "mat", "mc","series","polls","rpg","cipher"]; // Names of variables
+	"help", "info", "insults", "mat", "mc","series","polls","rpg","cipher","gitH"]; // Names of variables
 
 
 function requireFiles() {
@@ -156,6 +156,10 @@ function checkCommands(c, message, uID, chID) {
 		case "10-print":
 			do10Print(msg, chID);
 			break;
+		case "gh":
+		case "git":
+		case "github":
+			gitHubCheck(msg, chID);
 		default:
 			break;
 	}
