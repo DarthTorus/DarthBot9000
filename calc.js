@@ -27,7 +27,6 @@ var latexArr = [
 	// Function selector if "calc" command is present
 function calcCheck(m, cI) {
 	switch (m[0]) {
-		case 'fact':
 		case 'factorial':
 			factorialCheck(m[1], cI);
 			break;
@@ -271,7 +270,7 @@ function calcEquation(msg, cID) {
 	var rpnStack = getRPNStack(eqArr);
 	var result = runRPNStack(rpnStack);
 
-	bot.sendMessages(cID,["Answer is `"+result+"`"]);
+	bot.sendMessages(cID,["Answer is `"+ result +"`"]);
 }
 
 function resolveNegation(array) {
@@ -308,7 +307,7 @@ function removeNullsAndCommas(array) {
 }
 
 function expandOperations(eqArray) {
-	var operatorArr = ["^","sqrt","sin","cos","tan","asin","acos",
+	var operatorArr = ["binom","fact","^","sqrt","sin","cos","tan","asin","acos",
 		"atan","log","ln","*","/","+","-","abs","floor","round","ceil",
 		"min","max","(",")","[","]","{","}",","];
 	for(var o = 0; o < operatorArr.length; o++) {
@@ -335,11 +334,11 @@ function replaceSpecialSymbols(eqArray) {
 }
 
 function getRPNStack(array) {
-	var operatorArr = {"sin":4,"cos":4,"tan":4,"asin":4,"acos":4,
+	var operatorArr = {"binom":4,"fact":4,"sin":4,"cos":4,"tan":4,"asin":4,"acos":4,
 		"atan":4,"log":4,"ln":4,"abs":4,"floor":4,"round":4,"ceil":4,
 		"min":4,"max":4,"sqrt":4,"^":3,"*":2,"/":2,"+":1,"-":1};
 	//var rightAssoc = ["^"];
-	var leftAssoc = ["sin","cos","tan","asin","acos",
+	var leftAssoc = ["binom","fact","sin","cos","tan","asin","acos",
 			"atan","log","ln","abs","floor","round","ceil",
 			"min","max","sqrt","*","/","+","-"]
 	var operatorStack = [];
@@ -378,6 +377,7 @@ function getRPNStack(array) {
 
 function runRPNStack(rpn) {
 	var s = [];
+	var bin = 0;
 	for(var i in rpn) {
 		var t = rpn[i], n=+t;
 		if(n==t) {
@@ -385,6 +385,15 @@ function runRPNStack(rpn) {
 		} else {
 			var op1 = 0, op2 = 0;
 			switch (t) {
+				case "fact":
+					op1 = s.pop();
+					s.push(factorial(op1));
+					break;
+				case "binom":
+					op2 = s.pop();
+					op1 = s.pop();
+					s.push(getBinom(op1, op2));
+					break;
 				case "sin":
 					op1 = s.pop();
 					s.push(Math.sin(op1));
@@ -481,6 +490,19 @@ function runRPNStack(rpn) {
 		}
 	}
 	return s;
+}
+
+function getBinom(n,k) {
+	let a = 1;
+	let b = 1;
+	for(var i = (n-k+1); i <= n; i++) {
+		a *= i;
+	}
+	for(var i = 1; i <= k; i++) {
+		b *= i;
+	}
+	var r = a/b;
+	return r;
 }
 
 // Checks inputs for factorial
