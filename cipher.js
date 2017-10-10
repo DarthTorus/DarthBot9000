@@ -19,7 +19,6 @@ var mat = [
 
 function cipherCheck(m, cI, uI) {
 	m[0] = m[0].toLowerCase();
-	console.log(m);
   switch(m[0]) {
 		case "encrypt": //If encrypting
 			m.shift();
@@ -38,7 +37,6 @@ function cipherCheck(m, cI, uI) {
 }
 
 function encrypt(ip, uI) {
-	console.log(bot.colors.cyan("ip: "+ip));
   var opopie = "";//OutPutOutPIE
   for(i = 0; i < ip.length; i++) {
     for(x = 0; x < 9; x++) {
@@ -49,7 +47,6 @@ function encrypt(ip, uI) {
       }
     }
   }
-	console.log(bot.colors.yellow(opopie));
 	var temp = ["\~","\_","\*","\`"];
 	var chars = ["~","_","\\\*","`"];
   for(j = 0; j < temp.length; j++) {
@@ -58,7 +55,6 @@ function encrypt(ip, uI) {
     opopie = opopie.replace(reg,temp[j]);//Does anti-crossout measures
 
   }
-	console.log(bot.colors.yellow(opopie));
   //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
 	bot.sendMessages(uI, ["```"+opopie+"```"]);
 }
@@ -66,11 +62,9 @@ function encrypt(ip, uI) {
 function decrypt(ip, uI) {
   var opopie = ""; //OutPutOutPIE
   var deCheck = true; //a varible to mark if the decryption worked... set default to true
-	console.log("ip.length: "+ip.length);
   if(ip.length % 2 == 1) {
     //Error, the input isn't done right. (The encrypted message isn't correctly encrypted)
     deCheck = false;
-		console.log(deCheck);
   }
   else //Hey, look, the inputed encrypted message might actually be an encrypted message.
   {
@@ -102,7 +96,6 @@ function decrypt(ip, uI) {
       }
       else {
         deCheck = false;
-				console.log(deCheck);
       }
     }
   }
