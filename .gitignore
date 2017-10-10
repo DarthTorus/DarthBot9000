@@ -1,5 +1,5 @@
-help.txt
 *.json
 logs/
 *.jpg
 *.png
+*.txt
