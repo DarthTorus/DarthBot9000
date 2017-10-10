@@ -3,7 +3,6 @@ var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijlmnopqrstuvwxyz0123456789-_";
 var p = require("./polls.json");
 var currentID = "";
 function pollCheck(m, uID, cID) {
-	console.log(m[0]);
 	switch (m[0]) {
     case 'create': //create command for polls
     case 'make':
@@ -41,7 +40,7 @@ function createPoll(msg, uI, cI) { //Creates a poll
   console.log(bot.colors.cyan("pID: " + pID));
   var msgText = "";
   var arr = mesg.split(" | "); //seperates string 'msg' into array 'arr' (first value of arr will be set to question ('qstn'), other values will be vote options
-  var qstn = arr[0]; 
+  var qstn = arr[0];
   console.log
   arr.shift();
   var opts = arr;
@@ -49,7 +48,7 @@ function createPoll(msg, uI, cI) { //Creates a poll
   console.log(p.polls[pID]);
 
   var tCount = new Array(opts.length);
-  for(var i = 0; i < tCount.length; i++) { 
+  for(var i = 0; i < tCount.length; i++) {
     tCount[i] = 0;
   }
   p.polls[pID] = {
