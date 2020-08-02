@@ -1,7 +1,14 @@
 var bot = process.DiscordBot;
-const radConst = bot.TAU/360;
-const degConst = 360/bot.TAU
-
+const MAX_INTEGER = 2147483647;
+const MIN_INTEGER = -2147483648;
+const TAU = 2*Math.PI;
+const PI = Math.PI;
+const POS_PHI = (1+Math.sqrt(5.0))/2;
+const NEG_PHI = (1-Math.sqrt(5.0))/2;
+const REC_POS_PHI = POS_PHI - 1;
+const REC_NEG_PHI = NEG_PHI - 1;
+const radConst = TAU/360;
+const degConst = 360/TAU;
 var latexArr = [
 	{char : '\\%', code : "%25"},
 	{char : ' ', code : "%20"},
@@ -25,59 +32,59 @@ var latexArr = [
 ];
 
 	// Function selector if "calc" command is present
-function calcCheck(m, cI) {
+function calcCheck(m, message) {
 	switch (m[0]) {
 		case 'factorial':
-			factorialCheck(m[1], cI);
+			factorialCheck(m[1], message);
 			break;
 		case 'primefact': //TODO
-			primeFactorials(m[1], cI);
+			primeFactorials(m[1], message);
 			break;
 		case 'grav': //TODO
 			break;
 		case 'toPolar':
 			m.shift()
-			toPolar(m,cI);
+			toPolar(m,message);
 			break;
 		case 'toCartesian2D':
 		case 'toCart2D':
 			m.shift()
-			toCartesian2D(m,cI);
+			toCartesian2D(m,message);
 			break;
 		case 'toCartesian3D':
 		case 'toCart3D':
 			m.shift();
-			toCartesian3D(m,cI);
+			toCartesian3D(m,message);
 			break;
 		case 'toSphere':
 			m.shift();
-			toSphere(m,cI);
+			toSphere(m,message);
 			break;
 		case 'toCyl':
 		case 'toCylinder':
 			m.shift();
-			toCylinder(m, cI);
+			toCylinder(m, message);
 			break;
 		case 'portal':
 			m.shift();
-			portalCheck(m, cI);
+			portalCheck(m, message);
 			break;
 		case 'tri':
 			m.shift();
-			triCheck(m, cI);
+			triCheck(m, message);
 			break;
 		case 'quad':
 			m.shift();
-			calcQuadratic(m, cI);
+			calcQuadratic(m, message);
 			break;
 		default:
 			m = m.join('');
-			calcEquation(m, cI);
+			calcEquation(m, message);
 			break;
 	}
 }
 
-function toCartesian3D(msg,cID) {
+function toCartesian3D(msg,message) {
 	if(msg[0] == 'sph') {
 		var rho = msg[1];
 		var theta = msg[2];
@@ -124,10 +131,10 @@ function toCartesian3D(msg,cID) {
 
 
 	}
-	bot.sendMessages(cID, [msgText]);
+	message.channel.send(msgText);
 }
 
-function toSphere(msg,cID) {
+function toSphere(msg, message) {
 	if(msg[0] == 'cart'){
 		var x = msg[1];
 		var y  = msg[2];
@@ -171,10 +178,10 @@ function toSphere(msg,cID) {
 		msgText += "`Phi: " + phi + "°`";
 
 	}
-	bot.sendMessages(cID, [msgText]);
+	message.channel.send(msgText);
 }
 
-function toCylinder(msg,cID) {
+function toCylinder(msg,message) {
 	if(msg[0] == 'cart') {
 		var x = msg[1];
 		var y = msg[2];
@@ -216,10 +223,10 @@ function toCylinder(msg,cID) {
 		msgText += "`Theta: " + theta + "°`\n";
 		msgText += "`Z: " + z + "`";
 	}
-	bot.sendMessages(cID, [msgText]);
+	message.channel.send(msgText);
 }
 
-function toCartesian2D(msg,cID) {
+function toCartesian2D(msg,message) {
 	var r = msg[0];
 	var x,y = 0;
 	var theta = msg[1];
@@ -238,10 +245,10 @@ function toCartesian2D(msg,cID) {
 	msgText += "\n`X: " + x + "`\n";
 	msgText += "`Y: " + y + "`";
 
-	bot.sendMessages(cID, [msgText]);
+	message.channel.send(msgText);
 }
 
-function toPolar(msg, cID) {
+function toPolar(msg, message) {
 	var x = msg[0];
 	var y = msg[1];
 	var r, theta = 0;
@@ -255,11 +262,11 @@ function toPolar(msg, cID) {
 	msgText += "\n`Radius: " + r + "`\n" ;
 	msgText += "`Angle: " + toDMS(theta) + "`";
 
-	bot.sendMessages(cID, [msgText]);
+	message.channel.send(msgText);
 }
 
 //Default calc
-function calcEquation(msg, cID) {
+function calcEquation(msg, message) {
 	var initEq = msg.toString();
 	var tempEq = initEq;
 	tempEq = replaceSpecialSymbols(tempEq);
@@ -270,7 +277,7 @@ function calcEquation(msg, cID) {
 	var rpnStack = getRPNStack(eqArr);
 	var result = runRPNStack(rpnStack);
 
-	bot.sendMessages(cID,["Answer is `"+ result +"`"]);
+	message.channel.send("Answer is `"+ result +"`");
 }
 
 function resolveNegation(array) {
@@ -292,7 +299,6 @@ function resolveNegation(array) {
 		}
 	}
 
-	console.log("Negated array: " + newArr);
 	return newArr;
 }
 
@@ -378,12 +384,14 @@ function getRPNStack(array) {
 function runRPNStack(rpn) {
 	var s = [];
 	var bin = 0;
+	console.log("rpn: "+rpn);
 	for(var i in rpn) {
 		var t = rpn[i], n=+t;
 		if(n==t) {
 			s.push(n);
 		} else {
 			var op1 = 0, op2 = 0;
+			console.log("t: "+t);
 			switch (t) {
 				case "fact":
 					op1 = s.pop();
@@ -396,14 +404,17 @@ function runRPNStack(rpn) {
 					break;
 				case "sin":
 					op1 = s.pop();
+					op1 = degToRad(op1);
 					s.push(Math.sin(op1));
 					break;
 				case "cos":
 					op1 = s.pop();
+					op1 = degToRad(op1);
 					s.push(Math.cos(op1));
 					break;
 				case "tan":
 					op1 = s.pop();
+					op1 = degToRad(op1);
 					s.push(Math.tan(op1));
 					break;
 				case "asin":
@@ -420,7 +431,7 @@ function runRPNStack(rpn) {
 					break;
 				case "log":
 					op1 = s.pop();
-					s.push(Math.log(op1)/Math.log(10));
+					s.push(Math.log10(op1));
 					break;
 				case "ln":
 					op1 = s.pop();
@@ -488,6 +499,7 @@ function runRPNStack(rpn) {
 				default: //do nothing
 			}
 		}
+		console.log("s: "+s);
 	}
 	return s;
 }
@@ -501,29 +513,28 @@ function getBinom(n,k) {
 	for(var i = 1; i <= k; i++) {
 		b *= i;
 	}
-	var r = a/b;
-	return r;
+	return a/b;
 }
 
 // Checks inputs for factorial
 function factorialCheck(input, cI) {
 	const MAX_INPUT = 100;
 	if (isNaN(input)) {
-		bot.sendMessages(cI, ["Must be a number. No other characters!"]);
+		message.channel.send("Must be a number. No other characters!");
 	} else {
 		if (((input * 10) % 10) != 0) {
-			bot.sendMessages(cI, ["Cannot use decimals!"]);
+			message.channel.send("Cannot use decimals!");
 		} else if (input == 0) {
-			bot.sendMessages(cI, ["Cannot be zero!"]);
+			message.channel.send("1");
 		} else if (input < 0) {
-			bot.sendMessages(cI, ["Cannot be negative"]);
+			message.channel.send("Cannot be negative");
 		} else {
 			if (input > MAX_INPUT) {
 				input = MAX_INPUT;
-				bot.sendMessages(cI, ["Max set to " + MAX_INPUT]);
+				message.channel.send("Max set to " + MAX_INPUT);
 			}
 			var result = factorial(input);
-			bot.sendMessages(cI, ["Factorial of " + input + ": `" + result + "`"]);
+			message.channel.send("Factorial of " + input + ": `" + result + "`");
 		}
 	}
 }
@@ -536,15 +547,11 @@ function factorial(input) {
 	}
 }
 
-function portalCheck(msg, cID) {
+function portalCheck(msg, message) {
 	switch (msg[0]) {
 		case 'nether':
 			msg.shift();
-			calcNetherPortal(msg, cID);
-			break;
-		case 'end':
-			msg.shift();
-			calcEndPortal(msg, cID);
+			calcNetherPortal(msg, message);
 			break;
 		default:
 			break;
@@ -557,25 +564,8 @@ function calcNetherPortal(m, chID) {
 	if (isNaN(x) == false && isNaN(z) == false) {
 		var xr = Math.floor(x / 8);
 		var zr = Math.floor(z / 8);
-		bot.sendMessages(chID, ["`X: " + xr + ", Z: " + zr + "`"]);
+		message.channel.send("`X: " + xr + ", Z: " + zr + "`");
 	}
-}
-
-function calcEndPortal(m, chID) {
-	var pt1 = [m[0], m[1]];
-	var pt2 = [m[3], m[4]];
-	var dist1 = calcDistance(pt1, pt2);
-	var pt3 = [0, 0];
-	var f1 = degToRad(calcRefAngle(m[2]));
-	var f2 = degToRad(calcRefAngle(m[5]));
-	var f3 = ((Math.PI / 2) - (f1 + f2));
-	console.log("Point 1: " + pt1);
-	console.log("Point 2: " + pt2);
-
-	console.log("Facing 3: " + f3);
-	//TODO calc end portal location
-
-
 }
 
 function calcRefAngle(theta) {
@@ -610,7 +600,7 @@ function radToDeg(rads) {
 	return deg
 }
 
-function calcQuadratic(m, cID) {
+function calcQuadratic(m, message) {
 	var resultString = "http://chart.apis.google.com/chart?cht=tx&chl=x= ";
 	var resultHeight = "&chf=bg,s,36393E&chco=ffffff&chs=60";
 
@@ -640,16 +630,7 @@ function calcQuadratic(m, cID) {
 		initialEq += c;
 	}
 	initialEq += " = 0&chf=bg,s,36393E&chco=ffffff&chs=30";
-	bot.request(initialEq, {
-		encoding: null
-	}, function(err, res, body) {
-		bot.uploadFile({
-			to: cID,
-			file: body,
-			filename: "initialEq.png",
-			message: "Your inital equation is: "
-		});
-	});
+	message.channel.send({files: [{attachment:initialEq, name:"initialEq.png"}], content: "Your initial equation is: "});
 	var sol1, sol2;
 	var deter = b * b - (4 * a * c);
 	if (deter == 0) {
@@ -681,22 +662,10 @@ function calcQuadratic(m, cID) {
 		resultString += resultHeight;
 	}
 
-	bot.request(resultString, {
-		encoding: null
-	}, function(err, res, body) {
-		bot.uploadFile({
-			to: cID,
-			file: body,
-			filename: "Solutions.png",
-			message: "Your solution(s): "
-		});
-	});
+	message.channel.send({files: [{attachment:resultString,name:"Solutions.png"}], content: "Your solution(s): "});
 }
-//
 
-
-
-function getLaTeX(msg, chID) {
+function getLaTeX(msg, message) {
 	var search = "http://chart.apis.google.com/chart";
 
 	msg = msg.join('%20');
@@ -707,41 +676,35 @@ function getLaTeX(msg, chID) {
 	search += msg;
 	search += "&chf=bg,s,36393E&chco=FFFFFF&chs=60";
 	console.log(bot.colors.magenta(search));
-	bot.request(search, {encoding: null}, function(err, res, body){
-		bot.uploadFile({
-			to: chID,
-			file: body,
-			filename: "texEq.png"
-		});
-	});
+	message.channel.send({files: [{attachment:search, name:"textEq.png"}], content: "Your equation is: "});
 }
 
-function triCheck(msg, chID) {
+function triCheck(msg, message) {
 	switch (msg[0]) {
 		case 'ssa':
 			msg.shift();
 			console.log(msg);
-			calcSSA(msg, chID);
+			calcSSA(msg, message);
 			break;
 		case 'aas':
 			msg.shift();
 			console.log(msg);
-			calcAAS(msg, chID);
+			calcAAS(msg, message);
 			break;
 		case 'asa':
 			msg.shift();
 			console.log(msg);
-			calcASA(msg, chID);
+			calcASA(msg, message);
 			break;
 		case 'sss':
 			msg.shift();
 			console.log(msg);
-			calcSSS(msg, chID);
+			calcSSS(msg, message);
 			break;
 		case 'sas':
 			msg.shift();
 			console.log(msg);
-			calcSAS(msg, chID);
+			calcSAS(msg, message);
 			break;
 	}
 
@@ -758,12 +721,12 @@ function calcSSA(m, cID) {
 	var c, e, f, g, h, i, q, r, s, t, v, u = 0;
 	var msgText = "";
 	if (w <= 0) {
-		bot.sendMessages(cID, ["NO real solutions exist for this triangle."]);
+		msgText = "NO real solutions exist for this triangle.";
 	} else {
 		v = ((-1 * y) + Math.sqrt(w)) / (2 * x);
 		u = ((-1 * y) - Math.sqrt(w)) / (2 * x);
 		if (v <= 0 && u <= 0) {
-			bot.sendMessages(cID, ["No possible triangles."]);
+			msgText = "No possible triangles.";
 		} else if (v > 0 && u > 0) {
 			c = v;
 			g = u;
@@ -793,7 +756,6 @@ function calcSSA(m, cID) {
 			msgText += "`Angle 1, Angle B2: " + toDMS(e) + ", " + toDMS(h) + "`\n";
 			msgText += "`Angle C1, Angle C2: " + toDMS(f) + ", " + toDMS(i) + "`\n";
 			msgText += "`Area 1, Area 2: " + r + " units², " + q + " units²`\n";
-			bot.sendMessages(cID, [msgText]);
 		} else if (v > 0 && u <= 0) {
 			c = v;
 			e = radToDeg(Math.asin((b * Math.sin(d)) / a));
@@ -808,12 +770,12 @@ function calcSSA(m, cID) {
 			msgText += "`Angle B: " + toDMS(e) + "`\n";
 			msgText += "`Angle C: " + toDMS(f) + "`\n";
 			msgText += "`Area: " + r + " units²`\n";
-			bot.sendMessages(cID, [msgText]);
 		}
 	}
+  message.chanel.send(msgText);
 }
 
-function calcAAS(m, cID) {
+function calcAAS(m, message) {
 	var a = Number(m[0]);
 	var b = Number(m[1]);
 	var d = degToRad(Number(m[2]));
@@ -825,9 +787,7 @@ function calcAAS(m, cID) {
 
 }
 
-function calcASA(m, cID) {}
-
-function calcSSS(m, cID) {
+function calcSSS(m, message) {
 	var a = Number(m[0]);
 	var b = Number(m[1]);
 	var c = Number(m[2]);
@@ -838,7 +798,7 @@ function calcSSS(m, cID) {
 	var msgText = "";
 
 	if (sumAB <= c || sumAC <= b || sumBC <= a) {
-		bot.sendMessages(cID, ["Cannot make a triangle."]);
+		msgText = "Cannot make a triangle.";
 	} else {
 		g = ((b * b + c * c) - (a * a));
 		h = 2 * b * c;
@@ -856,12 +816,12 @@ function calcSSS(m, cID) {
 		msgText += "`Angle B: " + toDMS(e) + "`\n";
 		msgText += "`Angle C: " + toDMS(f) + "`\n";
 		msgText += "`Area: " + r + " units²`\n";
-		bot.sendMessages(cID, [msgText]);
-	}
 
+	}
+	message.channel.send(msgText);
 }
 
-function calcSAS(m, cID) {
+function calcSAS(m, message) {
 	var a = Number(m[0]);
 	var f = degToRad(m[1]);
 	var b = Number(m[2]);
@@ -887,7 +847,7 @@ function calcSAS(m, cID) {
 	msgText += "`Side C: " + c + " units`\n";
 	msgText += "`Area: " + r + " units²`\n";
 
-	bot.sendMessages(cID, [msgText]);
+	message.channel.send(msgText);
 }
 
 function toDMS(angle) {

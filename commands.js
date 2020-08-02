@@ -1,16 +1,14 @@
 var bot = process.DiscordBot;
 var colors = require('colors/safe');
 var Twitter = require("twitter");
-var utils = require("mc-utils");
+//var utils = require("mc-utils");
 //var concat = require("concat-stream");
 var PNGImage = require('pngjs-image');
 
 const reqFiles = ["config.json","admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insults.json", "materials.json",
-	"minecraft.js","series.js", "poll.js","rpg.json","cipher.js","github.js"];
+	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json","cipher.js","github.js"];
 const names = ["config","admin", "banned", "calc", "color",
-	"help", "info", "insults", "mat", "mc","series","polls","rpg","cipher","gitH"]; // Names of variables
-
+	"help", "info", "insults", "series","polls","rpg","cipher","gitH"]; // Names of variables
 
 function requireFiles() {
 	for (var name of names) {
@@ -44,62 +42,56 @@ var formu = new Twitter({
 bot.admin = admin;
 bot.banned = banned;
 bot.insults = insults;
-bot.mat = mat;
 bot.polls = polls;
 bot.rpg = rpg;
 bot.darth = darth;
 bot.server = server;
 bot.formu = formu;
-
-
-
-function checkCommands(c, message, uID, chID) {
-	var msg = message.split(' '); //Split the string on spaces
+bot.ownerID = config.ownerID
+function checkCommands(c, text, message) {
+	var msg = text.split(' '); //Split the string on spaces
 	switch (c) { //Command switcher
 		case 'ping':
-			sendMessages(chID, ["Pong"]);
+			message.channel.send("Pong");
 			break;
 		case 'calc':
-			calc.calcCheck(msg, chID);
+			calc.calcCheck(msg, message);
 			break;
 		case 'admin':
-			if (!(chID in bot.directMessages)) {
-				var serverID = bot.channels[chID].guild_id;
-			}
-			if (uID == "133370041142870016" || serverID == "172689601935179776" || (chID in bot.directMessages)) {
-				admin.adminCheck(msg, chID);
+			if (message.author.id == bot.ownerID) {
+				admin.adminCheck(msg, message);
 			} else {
-				sendMessages(chID, ["<@" + uID + "> *: You lack permission*"])
+				message.channel.send("<@" + message.author.id + "> *: You lack permission*")
 			}
 			break;
 		case 'help':
-			help.checkHelp(msg, uID);
+			help.checkHelp(msg, message);
 			break;
 		case 'info':
-			info.infoCheck(msg, uID, chID);
+			info.infoCheck(msg, message);
 			break;
 		case 'poll':
 		case 'polls':
-			polls.pollCheck(msg, uID, chID);
+			polls.pollCheck(msg, message);
 			break;
-		case 'mc':
-		case 'minecraft':
-			mc.minecraftCheck(msg, chID);
-			break;
+		// case 'mc':
+		// case 'minecraft':
+		// 	mc.minecraftCheck(msg, message);
+		// 	break;
 		case 'series':
-			series.seriesCheck(msg,chID);
+			series.seriesCheck(msg, message);
 			break;
 		case 'butts':
-			sendMessages(chID, ["<@" + uID + "> *: You must like big butts then. Don't lie!*"]);
+			message.channel.send("<@"+message.author + ">: *You must like big butts then. Don't lie!*");
 			break;
 		case 'roll':
-			rollDice(msg, chID);
+			rollDice(msg, message);
 			break;
 		case 'coin':
-			coinFlip(msg, chID);
+			coinFlip(msg, message);
 			break;
 		case 'integer':
-			randInteger(msg, chID);
+			randInteger(msg, message);
 			break;
 		case 'seq':
 			//coinFlip(msg, chID);
@@ -109,58 +101,64 @@ function checkCommands(c, message, uID, chID) {
 			admin.randomStatus(msg);
 			break;
 		case 'cards':
-			drawCards(msg, chID);
+			drawCards(msg, message);
 			break;
 		case 'cipher':
-			cipher.cipherCheck(msg, chID, uID);
+			cipher.cipherCheck(msg, message);
 			break;
 		case 'adryd':
 		case 'triangle':
-			doAdryd(chID);
+			doAdryd(message);
 			break;
 		case 'hugs':
 		case 'hug':
-			sendHug(msg, chID, uID);
+			sendHug(msg, message);
 			break;
 		case 'say':
+		case 'echo':
+		case 'repeat':
 			msg = msg.join(" "); //Join with a space
-			repeatMessage(msg, chID, uID);
+			repeatMessage(msg, message);
 			break;
 		case 'reverse':
-			checkReverse(msg, chID);
+			checkReverse(msg, message);
 			break;
 		case 'insult':
-			getInsult(uID, chID);
+			getInsult(message);
 			break;
 		case 'color':
-			color.colorCheck(msg, chID);
+			color.colorCheck(msg, message);
 			break;
 		case 'latex':
 		case 'tex':
-			calc.getLaTeX(msg, chID);
+			calc.getLaTeX(msg, message);
 			break;
 		case '8-ball':
 		case '8ball':
 		case 'magic-conch':
 			msg = msg.join(' ');
-			get8Ball(msg, chID);
+			get8Ball(msg, message);
 			break;
 		case 'map':
 		case 'normalize':
-			map(msg, chID);
+			map(msg, message);
 			break;
 		case "rpg":
-			getRpgItem(chID);
+			getRpgItem(message);
 			break;
 		case "10print":
 		case "10-print":
-			do10Print(msg, chID);
+			do10Print(msg, message);
 			break;
-		case "gh":
-		case "git":
-		case "github":
-			gitHubCheck(msg, chID);
-		default:
+		// case "gh":
+		// case "git":
+		// case "github":
+		// 	if(message.author.id == bot.ownerID) {
+		// 		gitHubCheck(msg, message);
+		// 	}
+		// 	break;
+		default: //Default to this if can't find a command
+			message.channel.send(selectRandonCmdErr());
 			break;
 	}
 }
@@ -169,7 +167,19 @@ function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1);
 }
 
-function do10Print(m, cI) {
+function selectRandonCmdErr() {
+	var randomResp = ["I'm sorry, I'm having trouble understanding what you want.",
+	"Please give me something to do.",
+	"I'm so bored. I need something to do",
+	"Help my boredom. Tell me what to do.",
+	"How bout you don't screw up and tell me what to do?",
+	"You know I can't understand this.",
+	"Why do you torture me with unintelligble blathering?"
+  ];
+	return randomResp[bot.random(randomResp.length)];
+}
+
+function do10Print(m, message) {
 	var defW = 40;
 	var defH = 30;
 	var width = Number(m[0]) || defW;
@@ -197,12 +207,11 @@ function do10Print(m, cI) {
 		}
 	}
 	result += "```";
-	console.log(bot.colors.magenta(result));
-	bot.sendMessages(cI, [result]);
+	message.channel.send(result);
 }
 
 // Outputs a random RPG item with random stats
-function getRpgItem(cI) {
+function getRpgItem(message) {
 	var rpgObj = bot.rpg;
 	var adj = rpgObj.adjectives;
 	var col, trt, item, phrase, sel;
@@ -245,12 +254,11 @@ function getRpgItem(cI) {
 		statText += randVal + " to " + statArr[i] + "\n";
 	}
 	statText += "```";
-	console.log(sel);
-	bot.sendMessages(cI,[(itemText+ formatText + statText)])
+	message.channel.send((itemText+ formatText + statText));
 }
 
 // Gets an 8 ball answer
-function get8Ball(mesg, cI) {
+function get8Ball(text, message) {
 	var responses = [
 		"Yes", "No","Perhaps","Maybe",
 		"All lines are busy. Please try again",
@@ -267,7 +275,7 @@ function get8Ball(mesg, cI) {
 	var response = "";
 	var msg = "";
 	//console.log("`mesg :" + mesg + ":`");
-	if(mesg != undefined && mesg != null && mesg != "" && mesg.length > 3) {
+	if(text != undefined && text != null && text != "" && text.length > 3) {
 		response = bot.random(responses.length);
 		msg = responses[response];
 	}
@@ -275,22 +283,23 @@ function get8Ball(mesg, cI) {
 		response = bot.random(noQuestion.length);
 		msg = noQuestion[response];
 	}
-	//console.log(msg);
-	bot.sendMessages(cI, [msg]);
+	message.channel.send(msg);
 }
 // Flips a coin
-function coinFlip(m, cI) {
+function coinFlip(m, message) {
 	var flips = m[0] || 1;
+	const maxFlips = 500;
+	const minFlips = 1
 	var headCount = 0;
 	var tailCount = 0;
 	var headPercent = 0;
 	var tailPercent = 0;
-	if (flips > 750) {
-		bot.sendMessages(cI, ["Coin flips set to 250."]);
-		flips = 750;
+	if (flips > minFlips) {
+		message.channel.send("Coin flips set to "+maxFlips+".");
+		flips = minFlips;
 	} else if (flips <= 0) {
-		bot.sendMessages(cI, ["Coin flips set to one."]);
-		flips = 1;
+		message.channel.send("Coin flips set to one.");
+		flips = minFlips;
 	}
 	var flipText = "";
 	var randInt = 0;
@@ -308,10 +317,10 @@ function coinFlip(m, cI) {
 	}
 	headPercent = Math.round(headCount / flips * 100000) / 1000;
 	tailPercent = Math.round(tailCount / flips * 100000) / 1000;
-	bot.sendMessages(cI, ["```" + flipText + "\n\nHeads: " + headCount + " - " + headPercent + "%\nTails: " + tailCount + " - " + tailPercent + "%```\n"]);
+	message.channel.send("```" + flipText + "\n\nHeads: " + headCount + " - " + headPercent + "%\nTails: " + tailCount + " - " + tailPercent + "%```\n");
 }
 // Rolls dice
-function rollDice(m, cI) {
+function rollDice(m, message) {
 	var maxRolls = 300;
 	var minRolls = 1;
 	var maxSides = 100;
@@ -321,29 +330,29 @@ function rollDice(m, cI) {
 	rolls = rolls.toString().replace(/[^\d\w]/g,"");
 	sides = sides.toString().replace(/[^\d\w]/g,"");
 	if(isNaN(sides) && isNaN(rolls)) {
-		bot.sendMessages(cI, ["Sides and rolls must be a number."]);
+		message.reply("Sides and rolls must be a number.");
 		return 0;
 	} else if(isNaN(sides)) {
-		bot.sendMessages(cI, ["Sides must be a number."]);
+		message.reply("Sides must be a number.");
 		return 0;
 	} else if(isNaN(rolls)) {
-		bot.sendMessages(cI, ["Rolls must be a number."]);
+		message.reply("Rolls must be a number.");
 		return 0;
 	}
 	if (rolls > maxRolls) {
-		bot.sendMessages(cI, ["Rolls set to " + maxRolls + "."]);
+		message.channel.send("Rolls set to " + maxRolls + ".");
 		rolls = maxRolls;
 	} else if (rolls < minRolls) {
-		bot.sendMessages(cI, ["Rolls set to " + minRolls + "."]);
+		message.channel.send("Rolls set to " + minRolls + ".");
 		rolls = minRolls;
 	}
 
 	if(sides > maxSides) {
 		sides = maxSides; // force the sides to be
-		bot.sendMessages(cI, ["Sides set to " + maxSides + "."]);
+		message.channel.send("Sides set to " + maxSides + ".");
 	} else if(sides < minSides) {
 		sides = minSides;
-		bot.sendMessages(cI, ["Sides set to " + minSides + "."]);
+		message.channel.send("Sides set to " + minSides + ".");
 	}
 	var randInt = 0;
 	var rollText = "";
@@ -360,28 +369,27 @@ function rollDice(m, cI) {
 	rollText += "\n\n";
 	if(sides <= 10 && rolls >=5) {
 		for (var r = 1; r <= sides; ++r) {
+			rollText += r<10?' ':'';
 			if(rollArr[r] == null) {
-				rollText += (r + ") 0 - 0%\n");
+				rollText += (r + ")  0 - 0%\n");
 			} else {
-				rollText += (r + ") " + rollArr[r] + " - " +(Math.round(rollArr[r]/rolls*10000)/100)+ "%\n");
+				rollText += (r + ")  " + rollArr[r] + " - " +(Math.round(rollArr[r]/rolls*10000)/100)+ "%\n");
 			}
 		}
 	}
-	bot.sendMessages(cI, ["```" + rollText + "```\n"]);
+	message.channel.send("```" + rollText.padStart(2) + "```\n");
 }
 // Gives a random Integer
-function randInteger(m, cI) {
-	var rand = bot.random(1, 75);
+function randInteger(m, message) {
+	var randLength = bot.random(1, 75);
 	var int = "";
 	console.log(rand);
-	for (var i = 0; i < rand; i++) {
+	for (var i = 0; i < randLength; i++) {
 		int += bot.random(10).toString();
 	}
 	if(int[0] === "0" && rand >= 2) {
 		console.log(int[0]);
-		int = int.split('');
-		int.shift();
-		int = int.join("");
+		int = int.slice(1);
 	}
 	if (m[0] === "neg") {
 		int = "-" + int;
@@ -396,10 +404,10 @@ function randInteger(m, cI) {
 		}
 	}
 
-	bot.sendMessages(cI, ["Your integer is: `" + int + "`"]);
+	message.channel.send("Your integer is: `" + int + "`");
 }
 
-function map(m, cI) {
+function map(m, message) {
 	var v = Number(m[0]);
 	var imn = Number(m[1]);
 	var imx = Number(m[2]);
@@ -407,7 +415,7 @@ function map(m, cI) {
 	var omx = Number(m[4]);
 	var result = bot.mapValue(v, imn, imx, omn, omx);
 
-	bot.sendMessages(cI, ["`"+result+"`"]);
+	message.channel.send("`"+result+"`");
 
 }
 
@@ -440,8 +448,9 @@ bot.mapValue = function(x, inMin, inMax, outMin, outMax) {
 	return ((x-inMin)*(outRange)/(inRange) + outMin);
 }
 // Draws cards
-function drawCards(m, cI) {
+function drawCards(m, message) {
 	var draws = m[0] || 1;
+	const maxDraws = 5;
 	var duplicates = m[1] || "yes";
 	var card = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 	var suit = ["♠", "♥", "♣", "♦"];
@@ -453,15 +462,15 @@ function drawCards(m, cI) {
 	];
 
 	var cardText = "";
-	if (duplicates == "yes" && draws > 20) {
-		bot.sendMessages(cI, ["Number of draws set to 20"]);
-		draws = 20;
-	} else if (duplicates == "no" && draws > 10) {
-		bot.sendMessages(cI, ["Number of draws set to 10"]);
-		draws = 10;
+	if (duplicates == "yes" && draws > maxDraws*2) {
+		message.channel.send("Number of draws set to "+maxDraws*2);
+		draws = maxdraws*2;
+	} else if (duplicates == "no" && draws > maxDraws) {
+		message.channel.send("Number of draws set to "+maxDraws);
+		draws = maxDraws;
 	}
 	if (draws <= 0) {
-		bot.sendMessages(cI, ["Number of draws set to 1"]);
+		message.channel.send("Number of draws set to 1");
 		draws = 1;
 	}
 	if (duplicates == "yes") {
@@ -478,14 +487,14 @@ function drawCards(m, cI) {
 			if (cardSelected[s, c] != 1) {
 				cardText += (card[c] + suit[s] + " ");
 				cardSelected[s, c] = 1;
-				i += 1;
+				i++;
 			}
 		}
 	}
-	bot.sendMessages(cI, ["Your cards are: " + cardText + "."]);
+	message.channel.send("Your cards are: `" + cardText + "`");
 }
 // ASCII impossible triangle
-function doAdryd(cI) {
+function doAdryd(message) {
 	var txt = "";
 	txt += "            __\n";
 	txt += "           /\\ \\\n";
@@ -501,74 +510,73 @@ function doAdryd(cI) {
 	txt += " / / /______________\\_\\ \\\n";
 	txt += "/ / /____________________\\\n";
 	txt += "\\/_______________________/\n";
-	bot.sendMessages(cI, ["```\n" + txt + "```"]);
+	message.channel.send("```\n" + txt + "```");
 }
 // Hugs function
-function sendHug(m, cI, uI) {
-	var person = m[0] || uI;
+function sendHug(m, message) {
+	var person = m[0];
+	var targetID = person.match(/\d/g).join('');
 	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\\\^u^(\\"];
-
 	var int = bot.random(hugs.length);
-	console.log(hugs.length);
-	if (person == uI) {
-		bot.sendMessages(cI, ["Sending <@" + uI + "> this hug: " + hugs[int]]);
+	if (!(targetID == null || targetID =='')) {
+		message.channel.send("Sending <@" + targetID + "> this hug: " + hugs[int]);
 	} else {
-		bot.sendMessages(cI, ["Sending " + person + " this hug: " + hugs[int]]);
+		message.channel.send("Sending everyone this hug: " + hugs[int]);
 	}
 }
 
-function repeatMessage(m, cI, uI) {
+function repeatMessage(m, message) {
 	var msg = m || -1;
-	if (uI != "205766554644643840") {
+	if (!message.author.bot) {
 		if (msg == -1) {
-			bot.sendMessages(cI, ["\u200B\u180EI have nothing to say to you."]);
+			message.channel.send("\u200B\u180EI have nothing to say to you.");
 		} else {
-			bot.sendMessages(cI, ["\u200B\u180E" + msg]);
+			message.channel.send("\u200B\u180E" +msg);
 		}
 	}
 }
 
-function checkReverse(m, cI) {
+function checkReverse(m, message) {
 	var trig = m[0];
 	switch (trig) {
 		case '-a':
 			m.shift();
 			m = m.join(" ");
 			m.split("");
-			reverseText(m, cI, "");
+			reverseText(m, message, '');
 			break;
 		case '-w':
 			m.shift();
-			reverseText(m, cI, " ");
+			reverseText(m, message, ' ');
 			break;
 		default:
-			bot.sendMessages(cI, ["You forgot to put how you want the reverse text to be done."]);
+			message.channel.send("You forgot to put how you want the reverse text to be done.");
 	}
 }
 
-function reverseText(msg, chI, joinChar) {
+function reverseText(msg, message, joinChar) {
 	var reverseString = new Array();
 	for (i = 0; i < msg.length; ++i) {
 		var c = msg.length - i;
 		reverseString[c] = msg[i];
 	}
 	reverseString = reverseString.join(joinChar);
-	bot.sendMessages(chI, ["\u200B\u180E" + reverseString])
+	message.channel.send("\u200B\u180E" + reverseString);
 }
 
-function getInsult(uI, cI) {
+function getInsult(message) {
 	var i1, i2, i3;
 	var insultString = "";
 	var insult1 = insults.first;
 	var insult2 = insults.second;
 	var insult3 = insults.third;
-	if (cI in bot.directMessages) {
+	if (message.channel.type ==='dm') {
 		i1 = bot.random(insult1.length);
 		i2 = bot.random(insult2.length);
 		i3 = bot.random(insult3.length);
 		insultString = insult1[i1] + " " + insult2[i2] + " " + insult3[i3];
 		insultString = insultString.toLowerCase();
-		bot.sendMessages(uI, ["Thou " + insultString + "."]);
+		message.channel.send("Thou art a " + insultString + ".");
 	}
 }
 

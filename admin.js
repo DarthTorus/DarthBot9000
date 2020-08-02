@@ -1,24 +1,26 @@
 var bot = process.DiscordBot;
 
-function adminCheck(m, cI) { // Subcommmand check for main admin command
+function adminCheck(m, message) { // Subcommmand check for main admin command
 	console.log(m[0]);
 	switch (m[0]) {
 		case '-w':
-			wake(cI);
+		case 'wake':
+			wake(message);
 			break;
 		case '-s':
-			sleep(cI);
+		case 'sleep':
+			sleep();
+			message.channel.send("Going to bed now!");
 			console.log("received sleep");
 			break;
 		case '-q':
-			quit(cI);
+		case 'quit':
+		case 'disconnect':
+			bot.disconnect(message);
 			break;
 		case '-t':
-			tweetCheck(m, cI); // This has parameters, so it must go to a check function of its onw
+			tweetCheck(m, cI); // This has parameters, so it must go to a check function of its own
 			break;
-		// case '-skt':
-		// 	sendKayTweets(cI);
-		// 	break;
 		case '-ct':
 			checkNumTweets(cI);
 			break;
@@ -29,7 +31,8 @@ function adminCheck(m, cI) { // Subcommmand check for main admin command
 			checkDMS(m, cI);
 			break;
 		case '-r':
-			bot.reload(cI);
+		case 'reload':
+			bot.reload(message);
 			break;
 		case '-ar':
 			m.shift();
@@ -109,14 +112,14 @@ function adminCheck(m, cI) { // Subcommmand check for main admin command
 			break;
 		case 'ping':
 			m.shift();
-			pingServer(m, cI);
+			pingServer(m, message);
 			break;
 		default:
 			break;
 	}
 }
 
-function sleep(cID) {
+function sleep() {
 	bot.inStandby = true;
 	//console.log("Bot sleeping (first check) = " + bot.inStandby);
 	randomStatus("in dreams");
@@ -126,13 +129,6 @@ function wake(cID) {
 	bot.inStandby = false;
 	console.log("Bot sleeping =" + bot.inStandby);
 	randomStatus();
-}
-
-function quit(cID) {
-	setTimeout(function() {
-		bot.quitStatus = true;
-		bot.disconnect();
-	}, 1000);
 }
 
 function randomStatus(msg) {
@@ -175,7 +171,7 @@ function randomStatus(msg) {
 		"with infinite series",
 		"musical scales",
 		"map-making",
-		"DnD",
+		"D&D",
 		"chicken"
 	];
 	var bannedWords = ["fuck", "porn", "p0rn", "sh1t", "shit", "damn", "d@mn", "ass", "a$$","@$$",
@@ -188,19 +184,9 @@ function randomStatus(msg) {
 	}
 	if (gameString == "0" || containsBanned) {
 		var status = bot.random(randStat.length);
-		bot.setPresence({
-			game: {
-				name: randStat[status],
-				type: 1
-			}
-		});
+		bot.user.setActivity(randStat[status]);
 	} else {
-		bot.setPresence({
-			game: {
-				name: gameString.toString(),
-				type: 1
-			}
-		});
+		bot.user.setActivity(msg);
 	}
 }
 
@@ -300,7 +286,7 @@ function sendOwnerTweet(m, cI) {
 	m.shift();
 	m = m.join(" ");
 	console.log("Tweet length = " + m.length);
-	if (m.length > 140) {
+	if (m.length > 280) {
 		bot.sendMessages(cID, ["Tweet is too long! Length = " + m.length]);
 	} else {
 		bot.darth.post('statuses/update', {
@@ -320,7 +306,7 @@ function sendServerTweet(m, cI) {
 	m.shift();
 	m = m.join(" ");
 	console.log("Tweet length = " + m.length);
-	if (m.length > 140) {
+	if (m.length > 280) {
 		bot.sendMessages(cID, ["Tweet is too long! Length = " + m.length]);
 	} else {
 		bot.server.post('statuses/update', {
@@ -340,7 +326,7 @@ function sendBotTweet(m, cI) {
 	m.shift();
 	m = m.join(" ");
 	console.log("Tweet length = " + m.length);
-	if (m.length > 140) {
+	if (m.length > 280) {
 		bot.sendMessages(cID, ["Tweet is too long! Length = " + m.length]);
 	} else {
 		bot.formu.post('statuses/update', {

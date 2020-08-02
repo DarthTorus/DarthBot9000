@@ -1,50 +1,47 @@
 var bot = process.DiscordBot;
 var config = require("./config.json");
-function infoCheck(m, uI, cI) {
+function infoCheck(m, message) {
 	switch (m[0]) {
-		case "twitter":
-			m.shift();
-			twitter(m, cI);
-			break;
+		// case "twitter":
+		// 	m.shift();
+		// 	twitter(m, cI);
+		// 	break;
 		case "add":
-			addBotToServer(uI);
+			addBotToServer(message);
 			break;
-		case "ip":
-			bot.sendMessages(cI, ["IP: `" + config.ip + "`"]);
-			break;
-		case "link":
-			bot.sendMessages(uI, ["Join the server: " + config.invite]);
-			break;
+		// case "ip":
+		// 	bot.sendMessages(cI, ["IP: `" + config.ip + "`"]);
+		// 	break;
 		case "uptime":
-			calcUptime(cI);
+			calcUptime(message);
 			break;
 		case "credits":
-			bot.sendMessages(cI, ["Server Logo: @GarretRR\nBot Logo: @Adryd"]);
+			message.channel.send("Bot Logo: @Adryd");
 			break;
 		case "qrcode":
-			bot.sendMessages(cI, [config.qrcode]);
+			message.channel.send(config.qrcode);
 			break;
 		case "bot":
-			sendBotInfo(cI);
+			sendBotInfo(message);
 			break;
 		default:
 	}
 }
 
-function twitter(t, cI) {
-	switch (t) {
-		case "owner":
-			bot.sendMessages(cI, ["Owner: " + config.twitter.l.o]);
-			break;
-		case "server":
-			bot.sendMessages(cI, ["Server: " + config.twitter.l.s]);
-			break;
-		default:
-			break;
-	}
-}
+// function twitter(t, cI) {
+// 	switch (t) {
+// 		case "owner":
+// 			bot.sendMessages(cI, ["Owner: " + config.twitter.l.o]);
+// 			break;
+// 		case "server":
+// 			bot.sendMessages(cI, ["Server: " + config.twitter.l.s]);
+// 			break;
+// 		default:
+// 			break;
+// 	}
+// }
 
-function calcUptime(cI) {
+function calcUptime(message) {
 	var time = 0;
 	var days = 0;
 	var hrs = 0;
@@ -76,23 +73,27 @@ function calcUptime(cI) {
 		secText = " second.";
 	}
 
-	bot.sendMessages(cI, ["I have been running for: ```xl\n" + days + dayText +
-		hrs + hrText + min + minText + sec + secText + "```"
-	]);
+	message.channel.send("I have been running for: ```xl\n" + days + dayText +
+		hrs + hrText + min + minText + sec + secText + "```");
 }
 
-function sendBotInfo(cI) {
-	calcUptime(cI);
+function sendBotInfo(message) {
+	calcUptime(message);
 	var numServers = Object.keys(bot.servers).length;
 	var m = "Owner: Darth Torus\n";
-	m += "Library: Discord.io\n";
+	m += "Library: Discord.js\n";
 	m += "Language: NodeJS/Javascript\n";
 	m += "Servers: " + numServers;
-	bot.sendMessages(cI, ["```xl\n" + m + "```"])
+	message.channel.send("```xl\n" + m + "```")
 }
 
-function addBotToServer(uI) {
-	bot.sendMessages(uI, ["Invite link: https://goo.gl/oiKr68"]);
+function addBotToServer(message) {
+	try {
+		mesage.author.send("Invite link:" + config.addLink);
+	}
+	catch (err) {
+		message.channel.send("I couldn't send you a link to add me to your wonderful server!");
+	}
 }
 
 var infoFunctions = {

@@ -3,32 +3,22 @@
 "Ce-fsh~N+{Q!CzzWZsX<"
 "w h o   c a r e s ?"
 var bot = process.DiscordBot; //makes bot things work
-var mat = [
-		 [":","9","k","+","i","c","F","n","u"],
-	   ["I","m","B","G","8","{","&","j","y"],
-	   ["C","X","}",")","Z","s","l","$","J"],
-	   ["r","z","\"","D","U","]","2","%","K"],
-	   ["[","*","-",",","6","@","R","M","Q"],
-	   ["W","e","h","|","f","o","A","5","w"],
-	   [">","?",";","<","O","!","1","0","a"],
-	   ["(",".","#","~","N","E","q","^","7"],
-	   ["P","d","S","V","3","b","H","T","L"],
-	   ["t","g","v","4","p","_","Y","x","="]];
+var cipherMat = config.cipherMatrix
 		 //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
-function cipherCheck(m, cI, uI) {
+function cipherCheck(m, message) {
 	m[0] = m[0].toLowerCase();
   switch(m[0]) {
 		case "encrypt": //If encrypting
 			m.shift();
    	 	m = m.join("~");//turn spaces into ~ (Trust me, this makes this so much easier and better)
-    	encrypt(m, uI);
+    	encrypt(m, message);
 			break;
 		case "decrypt": //If decrypting
 			m.shift();
-    	m = m.join("");//I mean, all spaces should be ~ at this poiint, so...
-    	decrypt(m, uI);
+    	m = m.join('');//I mean, all spaces should be ~ at this point, so...
+    	decrypt(m, message);
 			break;
 		default:
 			//sarcastic error message for not typing in correct syntax.
@@ -36,7 +26,7 @@ function cipherCheck(m, cI, uI) {
 	}
 }
 
-function encrypt(ip, uI) {
+function encrypt(ip, message) {
   var opopie = "";//OutPutOutPIE
   for(i = 0; i < ip.length; i++) {
     for(x = 0; x < 9; x++) {
@@ -56,10 +46,10 @@ function encrypt(ip, uI) {
 
   }
   //ENTER CODE TO MAKE IT SLIDE INTO THOSE ENCRYPTED DMs
-	bot.sendMessages(uI, ["```"+opopie+"```"]);
+	mssage.author.send("```"+opopie+"```");
 }
 
-function decrypt(ip, uI) {
+function decrypt(ip, message) {
   var opopie = ""; //OutPutOutPIE
   var deCheck = true; //a varible to mark if the decryption worked... set default to true
   if(ip.length % 2 == 1) {
@@ -102,7 +92,7 @@ function decrypt(ip, uI) {
   if(deCheck) {
 		opopie = opopie.replace(/~/g," ");
     //ENTER CODE TO MAKE IT SLIDE INTO THOSE DECRYPTED DMs
-		bot.sendMessages(uI, ["```"+opopie+"```"]);
+		message.author.send("```"+opopie+"```");
   }
 }
 //Thing that makes things work
