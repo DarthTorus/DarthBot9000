@@ -7,16 +7,16 @@ function pollCheck(m, uID, cID) {
     case 'create': //create command for polls
     case 'make':
       m.shift();
-      createPoll(m, uID, cID);
+      createPoll(m, message);
       break;
     case 'v':
     case 'vote': //vote command for polls
       m.shift();
-      voteOnPoll(m, uID, cID);
+      voteOnPoll(m, message);
       break;
     case 'view': //view command for polls
       m.shift();
-      viewPoll(m, cID);
+      viewPoll(m, message);
       break;
     default:
       // Don't do anything
@@ -33,7 +33,7 @@ function generateID() { //Generates poll ID
   return idText;
 }
 
-function createPoll(msg, uI, cI) { //Creates a poll
+function createPoll(msg, message) { //Creates a poll
   mesg = msg.join(" ");
   var pID = generateID(); //Generates poll ID
   currentID = pID;
@@ -62,12 +62,12 @@ function createPoll(msg, uI, cI) { //Creates a poll
   msgText = "Id: `" + pID + "`\n";
   msgText += "Question: " + qstn + "\n";
   msgText += "Options: " + opts + "\n";
-  bot.sendMessages(cI, [msgText])
+  message.channel.send(msgText);
 
   bot.fs.writeFileSync('./polls.json', JSON.stringify(p, null, ' '));
 }
 
-function voteOnPoll(msg, uI, cI) {
+function voteOnPoll(msg, message) {
   console.log(p);
   // 0) Get associated variables needed
   var mesg = msg.join(' ');
@@ -84,7 +84,7 @@ function voteOnPoll(msg, uI, cI) {
   msg.shift();
   var opt = msg.join(' ');
   console.log("opt: " + opt);
-  var user = resolveID(uI);
+  var user = message.author.username;
   console.log("uI: " + uI);
 
   // 1) get the poll id and object associated
@@ -95,20 +95,20 @@ function voteOnPoll(msg, uI, cI) {
     console.log(pol);
 
     // Check if user voted in the poll already
-    if(pol.voted.indexOf(user) != -1) {
-      bot.sendMessages(cI, ["<@"+uI + "> You have already voted!"]);
+    if(pol.voted.indexOf(message.author.id) != -1) {
+      bot.sendMessages(cI, ["<@"+message.author.id + "> You have already voted!"]);
     } else {
       if(pol.options.indexOf(opt) != -1) {
         pol.voted.push(user);
         var countID = pol.options.indexOf(opt);
         pol.counts[countID] += 1;
-        bot.sendMessages(cI, ["<@"+ user +"> has voted for: " + opt]);
+        message.channel.send("<@"+ message.author.id +"> has voted for: " + opt);
       } else {
-        bot.sendMessages(cI, ["That is not an option sadly"]);
+        message.channel.send("That is not an option sadly");
       }
     }
   } else {
-    bot.sendMessages(cI, ["That ID doesn't exist yet."]);
+    message.channel.send("That ID doesn't exist yet.");
   }
   // Get index of option selected to add to the respective count index
   bot.fs.writeFileSync('./polls.json', JSON.stringify(p, null, ' '));
@@ -148,16 +148,10 @@ function viewPoll(msg, cI) {
       msgText += (pol.options[i] + " - " + tally + " (" + percent + "%)\n");
     }
     msgText += "```";
-    bot.sendMessages(cI, [msgText]);
+    message.channel.send(msgText);
   } else {
-    bot.sendMessages(cI, ["Poll ID doesn't exist!"]);
+    message.channel.send("Poll ID doesn't exist!");
   }
-}
-
-function resolveID(mention) {
-	mention = mention.toString();
-	uID = mention.replace(/\D/g, "");
-	return uID;
 }
 
 

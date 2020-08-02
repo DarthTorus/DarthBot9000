@@ -10,20 +10,20 @@ function seriesCheck(m,cID) {
     case 'fib':
     case 'fibonacci':
       m.shift();
-      getNthFib(m,cID);
+      getNthFib(m,message);
       break;
     case 'lucas':
       m.shift();
-      getNthLucas(m,cID);
+      getNthLucas(m,message);
       break;
     case 'tri':
     case 'triangle':
       m.shift();
-      getNthTriangle(m,cID);
+      getNthTriangle(m,message);
       break;
     case 'collatz':
       m.shift();
-      getCollatzChain(m,cID);
+      getCollatzChain(m,message);
       break;
     default:
       //Do nothing b/c of user error
@@ -31,7 +31,7 @@ function seriesCheck(m,cID) {
 }
 
 // Gets the Nth Fibonacci term
-function getNthFib(msg, cI) {
+function getNthFib(msg, mesage) {
   var n = Number(msg[0]);
   var term1 = Math.pow(POS_PHI,n);
   var term2 = Math.pow(NEG_PHI,n);
@@ -48,7 +48,7 @@ function getNthFib(msg, cI) {
     msgText += (n + "th");
   }
   msgText += " term is: " + result +"`";
-  bot.sendMessages(cI, [msgText]);
+  message.channel.send(msgText);
 }
 
 // Gets the nth triangular number
@@ -67,11 +67,11 @@ function getNthTriangle(msg, cI) {
     msgText += (n + "th");
   }
   msgText += " term is: " + result +"`";
-  bot.sendMessages(cI, [msgText]);
+  message.channel.send(msgText);
 }
 
 // Gets the Collatz conjecture chain starting from N
-function getCollatzChain(msg,cI) {
+function getCollatzChain(msg,message) {
   var msgText = ""
   var n = Number(msg[0]);
   msgText += "```"+ n + " → ";
@@ -92,10 +92,10 @@ function getCollatzChain(msg,cI) {
   }
   msgText += "```";
 
-  bot.sendMessages(cI, [msgText]);
+  message.channel.send(msgText);
 }
 
-function getNthLucas(msg, cI) {
+function getNthLucas(msg, message) {
   var n = Number(msg[0]);
   var term1 = Math.pow(POS_PHI,n);
   var term2 = Math.pow(NEG_PHI,n);
@@ -112,7 +112,7 @@ function getNthLucas(msg, cI) {
     msgText += (n + "th");
   }
   msgText += " term is: " + result +"`";
-  bot.sendMessages(cI, [msgText]);
+  message.channel.send(msgText);
 }
 
 var seriesFunctions = {
