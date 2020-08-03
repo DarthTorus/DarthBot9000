@@ -42,14 +42,38 @@ function getHelpText() {
 	var extend = "├─";
 	var endTree = "└─";
 	var cont = "│ ";
-	console.log(help);
+	let helpLength = Object.keys(help).length;
+	let helpi = 0;
 	for(var cmd in help) {
-		console.log(cmd);
-		console.log(cmd.commands);
-		hText += (extend+cmd+"\n");
-		if(cmd.commands != undefined || cmd.commands != null) {
-			for(var subcmd in cmd) {
-				hText +=cont+extend+subcmd+"\n";
+		helpi++;
+  	let helpLineMode = extend;
+  	if (helpi == helpLength) {
+    	helpLineMode = endTree;
+  	}
+		hText += helpLineMode + cmd;
+
+		if(help[cmd].alias !=undefined || help[cmd].alias !='') {
+			for(var alias in help[cmd].alias) {
+				hText += ", "+help[cmd].alias[alias];
+			}
+		}
+		 hText += "\n";
+		let subcmdLength = Object.keys(help[cmd].commands).length;
+    let subcmdi = 0;
+		if(subcmdLength > 0) {
+			for(var subcmd in help[cmd].commands) {
+				subcmdi++;
+      	let subcmdLineMode = extend;
+      	if (subcmdi == subcmdLength) {
+        	subcmdLineMode = endTree;
+      	}
+				hText += cont + subcmdLineMode + subcmd;
+				if(help[cmd].commands[subcmd].alias !=undefined || help[cmd].commands[subcmd].alias !='') {
+					for(var subAlias in help[cmd].commands[subcmd].alias) {
+						hText += ", "+help[cmd].commands[subcmd].alias[subAlias];
+					}
+				}
+				hText += "\n";
 			}
 		}
 	}
