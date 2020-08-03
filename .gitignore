@@ -3,3 +3,4 @@ logs/
 *.jpg
 *.png
 *.txt
+node_modules/*

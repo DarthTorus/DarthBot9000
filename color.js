@@ -14,11 +14,13 @@ function colorCheck(m, message) {
       m.shift();
       addColor(m, message);
       break;
+    case 'subtract':
     case 'sub':
       m.shift();
       subColor(m, message);
       break;
     case 'gradient':
+    case 'grad':
       m.shift();
       gradientColors(m, message);
       break;

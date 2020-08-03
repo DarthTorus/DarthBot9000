@@ -85,9 +85,11 @@ function checkCommands(c, text, message) {
 			message.channel.send("<@"+message.author + ">: *You must like big butts then. Don't lie!*");
 			break;
 		case 'roll':
+		case 'dice':
 			rollDice(msg, message);
 			break;
 		case 'coin':
+		case 'toss':
 			coinFlip(msg, message);
 			break;
 		case 'integer':
@@ -97,6 +99,7 @@ function checkCommands(c, text, message) {
 			//coinFlip(msg, chID);
 			break;
 		case 'game':
+		case 'status':
 			msg = msg.join(" ");
 			admin.randomStatus(msg);
 			break;
@@ -104,6 +107,7 @@ function checkCommands(c, text, message) {
 			drawCards(msg, message);
 			break;
 		case 'cipher':
+		case 'code':
 			cipher.cipherCheck(msg, message);
 			break;
 		case 'adryd':
@@ -383,11 +387,11 @@ function rollDice(m, message) {
 function randInteger(m, message) {
 	var randLength = bot.random(1, 75);
 	var int = "";
-	console.log(rand);
+	console.log(randLength);
 	for (var i = 0; i < randLength; i++) {
 		int += bot.random(10).toString();
 	}
-	if(int[0] === "0" && rand >= 2) {
+	if(int[0] === "0" && randLength >= 2) {
 		console.log(int[0]);
 		int = int.slice(1);
 	}
@@ -411,8 +415,8 @@ function map(m, message) {
 	var v = Number(m[0]);
 	var imn = Number(m[1]);
 	var imx = Number(m[2]);
-	var omn = Number(m[3]);
-	var omx = Number(m[4]);
+	var omn = Number(m[3]) || 0;
+	var omx = Number(m[4]) || 1;
 	var result = bot.mapValue(v, imn, imx, omn, omx);
 
 	message.channel.send("`"+result+"`");

@@ -1,3 +1,6 @@
+/**
+  @Author: Darth Torus
+*/
 var bot = process.DiscordBot;
 
 function gitHubCheck(m, cI) {
