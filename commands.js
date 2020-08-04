@@ -93,6 +93,7 @@ function checkCommands(c, text, message) {
 			coinFlip(msg, message);
 			break;
 		case 'integer':
+		case 'int':
 			randInteger(msg, message);
 			break;
 		case 'seq':
@@ -104,6 +105,8 @@ function checkCommands(c, text, message) {
 			admin.randomStatus(msg);
 			break;
 		case 'cards':
+		case 'card':
+		case 'draw':
 			drawCards(msg, message);
 			break;
 		case 'cipher':
@@ -123,8 +126,14 @@ function checkCommands(c, text, message) {
 		case 'repeat':
 			msg = msg.join(" "); //Join with a space
 			repeatMessage(msg, message);
+			try{
+				message.delete();
+			} catch (err) {
+				// Just do nothing
+			}
 			break;
 		case 'reverse':
+		case 'backwards':
 			checkReverse(msg, message);
 			break;
 		case 'insult':
@@ -292,36 +301,60 @@ function get8Ball(text, message) {
 // Flips a coin
 function coinFlip(m, message) {
 	var flips = m[0] || 1;
+	var headOpt = "";
+	var tailOpt = "";
+	if (m.length > 1) {
+		try {
+			var tossOptions = m[1].split('||');
+			headOpt = tossOptions[0];
+			tailOpt = tossOptions[1];
+		} catch (err) {
+			message.channel.send("Please give me two options from which to choose in the form `<opt1>||<opt2>`. Thank you!");
+		}
+	}
+
+
 	const maxFlips = 500;
 	const minFlips = 1
 	var headCount = 0;
 	var tailCount = 0;
 	var headPercent = 0;
 	var tailPercent = 0;
-	if (flips > minFlips) {
+	var optResult = "";
+	if (flips > maxFlips) {
 		message.channel.send("Coin flips set to "+maxFlips+".");
-		flips = minFlips;
+		flips = maxFlips;
 	} else if (flips <= 0) {
 		message.channel.send("Coin flips set to one.");
 		flips = minFlips;
 	}
-	var flipText = "";
+	var flipText = "```\n";
 	var randInt = 0;
 	var ifHeads;
 	for (var i = 1; i <= flips; ++i) {
 		ifHeads = bot.random(2) == 1;
 		//randInt = Math.random() * 2;
 		if (ifHeads) {
-			flipText += "H ";
-			headCount += 1;
+			flipText += "H";
+			headCount++;
 		} else {
-			flipText += "T ";
-			tailCount += 1;
+			flipText += "T";
+			tailCount++;
 		}
 	}
 	headPercent = Math.round(headCount / flips * 100000) / 1000;
 	tailPercent = Math.round(tailCount / flips * 100000) / 1000;
-	message.channel.send("```" + flipText + "\n\nHeads: " + headCount + " - " + headPercent + "%\nTails: " + tailCount + " - " + tailPercent + "%```\n");
+
+	flipText += "\n\n"+ headOpt +" -Heads-: " + headCount + " - " + headPercent + "%";
+	flipText += "%\n"+ tailOpt +" -Tails-: " + tailCount + " - " + tailPercent + "%```\n";
+	flipText += "**";
+	if(tossOptions != null && tossOptions != undefined) {
+		flipText += headCount > tailCount ? headOpt : tailOpt;
+	} else {
+		flipText += headCount > tailCount ? "Heads" : "Tails";
+	}
+	flipText += " wins!**";
+	message.channel.send(flipText);
 }
 // Rolls dice
 function rollDice(m, message) {

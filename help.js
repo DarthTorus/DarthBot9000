@@ -35,6 +35,7 @@ function checkHelp(m, message) {
 function sendHelp(message) {
 	var m = getHelpText();
 	message.author.send(m);
+	message.channel.send("I be sliding into your DMs with my command list.")
 }
 
 function getHelpText() {

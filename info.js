@@ -89,7 +89,8 @@ function sendBotInfo(message) {
 
 function addBotToServer(message) {
 	try {
-		mesage.author.send("Invite link:" + config.addLink);
+		message.author.send("Invite link: " + config.addLink);
+		message.channel.send("I have sent an invite link with the swiftest digital falcon bits could create to your DMs!");
 	}
 	catch (err) {
 		message.channel.send("I couldn't send you a link to add me to your wonderful server!");

@@ -158,7 +158,7 @@ bot.once('ready', () => {
 
 	//var msgID = rawEvent.d.id; //For future reference?
 
-	logText = logTime + message.author + "(" + message.author.id + ") in server \'" + serverName + "\' in channel \'" + channelName + "\':\r\n---" + message.content + "\r\n";
+	logText = logTime + message.author.username + "(" + message.author.id + ") in server \'" + serverName + "\' in channel \'" + channelName + "\':\r\n---" + message.content + "\r\n";
 	logText += "============================================================================\r\n";
 	if (triggerCheck == trigger || message.author.id === bot.id) {
 		if (banned.servers.indexOf(serverID) != -1) {
@@ -172,7 +172,7 @@ bot.once('ready', () => {
 			console.log(colors.yellow("Server ID: " + serverID));
 			console.log(colors.yellow("Channel ID: " + channelID));
 			console.log(colors.blue("Message ID: " + message.id));
-			console.log(colors.cyan(logTime + userName + " - ID: ") + colors.yellow("@" + userID));
+			console.log(colors.cyan(logTime + message.author.username + " - ID: ") + colors.yellow("@" + userID));
 			console.log("in " + colors.magenta(serverName + " - #" + channelName));
 			//console.log(message);
 			//console.log(colors.white(bot.fixMessage(message)));
@@ -292,7 +292,7 @@ bot.disconnect= function(message) {
 		bot.destroy();
 	}
 	catch (err) {
-		
+
 	}
 }
 
