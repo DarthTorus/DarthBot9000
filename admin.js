@@ -18,17 +18,22 @@ function adminCheck(m, message) { // Subcommmand check for main admin command
 		case 'disconnect':
 			bot.disconnect(message);
 			break;
+		case 'bulk':
+		case 'clear':
+			message.channel.clone()
+			message.channel.delete();
+			break;
 		case '-t':
-			tweetCheck(m, cI); // This has parameters, so it must go to a check function of its own
+			tweetCheck(m, message); // This has parameters, so it must go to a check function of its own
 			break;
 		case '-ct':
-			checkNumTweets(cI);
+			checkNumTweets(message);
 			break;
 		case '-sdm':
-			sendDM(m, cI);
+			sendDM(m, message);
 			break;
 		case '-cdm':
-			checkDMS(m, cI);
+			checkDMS(m, message);
 			break;
 		case '-r':
 		case 'reload':
@@ -36,79 +41,79 @@ function adminCheck(m, message) { // Subcommmand check for main admin command
 			break;
 		case '-ar':
 			m.shift();
-			addRole(m, cI);
+			addRole(m, message);
 			break;
 		case '-er':
 			m.shift();
-			changeRole(m, cI);
+			changeRole(m, message);
 			break;
 		case '-dr':
 			m.shift();
-			removeRole(m, cI);
+			removeRole(m, message);
 			break;
 		case '-au':
 			m.shift();
-			addUserToRole(m, cI);
+			addUserToRole(m, message);
 			break;
 		case '-ru':
 			m.shift();
-			removeUserFromRole(m, cI);
+			removeUserFromRole(m, message);
 			break;
 		case '-ku':
 			m.shift();
-			kickUser(m, cI);
+			kickUser(m, message);
 			break;
 		case '-bu':
 			m.shift();
-			banUser(m, cI);
+			banUser(m, message);
 			break;
 		case '-pue':
 			m.shift();
-			prohibitUserExecution(m, cI);
+			prohibitUserExecution(m, message);
 			break;
 		case '-pse':
 			m.shift();
-			prohibitServerExecution(m, cI);
+			prohibitServerExecution(m, message);
 			break;
 		case '-eue':
 			m.shift();
-			enableUserExecution(m, cI);
+			enableUserExecution(m, message);
 			break;
 		case '-ese':
 			m.shift();
-			enableServerExecution(m, cI);
+			enableServerExecution(m, message);
 			break;
 		case '-ubu':
 			m.shift();
-			unbanUser(m, cI);
+			unbanUser(m, message);
 			break;
 		case '-mu':
 			m.shift();
-			muteUser(m, cI);
+			muteUser(m, message);
 			break;
 		case '-umu':
 			m.shift();
-			unmuteUser(m, cI);
+			unmuteUser(m, message);
 			break;
 		case '-du':
 			m.shift();
-			deafenUser(m, cI);
+			deafenUser(m, message);
 			break;
 		case '-udu':
 			m.shift();
-			undeafenUser(m, cI);
+			undeafenUser(m, message);
 			break;
 		case '-su':
 			m.shift();
-			silenceUser(m, cI);
+			silenceUser(m, message);
 			break;
 		case '-usu':
 			m.shift();
-			unsilenceUser(m, cI);
+			unsilenceUser(m, message);
 			break;
 		case '-eun':
 			m.shift();
-			editUserNick(m, cI);
+			editUserNick(m, message);
 			break;
 		case 'ping':
 			m.shift();
@@ -547,7 +552,7 @@ function banUser(msg, cID) {
 	});
 }
 
-function prohibitUserExecution(msg, cID) {
+function prohibitUserExecution(msg, message) {
 	var userID = msg[0];
 	var uID = userID.toString();
 	uID = userID.replace(/\D/g, "");

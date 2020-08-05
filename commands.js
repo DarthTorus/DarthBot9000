@@ -300,16 +300,30 @@ function get8Ball(text, message) {
 }
 // Flips a coin
 function coinFlip(m, message) {
-	var flips = m[0] || 1;
+	var flips;
+	if (Number(m[1])) {
+		m.unshift(1);
+		flips = m.shift() || 1;
+		m = m.join(" ");
+	}
+	else {
+		flips = m.shift();
+		m = m.join(" ");
+	}
+
 	var headOpt = "";
 	var tailOpt = "";
 	if (m.length > 1) {
 		try {
-			var tossOptions = m[1].split('||');
+			var tossOptions = m.split('|');
 			headOpt = tossOptions[0];
 			tailOpt = tossOptions[1];
+			if(tossOptions.length == 1) {
+				message.channel.send("Please give me two options from which to choose in the form `[opt1|opt2]`. Thank you!");
+				return false;
+			}
 		} catch (err) {
-			message.channel.send("Please give me two options from which to choose in the form `<opt1>||<opt2>`. Thank you!");
+			//Do nothing?
 		}
 	}
 

@@ -2,7 +2,7 @@ var bot = process.DiscordBot;
 var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijlmnopqrstuvwxyz0123456789-_";
 var p = require("./polls.json");
 var currentID = "";
-function pollCheck(m, uID, cID) {
+function pollCheck(m, message) {
 	switch (m[0]) {
     case 'create': //create command for polls
     case 'make':
@@ -39,7 +39,7 @@ function createPoll(msg, message) { //Creates a poll
   currentID = pID;
   console.log(bot.colors.cyan("pID: " + pID));
   var msgText = "";
-  var arr = mesg.split(" | "); //seperates string 'msg' into array 'arr' (first value of arr will be set to question ('qstn'), other values will be vote options
+  var arr = mesg.split("|"); //seperates string 'msg' into array 'arr' (first value of arr will be set to question ('qstn'), other values will be vote options
   var qstn = arr[0];
   console.log
   arr.shift();
@@ -71,41 +71,43 @@ function voteOnPoll(msg, message) {
   console.log(p);
   // 0) Get associated variables needed
   var mesg = msg.join(' ');
-  var msg = mesg.split(' | ');
+	console.log("mesg: "+mesg);
+  var msg = mesg.split('|');
 	console.log(msg);
   var pID = "";
   if(msg.length > 1) {
     pID = msg[0];
 		currentID = pID;
+	  msg.shift();
   } else {
     pID = currentID;
   }
   console.log("pID: " + pID);
-  msg.shift();
   var opt = msg.join(' ');
   console.log("opt: " + opt);
   var user = message.author.username;
-  console.log("uI: " + uI);
+  console.log("uI: " + message.author.id);
 
   // 1) get the poll id and object associated
   if(p.polls.hasOwnProperty(pID)) {
     // set set current poll using the pID
     var pol = p.polls[pID];
-    console.log(bot.colors.yellow("Poll:"));
-    console.log(pol);
+
 
     // Check if user voted in the poll already
     if(pol.voted.indexOf(message.author.id) != -1) {
-      bot.sendMessages(cI, ["<@"+message.author.id + "> You have already voted!"]);
+      message.channel.send("<@"+message.author.id + "> You have already voted!");
     } else {
       if(pol.options.indexOf(opt) != -1) {
-        pol.voted.push(user);
-        var countID = pol.options.indexOf(opt);
-        pol.counts[countID] += 1;
+        pol.voted.push(message.author.id);
+        var optionID = pol.options.indexOf(opt);
+        pol.counts[optionID] += 1;
         message.channel.send("<@"+ message.author.id +"> has voted for: " + opt);
       } else {
         message.channel.send("That is not an option sadly");
       }
+			console.log(bot.colors.yellow("Poll:"));
+	    console.log(pol);
     }
   } else {
     message.channel.send("That ID doesn't exist yet.");
@@ -114,7 +116,7 @@ function voteOnPoll(msg, message) {
   bot.fs.writeFileSync('./polls.json', JSON.stringify(p, null, ' '));
 }
 
-function viewPoll(msg, cI) {
+function viewPoll(msg, message) {
   console.log(p);
   var pID = "";
   // 0) Get associated variables needed
