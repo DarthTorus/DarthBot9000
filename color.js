@@ -3,6 +3,10 @@ var bot = process.DiscordBot;
 
 function colorCheck(m, message) {
   switch (m[0]) {
+    case 'bilinear':
+      m.shift();
+      bilinearLerp(m,message);
+      break;
     case 'convert':
       m.shift();
       convertColor(m, message);
@@ -32,6 +36,64 @@ function colorCheck(m, message) {
       message.channel.send("Hey... uhh.. color me surprised, but I don't know what you want me to do!");
       //do nothing
   }
+}
+//Bilinear interpolation of 4 corner colors
+function bilinearLerp(m, message) {
+  var imgWidth = 600;
+  var imgHeight = 600;
+  var imgPath = "./bilinearInterpolation.jpg";
+  var imgResult = bot.PNGImage.createImage(imgWidth, imgHeight);
+  var colTL = {red: bot.random(255), green: bot.random(255), blue: bot.random(255), alpha: 255};
+  var colTR = {red: bot.random(255), green: bot.random(255), blue: bot.random(255), alpha: 255};
+  var colBL = {red: bot.random(255), green: bot.random(255), blue: bot.random(255), alpha: 255};
+  var colBR = {red: bot.random(255), green: bot.random(255), blue: bot.random(255), alpha: 255};
+  var msgText = "";
+  console.log(colTL);
+  console.log(colTR);
+  console.log(colBL);
+  console.log(colBR);
+  //Set our math variables for easier math
+  var x2 = imgWidth;
+  var x1 = 0;
+  var y2 = imgHeight;
+  var y1 = 0;
+  var xdenom = x2-x1;
+  var ydenom = y2-y1;
+
+  for(var x = 0; x <=imgHeight; x++) {
+    var f1 = (x2-x)/(xdenom);
+    var f2 = (x-x1)/(xdenom);
+    var c = {red:  f1 * colTL.red, green: f1 * colTL.green, blue: f1 * colTL.blue, alpha: 255};
+    var d = {red:  f2 * colTR.red, green: f2 * colTR.green, blue: f2 * colTR.blue, alpha: 255};
+    var e = {red:  f1 * colBL.red, green: f1 * colBL.green, blue: f1 * colBL.blue, alpha: 255};
+    var f = {red:  f2 * colBR.red, green: f2 * colBR.green, blue: f2 * colBR.blue, alpha: 255};
+    var gSum= {red:  c.red+d.red, green: c.green+d.green, blue: c.blue+d.blue, alpha: 255};
+    var hSum= {red:  e.red+f.red, green: e.green+f.green, blue: e.blue+f.blue, alpha: 255};
+    for(var y = 0; y <= imgWidth; y++) {
+      var f3 = (y2-y)/(ydenom);
+      var f4 = (y-y1)/(ydenom);
+      var i = {red:  f3 * gSum.red, green: f3 * gSum.green, blue: f3 * gSum.blue, alpha: 255};
+      var j = {red:  f4 * hSum.red, green: f4 * hSum.green, blue: f4 * hSum.blue, alpha: 255};
+      var kSum = {red:  i.red+j.red, green: i.green+j.green, blue: i.blue+j.blue, alpha: 255};
+      imgResult.setPixel(x,y, kSum);
+    }
+  }
+  msgText = "**Top Left Color -** r: "+ colTL.red + ", b: " + colTL.blue + ", g: " + colTL.green + "\n";
+  msgText += "**Top Right Color -** r: "+ colTR.red + ", b: " + colTR.blue + ", g: " + colTR.green + "\n";
+  msgText += "**Bottom Left Color -** r: "+ colBL.red + ", b: " + colBL.blue + ", g: " + colBL.green + "\n";
+  msgText += "**Bottom Right Color -** r: "+ colBR.red + ", b: " + colBR.blue + ", g: " + colBR.green ;
+  imgResult.writeImage(imgPath, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+  message.channel.send(msgText);
+  message.channel.send({
+    files: [{
+      attachment: imgPath,
+      name: 'bilinearInterpolation.jpg'
+    }]
+  });
 }
 
 function drawSolidImage(imgColor, message) {

@@ -77,10 +77,29 @@ function calcCheck(m, message) {
 			m.shift();
 			calcQuadratic(m, message);
 			break;
+		case 'average':
+		case 'avg':
+		case 'mean':
+			m.shift()
+			calcAverage(m, message);
+			break;
 		default:
 			m = m.join('');
 			calcEquation(m, message);
 			break;
+	}
+}
+
+function calcAverage(msg, message) {
+	var avg = 0;
+	if(msg.length >0) {
+		for(var i = 0; i <msg.length; i++) {
+			avg += Number(msg[i]);
+		}
+		avg /= msg.length;
+		message.channel.send("Average equals: `"+avg+"`");
+	} else {
+		message.channel.send ("Can't average nothing.");
 	}
 }
 
