@@ -78,21 +78,26 @@ function bilinearLerp(m, message) {
       imgResult.setPixel(x,y, kSum);
     }
   }
-  msgText = "**Top Left Color -** r: "+ colTL.red + ", b: " + colTL.blue + ", g: " + colTL.green + "\n";
-  msgText += "**Top Right Color -** r: "+ colTR.red + ", b: " + colTR.blue + ", g: " + colTR.green + "\n";
-  msgText += "**Bottom Left Color -** r: "+ colBL.red + ", b: " + colBL.blue + ", g: " + colBL.green + "\n";
-  msgText += "**Bottom Right Color -** r: "+ colBR.red + ", b: " + colBR.blue + ", g: " + colBR.green ;
+  msgText = "**Top Left Color -** r: "+ colTL.red + ", g: " + colTL.green + ", b: " + colTL.blue +"\n";
+  msgText += "**Top Right Color -** r: "+ colTR.red + ", g: " + colTR.green + ", b: " + colTR.blue + "\n";
+  msgText += "**Bottom Left Color -** r: "+ colBL.red + ", g: " + colBL.green + ", b: " + colBL.blue + "\n";
+  msgText += "**Bottom Right Color -** r: "+ colBR.red + ", g: " + colBR.green + ", b: " + colBR.blue;
+  message.channel.send(msgText);
+  sendImage(imgResult, imgPath, 'bilinearInterpolation.jpg', message);
+
+}
+
+function sendImage(imgResult, imgPath, imgName, message) {
   imgResult.writeImage(imgPath, function(err) {
     if (err) {
       throw err;
     }
-  });
-  message.channel.send(msgText);
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'bilinearInterpolation.jpg'
-    }]
+    message.channel.send({
+      files: [{
+        attachment: imgPath,
+        name: imgName
+      }]
+    });
   });
 }
 
@@ -111,18 +116,7 @@ function drawSolidImage(imgColor, message) {
   };
   console.log(color);
   img.fillRect(0, 0, size, size, color);
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-  });
-
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'colorSquare.jpg'
-    }]
-  });
+  sendImage(img, imgPath, 'colorSquare.jpg', message);
 }
 
 function drawAddedImage(color1, color2, result, message) {
@@ -160,19 +154,7 @@ function drawAddedImage(color1, color2, result, message) {
   img.fillRect(0, 0, 300, 300, col1);
   img.fillRect(100, 100, 300, 300, col2);
   img.fillRect(100, 100, 200, 200, res);
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'addedSquare.jpg'
-    }]
-  });
+  sendImage(img, imgPath, 'addedSquare.jpg', message);
 }
 
 function drawSubImage(color) {}
@@ -372,7 +354,7 @@ function gradientColors(msg, message) {
       mesg[6] = bot.random(minMid, maxMid + 1);
     }
 
-    gradientColors(mesg, cID);
+    gradientColors(mesg, message);
   } else {
     startCol[0] = Number(msg[0]);
     startCol[1] = Number(msg[1]);
@@ -456,19 +438,7 @@ function gradientColors(msg, message) {
     img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
     // Send all of resultText to the user
     //bot.sendMessages(cID, [resultText]);
-    img.writeImage(imgPath, function(err) {
-      if (err) {
-        throw err;
-      }
-      console.log('Written to the file');
-      console.log(imgPath);
-    });
-    message.channel.send({
-      files: [{
-        attachment: imgPath,
-        name: "gradientSquare.jpg"
-      }]
-    });
+    sendImage(img, imgPath, 'gradientSquare.jpg', message);
   } else if (msg.length == 3) {
     startCol = HEXtoINT(msg[0]);
     endCol = HEXtoINT(msg[1]);
@@ -707,20 +677,9 @@ function getTriadic(msg, message) {
   msgText += ("1: " + color1[0] + " " + color1[1] + " " + color1[2] + "\n");
   msgText += ("2: " + color2[0] + " " + color2[1] + " " + color2[2] + "\n");
   msgText += ("3: " + color3[0] + " " + color3[1] + " " + color3[2] + "```\n");
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: "triadicColor.jpg"
-    }],
-    content: msgText
-  });
+
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'triadicColor.jpg', message);
 }
 
 function getAnalogous(msg, message) {
@@ -819,22 +778,8 @@ function getAnalogous(msg, message) {
   img.fillRect(100, 0, size / 5, size, imgColor1);
   img.fillRect(150, 0, size / 5, size, imgColor4);
   img.fillRect(200, 0, size / 5, size, imgColor5);
-
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: "triadicColor.jpg",
-      content: msgText
-    }],
-    content: msgText
-  });
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'analogColor.jpg', message);
 
 }
 
@@ -918,20 +863,9 @@ function getSqTetra(msg, message) {
   img.fillRect(0, 125, size / 2, size / 2, imgColor3);
   img.fillRect(125, 125, size / 2, size / 2, imgColor4);
 
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'squareTetradic.jpg'
-    }],
-    content: msgText
-  });
+
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'squareTetradic.jpg', message);
 }
 
 function getRectTetra(msg, message) {
@@ -1014,21 +948,8 @@ function getRectTetra(msg, message) {
   img.fillRect(0, 0, size / 2, size / 2, imgColor2)
   img.fillRect(0, 125, size / 2, size / 2, imgColor3);
   img.fillRect(125, 125, size / 2, size / 2, imgColor4);
-
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'rectTetradic.jpg'
-    }],
-    content: msgText
-  });
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'rectTetradic.jpg', message);
 }
 
 // this is a gradient ending at white. use 6 midpoints
@@ -1095,20 +1016,8 @@ function getTints(msg, message) {
   img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
   // Send all of resultText to the user
   //bot.sendMessages(cID, [resultText]);
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'addedSquare.jpg'
-    }],
-    content: msgText
-  });
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'tintGradient.jpg', message);
 }
 
 // this is a gradient ending at gray. use 6 midpoints and maybe pick the percentage of gray?
@@ -1185,22 +1094,9 @@ function getTones(msg, message) {
   };
   //console.log((midpts + 1) * barWidth);
   img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
-  // Send all of resultText to the user
-  //bot.sendMessages(cID, [resultText]);
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'toneGradient.jpg'
-    }],
-    content: msgText
-  });
+
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'toneGradient.jpg', message);
 }
 
 // this is a gradient ending at black. use 6 midpoints
@@ -1265,20 +1161,8 @@ function getShades(msg, message) {
   };
   //console.log((midpts + 1) * barWidth);
   img.fillRect((midpts + 1) * barWidth, 0, barWidth, size, barColor);
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'shadeGradient.jpg'
-    }],
-    content: msgText
-  });
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'shadeGradient.jpg', message);
 }
 
 function getSplitComp(msg, message) {
@@ -1344,20 +1228,8 @@ function getSplitComp(msg, message) {
   img.fillRect(80, 0, size / 3, size, imgColor1)
   img.fillRect(160, 0, size / 3, size, imgColor3);
 
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'splitComp.jpg'
-    }],
-    content: msgText
-  });
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'splitComp.jpg', message);
 }
 
 // This is easy as each value should total 255. So subtract from 255.
@@ -1406,20 +1278,8 @@ function getComplementary(msg, message) {
   img.fillRect(0, 0, size, size / 2, imgColor1);
   img.fillRect(0, 128, size, size / 2, imgColor2);
 
-  img.writeImage(imgPath, function(err) {
-    if (err) {
-      throw err;
-    }
-    console.log('Written to the file');
-    console.log(imgPath);
-  });
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: 'comp.jpg'
-    }],
-    content: msgText
-  });
+  message.channel.send(msgText);
+  sendImage(img, imgPath, 'comp.jpg', message);
 }
 
 
