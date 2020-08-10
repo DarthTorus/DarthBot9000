@@ -189,6 +189,7 @@ bot.once('ready', () => {
 			} else if (bot.inStandby) {
 				//Bot in standby, didn't receive wake command from me
 				console.log("Sleeping: " + bot.inStandby);
+				message.channel.send("I am asleep.");
 				return;
 			} else { //Bot is not in sleep mode. Anyone can send commands
 				console.log(colors.cyan("Checking Commands"));

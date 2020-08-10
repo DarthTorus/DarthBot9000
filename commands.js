@@ -4,11 +4,12 @@ var Twitter = require("twitter");
 //var utils = require("mc-utils");
 //var concat = require("concat-stream");
 var PNGImage = require('pngjs-image');
+var gameList = require("./statusList.json");
 
-const reqFiles = ["config.json","admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json","cipher.js","github.js"];
-const names = ["config","admin", "banned", "calc", "color",
-	"help", "info", "insults", "series","polls","rpg","cipher","gitH"]; // Names of variables
+const reqFiles = ["npc.js","config.json","admin.js", "banned.json", "calc.js",
+	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json","cipher.js","github.js","tarot.js"];
+const names = ["npc","config","admin", "banned", "calc", "color",
+	"help", "info", "insults", "series","polls","rpg","cipher","gitH", "tarot"]; // Names of variables
 
 function requireFiles() {
 	for (var name of names) {
@@ -43,6 +44,7 @@ bot.admin = admin;
 bot.banned = banned;
 bot.insults = insults;
 bot.polls = polls;
+bot.npc = npc;
 bot.rpg = rpg;
 bot.darth = darth;
 bot.server = server;
@@ -101,8 +103,7 @@ function checkCommands(c, text, message) {
 			break;
 		case 'game':
 		case 'status':
-			msg = msg.join(" ");
-			admin.randomStatus(msg);
+			gameCheck(msg, message);
 			break;
 		case 'cards':
 		case 'card':
@@ -125,11 +126,13 @@ function checkCommands(c, text, message) {
 		case 'echo':
 		case 'repeat':
 			msg = msg.join(" "); //Join with a space
-			repeatMessage(msg, message);
-			try{
-				message.delete();
-			} catch (err) {
-				// Just do nothing
+			if(message.author.id === config.ownerID){
+				repeatMessage(msg, message);
+				try{
+					message.delete();
+				} catch (err) {
+					// Just do nothing
+				}
 			}
 			break;
 		case 'reverse':
@@ -163,6 +166,12 @@ function checkCommands(c, text, message) {
 		case "10-print":
 			do10Print(msg, message);
 			break;
+		case "npc":
+			npc.npcCheck(message);
+			break;
+		case 'tarot':
+			tarot.tarotCheck(msg, message);
+			break;
 		// case "gh":
 		// case "git":
 		// case "github":
@@ -173,6 +182,47 @@ function checkCommands(c, text, message) {
 		default: //Default to this if can't find a command
 			message.channel.send(selectRandonCmdErr());
 			break;
+	}
+}
+
+function gameCheck(m, message) {
+	var gameType = "";
+	console.log(m);
+	if(m[0] == "add") {
+		m.shift();
+		gameType = m[0].toUpperCase();
+		if(gameType ==="WATCHING") {
+			m.shift();
+			m = m.join(" ");
+			gameList[gameType].push(m);
+			bot.user.setActivity(m, {type: gameType});
+			if(!gameList[gameType].hasOwnProperty(m)) {
+				bot.fs.writeFileSync('./statusList.json', JSON.stringify(gameList, null, ' '));
+			}
+		} else if(gameType === "PLAYING") {
+			m.shift();
+			m = m.join(" ");
+			gameList[gameType].push(m);
+			bot.user.setActivity(m, {type: gameType});
+			if(!gameList[gameType].hasOwnProperty(m)) {
+				bot.fs.writeFileSync('./statusList.json', JSON.stringify(gameList, null, ' '));
+			}
+		} else {
+			message.channel.send("I can't use an empty status");
+		}
+	} else {
+		gameType = m[0].toUpperCase();
+		if(gameType ==="WATCHING") {
+			m.shift()
+			m = m.join(" ");
+			bot.user.setActivity(m, {type: gameType});
+		} else if(gameType ==="PLAYING" ) {
+			m.shift()
+			m = m.join(" ");
+			bot.user.setActivity(m, {type: gameType});
+		} else {
+			admin.randomStatus("0");
+		}
 	}
 }
 
@@ -252,7 +302,7 @@ function getRpgItem(message) {
 		var randBool = bot.random() < 0.5;
 		var randVal = 0;
 		if(randBool) {
-			randVal = bot.mapValue(bot.random(-15,20),-15,20,-75,100);
+			randVal = bot.mapValue(bot.random(-15,10),-10,10,-50,50);
 			if(randVal >= 0) {
 				randVal = "+" + randVal;
 			}
@@ -301,31 +351,31 @@ function get8Ball(text, message) {
 // Flips a coin
 function coinFlip(m, message) {
 	var flips;
-	if (Number(m[1])) {
-		m.unshift(1);
-		flips = m.shift() || 1;
-		m = m.join(" ");
+	if (isNaN(m[0])) {
+		flips = 1;
 	}
 	else {
-		flips = m.shift();
-		m = m.join(" ");
+		flips = m[0];
+		m.shift();
 	}
-
+	if(m.length > 1) {
+		m = m.join(" ");
+	} else {
+		m = m[0];
+	}
 	var headOpt = "";
 	var tailOpt = "";
-	if (m.length > 1) {
-		try {
-			var tossOptions = m.split('|');
-			headOpt = tossOptions[0];
-			tailOpt = tossOptions[1];
-			if(tossOptions.length == 1) {
-				message.channel.send("Please give me two options from which to choose in the form `[opt1|opt2]`. Thank you!");
-				return false;
-			}
-		} catch (err) {
-			//Do nothing?
-		}
-	}
+	var tossOptions = "";
+		tossOptions = m.split('|');
+		headOpt = tossOptions[0] + " ";
+		tailOpt = tossOptions[1] + " ";
+
+	// } catch (err) {
+	// 	if(tossOptions.length == 1) {
+	// 		message.channel.send("Please give me two options from which to choose in the form `[opt1|opt2]`. Thank you!");
+	// 		return false;
+	// 	}
+	// }
 
 
 	const maxFlips = 500;
@@ -359,15 +409,15 @@ function coinFlip(m, message) {
 	headPercent = Math.round(headCount / flips * 100000) / 1000;
 	tailPercent = Math.round(tailCount / flips * 100000) / 1000;
 
-	flipText += "\n\n"+ headOpt +" -Heads-: " + headCount + " - " + headPercent + "%";
-	flipText += "%\n"+ tailOpt +" -Tails-: " + tailCount + " - " + tailPercent + "%```\n";
+	flipText += "\n\n"+ headOpt +"-Heads-: " + headCount + " - " + headPercent + "%";
+	flipText += "%\n"+ tailOpt +"-Tails-: " + tailCount + " - " + tailPercent + "%```\n";
 	flipText += "**";
 	if(tossOptions != null && tossOptions != undefined) {
 		flipText += headCount > tailCount ? headOpt : tailOpt;
 	} else {
-		flipText += headCount > tailCount ? "Heads" : "Tails";
+		flipText += headCount > tailCount ? "Heads " : "Tails ";
 	}
-	flipText += " wins!**";
+	flipText += "wins!**";
 	message.channel.send(flipText);
 }
 // Rolls dice

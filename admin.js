@@ -1,5 +1,5 @@
 var bot = process.DiscordBot;
-
+var gameList = require("./statusList.json");
 function adminCheck(m, message) { // Subcommmand check for main admin command
 	console.log(m[0]);
 	switch (m[0]) {
@@ -127,7 +127,7 @@ function adminCheck(m, message) { // Subcommmand check for main admin command
 function sleep() {
 	bot.inStandby = true;
 	//console.log("Bot sleeping (first check) = " + bot.inStandby);
-	randomStatus("in dreams");
+	bot.user.setActivity("in dreams", {type: "PLAYING"});
 }
 
 function wake(cID) {
@@ -138,47 +138,9 @@ function wake(cID) {
 
 function randomStatus(msg) {
 	var gameString = msg || "0";
-	var randStat = [
-		"for world domination",
-		"with your souls",
-		"in Narnia",
-		"with butts",
-		"with ideas",
-		"with space-time",
-		"in Westeros",
-		"chess",
-		"the song of my people",
-		"Mozart",
-		"with fire",
-		"with brains",
-		"with bots",
-		"with matches",
-		"with friends",
-		"Rocket League",
-		"Skyrim",
-		"on an ancient burial ground",
-		"poker",
-		"with binary",
-		"the macarena",
-		"a song of Ice and Fire",
-		"Baby Seal Clubbing Sim",
-		"with lava",
-		"on your graves",
-		"with Uncle Bob",
-		"with Twitter API",
-		"with Discord API",
-		"in LA-LA land",
-		"with nuclear materials",
-		"w/ nuclear fallout",
-		"with Deathnotes",
-		"with integrals",
-		"with derivatives",
-		"with infinite series",
-		"musical scales",
-		"map-making",
-		"D&D",
-		"chicken"
-	];
+
+	var statType = bot.random() < .5 ? "PLAYING" : "WATCHING";
+	var randStat = gameList[statType];
 	var bannedWords = ["fuck", "porn", "p0rn", "sh1t", "shit", "damn", "d@mn", "ass", "a$$","@$$",
 		"twat","cunt","bitch","b1tch", "douche", "d0uche", "dick", "d1ck"];
 	var containsBanned = false;
@@ -189,7 +151,7 @@ function randomStatus(msg) {
 	}
 	if (gameString == "0" || containsBanned) {
 		var status = bot.random(randStat.length);
-		bot.user.setActivity(randStat[status]);
+		bot.user.setActivity(randStat[status], {type: statType});
 	} else {
 		bot.user.setActivity(msg);
 	}
