@@ -1,5 +1,13 @@
-*.json
+config.json
+banned.json
+insult.json
+insults.json
+package.json
+package-lock.json
 logs/
+docs/
+examples/
+lib/
 *.jpg
 *.png
 *.txt

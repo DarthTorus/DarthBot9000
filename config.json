@@ -1,0 +1,45 @@
+{
+	"twitter": {
+		"s": {
+			"ck": "oZXGoakpsyzNb5MKOSHQRKS2N",
+			"cs": "s8iizIUthkiEQLKgA7gBNNXCGrmujBc255cT4VkfU4UQ5TRnTk",
+			"tk": "725778351378587649-KhZxZT0t59uj5d0Ci3WUntzpKSksF2J",
+			"ts": "A7m8DKOGAhUQEaEBRd8W3uXwpDX1lmAeyyA3ZX0l7Vpab"
+		},
+		"o": {
+			"ck": "BWSDCA0XhA4VpE3RsEe61KCKn",
+			"cs": "u7kpwZnnWlb9nPC5nKQi4rPOiH1vkCpTR2QMqMSd24f1nekget",
+			"tk": "2608537332-BlitRwV8Y87KyyeMZeqvE1elwN0gqiMFYfWSahy",
+			"ts": "LM8tGfUJXhgHUXvtEFQPEsC6rPPzvqRYGHTGInGDQnL6L"
+		},
+		"b": {
+			"ck": "hXHwP0joLeWL2vj6XnJFPwlCE",
+			"cs": "xwaPpD1yXkZ8adJ5zWUmprtjAx2nUZRZUcXvTuNPYruSro4V00",
+			"tk": "876576366023651329-vid8kToGhpsNWmqnVlzwougpIBpLxAb",
+			"ts": "Nv9PmnYgEKwGHCeF4OqESDe62eJa3mbVRtJ2yvcMbQ7iA"
+		},
+		"l": {
+			"s": "http://twitter.com/DunegwainMC",
+			"o": "http://twitter.com/Darth_Torus",
+			"b": "http://twitter.com/Formu_bot"
+		}
+	},
+	"token": "NzM1OTU3MDIxOTQxMDM5MTk0.Xxn1KQ.qjHyVuPv1kuzZ9dAczlO7Ig-vYo",
+	"qrcode": "http://bit.ly/202ycbp",
+	"ownerID": "378310972269527050",
+	"clientID": "735957021941039194",
+	"clientSecret": "IysMQXFaD1XhQgXaoyehhNZB2gYo6LI-",
+	"trigger":">>>",
+	"addLink":"https://discord.com/oauth2/authorize?client_id=735957021941039194&scope=bot&permissions=8",
+	"cipherMatrix":[
+			 ["I","9","k","+","i","c","F","n","u"],
+		   [":","m","B","G","Z","{","&","j","y"],
+		   ["C","X","}",")","8","s","l","$","J"],
+		   ["r","z","\"","2","U","]","D","%","K"],
+		   ["[","*","-",",","6","@","R","M","Q"],
+		   ["W","?","h","|","f","o","A","5","w"],
+		   [">","e",";","<","O","!","1","0","a"],
+		   ["(",".","#","~","N","E","q","^","7"],
+		   ["P","d","S","V","3","b","H","T","L"],
+		   ["t","g","v","4","p","_","Y","x","="]]
+}
