@@ -9,7 +9,7 @@
 1. If there are subcommands associated with this module:
    1. Create a function and name it `<global variable of module>Check(){}`
       1. For example, my `admin.js` file has `adminCheck()`.
-      1. Make sure to put in any parameters needed, usually msg and channelID.
+      1. Make sure to put in any parameters needed, usually msg and the object `message`.
    1. Use a `switch case` block in the newly created check function to test for subcommands
 1. At the bottom of the file insert this: 
 ```javascript
