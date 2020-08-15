@@ -7,9 +7,10 @@ var PNGImage = require('pngjs-image');
 var gameList = require("./statusList.json");
 
 const reqFiles = ["npc.js","config.json","admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json","cipher.js","github.js","tarot.js"];
+	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json",
+"cipher.js","github.js","tarot.js","matrix.js"];
 const names = ["npc","config","admin", "banned", "calc", "color",
-	"help", "info", "insults", "series","polls","rpg","cipher","gitH", "tarot"]; // Names of variables
+	"help", "info", "insults", "series","polls","rpg","cipher","gitH", "tarot","matrix"]; // Names of variables
 
 function requireFiles() {
 	for (var name of names) {
@@ -163,6 +164,8 @@ function checkCommands(c, text, message) {
 		case 'normalize':
 			map(msg, message);
 			break;
+		case 'matrix':
+			matrixCheck(m,message);
 		case "rpg":
 			getRpgItem(message);
 			break;
