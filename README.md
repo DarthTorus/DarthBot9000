@@ -3,7 +3,7 @@
 
 ### Adding a module
 
-1. In `commands.js` go to `const reqFiles` and add the name of the new module as a `key: value` pair into the Object where `key` is the global variable you want to use and `value` is the file name for the new module. For example `npc: "npc.js"
+1. In `commands.js` go to `const reqFiles` and add the name of the new module as a `key: value` pair into the Object where `key` is the global variable you want to use and `value` is the file name for the new module. For example `npc: "npc.js"`
 1. In your new module, the first line should be `var bot = process.DiscordBot;`.
 1. If there are subcommands associated with this module:
    1. Create a function and name it `<global variable of module>Check(){}`
