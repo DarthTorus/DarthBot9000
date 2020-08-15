@@ -15,9 +15,7 @@ function tarotCheck(m, message) {
     default:
       message.channel.send("I'm sorry. I can't seem to find the card you're looking for.");
       break;
-
   }
-
 }
 
 function pickRandomTarotCard(message) {
