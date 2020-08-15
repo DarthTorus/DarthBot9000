@@ -6,17 +6,33 @@ var Twitter = require("twitter");
 var PNGImage = require('pngjs-image');
 var gameList = require("./statusList.json");
 
-const reqFiles = ["npc.js","config.json","admin.js", "banned.json", "calc.js",
-	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json",
-"cipher.js","github.js","tarot.js","matrix.js"];
-const names = ["npc","config","admin", "banned", "calc", "color",
-	"help", "info", "insults", "series","polls","rpg","cipher","gitH", "tarot","matrix"]; // Names of variables
+// const reqFiles = ["npc.js","config.json","admin.js", "banned.json", "calc.js",
+// 	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json",
+// "cipher.js","github.js","tarot.js","matrix.js"];
+const reqFiles = {
+	npc:"npc.js",
+	config: "config.json",
+	admin: "admin.js",
+	banned: "banned.json",
+	calc: "calc.js",
+	color: "color.js",
+	help: "help.js",
+	info: "info.js",
+	insults:"insults.json",
+	series:"series.js",
+	polls:"poll.js",
+	rpg: "rpg.json",
+	cipher: "cipher.js",
+	gitH: "github.js",
+	tarot: "tarot.js",
+	matrix: "matrix.js"
+}; // Names of variables
 
 function requireFiles() {
-	for (var name of names) {
-		var fileIndex = names.indexOf(name);
-		global[name] = require("./" + reqFiles[fileIndex]);
-		console.log(colors.yellow(reqFiles[fileIndex]) + colors.cyan(" loaded successfully"));
+	for (var name in reqFiles) {
+		var fileName = reqFiles[name];
+		global[name] = require("./" + fileName);
+		console.log(colors.yellow(fileName) + colors.cyan(" loaded successfully"));
 	}
 }
 
@@ -165,7 +181,8 @@ function checkCommands(c, text, message) {
 			map(msg, message);
 			break;
 		case 'matrix':
-			matrixCheck(m,message);
+			matrix.matrixCheck(msg,message);
+			break;
 		case "rpg":
 			getRpgItem(message);
 			break;

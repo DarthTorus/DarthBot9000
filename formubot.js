@@ -6,16 +6,15 @@ const DiscordBot = require('discord.js');
 var colors = require('colors/safe');
 var PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
-const reqFiles = ["commands.js"];
-const names = ["commands"]; // Names of variables
+const reqFiles = {commands:"commands.js"}; // Names of variables
 
 
 
 function requireFiles() {
-	for (var name of names) {
-		var fileIndex = names.indexOf(name);
-		global[name] = require("./" + reqFiles[fileIndex]);
-		console.log(colors.yellow(reqFiles[fileIndex]) + colors.cyan(" loaded successfully"));
+	for (var name in reqFiles) {
+		var fileName = reqFiles[name];
+		global[name] = require("./" + fileName);
+		console.log(colors.yellow(fileName) + colors.cyan(" loaded successfully"));
 	}
 }
 
@@ -114,7 +113,7 @@ bot.once('ready', () => {
 		serverName = message.guild.name;
 		serverID = message.guild.id;
 		channelName = message.channel.name;
-		channelId = message.channel.id
+		channelID = message.channel.id
 	} else {
 		serverName = "Direct Messages";
 		serverID = message.channel.id;
@@ -171,7 +170,7 @@ bot.once('ready', () => {
 			// Do the command
 			console.log(colors.yellow("Server ID: " + serverID));
 			console.log(colors.yellow("Channel ID: " + channelID));
-			console.log(colors.blue("Message ID: " + message.id));
+			console.log(colors.yellow("Message ID: " + message.id));
 			console.log(colors.cyan(logTime + message.author.username + " - ID: ") + colors.yellow("@" + userID));
 			console.log("in " + colors.magenta(serverName + " - #" + channelName));
 			//console.log(message);
@@ -298,13 +297,12 @@ bot.disconnect= function(message) {
 }
 
 bot.reload = function(message) {
-	array = {};
 	try {
 		for (var file of reqFiles) {
-			delete require.cache[require.resolve("./" + file)];
+			delete require.cache[require.resolve("./" + reqFiles[file])];
 		}
 		requireFiles();
-		array = Object.assign({}, commands);
+		//array = Object.assign({}, commands);
 		message.channel.send("\u200B\u180ESuccessfully reloaded");
 		admin.randomStatus("0");
 	} catch (e) {
