@@ -139,6 +139,10 @@ function checkCommands(c, text, message) {
 		case 'backwards':
 			checkReverse(msg, message);
 			break;
+		case 'pet':
+		case 'pets':
+			petBot(msg, message);
+			break;
 		case 'insult':
 			getInsult(message);
 			break;
@@ -182,6 +186,14 @@ function checkCommands(c, text, message) {
 		default: //Default to this if can't find a command
 			message.channel.send(selectRandonCmdErr());
 			break;
+	}
+}
+
+function petBot(m,message) {
+	if(message.author.id === "415999789797474315" || message.author.id === config.ownerID) {
+		message.channel.send("Purrs happily!");
+	} else {
+		message.channel.send("Please don't touch me.")
 	}
 }
 
@@ -351,7 +363,7 @@ function get8Ball(text, message) {
 // Flips a coin
 function coinFlip(m, message) {
 	var flips;
-	if (isNaN(m[0])) {
+	if (isNaN(m[0]) || m[0] == undefined) {
 		flips = 1;
 	}
 	else {
@@ -366,16 +378,17 @@ function coinFlip(m, message) {
 	var headOpt = "";
 	var tailOpt = "";
 	var tossOptions = "";
+	try {
 		tossOptions = m.split('|');
 		headOpt = tossOptions[0] + " ";
 		tailOpt = tossOptions[1] + " ";
 
-	// } catch (err) {
-	// 	if(tossOptions.length == 1) {
-	// 		message.channel.send("Please give me two options from which to choose in the form `[opt1|opt2]`. Thank you!");
-	// 		return false;
-	// 	}
-	// }
+	} catch (err) {
+		if(tossOptions.length == 1) {
+			message.channel.send("Please give me two options from which to choose in the form `[opt1|opt2]`. Thank you!");
+			return false;
+		}
+	}
 
 
 	const maxFlips = 500;
@@ -412,7 +425,8 @@ function coinFlip(m, message) {
 	flipText += "\n\n"+ headOpt +"-Heads-: " + headCount + " - " + headPercent + "%";
 	flipText += "%\n"+ tailOpt +"-Tails-: " + tailCount + " - " + tailPercent + "%```\n";
 	flipText += "**";
-	if(tossOptions != null && tossOptions != undefined) {
+	console.log(tossOptions);
+	if(tossOptions != null && tossOptions != undefined && tossOptions != '') {
 		flipText += headCount > tailCount ? headOpt : tailOpt;
 	} else {
 		flipText += headCount > tailCount ? "Heads " : "Tails ";
@@ -616,7 +630,14 @@ function doAdryd(message) {
 // Hugs function
 function sendHug(m, message) {
 	var person = m[0];
-	var targetID = person.match(/\d/g).join('');
+	var targetID;
+	console.log("person: "+person);
+	try {
+		targetID = person.match(/\d/g).join('');
+	} catch (err) {
+		targetID = message.author.id;
+	}
+	console.log("targetID: "+targetID);
 	var hugs = ["c(^u^c)", "c(^.^c)", ">(^u^)<", "^w^", "c(^ε^c)", "(\\\\^u^(\\"];
 	var int = bot.random(hugs.length);
 	if (!(targetID == null || targetID =='')) {
