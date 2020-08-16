@@ -500,7 +500,7 @@ function runRPNStack(rpn) {
 					op2 = s.pop();
 					op1 = s.pop();
 					if(op2 == 0) {
-						s.push(Infinity);
+						s.push( op1 >= 0 ? Number.POSITIVE_INFINITY: Number.NEGATIVE_INFINITY);
 					} else {
 						s.push(op1/op2);
 					}
