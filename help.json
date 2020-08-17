@@ -104,7 +104,7 @@
 	},
 	"info": {
 		"desc": "Gives owner and bot info like uptime and language used",
-		"trigger": "info",
+		"alias": [],
 		"commands": {}
 	},
 	"butts" : {
