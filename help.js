@@ -8,13 +8,10 @@ function checkHelp(m, message) {
 	if(c != '') {
 		if(help.hasOwnProperty(c)) {
 			var hDesc = "```Command: "+bot.trigger+c;
-			if(help[c].trigger.length > 1) {
-				for(var i = 0; i< help[c].trigger.length; i++) {
-					hDesc += (help[c].trigger[i]);
-					if(i != help[c].trigger.length-1) {
-						hDesc += " | ";
-					}
-				}
+			// Assumes every command has an alias array.
+			// Maybe add check?
+			for (alias of help[c].alias) {
+				hDesc += " | " + alias;
 			}
 			hDesc += "\n";
 			hDesc += ("Description: " + help[m[0]].desc + "\n");
