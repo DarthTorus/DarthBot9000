@@ -1,5 +1,5 @@
 var bot = process.DiscordBot;
-var formatCode = "diff\n";
+var formatCode = "diff";
 var help = require("./help.json");
 
 function checkHelp(m, message) {
@@ -23,7 +23,7 @@ function checkHelp(m, message) {
 			// of what *does* exist, or sendHelp.
 			return
 		}
-		let hDesc = "```\n"
+		let hDesc = "```" + formatCode + "\n"
 		// This line might look a bit too fancy.
 		// It probably is.
 		// It uses some fancy ES6 trickery to join
