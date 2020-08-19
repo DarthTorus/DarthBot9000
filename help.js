@@ -8,6 +8,12 @@ function checkHelp(m, message) {
 	if (c == '') {
 		sendHelp(message);
 	} else if (help.hasOwnProperty(c)) {
+		// This code doesn't handle the case where
+		// help is requested for an alias of a command.
+		// Too bad.
+		// That will require either expensive searching
+		// or complicated preprocessing, given the
+		// current help.json format.
 		let [cHelp, n] = recursiveHelp(help[c], m, 1);
 		if (n < m.length) {
 			// Requested help for a subcommand
@@ -17,9 +23,13 @@ function checkHelp(m, message) {
 			// of what *does* exist, or sendHelp.
 			return
 		}
+		let hDesc = "```\n"
 		// This line might look a bit too fancy.
 		// It probably is.
-		let hDesc = "```Command: " + bot.trigger + m.slice(0, n).join(" ") + cHelp.alias.reduce(((a, v) => a + " | " + v), "") + "\n";
+		// It uses some fancy ES6 trickery to join
+		// the arguments with spaces, and then the
+		// aliases with vertical bars.
+		hDesc += "Command: " + bot.trigger + [m.slice(0, n).join(" "), ...cHelp.alias].join(" | ") + "\n";
 		hDesc += "Description: " + cHelp.desc + "\n";
 		hDesc += "```";
 		try {
