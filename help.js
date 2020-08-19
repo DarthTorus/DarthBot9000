@@ -56,52 +56,26 @@ function recursiveHelp(base, m, n) {
 }
 
 function sendHelp(message) {
-	var m = getHelpText();
+	let m = "```" + formatCode + "\n";
+	m += bot.trigger + "\n";
+	m += getHelpText(help, "");
+	m += "```";
 	message.author.send(m);
 	message.channel.send("I be sliding into your DMs with my command list.")
 }
 
-function getHelpText() {
-	var hText = "```"+formatCode+"\n"+bot.trigger+"\n";
-	var extend = "├─";
-	var endTree = "└─";
-	var cont = "│ ";
-	let helpLength = Object.keys(help).length;
-	let helpi = 0;
-	for(var cmd in help) {
-		helpi++;
-  	let helpLineMode = extend;
-  	if (helpi == helpLength) {
-    	helpLineMode = endTree;
-  	}
-		hText += helpLineMode + cmd;
-
-		if(help[cmd].alias !=undefined || help[cmd].alias !='') {
-			for(var alias in help[cmd].alias) {
-				hText += ", "+help[cmd].alias[alias];
-			}
-		}
-		 hText += "\n";
-		let subcmdLength = Object.keys(help[cmd].commands).length;
-    let subcmdi = 0;
-		if(subcmdLength > 0) {
-			for(var subcmd in help[cmd].commands) {
-				subcmdi++;
-      	let subcmdLineMode = extend;
-      	if (subcmdi == subcmdLength) {
-        	subcmdLineMode = endTree;
-      	}
-				hText += cont + subcmdLineMode + subcmd;
-				if(help[cmd].commands[subcmd].alias !=undefined || help[cmd].commands[subcmd].alias !='') {
-					for(var subAlias in help[cmd].commands[subcmd].alias) {
-						hText += ", "+help[cmd].commands[subcmd].alias[subAlias];
-					}
-				}
-				hText += "\n";
-			}
-		}
+function getHelpText(commands, left) {
+	const treeT = "├─";
+	const treeL = "└─";
+	const treeI = "│ ";
+	let ckeys = Object.keys(commands);
+	let ckeysn = ckeys.length;
+	let hText = "";
+	for (let i = 0; i < ckeysn; i++) {
+		let tree = (i == ckeysn - 1) ? treeL : treeT;
+		hText += left + tree + [ckeys[i], ...commands[ckeys[i]].alias].join(", ") + "\n";
+		hText += getHelpText(commands[ckeys[i]].commands, left + treeI);
 	}
-	hText += "```";
 	return hText;
 }
 
