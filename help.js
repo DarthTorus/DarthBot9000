@@ -21,9 +21,9 @@ function checkHelp(m, message) {
 			// Send nothing.
 			// Possible alternatives: send help
 			// of what *does* exist, or sendHelp.
-			return
+			return;
 		}
-		let hDesc = "```" + formatCode + "\n"
+		let hDesc = "```" + formatCode + "\n";
 		// This line might look a bit too fancy.
 		// It probably is.
 		// It uses some fancy ES6 trickery to join
@@ -34,15 +34,15 @@ function checkHelp(m, message) {
 		hDesc += "```";
 		try {
 			message.author.send(hDesc);
-		} catch(err) {
-			message.channel.send("I couldn't send a help message to your DMs. Perhaps you have DMs turned off?")
+		} catch (err) {
+			message.channel.send("I couldn't send a help message to your DMs. Perhaps you have DMs turned off?");
 		}
 	} else {
 		// Requested help for a command which does
 		// not exist in help.json.
 		// Send nothing.
 		// Possible alternative: sendHelp.
-		return
+		return;
 	}
 }
 
@@ -61,7 +61,7 @@ function sendHelp(message) {
 	m += getHelpText(help, "");
 	m += "```";
 	message.author.send(m);
-	message.channel.send("I be sliding into your DMs with my command list.")
+	message.channel.send("I be sliding into your DMs with my command list.");
 }
 
 function getHelpText(commands, left) {
