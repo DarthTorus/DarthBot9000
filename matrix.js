@@ -21,6 +21,11 @@ function matrixCheck(msg, message) {
     case 'det':
       msg.shift();
       break;
+    case 'clear':
+    case 'remove':
+      msg.shift();
+      removeMatrix(msg, message);
+      break;
     default:
      message.channel.send("I don't understand this command. I'm sorry.");
      break;
@@ -31,19 +36,33 @@ function matrixAdd() {
 
 }
 
-function matrixMultiply() {
+function matrixMultiply(m,message) {
+  let operandOne = m[0];
+  let operandTwo = m[1];
+  var matrixName = operandOne + "|" + message.author.id;
+  // Test if first operand is a scalar value
+  if(typeof operandOne === 'string' && !isNaN(operandOne) && typeof savedMatrices[matrixName] === 'object') {
 
+  }
+  // Test if both operands are objects
+  // else if () {
+  //
+  // }
+  // else {
+  //
+  // }
 }
 
 function setMatrix(m, message) {
   //Define matrixData object
+  let matrixName = m[0] + "|" + message.author.id;
   let matrixData = {
+    //Set matrixName to be the 1st argument of m
     rows: 1,
     columns: 1,
     contents: [],
   }
-  //Set matrixName to be the 1st argument of m
-  let matrixName = m[0];
+
   //Set size to be an array of the 2nd arg of m
   let size = m[1].split(',');
   //Set row and columns
@@ -186,11 +205,13 @@ function zeroOutNulls(data) {
 }
 
 function getMatrix(m, message) {
-  let matrixName = m[0];
+  console.log(m);
+  let matrixName = m + "|" + message.author.id;
   let mat = savedMatrices[matrixName];
   let data = mat.contents;
   var wrapper = "```";
   let contentString = "\n";
+  // Loop through every row
   for(var r = 0; r < data.length; r++) {
     //Loop through each element in a row, effectively going through each column
     for(var c = 0; c < data[r].length; c++) {
@@ -199,8 +220,8 @@ function getMatrix(m, message) {
     }
     contentString += "\n"
   }
+  message.channel.send(`${wrapper}\nMatrix Name: ${m}\nSize: ${mat.rows}x${mat.columns}\nContents: ${contentString}\n${wrapper}`);
 
-  message.channel.send(`${wrapper}\nMatrix Name: ${matrixName}\nSize: ${mat.rows}x${mat.columns}\nContents: ${contentString}\n${wrapper}`);
 }
 
 function matrixInverse() {
