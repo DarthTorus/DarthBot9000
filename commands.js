@@ -157,8 +157,20 @@ function checkCommands(c, text, message) {
 			checkReverse(msg, message);
 			break;
 		case 'pet':
+		case 'pat':
+		case 'kiss':
+		case 'cuddle':
+		case 'snuggle':
+		case 'cookie':
+			emoteBot(`Gives a ${c}`, msg, message);
+			break;
 		case 'pets':
-			petBot(msg, message);
+		case 'pats':
+		case 'kisses':
+		case 'cuddles':
+		case 'snuggles':
+		case 'cookies':
+			emoteBot(`Gives ${c}`, msg, message);
 			break;
 		case 'insult':
 			getInsult(message);
@@ -209,12 +221,16 @@ function checkCommands(c, text, message) {
 	}
 }
 
-function petBot(m,message) {
-	if(message.author.id === "415999789797474315" || message.author.id === config.ownerID) {
-		message.channel.send("Purrs happily!");
+function emoteBot(act, m, message) {
+	if(m[0] === undefined || m[0] === '' || m[0]===null) {
+		act = act.split(' ');
+		console.log(act);
+		var emote = act[act.length-1];
+		message.channel.send(`Aww. Thank you for the ${emote}`)
 	} else {
-		message.channel.send("Please don't touch me.")
+		message.channel.send(`${act} to ${m[0]}`);
 	}
+
 }
 
 function gameCheck(m, message) {
@@ -223,37 +239,27 @@ function gameCheck(m, message) {
 	if(m[0] == "add") {
 		m.shift();
 		gameType = m[0].toUpperCase();
-		if(gameType ==="WATCHING") {
-			m.shift();
-			m = m.join(" ");
-			gameList[gameType].push(m);
-			bot.user.setActivity(m, {type: gameType});
-			if(!gameList[gameType].hasOwnProperty(m)) {
-				bot.fs.writeFileSync('./statusList.json', JSON.stringify(gameList, null, ' '));
-			}
-		} else if(gameType === "PLAYING") {
-			m.shift();
-			m = m.join(" ");
-			gameList[gameType].push(m);
-			bot.user.setActivity(m, {type: gameType});
-			if(!gameList[gameType].hasOwnProperty(m)) {
-				bot.fs.writeFileSync('./statusList.json', JSON.stringify(gameList, null, ' '));
-			}
-		} else {
+		if(gameType === "" || gameType === undefined) {
 			message.channel.send("I can't use an empty status");
+		} else {
+			m.shift();
+			m = m.join(" ");
+			gameList[gameType].push(m);
+			bot.user.setActivity(m, {type: gameType});
+			if(!gameList[gameType].hasOwnProperty(m)) {
+				bot.fs.writeFileSync('./statusList.json', JSON.stringify(gameList, null, ' '));
+			}
 		}
 	} else {
 		gameType = m[0].toUpperCase();
-		if(gameType ==="WATCHING") {
-			m.shift()
-			m = m.join(" ");
-			bot.user.setActivity(m, {type: gameType});
-		} else if(gameType ==="PLAYING" ) {
-			m.shift()
-			m = m.join(" ");
-			bot.user.setActivity(m, {type: gameType});
-		} else {
+		console.log(m[0]);
+		if(gameType === "" || gameType === undefined) {
 			admin.randomStatus("0");
+		}
+		else {
+			m.shift()
+			m = m.join(" ");
+			bot.user.setActivity(m, {type: gameType});
 		}
 	}
 }

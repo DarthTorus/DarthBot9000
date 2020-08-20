@@ -298,7 +298,7 @@ bot.disconnect= function(message) {
 
 bot.reload = function(message) {
 	try {
-		for (var file of reqFiles) {
+		for (var file in reqFiles) {
 			delete require.cache[require.resolve("./" + reqFiles[file])];
 		}
 		requireFiles();
