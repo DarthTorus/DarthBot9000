@@ -16,7 +16,7 @@ function infoCheck(m, message) {
 			calcUptime(message);
 			break;
 		case "credits":
-			message.channel.send("Bot Logo: @Adryd");
+			sendCredits(message);
 			break;
 		case "qrcode":
 			message.channel.send(config.qrcode);
@@ -26,6 +26,14 @@ function infoCheck(m, message) {
 			break;
 		default:
 	}
+}
+
+function sendCredits(message) {
+	let messageText = "**Credit To:**\n";
+	messageText += "Adyrd - *Bot Logo*\n";
+	messageText += "AstroSnail - *Help with help files*\n";
+	messageText += "Pridark - *Main Server Icon*"
+	message.channel.send(messageText);
 }
 
 // function twitter(t, cI) {

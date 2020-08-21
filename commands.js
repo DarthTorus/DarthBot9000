@@ -161,16 +161,20 @@ function checkCommands(c, text, message) {
 		case 'kiss':
 		case 'cuddle':
 		case 'snuggle':
-		case 'cookie':
 			emoteBot(`Gives a ${c}`, msg, message);
+			break;
+		case 'cookie':
+			emoteBot(`Gives a :${c}:`, msg, message);
 			break;
 		case 'pets':
 		case 'pats':
 		case 'kisses':
 		case 'cuddles':
 		case 'snuggles':
-		case 'cookies':
 			emoteBot(`Gives ${c}`, msg, message);
+			break;
+		case 'cookies':
+			emoteBot(`Gives :cookie:s`, msg, message);
 			break;
 		case 'insult':
 			getInsult(message);
