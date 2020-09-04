@@ -132,15 +132,14 @@ function sleep() {
 
 function wake(cID) {
 	bot.inStandby = false;
-	console.log("Bot sleeping =" + bot.inStandby);
 	randomStatus();
 }
 
 function randomStatus(msg) {
 	var gameString = msg || "0";
-
-	var statType = bot.random() < .5 ? "PLAYING" : "WATCHING";
-	var randStat = gameList[statType];
+	var statTypeList = Object.keys(gameList);
+	var statType = statTypeList[bot.random(statTypeList.length)];
+	var randStatuses = gameList[statType];
 	var bannedWords = ["fuck", "porn", "p0rn", "sh1t", "shit", "damn", "d@mn", "ass", "a$$","@$$",
 		"twat","cunt","bitch","b1tch", "douche", "d0uche", "dick", "d1ck"];
 	var containsBanned = false;
@@ -150,8 +149,8 @@ function randomStatus(msg) {
 		}
 	}
 	if (gameString == "0" || containsBanned) {
-		var status = bot.random(randStat.length);
-		bot.user.setActivity(randStat[status], {type: statType});
+		var status = bot.random(randStatuses.length);
+		bot.user.setActivity(randStatuses[status], {type: statType});
 	} else {
 		bot.user.setActivity(msg);
 	}

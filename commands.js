@@ -6,9 +6,7 @@ var Twitter = require("twitter");
 var PNGImage = require('pngjs-image');
 var gameList = require("./statusList.json");
 
-// const reqFiles = ["npc.js","config.json","admin.js", "banned.json", "calc.js",
-// 	"color.js", "help.js", "info.js", "insults.json", "series.js", "poll.js","rpg.json",
-// "cipher.js","github.js","tarot.js","matrix.js"];
+
 const reqFiles = {
 	npc:"npc.js",
 	config: "config.json",
@@ -25,7 +23,8 @@ const reqFiles = {
 	cipher: "cipher.js",
 	gitH: "github.js",
 	tarot: "tarot.js",
-	matrix: "matrix.js"
+	matrix: "matrix.js",
+	units: "units.js"
 }; // Names of variables
 
 function requireFiles() {
@@ -72,6 +71,10 @@ function checkCommands(c, text, message) {
 	switch (c) { //Command switcher
 		case 'ping':
 			message.channel.send("Pong");
+			break;
+		case 'units':
+		case 'unit':
+			units.unitCheck(msg, message);
 			break;
 		case 'calc':
 			calc.calcCheck(msg, message);
@@ -174,7 +177,7 @@ function checkCommands(c, text, message) {
 			emoteBot(`Gives ${c}`, msg, message);
 			break;
 		case 'cookies':
-			emoteBot(`Gives :cookie:s`, msg, message);
+			emoteBot(`Gives **${new Intl.NumberFormat('en-US').format(bot.random(Number.MAX_SAFE_INTEGER))}** :cookie:s`, msg, message);
 			break;
 		case 'insult':
 			getInsult(message);
@@ -232,7 +235,8 @@ function emoteBot(act, m, message) {
 		var emote = act[act.length-1];
 		message.channel.send(`Aww. Thank you for the ${emote}`)
 	} else {
-		message.channel.send(`${act} to ${m[0]}`);
+		m = m.join(" ");
+		message.channel.send(`${act} to ${m}`);
 	}
 
 }
@@ -732,7 +736,18 @@ function getInsult(message) {
 	}
 }
 
+function reload(message) {
+	console.log("Reloading " + colors.yellow("commands.js"));
+	try {
+		for (var file in reqFiles) {
+			delete require.cache[require.resolve("./" + reqFiles[file])];
+		}
+	} catch (err) {
+	}
+}
+
 var commands = {
-  checkCommands: checkCommands
+  checkCommands: checkCommands,
+	reload: reload
 }
 module.exports = commands;

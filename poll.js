@@ -44,7 +44,6 @@ function createPoll(msg, message) { //Creates a poll
   console.log
   arr.shift();
   var opts = arr;
-  console.log(bot.colors.yellow("New Poll Before: "));
   console.log(p.polls[pID]);
 
   var tCount = new Array(opts.length);
@@ -57,7 +56,6 @@ function createPoll(msg, message) { //Creates a poll
     counts: tCount,
     question: qstn
   }
-  console.log(bot.colors.yellow("New Poll After: "));
   console.log(p.polls[pID]);
   msgText = "Id: `" + pID + "`\n";
   msgText += "Question: " + qstn + "\n";
@@ -68,12 +66,9 @@ function createPoll(msg, message) { //Creates a poll
 }
 
 function voteOnPoll(msg, message) {
-  console.log(p);
   // 0) Get associated variables needed
   var mesg = msg.join(' ');
-	console.log("mesg: "+mesg);
   var msg = mesg.split('|');
-	console.log(msg);
   var pID = "";
   if(msg.length > 1) {
     pID = msg[0];
@@ -82,11 +77,8 @@ function voteOnPoll(msg, message) {
   } else {
     pID = currentID;
   }
-  console.log("pID: " + pID);
   var opt = msg.join(' ');
-  console.log("opt: " + opt);
   var user = message.author.username;
-  console.log("uI: " + message.author.id);
 
   // 1) get the poll id and object associated
   if(p.polls.hasOwnProperty(pID)) {
@@ -106,8 +98,6 @@ function voteOnPoll(msg, message) {
       } else {
         message.channel.send("That is not an option sadly");
       }
-			console.log(bot.colors.yellow("Poll:"));
-	    console.log(pol);
     }
   } else {
     message.channel.send("That ID doesn't exist yet.");

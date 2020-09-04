@@ -1,0 +1,430 @@
+{
+  "Abamperes" : {
+    "Amperes":10,
+    "Faradays/second": 1.03638e-4,
+    "Faradays/sec": 1.03638e-4,
+    "Faradays/s": 1.03638e-4,
+    "Statamperes": 2.99793e10
+  },
+  "Abcoulombs": {
+    "Ampere-Hours": 0.00278,
+    "Coulombs": 10,
+    "Electronic_Charges":6.24196e19,
+    "Faradays":1.063638e-4,
+    "Statcoloumbs": 2.99793e10
+  },
+  "Abfarads": {
+    "Farads": 1e9,
+    "Microfarads": 1e15,
+    "Statfarads": 8.98758e20
+  },
+  "Abhenries": {
+    "Henries": 1e-9
+  },
+  "Abmhos": {
+    "Megamhos": 1e3,
+    "Mhos": 1e9,
+    "Statmhos": 8.98758e20
+  },
+  "Abohms": {
+    "Megohms": 1e-15,
+    "Microohms": 0.001,
+    "Ohms": 1e-9
+  },
+  "Abohm-cm": {
+    "Ohm-cm" : 1e-9
+  },
+  "Abvolts" :{
+    "Microvolts": 0.01,
+    "Millivolts": 1e-5,
+    "Volts": 1e-8
+  },
+  "Abvolts/cm": {
+    "Volots/cm": 1e-8,
+    "Volts/inch": 2.54e-8,
+    "Volts/in": 2.54e-8
+  },
+  "Acres": {
+    "Hectare": 0.404687,
+    "Sq_hectometer": 0.404687,
+    "Sq_chains": 10,
+    "Sq_cm": 4.04686e7,
+    "Sq_ft": 43560,
+    "Sq_ft_survey": 43559.826,
+    "Sq_centimeters": 4.04686e7,
+    "Sq_feet": 43560,
+    "Sq_feet_survey": 43559.826,
+    "Sq_in": 6.27264e6,
+    "Sq_km": 4.406856421e-3,
+    "Sq_inches": 6.27264e6,
+    "Sq_kilometers": 4.406856421e-3,
+    "Sq_links": 1e5,
+    "Sq_meters": 4046.856421,
+    "Sq_miles": 1.5625e-3,
+    "Sq_m": 4046.856421,
+    "Sq_mi": 1.5625e-3,
+    "Sq_perches": 160,
+    "Sq_rods": 160,
+    "Sq_yds": 4840,
+    "Sq_yards": 4840
+  },
+  "Acre-feet": {
+    "Cu_ft": 43560,
+    "Cu_meters": 1233.482,
+    "Cu_yards": 1613.33,
+    "Gallons_US": 3.259e5,
+    "Cu_feet": 43560,
+    "Cu_m": 1233.482,
+    "Cu_yds": 1613.33,
+    "Gal_US": 3.259e5
+  },
+  "Acre-inches": {
+    "Cu_ft": 3630,
+    "Cu_feet": 3630,
+    "Cu_meters": 102.7901531,
+    "Cu_yards": 134.44,
+    "Cu_yds": 134.44,
+    "Gallons_US": 27154.286,
+    "Gal_US": 27154.286
+  },
+  "Almude_Portugal": {
+    "Liters": 16.7,
+    "Litres": 16.7
+  },
+  "Almude_Spain": {
+    "Liters": 4.625,
+    "Litres": 4.625
+  },
+  "Amma": {
+    "Orguias": 10,
+    "Stadion": 0.1,
+    "Digiti": 4
+  },
+  "Amperes": {
+    "Abamperes": 0.1,
+    "Amperes_Int": 1.00016,
+    "Coulomb/sec": 1,
+    "Coulomb/s": 1,
+    "Coulomb/second": 1,
+    "Faradays/sec": 1.03638e-5,
+    "Faradays/s": 1.03638e-5,
+    "Faradays/second": 1.03638e-5,
+    "Microamperes": 1e6,
+    "Millamperes": 1000,
+    "Statamperes": 2.99793e9
+  },
+  "Amperes_Int": {
+    "Amperes": 0.99984
+  },
+  "Ampere-hours": {
+    "Abcoulombs": 360,
+    "Coulombs": 3600,
+    "Faradays": 0.03731
+  },
+  "Ampere/meter": {
+    "Amperes/inch": 0.0254,
+    "Oersteds": 0.012566,
+    "Newtons/weber": 1.0
+  },
+  "Amperes/sq_cm": {
+    "Amperes/sq_inch": 6.452,
+    "Amperes/sq_meter": 1e4
+  },
+  "Amperes/sq_inch": {
+    "Amperes/sq_cm": 0.1550,
+    "Amperes/sq_meter": 1550.0
+  },
+  "Amperes/sq_meter": {
+    "Amperes/sq_cm": 1e-4,
+    "Amperes/sq_inch": 6.452e-4
+  },
+  "Ampere-turns": {
+    "Gilberts": 1.25664
+  },
+  "Angstrom": {
+    "Centimeters": 1e-8,
+    "Cm": 1e-8,
+    "Inches": 3.9370e-9,
+    "In": 3.9370e-9,
+    "Meters": 1e-10,
+    "M": 1e-10,
+    "Micrometers": 1e-4,
+    "Microns": 0.0001,
+    "Millimicrons": 0.1
+  },
+  "Anker": {
+    "Liters": 38.256,
+    "Litres": 38.256
+  },
+  "Anoman": {
+    "Bushels_US": 5.83
+  },
+  "Archin": {
+    "Meters": 1
+  },
+  "Ares": {
+    "Acres": 0.024711,
+    "Sq_dekameters": 1,
+    "Sq_feet": 1076.39,
+    "Sq_meters": 100,
+    "Sq_miles": 3.86102e-5,
+    "Sq_yards": 119.60,
+    "Sq_Dm": 1,
+    "Sq_ft": 1076.39,
+    "Sq_m": 100,
+    "Sq_mi": 3.86102e-5,
+    "Sq_yds": 119.60
+  },
+  "Arpent": {
+    "Acres": 0.085,
+    "Meters": 58.6
+  },
+  "Arroba": {
+    "Liters_of_Wine": 16.14,
+    "Litres_of_Wine": 16.14
+  },
+  "Artaba": {
+    "Liters": 66,
+    "Litres": 66
+  },
+  "AU": {
+    "Kilometers": 1.496e8,
+    "Km": 1.496e8
+  },
+  "Atmospheres": {
+    "Bars": 1.01325,
+    "Cm_of_Hg": 76,
+    "Cm_of_Water": 1033.29,
+    "Dynes/sq_cm": 1.01325e6,
+    "Ft_of_Water": 33.8995,
+    "Grams-force/sq_cm": 1033.23,
+    "In_of_Hg": 29.9213,
+    "Kg-force/sq_cm": 1.0332,
+    "Kg-force/sq_m": 10332,
+    "kPa": 101.325,
+    "Kilopascals": 101.325,
+    "Mm_of_Hg": 760,
+    "Newtons/sq_meter": 1.01325e5,
+    "Pascals": 101325,
+    "Pounds-force/sq_inch": 14.6960,
+    "Tons-force/sq_in": 0.00735,
+    "Tons-force/sq_foot": 1.05811,
+    "Torrs": 760
+  },
+  "Atm": {
+    "Bars": 1.01325,
+    "Cm_of_Hg": 76,
+    "Cm_of_Water": 1033.29,
+    "Dynes/sq_cm": 1.01325e6,
+    "Ft_of_Water": 33.8995,
+    "Grams-force/sq_cm": 1033.23,
+    "In_of_Hg": 29.9213,
+    "Kg-force/sq_cm": 1.0332,
+    "Kg-force/sq_m": 10332,
+    "kPa": 101.325,
+    "Kilopascals": 101.325,
+    "Mm_of_Hg": 760,
+    "Newtons/sq_meter": 1.01325e5,
+    "Pascals": 101325,
+    "Pounds-force/sq_inch": 14.6960,
+    "Tons-force/sq_in": 0.00735,
+    "Tons-force/sq_foot": 1.05811,
+    "Torrs": 760
+  },
+  "Baht": {
+    "Grams": 15
+  },
+  "Barile": {
+    "Liters": 58.34,
+    "Litres": 58.34
+  },
+  "Barns": {
+    "Sq_cm": 1e-24,
+    "Sq_centimeters": 1e-24
+  },
+  "Barrels_Brit": {
+    "Bags_Brit": 1.5,
+    "Barrels_US_dry": 1.41541,
+    "Barrels_US_liq": 1.37251,
+    "Barrels_US_liquid": 1.37251,
+    "Bushels_Brit": 4.5,
+    "Bushels_US": 4.64426,
+    "Cu_ft": 5.77957,
+    "Cu_feet": 5.77957,
+    "Cu_meters": 0.16366,
+    "Cu_m": 0.16366,
+    "Gallons_Brit": 36,
+    "Gal_Brit": 36,
+    "Litres": 163.6592,
+    "Liters": 163.6592
+  },
+  "Barrels_US_oil": {
+    "Cu_ft": 5.61458,
+    "Cu_feet": 5.61458,
+    "Gallons_US": 42,
+    "Gal_US": 42,
+    "Liters": 158.9873,
+    "Litres": 158.9873
+  },
+  "Barrels_US_dry": {
+    "Barrels_US_liq": 0.969696,
+    "Barrels_US_liquid": 0.969696,
+    "Bushels_US": 3.228122,
+    "Cu_feet": 4.08333,
+    "Cu_ft": 4.08333,
+    "Cu_inches": 7056,
+    "Cu_in": 7056,
+    "Cu_meters": 0.11563,
+    "Cu_m": 0.11563,
+    "Quarts_US": 105,
+    "Qt_US": 105
+  },
+  "Barrels_US_liq": {
+    "Barrels_US_dry": 1.03125,
+    "Barrels_wine": 1,
+    "Cu_feet": 4.21029,
+    "Cu_ft": 4.2109,
+    "Cu_inches": 7276.5,
+    "Cu_in": 7276.5,
+    "Cu_meters": 0.11924,
+    "Cu_m": 0.11924,
+    "Gallons_Brit": 26.22924,
+    "Gal_Brit": 26.22924,
+    "Gallons_US": 31.5,
+    "Gal_US": 31.5,
+    "Quarts_US_liq": 126,
+    "Qt_US_liq": 126,
+    "Quarts_US_liquid": 126,
+    "Qt_US_liquid": 126,
+    "Litres": 119.240,
+    "Liters": 119.240
+  },
+  "Barrels_US_liquid": {
+    "Barrels_US_dry": 1.03125,
+    "Barrels_wine": 1,
+    "Cu_feet": 4.21029,
+    "Cu_ft": 4.2109,
+    "Cu_inches": 7276.5,
+    "Cu_in": 7276.5,
+    "Cu_meters": 0.11924,
+    "Cu_m": 0.11924,
+    "Gallons_Brit": 26.22924,
+    "Gal_Brit": 26.22924,
+    "Gallons_US": 31.5,
+    "Gal_US": 31.5,
+    "Quarts_US_liq": 126,
+    "Qt_US_liq": 126,
+    "Quarts_US_liquid": 126,
+    "Qt_US_liquid": 126,
+    "Litres": 119.240,
+    "Liters": 119.240
+  },
+  "Bars": {
+    "Atmospheres": 0.98692,
+    "Atm": 0.98692,
+    "Baryes": 1e6,
+    "Cm_of_Hg": 75.0062,
+    "Centimeters_of_Hg": 75.0062,
+    "Dynes/sq_cm": 1e6,
+    "Dynes/sq_centimeter": 1e6,
+    "Ft_of_Water": 33.4883,
+    "Feet_of_Water": 33.4883,
+    "Grams-force/sq_cm": 1019.72,
+    "Grams-force/sq_centimeter": 1019.72,
+    "g-force/sq_cm": 1019.72,
+    "g-force/sq_centimeter": 1019.72,
+    "In_of_Hg": 29.530,
+    "Inches_of_Hg": 29.530,
+    "Kg-force/sq_cm": 1.01972,
+    "Kg-force/sq_centimeter": 1.01972,
+    "Kilogram-force/sq_cm": 1.01972,
+    "Kilogram-force/sq_centimeter": 1.01972,
+    "Millibars": 1000,
+    "Newtons/sq_meter": 1e5,
+    "Newtons/sq_m": 1e5,
+    "N/sq_meter": 1e5,
+    "N/sq_m": 1e5,
+    "Pascals": 1e5,
+    "Pa": 1e5,
+    "Pounds-force/sq_ft": 2088.54,
+    "Pounds-force/sq_feet": 2088.54,
+    "Lbs-force/sq_ft": 2088.54,
+    "Lbs-force/sq_feet": 2088.54,
+    "Pounds-force/sq_in": 14.5038,
+    "Pounds-force/sq_inch": 14.5038,
+    "Lbs-force/sq_in": 14.5038,
+    "Lbs-force/sq_inch": 14.5038
+  },
+  "Barye": {
+    "Dynes/sq_cm": 1.0,
+    "Dynes/sq_centimeter": 1.0,
+    "Newtons/sq_meter": 0.10,
+    "Newtons/sq_m": 0.10,
+    "N/sq_meter": 0.10,
+    "N/sq_m": 0.10,
+    "Pascals": 0.10,
+    "Pa": 0.10
+  },
+  "Baryl": {
+    "Atmospheres": 9.8692e-7,
+    "Atm": 9.8692e-7,
+    "Bars": 1e-6,
+    "Dynes/sq_cm": 1.0,
+    "Dynes/sq_centimeter": 1.0,
+    "Grams-force/sq_cm": 0.00102,
+    "Grams-force/sq_centimeter": 0.00102,
+    "g-force/sq_cm": 0.00102,
+    "g-force/sq_centimeter": 0.00102,
+    "Millibars": 0.001
+  },
+  "Bath": {
+    "Litres": 22,
+    "Liters": 22
+  },
+  "Becquerels": {
+    "Curie": 2.7027e-11,
+    "Disintegrations/sec": 1.0
+  },
+  "Bekahs": {
+    "Grams": 5.67,
+    "g": 5.67,
+    "Shekels": 0.5
+  },
+  "Bels": {
+    "Decibels": 10,
+    "dB": 10
+  },
+  "Biot": {
+    "Amperes": 10,
+    "Amps": 10
+  },
+  "Bit": {
+    "Bytes": 0.125
+  },
+  "Board_feet": {
+    "Cu_centimeters": 2359.74,
+    "Cu_feet": 0.08333,
+    "Cu_inches": 144,
+    "Cu_cms": 2359.74,
+    "Cu_ft": 0.08333,
+    "Cu_in": 144
+  },
+  "Board_ft":{
+    "Cu_centimeters": 2359.74,
+    "Cu_feet": 0.08333,
+    "Cu_inches": 144,
+    "Cu_cm": 2359.74,
+    "Cu_ft": 0.08333,
+    "Cu_in": 144
+  },
+  "Bolts_of_cloth": {
+    "Ells" : 32,
+    "Linear_feet": 120,
+    "Linear_ft": 120,
+    "Meters": 36.576,
+    "m": 36.576
+  },
+  "Bougie_decimales": {
+    "Candles_Int": 1.0
+  }
+}

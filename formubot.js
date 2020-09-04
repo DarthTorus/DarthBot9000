@@ -298,11 +298,9 @@ bot.disconnect= function(message) {
 
 bot.reload = function(message) {
 	try {
-		for (var file in reqFiles) {
-			delete require.cache[require.resolve("./" + reqFiles[file])];
-		}
+		commands.reload(message);
+		delete require.cache[require.resolve("./commands.js")];
 		requireFiles();
-		//array = Object.assign({}, commands);
 		message.channel.send("\u200B\u180ESuccessfully reloaded");
 		admin.randomStatus("0");
 	} catch (e) {

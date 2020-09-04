@@ -296,6 +296,8 @@ function calcEquation(msg, message) {
 	var rpnStack = getRPNStack(eqArr);
 	var result = runRPNStack(rpnStack);
 
+	result = new Intl.NumberFormat('en-US').format(result);
+	console.log(result);
 	message.channel.send("Answer is `"+ result +"`");
 }
 
