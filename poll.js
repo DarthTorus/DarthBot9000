@@ -1,6 +1,6 @@
 var bot = process.DiscordBot;
 var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijlmnopqrstuvwxyz0123456789-_";
-var p = require("./polls.json");
+var pollList = require("./polls.json");
 var currentID = "";
 function pollCheck(m, message) {
 	switch (m[0]) {
@@ -18,10 +18,30 @@ function pollCheck(m, message) {
       m.shift();
       viewPoll(m, message);
       break;
+		case 'clear': // this command should clear *all* polls or the specified one
+			m.shift();
+			if(message.author.id === bot.ownerID) {
+				clearPolls(m, message);
+			}
+			break;
     default:
       // Don't do anything
       break;
   }
+}
+
+function clearPolls(msg, message) {
+	console.log(msg);
+	let pollID = msg[0];
+
+	if(pollID == "all") {
+		pollList.polls = [];
+		bot.fs.writeFileSync('./polls.json', JSON.stringify(pollList, null, ' '));
+	} else {
+		//Search through poll aray to find index with poll_id
+		//delete pollList.polls[pollID];
+	}
+
 }
 
 function generateID() { //Generates poll ID
@@ -37,36 +57,36 @@ function createPoll(msg, message) { //Creates a poll
   mesg = msg.join(" ");
   var pID = generateID(); //Generates poll ID
   currentID = pID;
-  console.log(bot.colors.cyan("pID: " + pID));
   var msgText = "";
   var arr = mesg.split("|"); //seperates string 'msg' into array 'arr' (first value of arr will be set to question ('qstn'), other values will be vote options
   var qstn = arr[0];
-  console.log
   arr.shift();
   var opts = arr;
-  console.log(p.polls[pID]);
-
+	var optsText = opts.join(", ")
   var tCount = new Array(opts.length);
   for(var i = 0; i < tCount.length; i++) {
     tCount[i] = 0;
   }
-  p.polls[pID] = {
+	var pollValues = {
+		poll_id: pID,
     voted: [],
     options: opts,
     counts: tCount,
     question: qstn
   }
-  console.log(p.polls[pID]);
+  pollList.polls.push(pollValues);
+  //console.log(p.polls[pID]);
   msgText = "Id: `" + pID + "`\n";
   msgText += "Question: " + qstn + "\n";
   msgText += "Options: " + opts + "\n";
   message.channel.send(msgText);
 
-  bot.fs.writeFileSync('./polls.json', JSON.stringify(p, null, ' '));
+  bot.fs.writeFileSync('./polls.json', JSON.stringify(pollList, null, ' '));
 }
 
 function voteOnPoll(msg, message) {
   // 0) Get associated variables needed
+	var pArray = pollList.polls;
   var mesg = msg.join(' ');
   var msg = mesg.split('|');
   var pID = "";
@@ -80,72 +100,108 @@ function voteOnPoll(msg, message) {
   var opt = msg.join(' ');
   var user = message.author.username;
 
-  // 1) get the poll id and object associated
-  if(p.polls.hasOwnProperty(pID)) {
-    // set set current poll using the pID
-    var pol = p.polls[pID];
+  // 1) get the poll index based on ID
+	var pI = searchPollArray(pArray, pID);
+	if(pI == -1) {
+		message.channel.send("ID does not exist");
+	}
+	else {
+		var pol = pArray[pI];
+		if(pol.poll_id === pID) {
+			currentID = pID;
+	  // Check if user voted in the poll already
+			if(pol.voted.indexOf(message.author.id) != -1) {
+			  message.channel.send("<@"+message.author.id + "> You have already voted!");
+	  	} else {
+				// Get index of option selected to add to the respective count index
+	    	if(pol.options.indexOf(opt) != -1) {
+	      	pol.voted.push(message.author.id);
+	      	var optionID = pol.options.indexOf(opt);
+	      	pol.counts[optionID] += 1;
+	      	message.channel.send("<@"+ message.author.id +"> has voted for: " + opt);
+	    	} else {
+	      	message.channel.send("That is not an option sadly");
+	    	}
+			}
+		}
+	}
 
-
-    // Check if user voted in the poll already
-    if(pol.voted.indexOf(message.author.id) != -1) {
-      message.channel.send("<@"+message.author.id + "> You have already voted!");
-    } else {
-      if(pol.options.indexOf(opt) != -1) {
-        pol.voted.push(message.author.id);
-        var optionID = pol.options.indexOf(opt);
-        pol.counts[optionID] += 1;
-        message.channel.send("<@"+ message.author.id +"> has voted for: " + opt);
-      } else {
-        message.channel.send("That is not an option sadly");
-      }
-    }
-  } else {
-    message.channel.send("That ID doesn't exist yet.");
-  }
-  // Get index of option selected to add to the respective count index
-  bot.fs.writeFileSync('./polls.json', JSON.stringify(p, null, ' '));
+  //Write the new data to the polls JSON file
+  bot.fs.writeFileSync('./polls.json', JSON.stringify(pollList, null, ' '));
 }
 
 function viewPoll(msg, message) {
-  console.log(p);
+	var pArray = pollList.polls;
   var pID = "";
+	var msgText = "";
+	console.log(msg);
   // 0) Get associated variables needed
   if(msg.length == 0) {
-    pID = currentID;
-  }
-   else {
-     pID = msg[0];
-     currentID = pID;
-   }
-  // 1) get the poll id and object associated
-  if(p.polls.hasOwnProperty(pID)) {
-    // set set current poll using the pID
-    var pol = p.polls[pID];
-    console.log(bot.colors.yellow("Poll:"));
-    console.log(pol);
-    var msgText = "";
-    var sum = 0;
-    for(var c = 0; c < pol.counts.length; c++) {
-      sum += pol.counts[c];
-    }
-
-    msgText = "Id: `" + pID + "`\n";
-    msgText += "Question: " + pol.question + "\n";
-    msgText += "Results: \n```"
-    var percent = 0;
-    var tally = 0;
-    for(var i = 0; i < pol.counts.length; i++) {
-      tally = pol.counts[i];
-      percent = Math.round((tally/sum)*10000)/100;
-      msgText += (pol.options[i] + " - " + tally + " (" + percent + "%)\n");
-    }
-    msgText += "```";
-    message.channel.send(msgText);
-  } else {
-    message.channel.send("Poll ID doesn't exist!");
+		var pollIndex = searchPollArray(pArray, currentID);
+		sendPoll(pollIndex, pArray, message);
+  } else if(msg[0] === "all") {
+		if(pArray.length > 0) {
+			for(var p = 0; p < pArray.length; p++) {
+				console.log(pArray[p]);
+				 msgText += `\`${pArray[p].poll_id}\` - ${pArray[p].question}\n`;
+			}
+			message.channel.send(msgText);
+			return true;
+		} else {
+			message.channel.send("There are no polls to show");
+			return false;
+		}
+	} else {
+    pID = msg[0];
+    currentID = pID;
+		// 1) get the poll id and object associated
+		if(pArray.length > 0) {
+			var pollIndex = searchPollArray(pArray, pID);
+			sendPoll(pollIndex, pArray, message);
+	 	}
+		else {
+	   	message.channel.send("There are no polls to find");
+	  }
   }
 }
 
+//Sends the poll information to the channel
+function sendPoll(pollIndex, pArray, message) {
+	msgText = "";
+	if(pollIndex == -1) {
+		message.channel.send("The Poll ID does not exist.");
+	} else {
+		var pI = pArray[pollIndex];
+		var sum = 0;
+		for(var c = 0; c < pI.counts.length; c++) {
+		 sum += pI.counts[c];
+		}
+
+		msgText = "Id: `" + pI.poll_id + "`\n";
+		msgText += "Question: " + pI.question + "\n";
+		msgText += "Results: \n```"
+		var percent = 0;
+		var tally = 0;
+		for(var i = 0; i < pI.counts.length; i++) {
+			tally = pI.counts[i];
+			percent = sum > 0 ? Math.round((tally/sum)*10000)/100 : 0;
+			msgText += (pI.options[i] + " - " + tally + " (" + percent + "%)\n");
+		}
+		msgText += "```";
+		message.channel.send(msgText);
+	}
+}
+
+//Searches the poll array for the index of the poll ID if it exists.
+function searchPollArray(pollArray, id) {
+	for(var i = 0; i < pollArray.length; i++) { //Loop through poll array
+		if(pollArray[i].poll_id == id) { //If we find the poll ID, return the index of the poll
+			return i;
+		}
+	}
+	return -1; //Else it DNE
+
+}
 
 var pollFunctions = {
 	pollCheck: pollCheck
