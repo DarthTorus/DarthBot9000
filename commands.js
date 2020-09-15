@@ -281,9 +281,7 @@ function selectRandonCmdErr() {
 	"Please give me something to do.",
 	"I'm so bored. I need something to do",
 	"Help my boredom. Tell me what to do.",
-	"How bout you don't screw up and tell me what to do?",
-	"You know I can't understand this.",
-	"Why do you torture me with unintelligble blathering?"
+	"You know I can't understand this."
   ];
 	return randomResp[bot.random(randomResp.length)];
 }
