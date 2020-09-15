@@ -31,17 +31,24 @@ function pollCheck(m, message) {
 }
 
 function clearPolls(msg, message) {
+	let pArray = pollList.polls;
 	console.log(msg);
 	let pollID = msg[0];
 
-	if(pollID == "all") {
+	if(pollID === "all") {
 		pollList.polls = [];
-		bot.fs.writeFileSync('./polls.json', JSON.stringify(pollList, null, ' '));
+		message.channel.send("All polls cleared!");
 	} else {
-		//Search through poll aray to find index with poll_id
-		//delete pollList.polls[pollID];
+		var pollIndex = searchPollArray(pArray, pollID);
+		if(pollIndex > -1) {
+			console.log(pollIndex);
+			var deleted = pArray.splice(pollIndex,1);
+			message.channel.send(`Poll \`${pollID}\` deleted`);
+		} else {
+			message.channel.send("Poll does not exist");
+		}
 	}
-
+	bot.fs.writeFileSync('./polls.json', JSON.stringify(pollList, null, ' '));
 }
 
 function generateID() { //Generates poll ID
@@ -199,7 +206,7 @@ function searchPollArray(pollArray, id) {
 			return i;
 		}
 	}
-	return -1; //Else it DNE
+	return -1; //Else it DNE (does not exist)
 
 }
 
