@@ -84,7 +84,7 @@ function convertUnit(from, to, fromVal) {
     }
   } else if(unitsList[to] != undefined) {
     if(unitsList[to].hasOwnProperty(from) !=undefined) {
-      result = new Intl.NumberFormat("en-US").format((1/unitsList[to][from]) * fromVal);
+      result = (1/unitsList[to][from]) * fromVal;
     }
   }
   return result;
