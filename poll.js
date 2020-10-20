@@ -69,10 +69,11 @@ function createPoll(msg, message) { //Creates a poll
   var qstn = arr[0];
   arr.shift();
   var opts = arr;
-	var optsText = opts.join(", ")
+	var optsText = opts.join(", ");
   var tCount = new Array(opts.length);
   for(var i = 0; i < tCount.length; i++) {
     tCount[i] = 0;
+		opts[i] = opts[i].toLowerCase();
   }
 	var pollValues = {
 		poll_id: pID,
@@ -85,7 +86,7 @@ function createPoll(msg, message) { //Creates a poll
   //console.log(p.polls[pID]);
   msgText = "Id: `" + pID + "`\n";
   msgText += "Question: " + qstn + "\n";
-  msgText += "Options: " + opts + "\n";
+  msgText += "Options: " + optsText + "\n";
   message.channel.send(msgText);
 
   bot.fs.writeFileSync('./polls.json', JSON.stringify(pollList, null, ' '));
@@ -104,7 +105,7 @@ function voteOnPoll(msg, message) {
   } else {
     pID = currentID;
   }
-  var opt = msg.join(' ');
+  var opt = msg.join(' ').toLowerCase();
   var user = message.author.username;
 
   // 1) get the poll index based on ID
@@ -118,7 +119,7 @@ function voteOnPoll(msg, message) {
 			currentID = pID;
 	  // Check if user voted in the poll already
 			if(pol.voted.indexOf(message.author.id) != -1) {
-			  message.channel.send("<@"+message.author.id + "> You have already voted!");
+			  message.channel.send(`<@${message.author.id}, You have already voted!`);
 	  	} else {
 				// Get index of option selected to add to the respective count index
 	    	if(pol.options.indexOf(opt) != -1) {
@@ -211,6 +212,7 @@ function searchPollArray(pollArray, id) {
 }
 
 var pollFunctions = {
-	pollCheck: pollCheck
+	pollCheck: pollCheck,
+	voteOnPoll: voteOnPoll
 }
 module.exports = pollFunctions;
