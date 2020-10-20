@@ -8,7 +8,6 @@ var gameList = require("./statusList.json");
 
 
 const reqFiles = {
-	npc:"npc.js",
 	config: "config.json",
 	admin: "admin.js",
 	banned: "banned.json",
@@ -18,13 +17,15 @@ const reqFiles = {
 	info: "info.js",
 	insults:"insults.json",
 	series:"series.js",
-	polls:"poll.js",
-	rpg: "rpg.json",
+	poll:"poll.js",
+	rpg: "rpg.js",
 	cipher: "cipher.js",
 	gitH: "github.js",
 	tarot: "tarot.js",
 	matrix: "matrix.js",
-	units: "units.js"
+	units: "units.js",
+	rps: "rps.js",
+	isaac: "isaac.js"
 }; // Names of variables
 
 function requireFiles() {
@@ -59,9 +60,7 @@ var formu = new Twitter({
 bot.admin = admin;
 bot.banned = banned;
 bot.insults = insults;
-bot.polls = polls;
-bot.npc = npc;
-bot.rpg = rpg;
+bot.poll = poll;
 bot.darth = darth;
 bot.server = server;
 bot.formu = formu;
@@ -94,7 +93,7 @@ function checkCommands(c, text, message) {
 			break;
 		case 'poll':
 		case 'polls':
-			polls.pollCheck(msg, message);
+			poll.pollCheck(msg, message);
 			break;
 		// case 'mc':
 		// case 'minecraft':
@@ -102,6 +101,9 @@ function checkCommands(c, text, message) {
 		// 	break;
 		case 'series':
 			series.seriesCheck(msg, message);
+			break;
+		case 'rps':
+			rps.rpsCheck(msg, message);
 			break;
 		case 'butts':
 			message.channel.send("<@"+message.author + ">: *You must like big butts then. Don't lie!*");
@@ -118,6 +120,10 @@ function checkCommands(c, text, message) {
 		case 'int':
 			randInteger(msg, message);
 			break;
+		case 'boi':
+		case 'isaac':
+		case 'isek':
+			isaac.isaacCheck(msg, message);
 		case 'seq':
 			//coinFlip(msg, chID);
 			break;
@@ -183,6 +189,7 @@ function checkCommands(c, text, message) {
 			getInsult(message);
 			break;
 		case 'color':
+		case 'colour':
 			color.colorCheck(msg, message);
 			break;
 		case 'latex':
@@ -203,17 +210,18 @@ function checkCommands(c, text, message) {
 			matrix.matrixCheck(msg,message);
 			break;
 		case "rpg":
-			getRpgItem(message);
+			rpg.rpgCheck(msg, message);
 			break;
 		case "10print":
 		case "10-print":
 			do10Print(msg, message);
 			break;
-		case "npc":
-			npc.npcCheck(message);
-			break;
 		case 'tarot':
 			tarot.tarotCheck(msg, message);
+			break;
+		case 'vote':
+			console.log(msg);
+			poll.voteOnPoll(msg, message);
 			break;
 		// case "gh":
 		// case "git":
@@ -272,9 +280,7 @@ function gameCheck(m, message) {
 	}
 }
 
-function capitalize(string) {
-    return string[0].toUpperCase() + string.slice(1);
-}
+
 
 function selectRandonCmdErr() {
 	var randomResp = ["I'm sorry, I'm having trouble understanding what you want.",
@@ -315,53 +321,6 @@ function do10Print(m, message) {
 	}
 	result += "```";
 	message.channel.send(result);
-}
-
-// Outputs a random RPG item with random stats
-function getRpgItem(message) {
-	var rpgObj = bot.rpg;
-	var adj = rpgObj.adjectives;
-	var col, trt, item, phrase, sel;
-
-	var colI = bot.random(adj.colors.length);
-	var traitI = bot.random(adj.traits.length);
-	var itemI = bot.random(rpgObj.items.length);
-	var phrI = bot.random(rpgObj.phrases.length);
-	var statI = 0;
-	var itemText = "";
-	var formatText = "================================================\n";
-	var statText = "";
-	col = capitalize(adj.colors[colI]);
-	trt = capitalize(adj.traits[traitI]);
-	item = capitalize(rpgObj.items[itemI]);
-	phrase = rpgObj.phrases[phrI];
-	itemText = "```diff\nThe " + trt + " " + col + " " + item + " of " + phrase + "\n";
-	sel = new Set();
-	while(sel.size < 3) {
-		statI = bot.random(rpgObj.stats.length);
-		sel.add(rpgObj.stats[statI]);
-	}
-	var statArr = Array.from(sel)
-	for(var i = 0; i < 3; i++) {
-		var randBool = bot.random() < 0.5;
-		var randVal = 0;
-		if(randBool) {
-			randVal = bot.mapValue(bot.random(-15,10),-10,10,-50,50);
-			if(randVal >= 0) {
-				randVal = "+" + randVal;
-			}
-			randVal += "%";
-
-		} else {
-			randVal = bot.mapValue(bot.random(-20,20),-20,20,-100,100);
-			if(randVal >= 0) {
-				randVal = "+" + randVal;
-			}
-		}
-		statText += randVal + " to " + statArr[i] + "\n";
-	}
-	statText += "```";
-	message.channel.send((itemText+ formatText + statText));
 }
 
 // Gets an 8 ball answer
