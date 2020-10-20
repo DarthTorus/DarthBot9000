@@ -2,9 +2,10 @@ config.json
 banned.json
 insult.json
 insults.json
-package.json
 polls.json
-package-lock.json
+images/
+bot_art/
+templateFile.js
 logs/
 docs/
 examples/
@@ -13,3 +14,4 @@ lib/
 *.png
 *.txt
 node_modules/*
+.gitignore
