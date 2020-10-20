@@ -1,7 +1,8 @@
 var bot = process.DiscordBot;
 var tarotCards = require("./tarotCards.json");
+const Discord = require("discord.js");
 
-const tarotValues = ["Ace","2","3","4","5","6","7","8","9","10","Page","Knight","Queen","King"];
+const tarotValues = ["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Page","Knight","Queen","King"];
 const tarotSuits = ["Cups","Pentacles","Swords","Wands"];
 const majorArcana = ["The Fool","The Magician","The High Priestess","The Empress",
 "The Emperor","The Hierophant","The Lovers","The Chariot","Strength","The Hermit",
@@ -24,37 +25,57 @@ function pickRandomTarotCard(message) {
   var card = "";
   var msgText = "";
   var val, suit;
-  var imgPath = "./tarot_cards";
+  var imgPath = "tarot_cards";
   var imgName = "";
   let reversed = bot.random() < .5;
+  var tarotEmbed;
   imgPath += reversed ? "/reversed/" : "/upright/";
-
+  var fullLink = "https://www.biddytarot.com/tarot-card-meanings/";
+  var cardURL =""
+  var cardTitle = "";
   if (tarotIndex >= 56) {
     tarotIndex -= 56;
     card = tarotCards.major[majorArcana[tarotIndex]];
-    msgText = "**" + majorArcana[tarotIndex];
+    cardTitle = majorArcana[tarotIndex]
+    
+    cardURL = majorArcana[tarotIndex].toLowerCase();
+    cardURL = cardURL.replace("the ",'');
+    cardURL = cardURL.replace(/\s/g,'-');
+    fullLink += "major-arcana/"+ cardURL;
   } else {
     val = tarotValues[Math.floor(tarotIndex / 4)];
     suit = tarotSuits[tarotIndex % 4];
     card = tarotCards.minor[suit][val];
-    msgText = "**" +val + " of " + suit;
+    cardTitle = val + " of " + suit;
+
+    cardURL = cardTitle.toLowerCase();
+    cardURL = cardURL.replace(/\s/g,'-');
+    fullLink += "minor-arcana/suit-of-"+suit.toLowerCase()+"/" + cardURL;
   }
-  msgText += "** - ";
+  console.log(fullLink);
   var orientation = reversed ? "Reversed" : "Upright";
-  msgText += orientation;
-  msgText += "\n**Meaning:** ";
-  msgText += reversed ? card.meaning.reversed : card.meaning.upright;
-  msgText += "\n**Description of Card:** " + card.desc;
   imgName = card.fileName;
   imgPath += imgName;
-
-  message.channel.send({
-    files: [{
-      attachment: imgPath,
-      name: imgName
-    }],
-    content: msgText
-  }, );
+  
+  const img = new Discord.MessageAttachment("./"+imgPath);
+  
+  tarotEmbed = {
+    color: 0x3399ff,
+    title: cardTitle,
+    url: fullLink,
+    description: orientation,
+    image: {
+      url: "attachment://"+imgName
+    },
+    fields: [
+      {
+        name: "Meaning:",
+        value: reversed ? card.meaning.reversed : card.meaning.upright
+      }
+    ]
+  };
+  
+  message.channel.send({files: [img], embed: tarotEmbed});
 
 }
 
