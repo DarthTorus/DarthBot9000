@@ -41,7 +41,7 @@ function colorCheck(m, message) {
 function bilinearLerp(m, message) {
   var imgWidth = 600;
   var imgHeight = 600;
-  var imgPath = "./bilinearInterpolation.jpg";
+  var imgPath = "./images/bilinearInterpolation.jpg";
   var imgResult = bot.PNGImage.createImage(imgWidth, imgHeight);
   var colTL = {red: bot.random(255), green: bot.random(255), blue: bot.random(255), alpha: 255};
   var colTR = {red: bot.random(255), green: bot.random(255), blue: bot.random(255), alpha: 255};
@@ -103,7 +103,7 @@ function sendImage(imgResult, imgPath, imgName, message) {
 
 function drawSolidImage(imgColor, message) {
   var size = 450;
-  var imgPath = "./colorSquare.jpg";
+  var imgPath = "./images/colorSquare.jpg";
   var img = bot.PNGImage.createImage(size, size);
   var r = Number(imgColor[0]);
   var g = Number(imgColor[1]);
@@ -121,7 +121,7 @@ function drawSolidImage(imgColor, message) {
 
 function drawAddedImage(color1, color2, result, message) {
   var size = 400;
-  var imgPath = "./addedSquare.jpg";
+  var imgPath = "./images/addedSquare.jpg";
   var r1 = Number(color1[0]);
   var g1 = Number(color1[1]);
   var b1 = Number(color1[2]);
@@ -314,7 +314,7 @@ function gradientColors(msg, message) {
   var maxMid = 254;
   var minMid = 6;
   var mesg = new Array(6);
-  var imgPath = "./gradientSquare.jpg";
+  var imgPath = "./images/gradientSquare.jpg";
   if (msg[0] == "random") {
 
     for (var i = 0; i < 6; i++) {
@@ -649,7 +649,7 @@ function getTriadic(msg, message) {
   console.log("color3: " + color3);
   // draw image
   var size = 256;
-  var imgPath = "./triadicColor.jpg";
+  var imgPath = "./images/triadicColor.jpg";
   var imgColor1 = {
     red: color1[0],
     green: color1[1],
@@ -741,7 +741,7 @@ function getAnalogous(msg, message) {
 
   // draw image
   var size = 250;
-  var imgPath = "./analogColor.jpg";
+  var imgPath = "./images/analogColor.jpg";
   var imgColor1 = {
     red: color1[0],
     green: color1[1],
@@ -832,7 +832,7 @@ function getSqTetra(msg, message) {
 
   // draw image
   var size = 250;
-  var imgPath = "./squareTetradic.jpg";
+  var imgPath = "./images/squareTetradic.jpg";
   var imgColor1 = {
     red: color1[0],
     green: color1[1],
@@ -918,7 +918,7 @@ function getRectTetra(msg, message) {
 
   // draw image
   var size = 250;
-  var imgPath = "./rectTetradic.jpg";
+  var imgPath = "./images/rectTetradic.jpg";
   var imgColor1 = {
     red: color1[0],
     green: color1[1],
@@ -954,7 +954,7 @@ function getRectTetra(msg, message) {
 
 // this is a gradient ending at white. use 6 midpoints
 function getTints(msg, message) {
-  var imgPath = "./tintGradient.jpg";
+  var imgPath = "./images/tintGradient.jpg";
   var midpts = 6;
   var startCol = [0, 0, 0];
   var endCol = [0, 0, 0];
@@ -1034,7 +1034,7 @@ function getTones(msg, message) {
     percent = 0.5;
   }
   var color = 255 * percent;
-  var imgPath = "./toneGradient.jpg";
+  var imgPath = "./images/toneGradient.jpg";
   var midpts = 6;
   var startCol = [0, 0, 0];
   var endCol = [0, 0, 0];
@@ -1101,7 +1101,7 @@ function getTones(msg, message) {
 
 // this is a gradient ending at black. use 6 midpoints
 function getShades(msg, message) {
-  var imgPath = "./shadeGradient.jpg";
+  var imgPath = "./images/shadeGradient.jpg";
   var midpts = 6;
   var startCol = [0, 0, 0];
   var endCol = [0, 0, 0];
@@ -1204,7 +1204,7 @@ function getSplitComp(msg, message) {
 
   // draw image
   var size = 240;
-  var imgPath = "./splitComp.jpg";
+  var imgPath = "./images/splitComp.jpg";
   var imgColor1 = {
     red: color1[0],
     green: color1[1],
@@ -1261,7 +1261,7 @@ function getComplementary(msg, message) {
 
   // draw image
   var size = 256;
-  var imgPath = "./comp.jpg";
+  var imgPath = "./images/comp.jpg";
   var imgColor1 = {
     red: color1[0],
     green: color1[1],
