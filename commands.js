@@ -1,6 +1,6 @@
 var bot = process.DiscordBot;
 var colors = require('colors/safe');
-var Twitter = require("twitter");
+//var Twitter = require("twitter");
 //var utils = require("mc-utils");
 //var concat = require("concat-stream");
 var PNGImage = require('pngjs-image');
@@ -38,32 +38,32 @@ function requireFiles() {
 
 requireFiles();
 
-var darth = new Twitter({
-	consumer_key: config.twitter.o.ck,
-	consumer_secret: config.twitter.o.cs,
-	access_token_key: config.twitter.o.tk,
-	access_token_secret: config.twitter.o.ts,
-});
-var server = new Twitter({
-	consumer_key: config.twitter.s.ck,
-	consumer_secret: config.twitter.s.cs,
-	access_token_key: config.twitter.s.tk,
-	access_token_secret: config.twitter.s.ts,
-});
-var formu = new Twitter({
-	consumer_key: config.twitter.b.ck,
-	consumer_secret: config.twitter.b.cs,
-	access_token_key: config.twitter.b.tk,
-	access_token_secret: config.twitter.b.ts,
-});
+// var darth = new Twitter({
+// 	consumer_key: config.twitter.o.ck,
+// 	consumer_secret: config.twitter.o.cs,
+// 	access_token_key: config.twitter.o.tk,
+// 	access_token_secret: config.twitter.o.ts,
+// });
+// var server = new Twitter({
+// 	consumer_key: config.twitter.s.ck,
+// 	consumer_secret: config.twitter.s.cs,
+// 	access_token_key: config.twitter.s.tk,
+// 	access_token_secret: config.twitter.s.ts,
+// });
+// var formu = new Twitter({
+// 	consumer_key: config.twitter.b.ck,
+// 	consumer_secret: config.twitter.b.cs,
+// 	access_token_key: config.twitter.b.tk,
+// 	access_token_secret: config.twitter.b.ts,
+// });
 
 bot.admin = admin;
 bot.banned = banned;
 bot.insults = insults;
 bot.poll = poll;
-bot.darth = darth;
-bot.server = server;
-bot.formu = formu;
+// bot.darth = darth;
+// bot.server = server;
+// bot.formu = formu;
 bot.ownerID = config.ownerID
 function checkCommands(c, text, message) {
 	var msg = text.split(' '); //Split the string on spaces
