@@ -20,11 +20,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start":"darthbot.js"
+    "start":"./darthbot.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DarthTorus/DarthBot9000.git"
+    "url": "https://github.com/DarthTorus/DarthBot9000.git"
   },
   "author": "DarthTorus",
   "license": "GPL-3.0-or-later",
