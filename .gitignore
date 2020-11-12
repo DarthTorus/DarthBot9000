@@ -1,4 +1,3 @@
-config.json
 banned.json
 insult.json
 insults.json
@@ -15,3 +14,4 @@ lib/
 *.txt
 node_modules/*
 .gitignore
+.env

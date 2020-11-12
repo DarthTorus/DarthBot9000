@@ -1,5 +1,5 @@
 var bot = process.DiscordBot;
-var config = require("./config.json");
+require("dotenv").config();
 function infoCheck(m, message) {
 	switch (m[0]) {
 		// case "twitter":
@@ -19,7 +19,7 @@ function infoCheck(m, message) {
 			sendCredits(message);
 			break;
 		case "qrcode":
-			message.channel.send(config.qrcode);
+			message.channel.send(process.env.QR_CODE);
 			break;
 		case "bot":
 			sendBotInfo(message);
@@ -30,9 +30,8 @@ function infoCheck(m, message) {
 
 function sendCredits(message) {
 	let messageText = "**Credit To:**\n";
-	messageText += "Adyrd - *Bot Logo*\n";
-	messageText += "AstroSnail - *Help with help files*\n";
-	messageText += "Pridark - *Main Server Icon*"
+	messageText += "Buttery - *Bot Logo*\n";
+	messageText += "AstroSnail - *Help with help files*";
 	message.channel.send(messageText);
 }
 
@@ -97,7 +96,7 @@ function sendBotInfo(message) {
 
 function addBotToServer(message) {
 	try {
-		message.author.send("Invite link: " + config.addLink);
+		message.author.send("Invite link: " + process.env.ADD_LINK);
 		message.channel.send("I have sent an invite link with the swiftest digital falcon bits could create to your DMs!");
 	}
 	catch (err) {

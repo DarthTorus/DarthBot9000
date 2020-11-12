@@ -1,10 +1,9 @@
 /*Variable area*/
-var config = require("./config.json"); // Must be first because it is the settings for most of below
-//var utils = require("mc-utils");
-//var concat = require("concat-stream");
+//let config = require("./config.json"); // Must be first because it is the settings for most of below
+require("dotenv").config();
 const DiscordBot = require('discord.js');
-var colors = require('colors/safe');
-var PNGImage = require('pngjs-image');
+let colors = require('colors/safe');
+let PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
 const reqFiles = {commands:"commands.js"}; // Names of variables
 
@@ -21,7 +20,7 @@ function requireFiles() {
 const bot = new DiscordBot.Client();
 
 	// login to Discord with your app's token
-	bot.login(config.token);
+	bot.login(process.env.TOKEN);
 
 
 process.DiscordBot = bot;
@@ -36,7 +35,7 @@ requireFiles();
 bot.colors = colors;
 bot.PNGImage = PNGImage;
 var logText = "";
-const trigger = config.trigger;
+const trigger = process.env.TRIGGER;
 const triggerLength = trigger.length;
 bot.trigger = trigger;
 bot.request = request;
@@ -81,23 +80,15 @@ bot.once('ready', () => {
 
 	quitStatus = false;
 	console.log(colors.cyan("File Name: " + logFileName));
-	logText += "File Name: " + logFileName + "\r\n";
 	console.log(colors.cyan("Started: " + bot.startDate));
-	logText += "Started: " + bot.startDate + "\r\n";
 	console.log(colors.gray("Connected!"));
-	logText += "Connected!\r\n";
 	console.log(colors.cyan("Logged in as: " + bot.user.tag + " - (" + bot.user.id + ")"));
-	logText += "Logged in as: " + bot.user.tag + " - (" + bot.user.id + ")" + "\r\n";
 	if(bot.inStandby) {
 		admin.randomStatus("in dreams.");
 	}
 	else {
 		admin.randomStatus("0");
 	}
-	fs.appendFile(logFileName, logText, (err) => {
-		if (err) throw err;
-		console.log(colors.gray("Data added."));
-	});
 });
 
  bot.on("message",
@@ -137,7 +128,7 @@ bot.once('ready', () => {
 		logSec = "0" + logSec;
 	}
 	var logTime = "[" + logHour + ":" + logMin + ":" + logSec + "] ";
-	if(message.content.toLowerCase() == ">>>admin -ese") {
+	if(message.content.toLowerCase() == "d!admin -ese") {
 		if(banned.servers.indexOf(serverID) > -1) {
 			var bannedID = banned.servers.indexOf(message.guild.id);
 			console.log("serverID: "+serverID);
@@ -155,9 +146,6 @@ bot.once('ready', () => {
 	command.shift();
 
 	//var msgID = rawEvent.d.id; //For future reference?
-
-	logText = logTime + message.author.username + "(" + message.author.id + ") in server \'" + serverName + "\' in channel \'" + channelName + "\':\r\n---" + message.content + "\r\n";
-	logText += "============================================================================\r\n";
 	if (triggerCheck == trigger || message.author.id === bot.id) {
 		if (banned.servers.indexOf(serverID) != -1) {
 			console.log(colors.magenta("[WARNING] Server: " + serverName + " - " + serverID + " is banned"));
@@ -173,7 +161,7 @@ bot.once('ready', () => {
 			console.log(colors.cyan(logTime + message.author.username + " - ID: ") + colors.yellow("@" + userID));
 			console.log("in " + colors.magenta(serverName + " - #" + channelName));
 			//console.log(message);
-			//console.log(colors.white(bot.fixMessage(message)));
+			console.log(colors.white(message.content));
 			console.log("----------");
 
 		}
@@ -195,12 +183,8 @@ bot.once('ready', () => {
 			}
 		}
 
-		fs.appendFile(logFileName, logText, (err) => { //Log command sent along with user and server
-			if (err) throw err;
-			console.log(colors.gray("Data added."));
-		});
 	}
-	//console.log("Bot sleeping (last check) = " + bot.inStandby);
+
 });
 
 bot.on("presence", function(user, userID, status, gameName, rawEvent) {
@@ -227,10 +211,6 @@ bot.disconnect= function(message) {
 	var endText = "Disconnected on: " + dateEnded + "\r\n";
 	endText += ("Uptime: " + Math.floor((dateEnded - bot.startDate) * 1000) + " s");
 	console.log(colors.red(endText));
-	fs.appendFile(logFileName, endText + "\r\n", (err) => {
-		if (err) throw err;
-		console.log(colors.gray("Data added."));
-	});
 	try {
 		bot.destroy();
 	}

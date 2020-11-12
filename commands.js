@@ -79,7 +79,7 @@ function checkCommands(c, text, message) {
 			calc.calcCheck(msg, message);
 			break;
 		case 'admin':
-			if (message.author.id == bot.ownerID) {
+			if (message.author.id == process.env.OWNER_ID) {
 				admin.adminCheck(msg, message);
 			} else {
 				message.channel.send("<@" + message.author.id + "> *: You lack permission*")
@@ -152,7 +152,7 @@ function checkCommands(c, text, message) {
 		case 'echo':
 		case 'repeat':
 			msg = msg.join(" "); //Join with a space
-			if(message.author.id === config.ownerID){
+			if(message.author.id === process.env.OWNER_ID){
 				repeatMessage(msg, message);
 				try{
 					message.delete();
