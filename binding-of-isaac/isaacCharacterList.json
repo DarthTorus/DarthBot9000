@@ -1,6 +1,6 @@
 {
   "Isaac" : {
-    "health": ":heart: :heart: :heart:",
+    "health": "<:red_heart:775146238462525441> <:red_heart:775146238462525441> <:red_heart:775146238462525441>",
     "damage": "3.5",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -8,12 +8,12 @@
     "speed": "1.0",
     "luck": "0",
     "starting": ["1 Bomb","The D6, if unlocked as starting item"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Isaac",
+    "link": "Isaac",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/a/a8/Isaac_App.png/",
     "unlocked":"Already Unlocked"
   },
   "Magdalene": {
-    "health": ":heart: :heart: :heart: :heart:",
+    "health": "<:red_heart:775146238462525441> <:red_heart:775146238462525441> <:red_heart:775146238462525441> <:red_heart:775146238462525441>",
     "damage": "3.5",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -21,12 +21,12 @@
     "speed": ".85",
     "luck": "0",
     "starting": ["Speed Up :pill:, if unlocked as starting item","Yum Heart"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Magdalene",
+    "link": "Magdalene",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/7/74/Magdalene_App.png/",
     "unlocked":"Having 7 or more Red Heart containers at one time"
   },
   "Cain": {
-    "health": ":heart: :heart:",
+    "health": "<:red_heart:775146238462525441> <:red_heart:775146238462525441>",
     "damage": "4.2",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -34,12 +34,12 @@
     "speed": "1.3",
     "luck": "0",
     "starting": ["1 Key","Paper Clip, if unlocked as starting item", "Lucky Foot" ],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Cain",
+    "link": "Cain",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/3/32/Cain_App.png/",
-    "unlocked":"Holding 55 :coin:s at one time"
+    "unlocked":"Holding 55 coins at one time"
   },
   "Judas": {
-    "health": ":heart:",
+    "health": "<:red_heart:775146238462525441>",
     "damage": "4.725",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -47,12 +47,12 @@
     "speed": "1",
     "luck": "0",
     "starting": ["3 Coins","The Book of Belial"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Judas",
+    "link": "Judas",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/1/18/Judas_App.png/",
     "unlocked":"Defeating Satan"
   },
   "Black Judas": {
-    "health": ":black_heart: :black_heart:",
+    "health": "<:demon_heart:775146238681022484> <:demon_heart:775146238681022484>",
     "damage": "7",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -60,12 +60,12 @@
     "speed": "1.1",
     "luck": "0",
     "starting": ["No pickups","No items"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Black_Judas",
+    "link": "Black_Judas",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e2/Collectible_Judas%27_Shadow_appearance.png/",
     "unlocked":"Dying while holding Judas' Shadow, not a selectable character to start with"
   },
   "???": {
-    "health": ":blue_heart: :blue_heart: :blue_heart:",
+    "health": "<:soul_heart:775146238482841610> <:soul_heart:775146238482841610> <:soul_heart:775146238482841610>",
     "damage": "3.675",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -73,25 +73,25 @@
     "speed": "1.1",
     "luck": "0",
     "starting": ["No pickups","The Poop"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/%3F%3F%3F_(Character)",
+    "link": "%3F%3F%3F_(Character)",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/5/5e/Blue_Baby_App.png/",
     "unlocked":"Defeating Mom's Heart 10 times"
   },
   "Eve": {
-    "health": ":heart: :heart",
-    "damage": "2.625; 3.5 at :heart:",
+    "health": "<:red_heart:775146238462525441> :heart",
+    "damage": "2.625; 3.5 at <:red_heart:775146238462525441>",
     "tears": "10 (0)",
     "shot_speed": "1",
     "range": "23.75",
     "speed": "1.23",
     "luck": "0",
     "starting": ["No pickups","Whore of Babylon","Dead Bird","Razor Blade, if unlocked as starting item"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Eve",
+    "link": "Eve",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/f/f9/Eve_App.png/",
     "unlocked":"Not picking up any hearts for 2 floors in a row"
   },
   "Samson": {
-    "health": ":heart: :heart: :heart:",
+    "health": "<:red_heart:775146238462525441> <:red_heart:775146238462525441> <:red_heart:775146238462525441>",
     "damage": "3.5",
     "tears": "10 (-0.05)",
     "shot_speed": "1.31",
@@ -99,12 +99,12 @@
     "speed": "1.1",
     "luck": "0",
     "starting": ["No pickups","Bloody Lust","Child's Heart, if unlocked as starting item"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Samson",
+    "link": "Samson",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/f/fe/Samson_App.png/",
     "unlocked":"Completing 2 floors in a row without taking damage"
   },
   "Azazel": {
-    "health": ":black_heart: :black_heart: :black_heart:",
+    "health": "<:demon_heart:775146238681022484> <:demon_heart:775146238681022484> <:demon_heart:775146238681022484>",
     "damage": "5.25",
     "tears": "31 (0.5, x1/3)",
     "shot_speed": "1",
@@ -112,12 +112,12 @@
     "speed": "1.25",
     "luck": "1",
     "starting": ["0 - The Fool","Short range Brimstone"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Azazel",
+    "link": "Azazel",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/d/db/Azazel_App.png/",
     "unlocked":"Taking 3 Devil Deals in one run"
   },
   "Lazarus": {
-    "health": ":heart: :heart: :heart:",
+    "health": "<:red_heart:775146238462525441> <:red_heart:775146238462525441> <:red_heart:775146238462525441>",
     "damage": "3.5",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -125,12 +125,12 @@
     "speed": "1.0",
     "luck": "-1",
     "starting": ["1 :pill:","Anemic"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Lazarus",
+    "link": "Lazarus",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/3/34/Lazarus_App.png/",
-    "unlocked":"Having 4 or more Soul Hearts (:blue_heart:) at one time"
+    "unlocked":"Having 4 or more Soul Hearts (<:soul_heart:775146238482841610>) at one time"
   },
   "Lazarus Risen": {
-    "health": ":heart:",
+    "health": "<:red_heart:775146238462525441>",
     "damage": "4.2",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -138,12 +138,12 @@
     "speed": "1.25",
     "luck": "0",
     "starting": ["No pickups", "Perm version of Anemic"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Lazarus_Risen",
+    "link": "Lazarus_Risen",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/3/3c/Lazarus_App2.png/",
     "unlocked":"Dying as Lazarus or dying while having Lazarus' Rags, not a selectable character to start with"
   },
   "Eden": {
-    "health": "x = 0-3 :heart:\n0 to (3-x) :blue_heart:\n2 :blue_heart: if no red hearts ",
+    "health": "x = 0-3 <:red_heart:775146238462525441>\n0 to (3-x) <:soul_heart:775146238482841610>\n2 <:soul_heart:775146238482841610> if no red hearts ",
     "damage": "3.5 ± 1.0",
     "tears": "7-19 (0 ± 0.75)",
     "shot_speed": "1 ± 0.25",
@@ -151,7 +151,7 @@
     "speed": "1.0 ± 0.15",
     "luck": "0.0 ± 1.0",
     "starting": ["1 Key, 1-2 Bombs, or 1-5 Coins, 1/3 chance of each","An active item, passive item, or both", "A Trinket, Pill or Card, or nothing, 1/3 chance of each"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Eden",
+    "link": "Eden",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/5/5d/Eden_App.png/",
     "unlocked":"Completing Chapter 4"
   },
@@ -164,12 +164,12 @@
     "speed": "1",
     "luck": "0",
     "starting": ["1 Coin","Spectral Tears","The D4, if unlocked as starting item","Holy Mantle, if unlocked as starting item"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/The_Lost",
+    "link": "The_Lost",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/6/6d/The_Lost_App.png/",
     "unlocked":"• Rebirth: It's complicated\n• Afterbirth & Afterbirth+: Dying in a Sacrifice Room while holding Missing Poster"
   },
   "Lilith": {
-    "health": ":heart: :black_heart: :black_heart:",
+    "health": "<:red_heart:775146238462525441> <:demon_heart:775146238681022484> <:demon_heart:775146238681022484>",
     "damage": "3.5",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -177,12 +177,12 @@
     "speed": "1",
     "luck": "0",
     "starting": ["No pickups","Blindfolded","Incubus","Cambion Conception","Box of Friends"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Lilith",
+    "link": "Lilith",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/9/9d/Lilith_App.png/",
     "unlocked":"Defeating Ultra Greed as Azazel"
   },
   "Keeper": {
-    "health": ":coin: :coin:",
+    "health": "<:coin_heart:775146238482972672>  <:coin_heart:775146238482972672> ",
     "damage": "4.2",
     "tears": "28 (-2)",
     "shot_speed": "1",
@@ -190,12 +190,12 @@
     "speed": ".85",
     "luck": "-2",
     "starting": ["1 Bomb","1 Coin, if unlocked as starting pick up","Store Key, if unlocked as starting item","Wooden Nickel, if unlocked as starting item"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Keeper",
+    "link": "Keeper",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/5/51/Keeper_App.png/",
     "unlocked":"Donating 1000 coins to the Greed Donation Machine"
   },
   "Apollyon": {
-    "health": ":heart: :heart:",
+    "health": "<:red_heart:775146238462525441> <:red_heart:775146238462525441>",
     "damage": "3.5",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -203,12 +203,12 @@
     "speed": "1",
     "luck": "0",
     "starting": ["No pickups","The Void"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Apollyon",
+    "link": "Apollyon",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/ed/Apollyon_App.png/",
     "unlocked":"Defeating Mega Satan"
   },
   "The Forgotten": {
-    "health": ":white_heart: :white_heart:\n(2 Filled Bone Hearts)",
+    "health": "<:bone_heart:775146238612996096> <:bone_heart:775146238612996096>",
     "damage": "5.25",
     "tears": "20 (0, x1/2)",
     "shot_speed": "1",
@@ -216,12 +216,12 @@
     "speed": "1",
     "luck": "0",
     "starting": ["No pickups","Bone Club"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/The_Forgotten",
+    "link": "The_Forgotten",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/f/ff/The_Forgotten_App.png/",
     "unlocked":"Using both pieces of Mom's shovel on a patch of dirt in the Dark Room"
   },
   "The Soul": {
-    "health": ":blue_heart:",
+    "health": "<:soul_heart:775146238482841610>",
     "damage": "3.5",
     "tears": "10 (0)",
     "shot_speed": "1",
@@ -229,7 +229,7 @@
     "speed": "1.3",
     "luck": "0",
     "starting": ["No pickups","Flying","Spectral Tears"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/The_Soul_(Character)",
+    "link": "The_Soul_(Character)",
     "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/c/c2/The_Soul_%28Character%29_App.png/",
     "unlocked":"Comes unlocked with The Forgotten"
   }

@@ -1,5 +1,5 @@
 {
-  "verbs" : [{
+  "verbs" : {
     "abatir" : {
       "id" : "1",
       "gerundio" : "abatiendo",
@@ -23,5 +23,5 @@
         "imperativo" : ["-","abate; no abatas","abata","abatamos","abatid; no abatáis","abatan"]
       }
     }
-  }]
+  }
 }

@@ -3,4920 +3,6054 @@
     "id": "5.100.1",
     "tagLine": "Tears up",
     "type": ["Passive"],
-    "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/e/e0/Collectible_The_Sad_Onion_icon.png/",
+    "img": "001_thesadonion.png",
     "description": "• +0.7 Tears Up.",
     "game": "Rebirth",
-    "item_pools": ["Item Room","Item Room (Greed Mode)"],
-    "link":"https://bindingofisaacrebirth.gamepedia.com/The_Sad_Onion"
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link":"The_Sad_Onion",
+    "grid": "Pg 01, Col 01, Row 01",
+    "unlocked":"Default"
   },
   "The Inner Eye": {
     "id": "5.100.2",
     "tagLine": "Triple Shot",
     "type": ["Passive","Tear Modifier"],
-    "img": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/4/45/Collectible_The_Inner_Eye_icon.png/",
+    "img": "002_theinnereye.png",
     "description": "• Grants a triple shot\n• Tears down: `(Delay*2.1)+3.`",
     "game": "Rebirth",
-    "item_pools": ["Item Room","Item Room (Greed Mode)"],
-    "link":"https://bindingofisaacrebirth.gamepedia.com/The_Inner_Eye"
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link":"The_Inner_Eye",
+    "grid": "Pg 01, Col 02, Row 01",
+    "unlocked":"Default"
   },
   "Spoon Bender": {
     "id": "5.100.3",
     "tagLine": "Homing Shots",
     "type": ["Passive"],
-    "img": "http://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/1/15/Collectible_Spoon_Bender_icon.png/",
+    "img": "003_spoonbender.png",
     "description": "• Gives Isaac's tears a homing effect.",
     "game": "Rebirth",
-    "item_pools": ["Item Room","Item Room (Greed Mode)"],
-    "link":"https://bindingofisaacrebirth.gamepedia.com/Spoon_Bender"
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link":"Spoon_Bender",
+    "grid": "Pg 01, Col 03, Row 01",
+    "unlocked":"Default"
   },
   "Cricket's Head": {
     "id": "5.100.4",
     "tagLine": "DMG up",
     "type": ["Passive"],
-    "img": "http://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/3/33/Collectible_Cricket%27s_Head_Rebirth_icon.png/",
+    "img": "004_cricketshead.png",
     "description": "• +0.5 Damage Up.\n• +50% / 1.5 times Damage Multiplier (Does not stack with the Magic Mushroom multiplier).\n• Tears now have a significant knockback effect (Does not increase the shot speed stat).\n• Can be found in golden chests.\n• Cricket's Head used to be known as Max's Head in the original game and was renamed for Rebirth.",
     "game": "Rebirth",
-    "item_pools": ["Item Room","Item Room (Greed Mode)","Golden Chest","Golden Chest (Greed Mode)"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/Cricket%27s_Head"
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)","<:golden_chest:775111056820928523> Golden Chest",":moneybag: <:golden_chest:775111056820928523> Golden Chest (Greed Mode)"],
+    "link": "Cricket%27s_Head",
+    "grid": "Pg 01, Col 04, Row 01",
+    "unlocked":"Default"
   },
   "My Reflection": {
     "id": "5.100.5",
     "tagLine": "Boomerang tears",
     "type": ["Passive","Tear Modifier"],
-    "img": "http://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/d/de/Collectible_My_Reflection_icon.png",
+    "img": "005_myreflection.png",
     "description": "• Gives tears a boomerang effect.\n• +1.5 Range Up.\n• +0.6 Shot Speed Up.\n• +1.0 Tear Height.",
     "game": "Rebirth",
-    "item_pools": ["Item Room","Item Room (Greed Mode)"],
-    "link": "https://bindingofisaacrebirth.gamepedia.com/My_Reflection"
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "My_Reflection",
+    "grid": "Pg 01, Col 05, Row 01",
+    "unlocked":"Default"
   },
   "Number One": {
     "id": "5.100.6",
     "tagLine": "Tears Up",
     "type": ["Passive"],
-    "img": "http://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/d/d6/Collectible_Number_One_icon.png/",
+    "img": "006_numberone.png",
     "description": "• Gives you a very high tear rate in exchange for a big range down\n• +1.5 Tears.\n• -15.78 Range.\n• +0.45 Shot Height",
     "game": "Rebirth",
-    "item_pools": ["Item Room","Item Room (Greed Mode)"],
-    "link":"https://bindingofisaacrebirth.gamepedia.com/Number_One"
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link":"Number_One",
+    "grid": "Pg 01, Col 06, Row 01",
+    "unlocked":"Default"
   },
   "Blood of the Martyr": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.7",
+    "tagLine": "DMG up",
+    "type": ["Passive"],
+    "img": "007_blodofthemartyr.png",
+    "description": "• Increases damage by 1, and turns Isaac's tears into blood tears.\n • Applies an additional 1.5x damage multiplier when holding the Book of Belial.\n• The x1.5 damage multiplier does not stack with the x1.5 damage multiplier from Magic Mushroom and Cricket's Head.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)",":cross: Angel Room (Greed Mode)"],
+    "link": "Blood_of_the_Martyr",
+    "grid": "Pg 01, Col 07, Row 01",
+    "unlocked":"Default"
   },
   "Brother Bobby": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.8",
+    "tagLine": "Friends 'till the end",
+    "type": ["Passive","Familiar"],
+    "img": "008_brotherbobby.png",
+    "description": "•Spawns a familiar that follows Isaac around shooting normal tears that deal 3.5 damage.\n• Added in Afterbirth This item belongs to the Conjoined set. Collecting three items from this set will transform Isaac into a three-faced version of himself.\n• Brother Bobby is functionally identical to Sister Maggy Sister Maggy.",
+    "game": "Rebirth",
+    "item_pools": [":smiling_imp: Devil Room",":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "Brother_Bobby",
+    "grid": "Pg 01, Col 08, Row 01",
+    "unlocked":"Default"
   },
   "Skatole": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.9",
+    "tagLine": "Fly love",
+    "type": ["Passive"],
+    "img": "009_skatole.png",
+    "description": "• This item causes many Fly enemies to alter their behavior toward Isaac.\n• The following flies transform into a neutral Black Fly: Attack Fly, Dart Fly, Eternal Fly, and Ring Fly.\n• The following flies move slower but will still deal contact damage: Boom Fly, Red Boom Fly, Drowned Boom Fly.\n• The following flies move slower and deal no contact damage: Moter, Level 2 Fly, Full Fly, Pooter, and Super Pooter.\n• Pooters will not fire at Isaac and Moters will not split into Attack Flies.\n• The following flies are completely unaffected, retaining their normal attacks and speed: Large Attack Fly, Swarm Fly, Hush Fly, Sucker, Soul Sucker and Spit.\n• This item belongs to the Beelzebub set. Collecting three items from this set will transform Isaac into a giant humanoid fly.\n• This item can only be obtained from the Shell Game Beggar in the arcade.\n• Flies spawned by The Husk will not become passive.",
+    "game": "Rebirth",
+    "item_pools": ["None"],
+    "link": "Skatole",
+    "grid":"Pg 01, Col 09, Row 01",
+    "unlocked":"Default"
   },
   "Halo of Flies": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.10",
+    "tagLine": "Projectile Protection",
+    "type": ["Passive"],
+    "img": "010_haloofflies.png",
+    "description": "• Spawns two Pretty Flies that block enemy shots.\n• Pretty flies kill some fly enemies upon contact.\n• The orbital limit of three flies cannot be surpassed with this item, reducing its effectiveness if Isaac has two or more orbitals.\n• This item belongs to the Beelzebub set. Collecting three items from this set will transform Isaac into a giant humanoid fly.\n• Orbital flies can also be obtained by other means, such as Slot Machines and Pretty Fly pills.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)",":key: Key Beggar"],
+    "link": "Halo_of_Flies",
+    "grid": "Pg 01, Col 10, Row 01",
+    "unlocked":"Default"
   },
-  "1Up": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+  "1up!": {
+    "id": "5.100.11",
+    "tagLine": "Extra life",
+    "type": ["Passive"],
+    "img": "011_1up.png",
+    "description": "• Isaac gains an extra life.\n• On resurrection, the mushroom that follows Isaac will disappear and Isaac will respawn in the previous room with all his previous Red Heart containers at full health.\n• If Isaac has no Red Heart containers, he'll respawn with 1/2 Soul Heart instead.\n• This item belongs to the Fun Guy set. Collecting three items from this set will transform Isaac into a walking mushroom.\n• It is possible to collect more than one 1up! items, resulting in multiple extra lives.\n• Resurrection from 1up! takes priority over all other resurrection items except Guppy's Collar.\n• ??? will respawn with 3 soul hearts.\n• The Forgotten will respawn with 3 filled bone hearts (notably more than his starting HP) and The Soul with whatever soul and black hearts he had on death.\n• Dying as The Soul respawns him with 1/2 Soul Heart and The Forgotten with whatever bone hearts he had on death.",
+    "game": "Rebirth",
+    "item_pools": [":grey_question: Secret Room", ":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "1up!",
+    "grid": "Pg 01, Col 11, Row 01",
+    "unlocked":"Default"
   },
   "Magic Mushroom": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.12",
+    "tagLine": "All stats up!",
+    "type": ["Passive"],
+    "img": "012_magicmushroom.png",
+    "description": "• Grants one <:red_heart:775146238462525441> container.\n• +0.3 Damage Up.\n• x1.5 Damage Multiplier.\n• +5.25 Range Up.\n• +0.3 Speed Up.\n• +0.5 Tear Height.\n• Isaac grows in size.\n• Fully restores all red heart containers.\n• This item belongs to the Fun Guy set. Collecting three items from this set will transform Isaac into a walking mushroom.\n• Added in Afterbirth † This item belongs to the Stompy set. Collecting three items from this set will transform Isaac into Stompy.\n• The Magic Mushroom does not give a tears up or luck up stat despite its quote saying 'All Stats Up!'.\n• The x1.5 damage multiplier does not stack with the x1.5 damage multiplier from Cricket's Head, from the combination of The Book of Belial and Blood of the Martyr, or itself (by using an item such as Diplopia, for example). However, it will stack with any multipliers not listed here.",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "Magic_Mushroom",
+    "grid": "Pg 01, Col 12, Row 01",
+    "unlocked":"Default"
   },
   "The Virus": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.13",
+    "tagLine": "Poison Touch",
+    "type": ["Passive"],
+    "img": "013_thevirus.png",
+    "description": "• Inflicts poison on enemies who make contact with Isaac.\n• The poison randomly hits either 2 or 3 times, dealing a total of 4 or 6 damage.\n• Each poison hit deals damage equal to Isaac's tear damage.\n• The poison hits a total of 6 times against normal enemies and 3 times against bosses. The effect can only be applied to bosses roughly every 6 seconds.\n• Enemies who are killed after they have been inflicted with this type of poison have a 20% chance to drop black hearts.\n• -0.1 Speed down (not applied until the next time Isaac's speed stat is updated).\n• This item belongs to the Spun set. Collecting three items from this set will transform Isaac into a buff berserker.\n• The black heart is only dropped if the poison was caused by The Virus. The item's effect doesn't extend to poison tears.\n• If an enemy doesn't do contact damage, The Virus can safely be applied to it for more chances at black hearts. Black flies, Mulligans, and Hosts are the most common enemies this can be applied to.",
+    "game": "Rebirth",
+    "item_pools": [":imp: Demon Beggar",":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)",":skull_crossbones: Lust Miniboss"],
+    "link": "The_Virus",
+    "grid": "Pg 01, Col 13, Row 01",
+    "unlocked":"Default"
   },
   "Roid Rage": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.14",
+    "tagLine": "Speed and Range up",
+    "type": ["Passive"],
+    "img": "014_roidrage.png",
+    "description": "• +0.6 Speed up.\n• +5.25 Range up.\n• +0.5 Shot Height.\n• This item belongs to the Spun set. Collecting three items from this set will transform Isaac into a buff berserker.",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)",":imp: Demon Beggar",":crown: Item Room"],
+    "link": "Roid_Rage",
+    "grid": "Pg 01, Col 14, Row 01",
+    "unlocked":"Default"
   },
-  "<3": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+  "\\<3": {
+    "id": "5.100.15",
+    "tagLine": "HP up",
+    "type": ["Passive"],
+    "img": "015_lessthanthree.png",
+    "description": "• Grants Isaac one red heart container and fully restores Isaac's health.",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)",":skull_crossbones: Gluttony Miniboss",":crown: Item Room"],
+    "link": "Less_Than_Three",
+    "grid": "Pg 01, Col 15, Row 01",
+    "unlocked":"Default"
   },
   "Raw Liver": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.16",
+    "tagLine": "HP up",
+    "type": ["Passive"],
+    "img": "016_rawliver.png",
+    "description": "• Grants 2 <:red_heart:775146238462525441> containers and fully restores Isaac's health.",
+    "game": "Rebirth",
+    "item_pools": [":grey_question: Secret Room",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Raw_Liver",
+    "grid": "Pg 01, Col 16, Row 01",
+    "unlocked":"Default"
   },
   "Skeleton Key": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.17",
+    "tagLine": "99 Keys",
+    "type": ["Passive"],
+    "img": "017_skeletonkey.png",
+    "description": "• Gives Isaac 99 keys.\n• Rerolling this item with theD4, D100, Missing No., or a 1 or 6 pip Dice Room will not remove the 99 keys.\n• This item is very useful for donating to Key Masters.",
+    "game": "Rebirth",
+    "item_pools": [":grey_question: Secret Room"],
+    "link": "Skeleton_Key",
+    "grid": "Pg 01, Col 17, Row 01",
+    "unlocked":"Default"
   },
   "A Dollar": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.18",
+    "tagLine": "$$$",
+    "type": ["Passive"],
+    "img": "018_adollar.png",
+    "description": "• Upon picking up A Dollar, the player's coin count will be set to 99, the maximum possible amount of money.\n• \n• The Dollar can only be found from a Slot Machine or as a starting item for Eden.\n• Picking this item up will automatically unlock Cain.\n• Multiple Dollars can be dropped in the same run by different Slot Machines.",
+    "game": "Rebirth",
+    "item_pools": ["None"],
+    "link": "A_Dollar",
+    "grid": "Pg 01, Col 18, Row 01",
+    "unlocked":"Default"
   },
   "Boom!": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.19",
+    "tagLine": "10 Bombs",
+    "type": ["Passive"],
+    "img": "019_boom.png",
+    "description": "• Grants 10 bombs.\n• Effectively a weaker version of Pyro, which grants 99 bombs instead of 10.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room",":bomb: Bomb Beggar"],
+    "link": "Boom!",
+    "grid": "Pg 01, Col 19, Row 01",
+    "unlocked":"Default"
   },
   "Transcendence": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.20",
+    "tagLine": "We all float down here...",
+    "type": ["Passive"],
+    "img": "020_transcendence.png",
+    "description": "• Grants flight",
+    "game": "Rebirth",
+    "item_pools": [":grey_question: Secret Room"],
+    "link": "Transcendence",
+    "grid": "Pg 01, Col 20, Row 01",
+    "unlocked":"Defeating Mom's Heart 3 times."
   },
   "The Compass": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.21",
+    "tagLine": "The End is Near",
+    "type": ["Passive"],
+    "img": "021_thecompass.png",
+    "description": "• Reveals all special rooms on the map, excluding :grey_question: Secret Rooms and :question: Super Secret Rooms.\n• The following rooms will be revealed if they exist:\n\u00A0\u00A0• :skull: Boss Room\n\u00A0\u00A0• :skull_crossbones: Mini-Boss Room\n\u00A0\u00A0• :crown: Treasure Room\n\u00A0\u00A0• :bellhop: Shop\n\u00A0\u00A0• :joystick: Arcade\n\u00A0\u00A0• :dagger: Challenge Room\n\u00A0\u00A0• :crossed_swords: Boss Challenge Room\n\u00A0\u00A0• :broken_heart: Curse Room\n\u00A0\u00A0• :knife: Sacrifice Room\n\u00A0\u00A0• :books: Library\n\u00A0\u00A0• :bank: Vault\n\u00A0\u00A0• :game_die: Dice Room\n\u00A0\u00A0• :bed: Bedrooms\n• The Compass will reveal if Greed is present by displaying a mini-boss icon with the shop icon. It might also reveal if Greed is present in the Secret Room, and thus, the location of the Secret Room itself.",
+    "game": "Rebirth",
+    "item_pools": [":moneybag: Coin Beggar",":bellhop: Shop"],
+    "link": "The_Compass",
+    "grid": "Pg 01, Col 01, Row 02",
+    "unlocked":"Default"
   },
   "Lunch": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.22",
+    "tagLine": "HP up",
+    "type": ["Passive"],
+    "img": "022_lunch.png",
+    "description": "• Grants 1 full <:red_heart:775146238462525441> container",
+    "game": "Rebirth",
+    "item_pools": [":moneybag: Coin Beggar",":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Lunch",
+    "grid": "Pg 01, Col 02, Row 02",
+    "unlocked":"Default"
   },
   "Dinner": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.23",
+    "tagLine": "HP up",
+    "type": ["Passive"],
+    "img": "023_dinner.png",
+    "description": "• Grants 1 full <:red_heart:775146238462525441> container",
+    "game": "Rebirth",
+    "item_pools": [":moneybag: Coin Beggar",":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Dinner",
+    "grid": "Pg 01, Col 03, Row 02",
+    "unlocked":"Default"
   },
   "Dessert": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.24",
+    "tagLine": "HP up",
+    "type": ["Passive"],
+    "img": "024_dessert.png",
+    "description": "• Grants 1 full <:red_heart:775146238462525441> container",
+    "game": "Rebirth",
+    "item_pools": [":moneybag: Coin Beggar",":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Dessert",
+    "grid": "Pg 01, Col 04, Row 02",
+    "unlocked":"Default"
+  },
+  "Breakfast": {
+    "id": "5.100.25",
+    "tagLine": "HP up",
+    "type": ["Passive"],
+    "img": "025_breakfast.png",
+    "description": "• Grants 1 full <:red_heart:775146238462525441> container",
+    "game": "Rebirth",
+    "item_pools": [":moneybag: Coin Beggar",":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Rotten_Meat",
+    "grid": "Pg 01, Col 5, Row 02",
+    "unlocked":"Default"
   },
   "Rotten Meat": {
-    "id": 0,
+    "id": "5.100.26",
     "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "type": ["Passive"],
+    "img": "026_rottenmeat.png",
+    "description": "• Grants 1 full <:red_heart:775146238462525441> container",
+    "game": "Rebirth",
+    "item_pools": [":moneybag: Coin Beggar",":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Rotten_Meat",
+    "grid": "Pg 01, Col 6, Row 02",
+    "unlocked":"Default"
   },
   "Wooden Spoon": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.27",
+    "tagLine": "Speed up",
+    "type": ["Passive"],
+    "img": "027_woodenspoon.png",
+    "description": "• +0.3 Speed",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Wooden_Spoon",
+    "grid": "Pg 01, Col 7, Row 02",
+    "unlocked":"Default"
   },
   "The Belt": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.28",
+    "tagLine": "Speed up",
+    "type": ["Passive"],
+    "img": "028_thebelt.png",
+    "description": "• +0.3 Speed",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "The_Belt",
+    "grid": "Pg 01, Col 08, Row 02",
+    "unlocked":"Default"
   },
   "Mom's Underwear": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.29",
+    "tagLine": "Range up",
+    "type": ["Passive"],
+    "img": "029_momsunderwear.png",
+    "description": "• +5.25 Range.\n• +0.5 Shot Height.\n• This item belongs to the Yes Mother? set. Collecting three items from this set will transform Isaac into his mother.",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Mom's_Underwear",
+    "grid": "Pg 01, Col 09, Row 02",
+    "unlocked":"Default"
   },
   "Mom's Heels": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.30",
+    "tagLine": "Range up",
+    "type": ["Passive"],
+    "img": "030_momsheels.png",
+    "description": "• +5.25 Range.\n• +0.5 Shot Height.\n• This item belongs to the Yes Mother? set. Collecting three items from this set will transform Isaac into his mother.",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Mom's_Heels",
+    "grid": "Pg 01, Col 10, Row 02",
+    "unlocked":"Default"
   },
   "Mom's Lipstick": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.31",
+    "tagLine": "Range Up",
+    "type": ["Passive"],
+    "img": "031_momslipstick.png",
+    "description": "• +5.25 Range.\n• +0.5 Shot Height.\n• This item belongs to the Yes Mother? set. Collecting three items from this set will transform Isaac into his mother.",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Mom's_Lipstick",
+    "grid": "Pg 01, Col 11, Row 02",
+    "unlocked":"Default"
   },
   "Wire Coat Hanger": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.32",
+    "tagLine": "Tears up",
+    "type": ["Passive"],
+    "img": "032_wirecoathanger.png",
+    "description": "• +0.7 Tears",
+    "game": "Rebirth",
+    "item_pools": [":skull: Boss",":moneybag: :skull: Boss (Greed Mode)"],
+    "link": "Wire_Coat_Hanger",
+    "grid": "Pg 01, Col 12, Row 02",
+    "unlocked":"Default"
   },
   "The Bible": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.33",
+    "tagLine": "Temporary Flight",
+    "type": ["Active"],
+    "img": "033_thebible.png",
+    "description": "• 6 Room charge\n• Grants Isaac flight for the current room.\n• Instantly kills Mom, Mom's Heart and It Lives upon use.\n• Using The Bible on Satan will kill Isaac.\n• This item belongs to the Seraphim set. Collecting three items from this set will transform Isaac into an angel.\n• This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm.\n• Using The Bible on Isaac, ???, The Lamb, Hush, Mega Satan, or Delirium has no special effect and does not kill Isaac.\n• Switching active items while The Bible is active does not remove the flight, allowing continued flight until the room is exited.",
+    "game": "Rebirth",
+    "item_pools": [":books: Library",":cross: Angel Room",":bellhop: Shop"],
+    "link": "The_Bible",
+    "grid": "Pg 01, Col 13, Row 02",
+    "unlocked":"Default"
   },
   "The Book of Belial": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.34",
+    "tagLine": "Temporary DMG up",
+    "type": ["Active"],
+    "img": "034_thebookofbelial.png",
+    "description": "• 3 Room charge\n• Upon activation, grants +2 Damage for the current room.\n• Only increases the chance to open the Devil Room or Angel Room by 12.5%\n• This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm.\n• Judas starts with this item by default.\n• The damage bonus does not stack with multiple uses in the same room or with the tarot card XV - The Devil.\n• While activated, switching items will end the bonus damage effect.\n• Only guarantees Devil/Angel Rooms on floors that they can normally appear on, and, unlike Goat Head, picking up The Book of Belial after killing the boss will not open the Devil/Angel Room door.\n• Blood of the Martyr with The Book of Belial applies a 1.5x damage multiplier on top of its normal effect. This multiplier cannot stack with the same multipliers from Cricket's Head or Magic Mushroom.",
+    "game": "Rebirth",
+    "item_pools": [":smiling_imp: Devil Room",":books: Library",":moneybag: :smiling_imp: Devil Room (Greed Mode)",":moneybag: :books: Library (Greed Mode)",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "The_Book_of_Belial",
+    "grid": "Pg 01, Col 14, Row 02",
+    "unlocked":"Default"
   },
   "The Necronomicon": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.35",
+    "tagLine": "Mass Room Damage",
+    "type": ["Active"],
+    "img": "035_thenecronomicon.png",
+    "description": "• 6 Room charge\n• Inflicts 40 damage to every enemy in the room.\n• This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm.\n• Many collectibles will produce effects similar to the Necronomicon, such as depleting a black heart or blocking projectiles with ry Baby.\n• The Necronomicon deals a considerable amount of damage to bosses that have multiple damageable parts, e.g. Larry Jr. and The Hollow.\n• This item also does high enough damage to instantly kill most non-boss enemies.",
+    "game": "Rebirth",
+    "item_pools": [":smiling_imp: Devil Room",":books: Library",":grey_question: Secret Room",":moneybag: :smiling_imp: Devil Room (Greed Mode)",":moneybag: :books: Library (Greed Mode)",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "The_Necronomicon",
+    "grid": "Pg 01, Col 15, Row 02",
+    "unlocked":"Default"
   },
   "The Poop": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.36",
+    "tagLine": "Plop!",
+    "type": ["Active"],
+    "img": "036_thepoop.png",
+    "description": "• 1 Room Charge\n• Spawns a pile of poop where the character is standing and knocks back nearby monsters. This pile of poop may yield pickups like regular poop\n• Also knocks back enemy shots upon use.\n• This item belongs to the Oh Crap set. Collecting three items from this set will transform Isaac into a walking pile of poop.\n• ??? starts with this item by default.\n• If used on top of a solid obstacle, such as rocks, by a character that has flight, it will **only** produce its sound effect, without the actual poop.\n• Can bridge gaps when bombed from the opposite side (as if it was a rock).\n• Can drop any of the same pickups or trinkets that can be dropped by other poops. This includes Petrified Poop, which gives better odds at future drops.\n• Non-flying enemies can be blocked with a strategically placed poop, which can be used to block routes taken by enemies to funnel them or sometimes even block an area off to take them out one at a time. It can also block lunging attacks by enemies like Dingle.\n• If you have Thunder Thighs or Leo active, then poop will break beneath you as soon as it is placed.\n• Blowing up poop or the above items active allows you to use poop to create bridges.\n• After defeating Ultra Greedier, all remaining piles of poop convert into golden poops.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room"],
+    "link": "The_Poop",
+    "grid": "Pg 01, Col 16, Row 02",
+    "unlocked":"Default"
   },
   "Mr. Boom": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.37",
+    "tagLine": "Reusable Bomb Buddy",
+    "type": ["Active"],
+    "img": "037_mrboom.png",
+    "description": "• 2 Room Charge.\n• Upon activation, Mr. Boom will summon a large bomb, similar to ones produced by Mr. Mega Mr. Mega.\n• It also does the same amount of damage and blast radius as Mr. Mega bombs.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room",":bomb: Bomb Beggar",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "Mr._Boom",
+    "grid": "Pg 01, Col 17, Row 02",
+    "unlocked":"Default"
   },
   "Tammy's Head": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.38",
+    "tagLine": "Reusable Tear Burst",
+    "type": ["Active"],
+    "img": "038_tammyshead.png",
+    "description": "• 1 Room Charge\n• Shoots 10 tears in a circle around Isaac.\n• The tears retain the shot speed and special effects (such as poison) of Isaac's tears.\n• Each tear will do Isaac's current damage and a flat +25 damage bonus on top.\n• Brimstone: Isaac will fire powered-up Brimstone lasers in all directions. This includes Azazel's short-ranged Brimstone.\n• Car Battery: Shoots 20 tears in a circle around Isaac.\n• Chocolate Milk: The size and damage of tears shot depends on how far Chocolate Milk is charged.\n• Dr. Fetus/Ipecac: Tears are replaced by bombs or exploding shots, which may result in self-damage.\n• Epic Fetus: Fires only normal tears.\n• Mom's Knife: The tears are replaced with knives that deal double Isaac's damage, but move very quickly, have a small hitbox, and don't return to Isaac.",
+    "game": "Rebirth",
+    "item_pools": ["<:golden_chest:775111056820928523> Golden Chest",":moneybag: <:golden_chest:775111056820928523> Golden Chest (Greed Mode)",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "Tammy's_Head",
+    "grid": "Pg 01, Col 18, Row 02"
   },
   "Mom's Bra": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.39",
+    "tagLine": "Mass Fear",
+    "type": ["Active"],
+    "img": "039_momsbra.png",
+    "description": "• 3 Room Charge\n• Upon use, it petrifies all enemies in the current room for approximately 4 seconds.\n• This item belongs to the Yes Mother? set. Collecting three items from this set will transform Isaac into his mother.\n• Isaac keeps wearing the bra until he leaves the room, even after the petrifying effect has worn off.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room"],
+    "link": "Mom's_Bra",
+    "grid": "Pg 01, Col 19, Row 02"
   },
-  "Kamikaze": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+  "Kamikaze!": {
+    "id": "5.100.40",
+    "tagLine": "Become the Bomb!",
+    "type": ["Active"],
+    "img": "040_kamikaze.png",
+    "description": "• Unlimited Charge\n• Upon activation, causes an explosion in the same place as Isaac, damaging him for half a heart and dealing 40 damage to all monsters caught in the blast.\n• Unlike IV Bag, Isaac will not take damage from using it while he has invincibility, which means it can be used after getting hit.\n• It has a cooldown that lasts as long as the invincibility after taking damage, preventing Isaac from using it a second time for free.\n• Benefits from most bomb-enhancing items such as Bob's Curse Bob's Curse.\n• Blind Rage: With longer invincibility, Isaac can use Kamikaze! a second time without taking damage.\n• Bob's Bladder: No effect.\n• Broken Remote + Host Hat/Pyromaniac: Allows for unlimited teleportation.\n• Car Battery: No effect.\n• Gnawed Leaf: Activating Kamikaze will cancel out of the statue state, but Isaac will not be damaged by the resulting explosion unlike with other self-damage active items.\n• Holy Mantle: The mantle will absorb the damage from the explosion if it is the first damage in the room. It can be used repeatedly by re-entering the same room after each use.\n• Mr. Mega: No effect.\n• Scatter Bombs: No effect.\n• Schoolbag: The cooldown before the player can use Kamikaze! again is eliminated when switching items. Depending on how fast the player can push the buttons, Kamikaze! can be used multiple times during Isaac's invincibility frames.\n• Sticky Bombs: No effect.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room"],
+    "link": "Kamikaze",
+    "grid": "Pg 01, Col 20, Row 02"
   },
   "Mom's Pad": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.41",
+    "tagLine": "Gross...",
+    "type": ["Active"],
+    "img": "041_momspad.png",
+    "description": "• 3 Room Charge\n• Upon use, inflicts fear on all enemies in the room for 5 seconds.\n• This item belongs to the Yes Mother? set. Collecting three items from this set will transform Isaac into his mother.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room"],
+    "link": "Mom's_Pad",
+    "grid": "Pg 1, Col 01, Row 03"
   },
   "Bob's Rotten Head": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.42",
+    "tagLine": "Reusable Ranged Bomb",
+    "type": ["Active"],
+    "img": "042_bobsrottenhead",
+    "description": "• 3 Room Charge\n• Upon use, Isaac holds a poison bomb which can be thrown in the cardinal directions and explodes on impact.\n• The head deals 50 damage on hit and deals 3 times Isaac's tear damage as poison over time.\n• This item belongs to the Bob set. Collecting three items from this set will transform Isaac into Bob.\n• Bob's Rotten Head benefits from all bomb modifiers and many tear modifiers.\n• Bob's Rotten Head cannot directly impact Beggars, Slot Machines or Blood Donation Machines, just passing through, but can destroy them with the blast damage if it impacts anything nearby and open :grey_question: Secret Rooms, :question: Super Secret Rooms or destroy rocks like any other bomb.\n• Continuum: Bob's Rotten Head can now travel through walls and appear out of the opposite wall, similar to a portal-type mechanic.\n• Cricket's Body: 4 smaller versions of the bomb appear after detonation.\n• Explosivo: Bob's Rotten Head may sometimes stick onto enemies. When it explodes, the explosion will be twice as large.\n• The Parasite: Two further explosions appear perpendicular to the head's direction of travel when it blows up.\n• Rubber Cement: Causes the head to bounce off of rocks and walls.\n• Tiny Planet: When used, Bob's Rotten Head will orbit the player similar to a tear.Worm Trinkets: Bob's Rotten Head is affected by trinkets like Hook Worm and Wiggle Worm the same way tears are.",
+    "game": "Rebirth",
+    "item_pools": ["<:golden_chest:775111056820928523> Golden Chest",":crown: Item Room",":moneybag: <:golden_chest:775111056820928523> Golden Chest (Greed Mode)",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "Bob's_Rotten_Head",
+    "grid": "Pg 01, Col 02, Row 03"
   },
   "Teleport": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.43",
+    "tagLine": "Teleport!",
+    "type": ["Active"],
+    "img": "043_teleport.png",
+    "description": "• 2 Room Charge\n• Upon activation, teleports Isaac to a random room on the current floor.\n• It is possible to teleport to the :grey_question: Secret Room or :question: Super Secret Room.\n• It is not possible to teleport to the :warning: I AM ERROR room.\n• It is not possible to teleport to the Crawl Space for the floor or the Black Market.\n• Greed mode only It is possible to teleport to a Super Secret Room with no doors, resulting in the player being stuck.\n• Possible uses include:\n    • Teleporting out of dangerous situations.\n    • Avoiding spiked door damage going out of a Curse Room.\n    • Escaping from Challenge Rooms or Boss Rush after picking up a chest or collectible, avoiding the fight.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room"],
+    "link": "Teleport",
+    "grid": "Pg 01, Col 03, Row 03"
   },
   "Yum Heart": {
-    "id": 0,
-    "tagLine": "",
-    "type": [],
-    "img": "",
-    "description": "",
-    "game": "",
-    "item_pools": []
+    "id": "5.100.44",
+    "tagLine": "Reusable Regeneration",
+    "type": ["Active"],
+    "img": "044_yumheart.png",
+    "description": "• 4 Room Charge\n• Replenishes one red heart of Isaac's health.\n• Magdalene starts with this item by default.\n• When playing as Keeper, one health coin gets replenished; no blue fly gets added.\n• This item becomes useless when Isaac has no red heart containers, as it cannot restore Soul or Black Hearts.\n• For both ??? and The Lost this item is completely useless as they cannot gain red hearts by any means.\n• Maggy's Bow: No effect; will still only replenish one full red heart.",
+    "game": "Rebirth",
+    "item_pools": [":crown: Item Room",":moneybag: :crown: Item Room (Greed Mode)"],
+    "link": "Yum_Heart",
+    "grid": ""
   },
   "Lucky Foot": {
-    "id": 0,
+    "id": "5.100.45",
     "tagLine": "",
-    "type": [],
-    "img": "",
+    "type": ["Passive"],
+    "img": "045_luckyfoot.png",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "Lucky_Foot",
+    "grid": ""
   },
   "Doctor's Remote": {
-    "id": 0,
+    "id": "5.100.46",
     "tagLine": "",
     "type": [],
-    "img": "",
+    "img": "046_doctorsremote.png",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "Doctor's_Remote",
+    "grid": ""
   },
   "Cupid's Arrow": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Shoop Da Whoop!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Steven": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pentagram": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dr. Fetus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Magneto": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Treasure Map": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Eye": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lemon Mishap": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Distant Admiration": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Book of Shadows": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Ladder": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Charm of the Vampire": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Battery": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Steam Sale": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Anarchist's Cookbook": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Hourglass": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sister Maggy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Technology": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Chocolate Milk": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Growth Hormones": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mini Mush": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Rosary": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cube of Meat": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "A Quarter": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "PHD": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "X-ray Vision": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "My Little Unicorn": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Book of Revelations": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Mark": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Pact": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dead Cat": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lord of the Pit": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Nail": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "We Need to Go Deeper": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Deck of Cards": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Monstro's Tooth": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Loki's Horns": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Little Chubby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Spider Bite": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Small Rock": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Spelunker Hat": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Super Bandage": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Gamekid": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sack of Pennies": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Robo-baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Little C.H.A.D": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Book of Sin": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Relic": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Little Gish": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Little Steven": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Halo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Bottle of Pills": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Common Cold": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Parasite": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The D6": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mr. Mega": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pinking Shears": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Wafer": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Money = Power": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Contacts": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Bean": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Guardian Angel": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Demon Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Knife": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ouija Board": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "9 Volt": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dead Bird": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Brimstone": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Blood Bag": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Odd Mushroom (Thin)": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Odd Mushrooom (Thick)": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Whore of Babylon": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Monster Manual": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dead Sea Scrolls": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bobby-bomb": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Razor Blade": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Forget Me Now": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Forever Alone": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bucket of Lard": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "A Pony": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bomb Bag": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lump of Coal": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Guppy's Paw": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Guppy's Tail": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "IV Bag": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Best Friend": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Remote Detonator": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Stigmata": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Purse": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bob's Curse": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pageant Boy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Scapular": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Speed Ball": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bum Friend": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Guppy's Head": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Prayer Card": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Notched Axe": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Infestation": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ipecac": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tough Love": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Mulligan": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Technology 2": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mutant Spider": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Chemical Peel": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Peeper": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Habit": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bloody Lust": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Crystal Ball": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Spirit of the Night": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Crack the Sky": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ankh": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Celtic Cross": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ghost Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Candle": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cat-O-Nine-Tails": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D20": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Harlequin Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Epic Fetus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Polyphemus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Daddy Longlegs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Spider Butt": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sacricfial Dagger": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mitre": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Rainbow Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dad's Key": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Stem Cells": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Portable Slot": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Holy Water": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Fate": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Black Bean": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "White Pony": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sacred Heart": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Toothpicks": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Holy Grail": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dead Dove": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Blood Rights": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Guppy's Hairball": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Abel": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "SMB Super Fan": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pyro": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "3 Dollar Bill": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Telepath for Dummies": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Meat!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Magic 8 Ball": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Coin Purse": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Squeezy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Jesus Juice": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Box": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Key": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Eyeshadow": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Iron Bar": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Midas Touch": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Humbling Bundle": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Fanny Pack": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sharp Plug": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Guillotine": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ball of Bandages": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Champion Belt": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Butt Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Gnawed Leaf": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Spiderbaby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Guppy's Collar": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lost Contact": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Anemic": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Goat Head": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ceremonial Robes": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Wig": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Placenta": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Old Bandage": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sad Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Rubber Cement": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Anti-gravity": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pyromaniac": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cricket's Body": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Gimpy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Black Lotus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Piggy Bank": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Perfume": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Monstro's Lung": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Abaddon": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ball of Tar": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Stop Watch": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tiny Planet": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Infestation 2": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "E. Coli": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Death's Touch": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Key Piece #1": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Key Piece #2": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Experimental Treatment": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Contract from Below": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Infamy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Trinity Shield": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tech .5": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "20/20": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Blue Map": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "BFFS!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Hive Mind": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "There's Options": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bogo Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Starter Deck": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Little Baggy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Magic Scab": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Blood Clot": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Screw": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Hot Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Fire Mind": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Missing No.": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dark Matter": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Black Candle": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Proptosis": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Missing Page 2": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Smart Fly": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dry Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Juicy Sack": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Robo-Baby 2.0": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Rotten Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Headless Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Leech": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mystery Sack": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "BBF": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bob's Brain": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Best Bud": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Brimstone": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Isaac's Heart": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Haunt": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dark Bum": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Big Fan": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sissy Longlegs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Punching Bag": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "How to Jump": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D100": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D4": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D10": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Blank Card": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Book of Secrets": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Box of Spiders": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Red Candle": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Jar": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Flush!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Satanic Bible": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Head of Krampus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Butter Bean": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Magic Fingers": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Converter": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pandora's Box": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Unicorn Stump": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Taurus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Aries": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cancer": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Leo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Virgo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Libra": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Scorpio": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sagittarius": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Capricorn": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Aquarius": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pisces": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Eve's Mascara": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Judas' Shadow": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Maggy's Bow": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Holy Mantle": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Thunder Thighs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Strange Attractor": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cursed Eye": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mysterious Liquid": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Gemini": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cain's Other Eye": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "???'s Only Friend": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Samson's Chains": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mongo Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Isaac's Tears": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Undefined": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Scissors": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Breath of Life": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Polaroid": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Negative": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Ludovico Technique": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Soy Milk": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Godhead": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lazarus' Rags": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Mind": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Body": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Soul": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dead Onion": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Broken Watch": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Boomerang": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Safety Pin": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Caffeine Pill": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Torn Photo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Blue Cap": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Latch Key": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Match Book": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Synthoil": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "A Snack": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Diplopia": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Placebo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Wooden Nickel": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Toxic Shock": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mega Bean": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Glass Canon": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bomber Boy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Crack Jacks": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Pearls": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Car Battery": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Box of Friends": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "The Wiz": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "8 Inch Nails": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Incubus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Fate's Reward": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Chest": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sworn Protector": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Friend Zone": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lost Fly": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Scatter Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sticky Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Epiphora": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Continuum": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mr. Dolly": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Curse of the Tower": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Charged Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dead Eye": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Holy Light!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Host Hat": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Restock": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bursting Sack": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "No. 2": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pupula Duplex": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pay to Play": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Eden's Blessing": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Friendly Ball": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tear Detonator": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Gurdy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bumbo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D12": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Censer": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Key Bum": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Rune Bag": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Seraphim": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Betrayal": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Zodiac": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Serpent's Kiss": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Marked": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tech X": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ventricle Razor": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tractor Beam": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "God's Flesh": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Maw of The Void": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Spear of Destiny": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Explosivo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Chaos": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Spider Mod": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Farting Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "GB Bug": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D8": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Purity": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Athame": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Empty Vessel": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Evil Eye": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lusty Blood": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cambion Conception": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Immaculate Conception": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "More Options": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Crown of Light": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Deep Pockets": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Succubus": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Fruit Cake": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Teleport 2.0": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Black Powder": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Kidney Bean": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Glowing Hour Glass": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Circle of Protection": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sack Head": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Night Light": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Obsessed Fan": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mine Crafter": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "PJs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Head of The Keeper": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Papa Fly": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Multidimensional Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Glitter Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "My Shadow": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Jar of Flies": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Loki": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Milk!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D7": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Binky": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Box": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Kidney Stone": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mega Blast": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dark Princes Crown": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Apple!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lead Pencil": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dog Tooth": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dead Tooth": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Linger Bean": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Shard of Glass": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Metal Plate": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Eye of Greed": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tarot Cloth": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Varicose Veins": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Compound Fracture": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Polydactyly": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dad's Lost Coin": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Moldy Bread": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Cone Head": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Belly Button": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sinus Infection": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Glaucoma": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Parasitoid": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Eye of Belial": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sulfuric Acid": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Glyph of Balance": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Analog Stick": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Contagion": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Finger!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Shade": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Depression": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Hushy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Monstro": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "King Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Big Chubby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Tonsil": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Plan C": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D1": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Void": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pause": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Trinket Smelter": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Compost": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dataminer": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Clicker": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mama Mega": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Wait What?": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Crooked Penny": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dull Razor": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Potato Peeler": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Metronome": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "D Infinity": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Eden's Soul": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Acid Baby": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Yo Listen!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Adrenaline": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Jacob's Ladder": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Ghost Pepper": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Euthanasia": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Camo Undies": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Duality": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Eucharist": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sack of Sacks": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Greed's Gullet": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Large Zit": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Little Horn": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Brown Nugget": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Poke Go": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Backstabber": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sharp Straw": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Razor": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bloodshot Eye": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Delirious": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Angry Fly": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Black Hole": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Bozo": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Broken Modem": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mystery Gift": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Sprinkler": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Fast Bombs": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Buddy in a Box": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Delirium": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Jumper Cables": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Coupon": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Telekinesis": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Moving Box": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Technology Zero": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Leprosy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "7 Seals": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mr. Me!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Angelic Prism": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pop!": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Death's List": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Haemolacria": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lachryphagy": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Trisagion": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Schoolbag": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Blanket": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Scarificial Altar": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Lil Spewer": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Marbles": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mystery Egg": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Flat Stone": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Marrow": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Slipped Rib": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Hallowed Ground": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Pointy Rib": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Book of the Dead": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Dad's Ring": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Divorce Papers": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Jaw Bone": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Brittle Bones": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Broken Shovel (Handle)": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Broken Shovel (Bottom)": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   },
   "Mom's Shovel": {
-    "id": 0,
+    "id": "",
     "tagLine": "",
     "type": [],
     "img": "",
     "description": "",
     "game": "",
-    "item_pools": []
+    "item_pools": [],
+    "link": "",
+    "grid": ""
   }
 }

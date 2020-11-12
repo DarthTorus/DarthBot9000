@@ -4,6 +4,7 @@ const Discord = require("discord.js");
 const image = require("pngjs-image");
 var randSeedArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 var folderPath = './binding-of-isaac/';
+var linkPathStart = "https://bindingofisaacrebirth.gamepedia.com/";
 
 const reqFiles = {
   isaacBosses: folderPath + "isaacBossList.json",
@@ -138,10 +139,11 @@ function searchForTerm(msg, message) {
  * @param {Discord.Message} message Message object
  */
 function sendBoss(searchObject, searchName, message) {
+  var fullLinkPath = linkPathStart + searchObject.link;
   var bossEmbed = {
     color: embedColors.BOSS,
     title: searchName,
-    url: searchObject.link,
+    url: fullLinkPath,
     thumbnail: {
       url: searchObject.img.bossScreen,
       width: 400,
@@ -209,10 +211,11 @@ function sendBoss(searchObject, searchName, message) {
  * @param {Discord.Message} message Message object
  */
 function sendCharacter(searchObject, searchName, message) {
+  var fullLinkPath = linkPathStart + searchObject.link;
   var itemEmbed = {
     color: embedColors.CHARACTER,
     title: searchName,
-    url: searchObject.link,
+    url: fullLinkPath,
     thumbnail: {
       url: searchObject.img,
       width: 400,
@@ -286,15 +289,21 @@ function sendChapter(searchObject, searchName, message) {
  * @param {Discord.Message} message Message object
  */
 function sendItem(searchObject, searchName, message) {
-  var itemEmbed = {
+  var itemEmbed;
+  const folderPath = "binding-of-isaac/images/collectibles/";
+  var imgName = "collectibles_"+searchObject.img
+  var imgPath = folderPath + imgName;
+  const img = new Discord.MessageAttachment("./"+imgPath);
+
+
+  var fullLinkPath = linkPathStart + searchObject.link;
+  itemEmbed = {
     color: embedColors.ITEM,
-    title: searchName,
-    url: searchObject.link,
-    description: searchObject.tagLine,
-    thumbnail: {
-      url: searchObject.img,
-      width: 400,
-      height: 400
+    title: searchName + " - " + searchObject.tagLine,
+    url: fullLinkPath,
+    description: searchObject.description,
+    image: {
+      url: "attachment://" + imgName
     },
     fields: [
       {
@@ -303,18 +312,23 @@ function sendItem(searchObject, searchName, message) {
         inline: true
       },
       {
+        name: "Type:",
+        value: searchObject.type,
+        inline: true
+      },
+      {
         name: "Game from:",
         value: searchObject.game,
         inline: true
       },
       {
-        name: "Description:",
-        value: searchObject.description,
-        inline: false
+        name:"Collection Grid",
+        value: searchObject.grid,
+        inline: true
       },
       {
-        name: "Type:",
-        value: searchObject.type,
+        name: "Unlocked By",
+        value: searchObject.unlocked,
         inline: true
       },
       {
@@ -322,10 +336,9 @@ function sendItem(searchObject, searchName, message) {
         value: searchObject.item_pools,
         inline: true
       }
-    ],
-    timestamp: new Date()
+    ]
   }
-  message.channel.send({embed: itemEmbed});
+  message.channel.send({files: [img], embed: itemEmbed});
 }
 
 /**
@@ -335,11 +348,11 @@ function sendItem(searchObject, searchName, message) {
  * @param {Discord.Message} message Message object
  */
 function sendMonster(searchObject, searchName, message) {
+  var fullLinkPath = linkPathStart + searchObject.link;
   var monsterEmbed = {
     color: embedColors.MONSTER,
     title: searchName,
-    url: searchObject.link,
-    description: searchObject.description,
+    url: fullLinkPath,
     thumbnail: {
       url: searchObject.img,
       width: 400,
@@ -349,6 +362,11 @@ function sendMonster(searchObject, searchName, message) {
       {
         name: "Entity ID:",
         value: searchObject.entityID,
+        inline: false
+      },
+      {
+        name: "Description",
+        value: searchObject.description,
         inline: false
       },
       {
@@ -391,43 +409,6 @@ function sendRoom(searchObject, searchName, message) {
 function sendTrinket(searchObject, searchName, message) {
   
 }
-
-
-
-
-
-// Gets a random item from all items
-// function getObject() {
-//   var randObject, objectName;
-//   var randCategoryIndex = 0;
-//   var itemKeys, subCatIndex;
-
-//   switch(randCategoryIndex) {
-//     case 0:
-//       itemKeys = Object.keys(isaacItems)
-//       subCatIndex = bot.random(6);//itemKeys.length
-//       objectName = itemKeys[subCatIndex];
-//       randObject = isaacItems[objectName];
-//       break;
-//     case 1:
-//       itemKeys = Object.keys(isaacTrinkets)
-//       subCatIndex = bot.random(itemKeys.length);
-//       objectName = itemKeys[subCatIndex];
-//       randObject = isaacTrinkets[objectName];
-//       break;
-//     case 2:
-//       itemKeys = Object.keys(isaacPickups)
-//       subCatIndex = bot.random(itemKeys.length);
-//       objectName = itemKeys[subCatIndex];
-//       randObject = isaacPickups[objectName];
-//       break;
-//     default: 
-//       //DO nothing
-//       break;
-//   }
-//   var objArr = [objectName, randObject];
-//   return objArr;
-// }
 
 /**
  * @returns {String} `seedText`: An 8-digit alphanumeric string separated by a space into two (2) groups of four (4)

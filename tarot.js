@@ -52,7 +52,6 @@ function pickRandomTarotCard(message) {
     cardURL = cardURL.replace(/\s/g,'-');
     fullLink += "minor-arcana/suit-of-"+suit.toLowerCase()+"/" + cardURL;
   }
-  console.log(fullLink);
   var orientation = reversed ? "Reversed" : "Upright";
   imgName = card.fileName;
   imgPath += imgName;

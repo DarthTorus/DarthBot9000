@@ -1,0 +1,28 @@
+{
+  "name": "darthbot9000",
+  "version": "1.0.0",
+  "description": "A random bot that does math and a plethora of other cool commands",
+  "main": "darthbot.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "lib": "lib"
+  },
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "d!ping"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarthTorus/DarthBot9000.git"
+  },
+  "author": "DarthTorus",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/DarthTorus/DarthBot9000/issues"
+  },
+  "homepage": "https://github.com/DarthTorus/DarthBot9000#readme"
+}
