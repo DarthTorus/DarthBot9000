@@ -20,6 +20,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start":"darthbot.js"
   },
   "repository": {
     "type": "git",
