@@ -1,0 +1,63 @@
+{
+ "polls": [
+  {
+   "poll_id": "6R_uH",
+   "voted": [
+    "378310972269527050",
+    "214072730197295104",
+    "130061754670645248"
+   ],
+   "options": [
+    "yes",
+    "no",
+    "maybe"
+   ],
+   "counts": [
+    2,
+    0,
+    1
+   ],
+   "question": "Would you watch Darth's late night stream?"
+  },
+  {
+   "poll_id": "SgCCp",
+   "voted": [
+    "378310972269527050",
+    "166316555230117888",
+    "214072730197295104",
+    "415999789797474315"
+   ],
+   "options": [
+    "tropical",
+    "nacho-ey",
+    "smokehouse"
+   ],
+   "counts": [
+    0,
+    2,
+    2
+   ],
+   "question": "Pizza For Gooey"
+  },
+  {
+   "poll_id": "eeRLG",
+   "voted": [
+    "378310972269527050",
+    "231804112507764736",
+    "415999789797474315",
+    "214072730197295104"
+   ],
+   "options": [
+    "light",
+    "medium",
+    "dark"
+   ],
+   "counts": [
+    1,
+    2,
+    1
+   ],
+   "question": "Roast Type for Cori"
+  }
+ ]
+}

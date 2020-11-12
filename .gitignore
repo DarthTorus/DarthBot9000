@@ -1,16 +1,9 @@
-banned.json
-insult.json
-insults.json
-polls.json
-images/
 bot_art/
 templateFile.js
 logs/
 docs/
 examples/
 lib/
-*.jpg
-*.png
 *.txt
 node_modules/*
 .gitignore
