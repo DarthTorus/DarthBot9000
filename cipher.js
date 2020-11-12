@@ -1,9 +1,8 @@
 //Author: iPie4Fun
 //Edits: Darth_Torus
-"Ce-fsh~N+{Q!CzzWZsX<"
-"w h o   c a r e s ?"
+
 var bot = process.DiscordBot; //makes bot things work
-var cipherMat = config.cipherMatrix
+var cipherMat = process.env.CIPHER_MATRIX;
 		 //Darth, if you somehow make this matrix private, make sure to compeltely re-randomise the matrix.
 //TODO: Enter msg.length <= 1 error messages.
 
@@ -22,7 +21,7 @@ function cipherCheck(m, message) {
 			break;
 		default:
 			//sarcastic error message for not typing in correct syntax.
-			bot.sendMessages(cI, ["So you you want me to `encrypt` or `decrypt` that?"]);
+			message.channel.send("So you you want me to `encrypt` or `decrypt` that?");
 	}
 }
 

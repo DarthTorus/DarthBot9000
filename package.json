@@ -19,8 +19,8 @@
     "url": "^0.11.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "start":"./darthbot.js"
+    "scripts": {
+    "start":"node darthbot.js"
   },
   "repository": {
     "type": "git",

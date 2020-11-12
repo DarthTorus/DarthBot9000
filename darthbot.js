@@ -1,5 +1,5 @@
 /*Variable area*/
-//let config = require("./config.json"); // Must be first because it is the settings for most of below
+// Must be first because it is the settings for most of below
 require("dotenv").config();
 const DiscordBot = require('discord.js');
 let colors = require('colors/safe');

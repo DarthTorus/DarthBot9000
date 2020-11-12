@@ -8,7 +8,6 @@ var gameList = require("./statusList.json");
 
 
 const reqFiles = {
-	config: "config.json",
 	admin: "admin.js",
 	banned: "banned.json",
 	calc: "calc.js",
