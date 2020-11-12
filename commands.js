@@ -63,7 +63,7 @@ bot.poll = poll;
 // bot.darth = darth;
 // bot.server = server;
 // bot.formu = formu;
-bot.ownerID = config.ownerID
+bot.ownerID = process.env.OWNER_ID;
 function checkCommands(c, text, message) {
 	var msg = text.split(' '); //Split the string on spaces
 	switch (c) { //Command switcher
