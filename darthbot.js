@@ -167,7 +167,7 @@ bot.once('ready', () => {
 		}
 		text = command.join(" ");
 		if (triggerCheck == trigger) {
-			if (bot.inStandby && mainCmnd === "admin" && message.author.id == config.ownerID) {
+			if (bot.inStandby && mainCmnd === "admin" && message.author.id == process.env.OWNER_ID) {
 				console.log("ADMIN CHECK"); //I sent a wake command while bot is sleeping
 				console.log(text);
 				var msg = text.split(" ");
@@ -187,9 +187,6 @@ bot.once('ready', () => {
 
 });
 
-bot.on("presence", function(user, userID, status, gameName, rawEvent) {
-	/*console.log(user + " is now: " + status);*/
-});
 
 bot.on("debug", function(rawEvent) {
 	/*console.log(rawEvent)*/ //Logs every event
