@@ -29,7 +29,13 @@ const fs = require('fs');
 const url = require('url');
 const request = require('request');
 //Bot properties declared
-requireFiles();
+try {
+	requireFiles();
+} catch (error) {
+	console.log(colors.brightRed(`There has been an error of type ${error}`));
+	console.error(error);
+	return;
+}
 bot.colors = colors;
 bot.PNGImage = PNGImage;
 const trigger = process.env.TRIGGER;
