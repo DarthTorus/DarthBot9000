@@ -15,6 +15,11 @@ function requireFiles() {
 	}
 }
 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
+
 const bot = new DiscordBot.Client();
 // login to Discord with your app's token
 bot.login(process.env.TOKEN);
@@ -118,9 +123,8 @@ bot.on("message", message => {
 	var cmnd = command[0]; // Take the first element as the trigger and command
 	var triggerCheck = cmnd.substring(0, triggerLength); // triggerCheck tests if the first x characters, based off triggerLength of the first element of the cmnd array is the trigger
 	var mainCmnd = cmnd.substring(triggerLength, cmnd.length).toLowerCase(); // Makes the main command case-insensitive so HuG works exactly like Hug and hug
-	command.shift();
+	command.shift(); // Removes the first element so all that is left are the subcommands if any or arguments
 
-	//var msgID = rawEvent.d.id; //For future reference?
 	if (triggerCheck == trigger || message.author.id != bot.id) {
 		if (banned.servers.indexOf(serverID) != -1) { //Check if the server is not on the banned list.
 			console.log(colors.magenta("[WARNING] Server: " + serverName + " - " + serverID + " is banned"));
@@ -136,7 +140,6 @@ bot.on("message", message => {
 			console.log(colors.cyan(logTime + message.author.username + " - ID: ") + colors.yellow("@" + userID));
 			console.log("in " + colors.magenta(serverName + " - #" + channelName));
 			console.log(colors.white(message.content));
-			console.log("\n");
 
 		}
 		text = command.join(" ");

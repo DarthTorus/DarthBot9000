@@ -538,12 +538,12 @@ function getBinom(n,k) {
 }
 
 // Checks inputs for factorial
-function factorialCheck(input, cI) {
+function factorialCheck(input, message) {
 	const MAX_INPUT = 100;
 	if (isNaN(input)) {
 		message.channel.send("Must be a number. No other characters!");
 	} else {
-		if (((input * 10) % 10) != 0) {
+		if ((input % 1) != 0) {
 			message.channel.send("Cannot use decimals!");
 		} else if (input == 0) {
 			message.channel.send("1");
@@ -552,10 +552,10 @@ function factorialCheck(input, cI) {
 		} else {
 			if (input > MAX_INPUT) {
 				input = MAX_INPUT;
-				message.channel.send("Max set to " + MAX_INPUT);
+				message.channel.send(`Max set to ${MAX_INPUT}`);
 			}
 			var result = factorial(input);
-			message.channel.send("Factorial of " + input + ": `" + result + "`");
+			message.channel.send(`Factorial of ${input}: \`${result}\``);
 		}
 	}
 }
