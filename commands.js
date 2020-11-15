@@ -1,4 +1,5 @@
 var bot = process.DiscordBot;
+const { random } = require('colors');
 var colors = require('colors/safe');
 //var Twitter = require("twitter");
 //var utils = require("mc-utils");
@@ -219,8 +220,13 @@ function checkCommands(c, text, message) {
 			tarot.tarotCheck(msg, message);
 			break;
 		case 'vote':
-			console.log(msg);
 			poll.voteOnPoll(msg, message);
+			break;
+		case 'randomize':
+			randomizeList(text, message);
+			break;
+		case 'choose':
+			chooseItem(text, message);
 			break;
 		// case "gh":
 		// case "git":
@@ -234,6 +240,26 @@ function checkCommands(c, text, message) {
 			break;
 	}
 }
+
+function randomizeList(msg, message){
+	console.log(msg);
+	let startList = msg.split(", ");
+	let randomList = [];
+
+	while(startList.length > 0) {
+		var tempIndex = bot.random(startList.length);
+		randomList.push(startList[tempIndex]);
+		startList.splice(tempIndex,1);
+	}
+	message.channel.send(`Your randomized list: \`\`\`${randomList.join("\n")}\`\`\``);
+}
+
+function chooseItem(msg, message) {
+	console.log(msg);
+	let options = msg.split(", ");
+	message.channel.send(`Randomly chosen option: ${options[bot.random(options.length)]}`);
+}
+
 
 function emoteBot(act, m, message) {
 	if(m[0] === undefined || m[0] === '' || m[0]===null) {
