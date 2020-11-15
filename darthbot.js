@@ -7,8 +7,6 @@ let PNGImage = require('pngjs-image');
 //var straw = require('strawpoll');
 const reqFiles = {commands:"commands.js"}; // Names of variables
 
-
-
 function requireFiles() {
 	for (var name in reqFiles) {
 		var fileName = reqFiles[name];
@@ -18,10 +16,8 @@ function requireFiles() {
 }
 
 const bot = new DiscordBot.Client();
-
-	// login to Discord with your app's token
-	bot.login(process.env.TOKEN);
-
+// login to Discord with your app's token
+bot.login(process.env.TOKEN);
 
 process.DiscordBot = bot;
 // Required files and modules
@@ -34,50 +30,38 @@ const request = require('request');
 requireFiles();
 bot.colors = colors;
 bot.PNGImage = PNGImage;
-var logText = "";
 const trigger = process.env.TRIGGER;
 const triggerLength = trigger.length;
 bot.trigger = trigger;
 bot.request = request;
 bot.fs = fs;
 bot.url = url;
-var quitStatus = false;
+let quitStatus = false;
 bot.inStandby = false;
 bot.quitStatus = quitStatus;
 
 //Other vars
-var mIndex = 0;
-var cIndex = 2;
 var logFileName = "";
-const MAX_INTEGER = 2147483647;
-const MIN_INTEGER = -2147483648;
-const TAU = 2*Math.PI;
-const PI = Math.PI;
-const POS_PHI = (1+Math.sqrt(5.0))/2;
-const NEG_PHI = (1-Math.sqrt(5.0))/2;
-const REC_POS_PHI = POS_PHI - 1;
-const REC_NEG_PHI = NEG_PHI - 1;
+const MAX_INTEGER = 2147483647; // Max possible Integer
+const MIN_INTEGER = -2147483648; // Min possible Integer
+const TAU = 2*Math.PI; // Makes using radians bearable
+const PI = Math.PI; // Helps with some functions
+const POS_PHI = (1+Math.sqrt(5.0))/2; //Golden Ratio
+const NEG_PHI = (1-Math.sqrt(5.0))/2; // The complement of the Golden Ratio
+const REC_POS_PHI = POS_PHI - 1; //Reciprocal of Golden Ratio
+const REC_NEG_PHI = NEG_PHI - 1; //Reciprocal of the complement of the Golden Ratio
 bot.TAU = TAU;
 bot.PI = PI;
 bot.POS_PHI = POS_PHI;
 bot.NEG_PHI = NEG_PHI;
 bot.REC_POS_PHI = REC_POS_PHI;
 bot.REC_NEG_PHI = REC_NEG_PHI;
+
 /*Event area*/
 
 bot.once('ready', () => {
 	bot.startDate = new Date();
-	var year = bot.startDate.getFullYear();
-	var month = bot.startDate.getMonth() + 1;
-	var day = bot.startDate.getDate();
-	if (month < 10) {
-		month = "0" + month;
-	}
-	if (day < 10) {
-		day = "0" + day;
-	}
-	logFileName = ("logs/" + year + "-" + month + "-" + day + ".txt");
-
+	
 	quitStatus = false;
 	console.log(colors.cyan("File Name: " + logFileName));
 	console.log(colors.cyan("Started: " + bot.startDate));
@@ -91,14 +75,12 @@ bot.once('ready', () => {
 	}
 });
 
- bot.on("message",
- message => {
+bot.on("message", message => {
 	var serverName;
  	var serverID;
 	var channelName;
 	var channelID;
 	//console.log(message);
-	var serverName, channelName;
 	if(message.channel.type ==='text') {
 		serverName = message.guild.name;
 		serverID = message.guild.id;
@@ -115,76 +97,67 @@ bot.once('ready', () => {
 	var userID = message.author.id;
 	var logDate = new Date();
 	var logHour = logDate.getHours();
-	bot.send = message.channel.send;
-	if (logHour <= 9) {
-		logHour = "0" + logHour;
-	}
 	var logMin = logDate.getMinutes();
-	if (logMin <= 9) {
-		logMin = "0" + logMin;
-	}
 	var logSec = logDate.getSeconds();
-	if (logSec <= 9) {
-		logSec = "0" + logSec;
-	}
+	logHour = logHour < 10 ? "0"+loghour: logHour;
+	logMin = logMin < 10 ? "0"+logMin: logMin;
+	logSec = logSec < 10 ? "0"+logSec: logSec;
 	var logTime = "[" + logHour + ":" + logMin + ":" + logSec + "] ";
-	if(message.content.toLowerCase() == "d!admin -ese") {
+	if(message.content.toLowerCase() == "d!admin -ese") { // Am I trying to enable a server to execute bot commands?
 		if(banned.servers.indexOf(serverID) > -1) {
 			var bannedID = banned.servers.indexOf(message.guild.id);
 			console.log("serverID: "+serverID);
 			console.log("banned.servers[bannedID]: "+banned.servers[bannedID]);
 			console.log("bannedID: "+bannedID);
-			var m = [banned.servers[bannedID]];
 			bot.banned.servers.splice(bannedID, 1);
 			bot.fs.writeFileSync('./banned.json', JSON.stringify(bot.banned, null, ' '));
 		}
+		return;
 	}
-	var command = message.content.split(" ");
-	var cmnd = command[0];
-	var triggerCheck = cmnd.substring(0, triggerLength);
-	var mainCmnd = cmnd.substring(triggerLength, cmnd.length).toLowerCase();
+	var command = message.content.split(" "); // Split the message on spaces into an array 
+	var cmnd = command[0]; // Take the first element as the trigger and command
+	var triggerCheck = cmnd.substring(0, triggerLength); // triggerCheck tests if the first x characters, based off triggerLength of the first element of the cmnd array is the trigger
+	var mainCmnd = cmnd.substring(triggerLength, cmnd.length).toLowerCase(); // Makes the main command case-insensitive so HuG works exactly like Hug and hug
 	command.shift();
 
 	//var msgID = rawEvent.d.id; //For future reference?
-	if (triggerCheck == trigger || message.author.id === bot.id) {
-		if (banned.servers.indexOf(serverID) != -1) {
+	if (triggerCheck == trigger || message.author.id != bot.id) {
+		if (banned.servers.indexOf(serverID) != -1) { //Check if the server is not on the banned list.
 			console.log(colors.magenta("[WARNING] Server: " + serverName + " - " + serverID + " is banned"));
 			return;
-		} else if (banned.users.indexOf(message.author.id) != -1) {
+		} else if (banned.users.indexOf(message.author.id) != -1) { //check if user isn't banned from using the bot
 			console.log(colors.magenta("[WARNING] User: " + userName + " - @" + userID + " is banned"));
 			return;
 		} else {
-			// Do the command
+			// Log the command
 			console.log(colors.yellow("Server ID: " + serverID));
 			console.log(colors.yellow("Channel ID: " + channelID));
 			console.log(colors.yellow("Message ID: " + message.id));
 			console.log(colors.cyan(logTime + message.author.username + " - ID: ") + colors.yellow("@" + userID));
 			console.log("in " + colors.magenta(serverName + " - #" + channelName));
-			//console.log(message);
 			console.log(colors.white(message.content));
-			console.log("----------");
+			console.log("\n");
 
 		}
 		text = command.join(" ");
 		if (triggerCheck == trigger) {
 			if (bot.inStandby && mainCmnd === "admin" && message.author.id == process.env.OWNER_ID) {
-				console.log("ADMIN CHECK"); //I sent a wake command while bot is sleeping
+				console.log("ADMIN CHECK"); //I sent an admin command while bot is sleeping
 				console.log(text);
-				var msg = text.split(" ");
-				admin.adminCheck(msg, message);
+				var msg = text.split(" "); //Split the text since I need to check for the subcommand
+				admin.adminCheck(msg, message); // This will check if it's a wake up command
 			} else if (bot.inStandby) {
 				//Bot in standby, didn't receive wake command from me
 				console.log("Sleeping: " + bot.inStandby);
 				message.channel.send("I am asleep.");
 				return;
-			} else { //Bot is not in sleep mode. Anyone can send commands
-				console.log(colors.cyan("Checking Commands"));
+			} else { 
+				//Bot is not in sleep mode. Anyone can send commands
+				console.log(colors.cyan("Checking Commands")); //This was to make sure the bot got to this point
 				commands.checkCommands(mainCmnd, text, message);
 			}
 		}
-
 	}
-
 });
 
 
