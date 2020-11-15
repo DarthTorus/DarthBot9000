@@ -122,7 +122,7 @@ bot.on("message", message => {
 	var mainCmnd = cmnd.substring(triggerLength, cmnd.length).toLowerCase(); // Makes the main command case-insensitive so HuG works exactly like Hug and hug
 	command.shift(); // Removes the first element so all that is left are the subcommands if any or arguments
 
-	if (triggerCheck == trigger || message.author.id != bot.id) {
+	if (triggerCheck == trigger || message.author.id === bot.id) {
 		if (banned.servers.indexOf(serverID) != -1) { //Check if the server is not on the banned list.
 			console.log(colors.magenta("[WARNING] Server: " + serverName + " - " + serverID + " is banned"));
 			return;
