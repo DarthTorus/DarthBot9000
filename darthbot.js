@@ -15,10 +15,7 @@ function requireFiles() {
 	}
 }
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Our app is running on port ${ PORT }`);
-});
+
 
 const bot = new DiscordBot.Client();
 // login to Discord with your app's token
