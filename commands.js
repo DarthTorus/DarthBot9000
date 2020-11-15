@@ -31,7 +31,7 @@ function requireFiles() {
 	for (var name in reqFiles) {
 		var fileName = reqFiles[name];
 		global[name] = require("./" + fileName);
-		console.log(colors.yellow(fileName) + colors.cyan(" loaded successfully"));
+		console.log(colors.brightYellow(fileName) + colors.brightGreen(" loaded successfully"));
 	}
 }
 

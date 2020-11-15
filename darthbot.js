@@ -11,7 +11,7 @@ function requireFiles() {
 	for (var name in reqFiles) {
 		var fileName = reqFiles[name];
 		global[name] = require("./" + fileName);
-		console.log(colors.yellow(fileName) + colors.cyan(" loaded successfully"));
+		console.log(colors.brightYellow(fileName) + colors.brightGreen(" loaded successfully"));
 	}
 }
 
@@ -24,7 +24,7 @@ bot.login(process.env.TOKEN);
 process.DiscordBot = bot;
 // Required files and modules
 //var banned = require("./banned.json");
-//console.log(colors.yellow("./banned.json") + colors.cyan(" loaded successfully"));
+//console.log(colors.yellow("./banned.json") + colors.brightGreen(" loaded successfully"));
 const fs = require('fs');
 const url = require('url');
 const request = require('request');
@@ -65,10 +65,9 @@ bot.once('ready', () => {
 	bot.startDate = new Date();
 	
 	quitStatus = false;
-	console.log(colors.cyan("File Name: " + logFileName));
-	console.log(colors.cyan("Started: " + bot.startDate));
-	console.log(colors.gray("Connected!"));
-	console.log(colors.cyan("Logged in as: " + bot.user.tag + " - (" + bot.user.id + ")"));
+	console.log(colors.brightCyan("Started: ") + colors.brightBlue(bot.startDate));
+	console.log(colors.brightGreen("Connected!"));
+	console.log(colors.brightCyan("Logged in as: ") + colors.brightWhite(bot.user.tag) + " - " + colors.brightMagenta(`@${bot.user.id}`));
 	if(bot.inStandby) {
 		admin.randomStatus("in dreams.");
 	}
@@ -131,10 +130,10 @@ bot.on("message", message => {
 			return;
 		} else {
 			// Log the command
-			console.log(colors.yellow("Server ID: " + serverID));
-			console.log(colors.yellow("Channel ID: " + channelID));
-			console.log(colors.yellow("Message ID: " + message.id));
-			console.log(colors.cyan(logTime + message.author.username + " - ID: ") + colors.yellow("@" + userID));
+			console.log(colors.brightYellow("Server ID: " + serverID));
+			console.log(colors.brightYellow("Channel ID: " + channelID));
+			console.log(colors.brightYellow("Message ID: " + message.id));
+			console.log(colors.brightCyan(logTime + message.author.username + " - ID: ") + colors.brightYellow("@" + userID));
 			console.log("in " + colors.magenta(serverName + " - #" + channelName));
 			console.log(colors.white(message.content));
 
@@ -153,7 +152,7 @@ bot.on("message", message => {
 				return;
 			} else { 
 				//Bot is not in sleep mode. Anyone can send commands
-				console.log(colors.cyan("Checking Commands")); //This was to make sure the bot got to this point
+				console.log(colors.brightCyan("Checking Commands")); //This was to make sure the bot got to this point
 				commands.checkCommands(mainCmnd, text, message);
 			}
 		}
