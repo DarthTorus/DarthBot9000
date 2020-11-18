@@ -126,7 +126,10 @@ bot.on("message", message => {
 	var triggerCheck = cmnd.substring(0, triggerLength); // triggerCheck tests if the first x characters, based off triggerLength of the first element of the cmnd array is the trigger
 	var mainCmnd = cmnd.substring(triggerLength, cmnd.length).toLowerCase(); // Makes the main command case-insensitive so HuG works exactly like Hug and hug
 	command.shift(); // Removes the first element so all that is left are the subcommands if any or arguments
-
+	if(message.content.endsWith("/s")) {
+		commands.createSarcasmText(message.content.substring(0,message.content.length-2),message);
+		return;
+	}
 	if (triggerCheck == trigger || message.author.id === bot.id) {
 		if (banned.servers.indexOf(serverID) != -1) { //Check if the server is not on the banned list.
 			console.log(colors.magenta("[WARNING] Server: " + serverName + " - " + serverID + " is banned"));

@@ -228,6 +228,9 @@ function checkCommands(c, text, message) {
 		case 'choose':
 			chooseItem(text, message);
 			break;
+		case 'sarcasm':
+			createSarcasmText(text, message);
+			break;
 		// case "gh":
 		// case "git":
 		// case "github":
@@ -238,6 +241,20 @@ function checkCommands(c, text, message) {
 		default: //Default to this if can't find a command
 			message.channel.send(selectRandonCmdErr());
 			break;
+	}
+}
+
+function createSarcasmText(msg, message) {
+	console.log(msg);
+	let newMessage = msg.split('');
+	for(let i = 0; i< newMessage.length; i++) {
+		newMessage[i] = bot.random()< .5 ? newMessage[i].toUpperCase() : newMessage[i].toLowerCase();
+	}
+	message.channel.send(newMessage.join(''));
+	try{
+		message.delete();
+	} catch (err) {
+		// Just do nothing
 	}
 }
 
@@ -730,6 +747,7 @@ function reload(message) {
 
 var commands = {
   checkCommands: checkCommands,
-	reload: reload
+	reload: reload,
+	createSarcasmText: createSarcasmText
 }
 module.exports = commands;
