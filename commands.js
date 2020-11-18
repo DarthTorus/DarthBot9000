@@ -251,11 +251,6 @@ function createSarcasmText(msg, message) {
 		newMessage[i] = bot.random()< .5 ? newMessage[i].toUpperCase() : newMessage[i].toLowerCase();
 	}
 	message.channel.send(newMessage.join(''));
-	try{
-		message.delete();
-	} catch (err) {
-		// Just do nothing
-	}
 }
 
 function randomizeList(msg, message){

@@ -128,6 +128,11 @@ bot.on("message", message => {
 	command.shift(); // Removes the first element so all that is left are the subcommands if any or arguments
 	if(message.content.endsWith("/s")) {
 		commands.createSarcasmText(message.content.substring(0,message.content.length-2),message);
+		try{
+			message.delete();
+		} catch (err) {
+			// Just do nothing
+		}
 		return;
 	}
 	if (triggerCheck == trigger || message.author.id === bot.id) {
