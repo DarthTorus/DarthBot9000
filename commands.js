@@ -245,7 +245,6 @@ function checkCommands(c, text, message) {
 }
 
 function createSarcasmText(msg, message) {
-	console.log(msg);
 	let newMessage = msg.split('');
 	for(let i = 0; i< newMessage.length; i++) {
 		newMessage[i] = bot.random()< .5 ? newMessage[i].toUpperCase() : newMessage[i].toLowerCase();
@@ -254,7 +253,6 @@ function createSarcasmText(msg, message) {
 }
 
 function randomizeList(msg, message){
-	console.log(msg);
 	let startList = msg.split(", ");
 	let randomList = [];
 
@@ -267,7 +265,6 @@ function randomizeList(msg, message){
 }
 
 function chooseItem(msg, message) {
-	console.log(msg);
 	let options = msg.split(", ");
 	message.channel.send(`Randomly chosen option: ${options[bot.random(options.length)]}`);
 }
