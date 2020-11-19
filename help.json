@@ -79,7 +79,7 @@
 	},
 	"color": {
 		"desc": "Gradients and pretty color commands",
-		"alias": [],
+		"alias": ["colour"],
 		"commands": {
 			"bilinear": {
 				"desc": "Creates an image of a bilinear interpolation of colors",
@@ -140,7 +140,7 @@
 		}
 	},
 	"help": {
-		"desc": "Send you this guide with the commands in a tree structure. Use >>>help <command> [subcommand] for more specific help",
+		"desc": "Send you this guide with the commands in a tree structure. Use d!help <command> [subcommand] for more specific help",
 		"alias": [],
 		"commands": {}
 	},
@@ -160,7 +160,7 @@
 		"commands":{}
 	},
 	"coin": {
-		"desc": "Tosses a coin <X> times and replies with the list of results and percentage of each.",
+		"desc": "Tosses a coin <X> times and replies with the list of results and percentage of each. Optionally you can pass 2 option to choose from separated by `|`",
 		"alias":["toss"],
 		"commands":{}
 	},
