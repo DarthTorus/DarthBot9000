@@ -5,17 +5,18 @@ function matrixCheck(msg, message) {
   switch(msg[0]) {
     case 'set':
       msg.shift();
-      setMatrix(msg,message);
+      setMatrix(msg, message);
       break;
     case 'get':
       msg.shift();
-      getMatrix(msg,message);
+      getMatrix(msg, message);
       break;
     case 'add':
       msg.shift();
       break;
-    case 'multiply':
+    case 'mult':
       msg.shift();
+      matrixMultiply(msg, message);
       break;
     case 'determinant':
     case 'det':
@@ -39,18 +40,51 @@ function matrixAdd() {
 function matrixMultiply(m,message) {
   let operandOne = m[0];
   let operandTwo = m[1];
-  var matrixName = operandOne + "|" + message.author.id;
-  // Test if first operand is a scalar value
-  if(typeof operandOne === 'string' && !isNaN(operandOne) && typeof savedMatrices[matrixName] === 'object') {
-
+  let matrixName1 = operandOne + "|" + message.author.id;
+  let matrixName2 = operandTwo + "|" + message.author.id;
+  let data = 0;
+  let wrapper = "```";
+  let contentString = "\n";
+  let resultMatrix = {
+    rows: 1,
+    columns: 1,
+    contents: []
   }
-  // Test if both operands are objects
-  // else if () {
-  //
-  // }
-  // else {
-  //
-  // }
+  // Test if first operand is a scalar value
+  if(!isNaN(operandTwo) && !savedMatrices.hasOwnProperty(matrixName2)) {
+    let matrixA = savedMatrices[matrixName1];
+    let multiplier = Number(operandTwo);
+    resultMatrix.rows = matrixA.rows;
+    resultMatrix.columns = matrixA.columns;
+    let tempRow = [];
+    for(var r = 0; r < matrixA.rows; r++) {
+      for(var c = 0; c < matrixA.columns; c++) {
+        tempRow.push(matrixA.contents[r][c]*multiplier);
+      }
+      resultMatrix.contents.push(tempRow);
+      tempRow = [];
+    }
+    data = resultMatrix.contents;
+  
+  // Loop through every row
+    for(var r = 0; r < data.length; r++) {
+      //Loop through each element in a row, effectively going through each column
+      for(var c = 0; c < data[r].length; c++) {
+        contentString += `${data[r][c]}  `;
+      }
+      contentString += "\n"
+    }
+
+  } else { // Test if both operands are objects
+    // else if () {
+    //
+    // }
+    // else {
+    //
+    // }
+  }
+  message.channel.send(`${wrapper}\nSize: ${resultMatrix.rows}x${resultMatrix.columns}\nResults: ${contentString}\n${wrapper}`);
+ 
 }
 
 function setMatrix(m, message) {
@@ -91,8 +125,6 @@ function setMatrix(m, message) {
       matrixData.contents = zeroOutNulls(matrixData.contents);
       // Save the matrix into the savedMatrices object for later retrieval
       savedMatrices[matrixName] = matrixData;
-      // Logging the savedMatrices object for debugging.
-      console.table(savedMatrices);
       //This will retrieve our newly created matrix and send it to the channel for the user to confirm it's correct
       getMatrix(m[0],message);
     }
@@ -150,7 +182,7 @@ function splitMatrix(data, message) {
   return splitData;
 }
 
-function validateMatrix(matrix,message) {
+function validateMatrix(matrix, message) {
   var matrixErr = false;
 
   if(matrix.contents.length > matrix.rows) {
