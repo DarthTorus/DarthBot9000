@@ -29,8 +29,8 @@ function checkHelp(m, message) {
 		// It uses some fancy ES6 trickery to join
 		// the arguments with spaces, and then the
 		// aliases with vertical bars.
-		hDesc += "Command: " + bot.trigger + [m.slice(0, n).join(" "), ...cHelp.alias].join(" | ") + "\n";
-		hDesc += "Description: " + cHelp.desc + "\n";
+		hDesc += "Command: " + bot.trigger + [m.slice(0, n).join(" "), ...defaultAlias(cHelp.alias)].join(" | ") + "\n";
+		hDesc += "Description: " + defaultDesc(cHelp.desc) + "\n";
 		hDesc += "```";
 		try {
 			message.author.send(hDesc);
@@ -73,10 +73,22 @@ function getHelpText(commands, left) {
 	let hText = "";
 	for (let i = 0; i < ckeysn; i++) {
 		let tree = (i == ckeysn - 1) ? treeL : treeT;
-		hText += left + tree + [ckeys[i], ...commands[ckeys[i]].alias].join(", ") + "\n";
-		hText += getHelpText(commands[ckeys[i]].commands, left + treeI);
+		hText += left + tree + [ckeys[i], ...defaultAlias(commands[ckeys[i]].alias)].join(", ") + "\n";
+		hText += getHelpText(defaultCommands(commands[ckeys[i]].commands), left + treeI);
 	}
 	return hText;
+}
+
+function defaultDesc(d) {
+	return d || "<none>";
+}
+
+function defaultAlias(a) {
+	return a || [];
+}
+
+function defaultCommands(c) {
+	return c || {};
 }
 
 var helpFuncions = {
