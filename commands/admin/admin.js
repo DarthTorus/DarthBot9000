@@ -1,5 +1,5 @@
 var bot = process.DiscordBot;
-var gameList = require("./statusList.json");
+var gameList = require("../../statusList.json");
 function adminCheck(m, message) { // Subcommmand check for main admin command
 	console.log(m[0]);
 	switch (m[0]) {
