@@ -1,16 +1,15 @@
-const client = process.Discord
 const maxDraws = 10
 module.exports = {
   name: "draw",
-  usage: "draw",
-  desc: `Draws <x> cards up to ${maxDraws}, and with duplicates [yes | no]`,
+  usage: "draw <x> [no | yes]",
+  desc: `Draws <x> cards up to ${maxDraws}, and with duplicates [no | yes], defaults to yes`,
   alias:["cards","card"],
   run(client, message, args) {
     var draws = args[0] || 1;
     
     var duplicates = args[1] || "yes";
     var card = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    var suit = [":spades:", ":hearts:", ":clubs:", ":diamonds:"];
+    var suit = ["♣", "♥", "♠", "♦"];
     var cardSelected = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -48,6 +47,6 @@ module.exports = {
         }
       }
     }
-    message.channel.send(`Your cards are:  ${cardText}`);
+    message.channel.send(`Your cards are: \`${cardText}\``);
   }
 }

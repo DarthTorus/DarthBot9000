@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'help',
-	usage: 'help [command]',
+	usage: 'help [command] [subcommand]',
 	desc: 'shows all commands or explains specific commands',
 	alias: ['h'],
 	run( client, message, args ) {
@@ -11,7 +11,7 @@ module.exports = {
 							.reduce( ( total, parent, key ) => {
 
 									const commands = parent
-											.filter( command => command.name != 'default' && command.name != undefined)
+											.filter( command => command.name != 'default')
 											.map( ({ name }) => `│ ├─${name}` )
 											.join('\n');
 									

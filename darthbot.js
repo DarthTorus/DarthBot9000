@@ -56,6 +56,11 @@ client.random = function() {
 
 	return Math.floor(Math.random() * (max - min)) + min
 }
+client.titleCase = function(str) {
+  return str.toLowerCase().split(' ').map(function(word) {
+    return word.replace(word[0], word[0].toUpperCase());
+  }).join(' ');
+}
 
 function map(m, message) {
 	var v = Number(m[0])
@@ -103,6 +108,7 @@ glob( './commands/**/*.js', (_, files) => {
 			client.commands.get( folder ).set( command.name, command )
 
 	})
+	//console.log(client.commands)
 })
 
 client.events = new Discord.Collection()
@@ -118,11 +124,6 @@ glob( './events/*.js', (_, files) => {
     } )
 
 } )
-
-
-
-
-
 
 
 // login to Discord with your app's token. Last thing client should do

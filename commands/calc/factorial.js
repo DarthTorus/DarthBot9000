@@ -11,7 +11,7 @@ function factorial(input) {
 
 module.exports = {
   name: 'factorial',
-  usage: 'factorial',
+  usage: 'factorial <X>',
   desc: 'Returns the factorial of <X>',
   alias:['fact'],
   run (message, args) {
