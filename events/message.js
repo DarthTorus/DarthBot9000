@@ -1,5 +1,5 @@
 const client = process.Discord
-module.exports = ( client ) => {
+module.exports = ( ) => {
 
   return ( message ) => {
       var serverName;

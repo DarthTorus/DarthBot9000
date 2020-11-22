@@ -1,6 +1,5 @@
-
-const MAX_INPUT = 100;
-// Recursive factorial
+const client = process.Discord
+const MAX_INPUT = 100;// Recursive factorial
 function factorial(input) {
   if (input == 1) {
     return 1;
@@ -15,7 +14,7 @@ module.exports = {
   usage: 'factorial',
   desc: 'Returns the factorial of <X>',
   alias:['fact'],
-  run (client, message, args) {
+  run (message, args) {
     
     let input = parseInt( args[0] )
     

@@ -10,7 +10,7 @@ module.exports = {
     
     var duplicates = args[1] || "yes";
     var card = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    var suit = [":spades:", ":hearts", ":clubs:", ":diamonds:"];
+    var suit = [":spades:", ":hearts:", ":clubs:", ":diamonds:"];
     var cardSelected = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

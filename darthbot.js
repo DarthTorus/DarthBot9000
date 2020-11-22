@@ -9,80 +9,79 @@ const { parse } = require( 'path' )
 const client = new Discord.Client()
 let colors = require('colors/safe');
 let PNGImage = require('pngjs-image');
+process.Discord = client // This makes it so I don't have to pass client explicitly
 //var straw = require('strawpoll');
-//const reqFiles = {commands:"commands.js"}; // Names of variables
 
-/* function requireFiles() {
-	for (var name in reqFiles) {
-		var fileName = reqFiles[name];
-		global[name] = require("./" + fileName);
-		console.log(colors.brightYellow(fileName) + colors.brightGreen(" loaded successfully"));
-	}
-} */
-
-process.Discord = client;
-// Required files and modules
-//var banned = require("./banned.json");
-//console.log(colors.yellow("./banned.json") + colors.brightGreen(" loaded successfully"));
-
-//Bot properties declared
-/* try {
-	requireFiles();
-} catch (error) {
-	console.log(colors.brightRed(`There has been an error of type ${error}`));
-	console.error(error);
-	return;
-} */
-client.colors = colors;
-client.PNGImage = PNGImage;
-const trigger = process.env.TRIGGER;
-const triggerLength = trigger.length;
-client.trigger = trigger;
+client.colors = colors
+client.PNGImage = PNGImage
+const trigger = process.env.TRIGGER
+client.trigger = trigger
 //client.request = request;
 //client.fs = fs;
 //client.url = url;
-let quitStatus = false;
-client.inStandby = false;
-client.quitStatus = quitStatus;
+let quitStatus = false
+client.inStandby = false
+client.quitStatus = quitStatus
 
 //Other vars
-var logFileName = "";
-const MAX_INTEGER = 2147483647; // Max possible Integer
-const MIN_INTEGER = -2147483648; // Min possible Integer
-const TAU = 2*Math.PI; // Makes using radians bearable
-const PI = Math.PI; // Helps with some functions
-const POS_PHI = (1+Math.sqrt(5.0))/2; //Golden Ratio
-const NEG_PHI = (1-Math.sqrt(5.0))/2; // The complement of the Golden Ratio
-const REC_POS_PHI = POS_PHI - 1; //Reciprocal of Golden Ratio
-const REC_NEG_PHI = NEG_PHI - 1; //Reciprocal of the complement of the Golden Ratio
-client.TAU = TAU;
-client.PI = PI;
-client.POS_PHI = POS_PHI;
-client.NEG_PHI = NEG_PHI;
-client.REC_POS_PHI = REC_POS_PHI;
-client.REC_NEG_PHI = REC_NEG_PHI;
+//const MAX_INTEGER = 2147483647 // Max possible Integer
+//const MIN_INTEGER = -2147483648 // Min possible Integer
+const TAU = 2*Math.PI // Makes using radians bearable
+const PI = Math.PI // Helps with some functions
+const POS_PHI = (1+Math.sqrt(5.0))/2 //Golden Ratio
+const NEG_PHI = (1-Math.sqrt(5.0))/2 // The complement of the Golden Ratio
+const REC_POS_PHI = POS_PHI - 1 //Reciprocal of Golden Ratio
+const REC_NEG_PHI = NEG_PHI - 1 //Reciprocal of the complement of the Golden Ratio
+client.TAU = TAU
+client.PI = PI
+client.POS_PHI = POS_PHI
+client.NEG_PHI = NEG_PHI
+client.REC_POS_PHI = REC_POS_PHI
+client.REC_NEG_PHI = REC_NEG_PHI
 
 client.random = function() {
-	var min, max, num = 0;
+	var min, max = 0
 	if (arguments.length == 1) {
 		// Between 0 and max
-		max = arguments[0];
-		min = 0;
+		max = arguments[0]
+		min = 0
 	} else if (arguments.length == 2) {
 		// between min and max
-		min = arguments[0];
-		max = arguments[1];
+		min = arguments[0]
+		max = arguments[1]
 	} else {
 		// a decimal between 0 and 1 by default
-		return Math.random();
+		return Math.random()
 	}
 
-	num = Math.floor(Math.random() * (max - min)) + min;
-	return num;
+	return Math.floor(Math.random() * (max - min)) + min
 }
 
+function map(m, message) {
+	var v = Number(m[0])
+	var inMin = Number(m[1])
+	var inMax = Number(m[2])
+	var outMin = 0
+	var outMax = 1
+	if( m.length  == 4) {
+		outMax = Number(m[3])
+	} else if ( m.length == 5) {
+		outMin = Number(m[3])
+		outMax = Number(m[4])
+	}
+	
+	var result = bot.mapValue(v, inMin, inMax, outMin, outMax)
 
+	message.channel.send("`"+result+"`")
 
+}
+
+client.mapValue = function(x, inMin, inMax, outMin, outMax) {
+	var outRange = outMax - outMin
+	var inRange = inMax - inMin
+	console.log((x-inMin)*(outRange)/(inRange) + outMin)
+	return ((x-inMin)*(outRange)/(inRange) + outMin)
+}
 
 
 
@@ -104,7 +103,6 @@ glob( './commands/**/*.js', (_, files) => {
 			client.commands.get( folder ).set( command.name, command )
 
 	})
-		console.log(client.commands)
 })
 
 client.events = new Discord.Collection()

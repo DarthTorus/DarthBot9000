@@ -1,5 +1,5 @@
 const gameList = require("../statusList.json");
-var client = process.Discord
+const client = process.Discord
 
 module.exports = ( ) => {
 
