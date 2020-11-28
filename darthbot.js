@@ -56,6 +56,12 @@ client.random = function() {
 
 	return Math.floor(Math.random() * (max - min)) + min
 }
+
+/**
+ * @param {String} str 
+ * @description Returns the string with each word capitalized
+ */
+
 client.titleCase = function(str) {
   return str.toLowerCase().split(' ').map(function(word) {
     return word.replace(word[0], word[0].toUpperCase());
@@ -92,39 +98,43 @@ client.mapValue = function(x, inMin, inMax, outMin, outMax) {
 
 
 
+client.loadFiles = function() {
+	client.commands = new Discord.Collection()
+	glob( './commands/**/*.js', (_, files) => {
 
-client.commands = new Discord.Collection()
-glob( './commands/**/*.js', (_, files) => {
+		files.forEach( file => {
+				
+				const { dir } = parse( file )
+				const folder = dir.split('/').pop()
 
-	files.forEach( file => {
-			
-			const { dir } = parse( file )
-			const folder = dir.split('/').pop()
+				if ( !client.commands.has( folder ) ) client.commands.set( folder, new Discord.Collection() )
 
-			if ( !client.commands.has( folder ) ) client.commands.set( folder, new Discord.Collection() )
+				const command = require( file )
+				
+				client.commands.get( folder ).set( command.name, command )
+				console.log(colors.brightCyan(file)+colors.brightYellow(" loaded"))
 
-			const command = require( file )
-			
-			client.commands.get( folder ).set( command.name, command )
-
+		})
+		//console.log(client.commands)
 	})
-	//console.log(client.commands)
-})
+}
 
-client.events = new Discord.Collection()
-glob( './events/*.js', (_, files) => {
+	client.events = new Discord.Collection()
+	glob( './events/*.js', (_, files) => {
 
-    files.forEach( file => {
+			files.forEach( file => {
 
-        const event = require( file )
-        const { name } = parse( file)
-        
-        client.on( name, event( client ) )
+					const event = require( file )
+					const { name } = parse( file)
+					
+					client.on( name, event( client ) )
+					
+			} )
 
-    } )
+	} )
 
-} )
 
+client.loadFiles()
 
 // login to Discord with your app's token. Last thing client should do
 client.login(process.env.TOKEN);

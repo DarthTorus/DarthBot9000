@@ -1,7 +1,7 @@
-const gameList = require("../statusList.json");
+const gameList = require("../json/statusList.json")
 const client = process.Discord
 
-module.exports = ( ) => {
+module.exports = () => {
 
   return () => {
     client.startDate = new Date().toLocaleString('en-US',{hour12: false})

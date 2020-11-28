@@ -14,7 +14,7 @@ module.exports = {
   usage: 'factorial <X>',
   desc: 'Returns the factorial of <X>',
   alias:['fact'],
-  run (message, args) {
+  run (client, message, args) {
     
     let input = parseInt( args[0] )
     

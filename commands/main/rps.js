@@ -2,7 +2,7 @@ module.exports =  {
   name:"rps",
   usage: "rps <scissors | paper | rock | lizard | spock>",
   desc: "Plays Rock Paper Scissors Lizard Spock",
-  alias:[""],
+  alias:[],
   run (client, message, args) {
     const gameArray = ["scissors","paper","rock","lizard","spock"];
     const winCondition = [

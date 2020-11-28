@@ -7,18 +7,9 @@ module.exports = {
 
 			if ( !args[0] ) {
 					
-					const result = client.commands
-							.reduce( ( total, parent, key ) => {
+					const result = client.commands.reduce( ( total, parent, key ) => {return total + `├─${key}\n`}, '' )
 
-									const commands = parent
-											.filter( command => command.name != 'default')
-											.map( ({ name }) => `│ ├─${name}` )
-											.join('\n');
-									
-									return total + `├─${key}\n${commands}\n`
-							}, '' )
-
-					message.channel.send( `\`\`\`json\nd-\n${result}\`\`\`` )
+					message.channel.send( `\`\`\`\nTrigger: d-\n${result}\`\`\`` )
 
 			} else {
 
@@ -39,8 +30,11 @@ module.exports = {
 							name = `${parent} ${command.name}`
 							if ( command.name === 'default' ) name = parent
 					}
-
-					const result = `\`\`\`\nCommand: ${process.env.TRIGGER}${name}\nUsage: ${command.usage}\nDescription: ${command.desc}\nAlias: ${command.alias.join()}\`\`\``
+					let aliasCheck = ""
+					if(command.alias.length > 0) {
+						aliasCheck = "\nAlias: "+ command.alias.join(", ")
+					}
+					const result = `\`\`\`\nCommand: ${process.env.TRIGGER}${name}\nUsage: ${command.usage}\nDescription: ${command.desc}${aliasCheck}\`\`\``
 
 					message.channel.send( result )
 
