@@ -43,7 +43,6 @@ module.exports = (client) => {
 			console.log(client.colors.brightCyan(`${logDate} ${message.author.username} - ID: `) + client.colors.brightYellow(`@${userID}`));
 			console.log("in " + client.colors.magenta(serverName + " - #" + channelName));
       console.log(client.colors.white(message.content));
-      console.log(parent, request);
       command.run( client, message, args ) 
          
   }

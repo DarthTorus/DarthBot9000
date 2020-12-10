@@ -18,9 +18,11 @@ module.exports = {
         clearRequireCache()
         client.loadFiles(client)
         message.reply(`I have reloaded sucessfully`)
+        client.randomStatus("0")
       }
       catch(error) {
         message.reply(`I can't seem to reload. I have an error of: ${error}`)
+        client.randomStatus("with a broken script")
       }
     }
   }

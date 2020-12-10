@@ -9,6 +9,8 @@
     "lib": "lib"
   },
   "dependencies": {
+    "closestvector": "^0.6.0",
+    "color-name-list": "^7.22.0",
     "colors": "^1.4.0",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",

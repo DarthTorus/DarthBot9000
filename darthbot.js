@@ -1,7 +1,7 @@
 /*Variable area*/
 // Must be first because it is the settings for most of below
 require("dotenv").config();
-  
+
 const Discord = require('discord.js')
 const glob = require( 'glob' )
 const { parse } = require( 'path' )
@@ -23,9 +23,7 @@ let quitStatus = false
 client.inStandby = false
 client.quitStatus = quitStatus
 
-//Other vars
-//const MAX_INTEGER = 2147483647 // Max possible Integer
-//const MIN_INTEGER = -2147483648 // Min possible Integer
+
 const TAU = 2*Math.PI // Makes using radians bearable
 const PI = Math.PI // Helps with some functions
 const POS_PHI = (1+Math.sqrt(5.0))/2 //Golden Ratio
@@ -38,6 +36,20 @@ client.POS_PHI = POS_PHI
 client.NEG_PHI = NEG_PHI
 client.REC_POS_PHI = REC_POS_PHI
 client.REC_NEG_PHI = REC_NEG_PHI
+client.GAME_LIST = ""
+/**
+ *
+ * @param {Number} input
+ * @param {Number} min
+ * @param {Number} max
+ */
+client.clamp = function(input, min = Number.NEGATIVE_INFINITY, max = Number.POSITIVE_INFINITY, ) {
+	let newVal;
+	newVal = input > max ? max : input
+	newVal = input < min ? min : input
+	return newVal
+}
+
 
 client.random = function() {
 	var min, max = 0
@@ -58,7 +70,7 @@ client.random = function() {
 }
 
 /**
- * @param {String} str 
+ * @param {String} str
  * @description Returns the string with each word capitalized
  */
 
@@ -80,7 +92,7 @@ function map(m, message) {
 		outMin = Number(m[3])
 		outMax = Number(m[4])
 	}
-	
+
 	var result = bot.mapValue(v, inMin, inMax, outMin, outMax)
 
 	message.channel.send("`"+result+"`")
@@ -94,30 +106,51 @@ client.mapValue = function(x, inMin, inMax, outMin, outMax) {
 	return ((x-inMin)*(outRange)/(inRange) + outMin)
 }
 
+client.randomStatus = function(msg) {
+	var gameString = msg || "0";
+	var statTypeList = Object.keys(client.GAME_LIST );
+	var statType = statTypeList[client.random(statTypeList.length)];
+	var randStatuses = client.GAME_LIST [statType];
+	var bannedWords = ["fuck", "porn", "p0rn", "sh1t", "shit", "damn", "d@mn", "ass", "a$$","@$$",
+		"twat","cunt","bitch","b1tch", "douche", "d0uche", "dick", "d1ck"];
+	var containsBanned = false;
+	for(i = 0; i < bannedWords.length; i++) {
+		if(gameString.toLowerCase().includes(bannedWords[i])) {
+			containsBanned = true;
+		}
+	}
+	if (gameString == "0" || containsBanned) {
+		var status = client.random(randStatuses.length);
+		client.user.setActivity(randStatuses[status], {type: statType});
+	} else {
+		client.user.setActivity(msg);
+	}
+}
 
 
 
+/* Constant functions */
 
 client.loadFiles = function() {
 	client.commands = new Discord.Collection()
 	glob( './commands/**/*.js', (_, files) => {
 
 		files.forEach( file => {
-				
+
 				const { dir } = parse( file )
 				const folder = dir.split('/').pop()
 
 				if ( !client.commands.has( folder ) ) client.commands.set( folder, new Discord.Collection() )
 
 				const command = require( file )
-				
+
 				client.commands.get( folder ).set( command.name, command )
-				console.log(colors.brightCyan(file)+colors.brightYellow(" loaded"))
 
 		})
 		//console.log(client.commands)
 	})
-}
+	client.GAME_LIST = require("./json/statusList.json")
+
 
 	client.events = new Discord.Collection()
 	glob( './events/*.js', (_, files) => {
@@ -126,14 +159,16 @@ client.loadFiles = function() {
 
 					const event = require( file )
 					const { name } = parse( file)
-					
+
 					client.on( name, event( client ) )
-					
+
 			} )
 
 	} )
+}
 
 
+// This just loads the files from the function above.
 client.loadFiles()
 
 // login to Discord with your app's token. Last thing client should do
