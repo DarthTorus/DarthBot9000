@@ -44,6 +44,11 @@ client.GAME_LIST = ""
  * @param {Number} max
  */
 client.clamp = function(input, min = Number.NEGATIVE_INFINITY, max = Number.POSITIVE_INFINITY, ) {
+	if(min > max) {
+		let temp = min
+		min = max
+		max = temp
+	}
 	let newVal;
 	newVal = input > max ? max : input
 	newVal = input < min ? min : input
@@ -150,22 +155,22 @@ client.loadFiles = function() {
 		//console.log(client.commands)
 	})
 	client.GAME_LIST = require("./json/statusList.json")
-
-
-	client.events = new Discord.Collection()
-	glob( './events/*.js', (_, files) => {
-
-			files.forEach( file => {
-
-					const event = require( file )
-					const { name } = parse( file)
-
-					client.on( name, event( client ) )
-
-			} )
-
-	} )
 }
+
+client.events = new Discord.Collection()
+glob( './events/*.js', (_, files) => {
+
+		files.forEach( file => {
+
+				const event = require( file )
+				const { name } = parse( file)
+
+				client.on( name, event( client ) )
+
+		} )
+
+} )
+
 
 
 // This just loads the files from the function above.
